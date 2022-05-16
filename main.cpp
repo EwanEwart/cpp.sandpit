@@ -286,6 +286,10 @@ int main()
 
 #include "GH262.h"
 
+void sixth(void)
+{
+    return;
+}
 void fifth(void)
 {
     return;
