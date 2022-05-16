@@ -286,6 +286,10 @@ int main()
 
 #include "GH262.h"
 
+void fifth(void)
+{
+    return;
+}
 
 int main(int argc, char const* argv[]) 
 {
