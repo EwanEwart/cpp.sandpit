@@ -4,6 +4,10 @@
         "xlocale": "cpp",
         "xutility": "cpp",
         "xloctime": "cpp",
-        "cstdio": "cpp"
+        "cstdio": "cpp",
+        "utility": "cpp",
+        "memory": "cpp",
+        "xstring": "cpp",
+        "locale": "cpp"
     }
 }

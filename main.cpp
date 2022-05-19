@@ -280,45 +280,34 @@ int main()
 #if true
 
 #include <cstdio>
-#include <locale.h>
-#include <map>
 #include <string>
-
+#include <locale.h>
 #include "GH262.h"
 
-void sixth(void)
+int main(int argc, char const* argv[])
 {
-    return;
-}
-void fifth(void)
-{
-    return;
-}
-
-int main(int argc, char const* argv[]) 
-{
-    setlocale(LC_ALL, "German.1252");
+    setlocale(LC_CTYPE, "German.1252");
+    setlocale(LC_NUMERIC, "en_US.1252");
     // setlocale(LC_ALL, "de_DE.UTF8"); // ... fourth commit
 
 
 
-    char* path{ "E:/dev/sandpit/Muster_024A-027A.SLC" };
+    char* path{ "E:/dev/cpp.sandpit/Muster_024A-027A.SLC" };
 
     auto fp{ std::fopen(path,"r") };
     if (!fp)
     {
-        std::perror("File opening failed"); 
+        std::fprintf(stderr, "%s : %d : File opening failed.\n", __FILE__, __LINE__);
         return -1;
     }
 
     size_t noOfLines{};
     char lineBuf[1024];
-    char aDSK[5];
     std::map<std::string, unsigned int> occurrencesDSK{};
     for (;std::fgets(lineBuf, sizeof lineBuf, fp) != nullptr;)
     {
+        char aDSK[4 + 1]{};
         // printf("%s", lineBuf);
-        int idDSK{};
         int n{ sscanf(lineBuf,"%4s\n",aDSK) };
         // printf("%s\n", aDSK);
 
@@ -326,46 +315,220 @@ int main(int argc, char const* argv[])
 
         noOfLines++;
 
-#if false
-        struct INFO infoBuf {};
-        char const* infoFmt{ "%4s%2s%25s%38s%4d" };
-        auto n = sscanf
-        (
-            lineBuf
-            , infoFmt
-            , infoBuf.KZProgram
-            , infoBuf.notUsed
-            , infoBuf.KZProgram
-            , infoBuf.LetzeAenderung
-            , &infoBuf.BerechnungsModus
-        );
-        if (/* condition */)
+    }
+
+#if true
+    // dynamic DSKs <-- .slc
+    // dynamic DSKs <-- .slc
+    // dynamic DSKs <-- .slc
+    char ruler[]{ "-234567890-234567890-234567890-234567890-234567890-234567890-234567890-234567890-234567890\n" };
+    std::rewind(fp);
+    for (;std::fgets(lineBuf, sizeof lineBuf, fp) != nullptr;)
+    {
+        char aDSK[5]{};
+
+        int n{ sscanf(lineBuf,"%4s\n",aDSK) };
+
+        if (std::strcmp("INFO", aDSK) == 0 && g_dictDSKs["INFO"])
         {
-            /* code */
+            struct INFO buf {};
+            char const* fmt{ "%4c%*2c%25c%38c%4d" };
+            auto n = sscanf
+            (
+                /*   */  lineBuf
+                /*   */, fmt
+                /* 1 */, buf.DSK
+                /* 2 */, buf.KZProgram
+                /* 3 */, buf.LetzeAenderung
+                /* 4 */, &buf.BerechnungsModus
+            );
+            assert(n == 4);
+
+            fputs(ruler, stdout);
+            char const* fmt2{ "%s|\n%s|\n%s|\n%d|\n" };
+            printf
+            (
+                /*   */  fmt2
+                /* 1 */, buf.DSK
+                /* 2 */, buf.KZProgram
+                /* 3 */, buf.LetzeAenderung
+                /* 4 */, buf.BerechnungsModus
+            );
+        }
+        else if (std::strcmp("BEAR", aDSK) == 0 && g_dictDSKs["BEAR"])
+        {
+            struct BEAR buf {};
+            char const* fmt{ "%4c%*2c%28c" };
+            auto n = sscanf(
+                /*   */  lineBuf
+                /*   */, fmt
+                /* 1 */, buf.DSK
+                /* 2 */, buf.Bearbeiter
+            );
+            assert(n == 2);
+
+            fputs(ruler, stdout);
+            char const* fmt2{ "%s|\n%s|\n" };
+            printf
+            (
+                /*   */  fmt2
+                /* 1 */, buf.DSK
+                /* 2 */, buf.Bearbeiter
+            );
+        }
+        else if (std::strcmp("KOMM", aDSK) == 0 && g_dictDSKs["INFO"])
+        {
+            struct KOMM buf {};
+            char const* fmt{ "%4s%2ss%28s%1024s" };
+            auto n = sscanf(
+                /*   */  lineBuf
+                /*   */, fmt
+                /* 1 */, buf.DSK
+                /* 2 */, buf.Kommentartext
+            );
+            assert(n == 2);
+
+            char const* fmt2{ "\n%4s|\n%1024s|\n" };
+            printf
+            (
+                /*   */  fmt2
+                /* 1 */, buf.DSK
+                /* 2 */, buf.Kommentartext
+            );
+        }
+        else if (std::strcmp("PAR1", aDSK) == 0 && g_dictDSKs["PAR1"])
+        {
+            struct PAR1 buf {};
+            char const* fmt{ "%4c%*2c%6c%6c%6c%1c%1c%1c%1c%1c%1c%1c%1c%1c%1c%1c%1c%1c%1c" };
+            auto n = sscanf(
+                /*     */  lineBuf
+                /*     */, fmt
+                /*   1 */, buf.DSK
+                /*   2 */, buf.SpezEigGewichtChar
+                /*   3 */, buf.UmrechnungsfaktorChar
+                /*   4 */, buf.ReckwertChar
+                /*   5 */, buf.BerechnungEI
+                /*   6 */, buf.Berechnungsvorschrift
+                /*   7 */, buf.BerechnungEM
+                /*   8 */, buf.Seilkriechen
+                /*   9 */, buf.Seilausschwingwinkel
+                /*  10 */, buf.Ausgangsspannung
+                /*  11 */, buf.Reduzierung
+                /*  12 */, buf.Hoehenausgaben
+                /*  13 */, buf.Trassierungsrichtlinie
+                /*  14 */, buf.Windgesetz
+                /*  15 */, buf.Phasenabstaende
+                /*  16 */, buf.Sprache
+                /*  17 */, buf.Mittelzugspannung
+                /*  18 */, buf.LogDateiYN
+            );
+            assert(n == 18);
+
+            n = sscanf(buf.SpezEigGewichtChar, "%f", &buf.SpezEigGewichtFloat);
+            assert(n == 1);
+            n = sscanf(buf.UmrechnungsfaktorChar, "%f", &buf.UmrechnungsfaktorFloat);
+            assert(n == 1);
+            n = sscanf(buf.ReckwertChar, "%f", &buf.ReckwertFloat);
+            if (n != 1)
+            {
+                buf.ReckwertFloat = 0.0f;
+            }
+
+
+            char const* fmt2{ "\n%s|\n%6.0f|\n%6.2f|\n%6.2f|\n%s|\n%s|\n%s|\n%s|\n%s|\n%s|\n%s|\n%s|\n%s|\n%s|\n%s|\n%s|\n%s|\n%s|\n" };
+            printf
+            (
+                /*     */  fmt2
+                /*   1 */, buf.DSK
+                /*   2 */, buf.SpezEigGewichtFloat
+                /*   3 */, buf.UmrechnungsfaktorFloat
+                /*   4 */, buf.ReckwertFloat
+                /*   5 */, buf.BerechnungEI
+                /*   6 */, buf.Berechnungsvorschrift
+                /*   7 */, buf.BerechnungEM
+                /*   8 */, buf.Seilkriechen
+                /*   9 */, buf.Seilausschwingwinkel
+                /*  10 */, buf.Ausgangsspannung
+                /*  11 */, buf.Reduzierung
+                /*  12 */, buf.Hoehenausgaben
+                /*  13 */, buf.Trassierungsrichtlinie
+                /*  14 */, buf.Windgesetz
+                /*  15 */, buf.Phasenabstaende
+                /*  16 */, buf.Sprache
+                /*  17 */, buf.Mittelzugspannung
+                /*  18 */, buf.LogDateiYN
+
+            );
+        }
+        else if (std::strcmp("ZSTD", aDSK) == 0 && g_dictDSKs["ZSTD"])
+        {
+            struct ZSTD buf {};
+            char const* fmt{ "%4c%*2c%3c%3c%2c%20c%1c%1c%1c%1c%1c%1c%*4c%6c%6c%6c%6c%*1c%1c%1c" };
+            auto n = sscanf(
+                lineBuf
+                , fmt
+                , /*  1 */ buf.DSK
+                , /*  2 */ buf.ZustandsindexChar
+                , /*  3 */ buf.TemperaturCChar
+                , /*  4 */ buf.Konstante
+                , /*  5 */ buf.Zustandsbezeichnung
+                , /*  6 */ buf.KennungAusgangszustand
+                , /*  7 */ buf.KennungGrenzlast
+                , /*  8 */ buf.KennungUngleicheEislast
+                , /*  9 */ buf.KennungKettenausschwingwinkels
+                , /* 10 */ buf.KennungZusatzlast
+                , /* 11 */ buf.KennungEiswalze
+                , /* 12 */ buf.LastfaktorChar
+                , /* 13 */ buf.WindlastfaktorChar
+                , /* 14 */ buf.ReckwertChar
+                , /* 15 */ buf.AusnahmelastChar
+                , /* 16 */ buf.Temperaturzuschlag
+                , /* 17 */ buf.GrenzlastBerechnung
+            );
+            assert(n == 17);
+            n = sscanf(buf.ZustandsindexChar, "%d", &buf.ZustandsindexInt);assert(n == 1);
+            n = sscanf(buf.TemperaturCChar, "%d", &buf.TemperaturCInt);assert(n == 1);
+            n = sscanf(buf.LastfaktorChar, "%f", &buf.LastfaktorFloat);assert(n == 1);
+            n = sscanf(buf.WindlastfaktorChar, "%f", &buf.WindlastfaktorFloat);assert(n == 1);
+            n = sscanf(buf.ReckwertChar, "%f", &buf.ReckwertFloat);assert(n == 1);
+            n = sscanf(buf.AusnahmelastChar, "%f", &buf.AusnahmelastFloat);assert(n == 1);
+            char const* fmt2{ "\n%s|\n%d|\n%d|\n%s|\n%s|\n%s|\n%s|\n%s|\n%s|\n%s|\n%s|\n%6.3f|\n%6.3f|\n%6.2f|\n%6.2f|\n%s|\n%s|\n" };
+            printf
+            (
+                fmt2
+                , /*  1 */ buf.DSK
+                , /*  2 */ buf.ZustandsindexInt
+                , /*  3 */ buf.TemperaturCInt
+                , /*  4 */ buf.Konstante
+                , /*  5 */ buf.Zustandsbezeichnung
+                , /*  6 */ buf.KennungAusgangszustand
+                , /*  7 */ buf.KennungGrenzlast
+                , /*  8 */ buf.KennungUngleicheEislast
+                , /*  9 */ buf.KennungKettenausschwingwinkels
+                , /* 10 */ buf.KennungZusatzlast
+                , /* 11 */ buf.KennungEiswalze
+                , /* 12 */ buf.LastfaktorFloat
+                , /* 13 */ buf.WindlastfaktorFloat
+                , /* 14 */ buf.ReckwertFloat
+                , /* 15 */ buf.AusnahmelastFloat
+                , /* 16 */ buf.Temperaturzuschlag
+                , /* 17 */ buf.GrenzlastBerechnung
+
+            );
         }
 
-        char const* infoFmtOut{ "%4s\n%2s\ns%25s\n%38s\n%4d\n" };
-        printf(
-            infoFmtOut
-            , infoBuf.KZProgram
-            , infoBuf.notUsed
-            , infoBuf.KZProgram
-            , infoBuf.LetzeAenderung
-            , infoBuf.BerechnungsModus
-        );
-        break;
     }
-        default:
-            break;
-}
-break;
 #endif
 
-    }
 
     fclose(fp);
 
+#if false
+
     // statistics
+    // statistics
+    // statistics
+
     for (auto const& item : occurrencesDSK)
     {
         printf
@@ -389,19 +552,37 @@ break;
     printf("\nNo of lines .SLC      == %zd\n", noOfLines);
 
     printf("\n");
+#endif
+
+#if false
+    // queue static DSKs 
+    // queue static DSKs 
+    // queue static DSKs 
+    std::queue<std::pair<std::string, std::shared_ptr<Base>>> queueDSKs;
+    queueDSKs.push(std::pair<std::string, std::shared_ptr<Base>>("INFO", std::static_pointer_cast<Base>(std::make_shared<INFO>())));
+    queueDSKs.push(std::pair<std::string, std::shared_ptr<Base>>("INFO", std::static_pointer_cast<Base>(std::make_shared<INFO>("INFO", "A", "B", 55))));
+    queueDSKs.push(std::pair<std::string, std::shared_ptr<Base>>("INFS", std::static_pointer_cast<Base>(std::make_shared<INFS>())));
+    queueDSKs.push(std::pair<std::string, std::shared_ptr<Base>>("PARS", std::static_pointer_cast<Base>(std::make_shared<PARS>())));
+    queueDSKs.push(std::pair<std::string, std::shared_ptr<Base>>("BEAR", std::static_pointer_cast<Base>(std::make_shared<BEAR>())));
+    for (;!queueDSKs.empty();)
+    {
+        auto dsk{ queueDSKs.front() };
+        if (std::strcmp(dsk.first.c_str(), "INFO") == 0)
+        {
+            auto p = std::static_pointer_cast<INFO>(dsk.second);
+            std::cout
+                << (dsk.first) << '|' << '\n'
+                << (p->DSK) << '|' << '\n'
+                << (p->KZProgram) << '|' << '\n'
+                << (p->LetzeAenderung) << '|' << '\n'
+                << (p->BerechnungsModus) << '|' << '\n'
+                << std::endl;
+        }
+        queueDSKs.pop();
+    }
+#endif
 
     return 0;
 }
-/*
-INFO  263Ver.: 4.14.4          2022-05-04 09:38:07.84"
-INFO
-263Ver.: 4.14.4
-2022-05-04 09:38:07.84"
-
-INFO263Ver.:
-                 263Ver.:
-                                4.14.4
-2022
-*/
 
 #endif
