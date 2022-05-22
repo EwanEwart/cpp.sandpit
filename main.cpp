@@ -516,8 +516,359 @@ int main(int argc, char const* argv[])
 
             );
         }
+        else if (std::strcmp("SLG1", aDSK) == 0 && g_dictDSKs["SLG1"])
+        {
+            struct SLG1 buf {};
+            char const* fmt{ "%4c%*2c%3c%*1c%28c%4c%2c%1c%4c%5c%5c%5c%6c%8c%*1c%1c%1c%1c%1c%1c" };
+            auto n = sscanf(
+                lineBuf
+                , fmt
+                , /*  1 */ buf.DSK
+                , /*  2 */ buf.SeilindexChar
+                , /*  3 */ buf.Seilbezeichnung
+                , /*  4 */ buf.SpannungsebeneChar
+                , /*  5 */ buf.AnzahlTeilleiterChar
+                , /*  6 */ buf.Buendelanordnung
+                , /*  7 */ buf.TeilleiterabstandChar
+                , /*  8 */ buf.Seiltyp
+                , /*  9 */ buf.TemperaturdifferenzSeilkriechenChar
+                , /* 10 */ buf.KriechfaktorChar
+                , /* 11 */ buf.UeberziehfaktorChar
+                , /* 12 */ buf.KriechzeitChar
+                , /* 13 */ buf.Kennung_EN_Seil
+                , /* 14 */ buf.KennungSeilmanuellEingefuegt
+                , /* 15 */ buf.Isolationsar
+                , /* 16 */ buf.VorzeichenTemperaturdifferenz
+                , /* 17 */ buf.VorzeichenKriechfaktor
+            );
+            assert(n == 17);
+            n = sscanf(buf.SeilindexChar, "%d", &buf.SeilindexInt);assert(n == 1);
+            n = sscanf(buf.SpannungsebeneChar, "%d", &buf.SpannungsebeneInt);assert(n == 1);
+            n = sscanf(buf.AnzahlTeilleiterChar, "%d", &buf.AnzahlTeilleiterInt);assert(n == 1);
+            n = sscanf(buf.TeilleiterabstandChar, "%f", &buf.TeilleiterabstandFloat);assert(n == 1);
+            n = sscanf(buf.TemperaturdifferenzSeilkriechenChar, "%f", &buf.TemperaturdifferenzSeilkriechenFloat);assert(n == 1);
+            n = sscanf(buf.KriechfaktorChar, "%f", &buf.KriechfaktorFloat);assert(n == 1);
+            n = sscanf(buf.UeberziehfaktorChar, "%f", &buf.UeberziehfaktorFloat);assert(n == 1);
+            n = sscanf(buf.KriechzeitChar, "%f", &buf.KriechzeitFloat);assert(n == 1);
+            char const* fmt2{ "\n%s|\n%d|\n%s|\n%d|\n%d|\n%s|\n%4.2f|\n%s|\n%5.1f|\n%5.3f|\n%6.2f|\n%8.0f|\n%s|\n%s|\n%s|\n%s|\n%s|\n" };
+            printf
+            (
+                fmt2
+                , /*  1 */ buf.DSK
+                , /*  2 */ buf.SeilindexInt
+                , /*  3 */ buf.Seilbezeichnung
+                , /*  4 */ buf.SpannungsebeneInt
+                , /*  5 */ buf.AnzahlTeilleiterInt
+                , /*  6 */ buf.Buendelanordnung
+                , /*  7 */ buf.TeilleiterabstandFloat
+                , /*  8 */ buf.Seiltyp
+                , /*  9 */ buf.TemperaturdifferenzSeilkriechenFloat
+                , /* 10 */ buf.KriechfaktorFloat
+                , /* 11 */ buf.UeberziehfaktorFloat
+                , /* 12 */ buf.KriechzeitFloat
+                , /* 13 */ buf.Kennung_EN_Seil
+                , /* 14 */ buf.KennungSeilmanuellEingefuegt
+                , /* 15 */ buf.Isolationsar
+                , /* 16 */ buf.VorzeichenTemperaturdifferenz
+                , /* 17 */ buf.VorzeichenKriechfaktor
 
-    }
+            );
+        }
+        else if (std::strcmp("SLG2", aDSK) == 0 && g_dictDSKs["SLG2"])
+        {
+            struct SLG2 buf {};
+            char const* fmt{ "%4c%*2c%3c%6c%8c%8c%10c%11c%7c%4c%8c%8c%1c" };
+            auto n = sscanf(
+                lineBuf
+                , fmt
+                , /*  1 */ buf.DSK
+                , /*  2 */ buf.SeilindexChar
+                , /*  3 */ buf.SeildurchmesserChar
+                , /*  4 */ buf.SeilquerschnittChar
+                , /*  5 */ buf.E_ModulChar
+                , /*  6 */ buf.AusdehnungskoeffizientChar
+                , /*  7 */ buf.SpezSeilgewichtChar
+                , /*  8 */ buf.NormaleZusatzlastChar
+                , /*  9 */ buf.AerodynamischerKraftbeiwertChar
+                , /* 10 */ buf.SeilgewichtDBChar
+                , /* 11 */ buf.FettmasseChar
+                , /* 12 */ buf.KennungQLK
+            );
+            assert(n == 12);
+            /* 2 */ n = sscanf(buf.SeilindexChar, "%d", &buf.SeilindexInt);assert(n == 1);
+            /* 3 */ n = sscanf(buf.SeildurchmesserChar, "%f", &buf.SeildurchmesserFloat);assert(n == 1);
+            /* 4 */ n = sscanf(buf.SeilquerschnittChar, "%f", &buf.SeilquerschnittFloat);assert(n == 1);
+            /* 5 */ n = sscanf(buf.E_ModulChar, "%f", &buf.E_ModulFloat);assert(n == 1);
+            /* 6 */ n = sscanf(buf.AusdehnungskoeffizientChar, "%f", &buf.AusdehnungskoeffizientFloat);assert(n == 1);
+            /* 7 */ n = sscanf(buf.SpezSeilgewichtChar, "%f", &buf.SpezSeilgewichtFloat);assert(n == 1);
+            /* 8 */ n = sscanf(buf.NormaleZusatzlastChar, "%f", &buf.NormaleZusatzlastFloat);assert(n == 1);
+            /* 9 */ n = sscanf(buf.AerodynamischerKraftbeiwertChar, "%f", &buf.AerodynamischerKraftbeiwertFloat);assert(n == 1);
+            /* 0 */ n = sscanf(buf.SeilgewichtDBChar, "%f", &buf.SeilgewichtDBFloat);assert(n == 1);
+            /* 1 */ n = sscanf(buf.FettmasseChar, "%f", &buf.FettmasseFloat);assert(n == 1);
+            char const* fmt2{ "\n%s|\n%d|\n%6.2f|\n%8.2f|\n%8.0f|\n%10.8f|\n%11.9f|\n%7.3f|\n%4.2f|\n%8.2f|\n%8.2f|\n%s|\n" };
+            printf
+            (
+                fmt2
+                , /*  1 */ buf.DSK
+                , /*  2 */ buf.SeilindexInt
+                , /*  3 */ buf.SeildurchmesserFloat
+                , /*  4 */ buf.SeilquerschnittFloat
+                , /*  5 */ buf.E_ModulFloat
+                , /*  6 */ buf.AusdehnungskoeffizientFloat
+                , /*  7 */ buf.SpezSeilgewichtFloat
+                , /*  8 */ buf.NormaleZusatzlastFloat
+                , /*  9 */ buf.AerodynamischerKraftbeiwertFloat
+                , /* 10 */ buf.SeilgewichtDBFloat
+                , /* 11 */ buf.FettmasseFloat
+                , /* 12 */ buf.KennungQLK
+
+            );
+        }
+        else if (std::strcmp("SLG3", aDSK) == 0 && g_dictDSKs["SLG3"])
+        {
+            struct SLG3 buf {};
+            char const* fmt{ "%4c%*2c%3c%8c%8c%8c%8c%6c%8c" };
+            auto n = sscanf(
+                lineBuf
+                , fmt
+                , /*  1 */ buf.DSK
+                , /*  2 */ buf.SeilindexChar
+                , /*  3 */ buf.HoechstzugspannungChar
+                , /*  4 */ buf.MittelzugspannungChar
+                , /*  5 */ buf.DauerzugspannungChar
+                , /*  6 */ buf.BruchkraftChar
+                , /*  7 */ buf.StahlgewichtsanteilChar
+                , /*  8 */ buf.StahlquerschnittChar
+            );
+            assert(n == 8);
+            /* 2 */ n = sscanf(buf.SeilindexChar, "%d", &buf.SeilindexInt);assert(n == 1);
+            /* 3 */ n = sscanf(buf.HoechstzugspannungChar, "%f", &buf.HoechstzugspannungFloat);assert(n == 1);
+            /* 4 */ n = sscanf(buf.MittelzugspannungChar, "%f", &buf.MittelzugspannungFloat);assert(n == 1);
+            /* 5 */ n = sscanf(buf.DauerzugspannungChar, "%f", &buf.DauerzugspannungFloat);assert(n == 1);
+            /* 6 */ n = sscanf(buf.BruchkraftChar, "%f", &buf.BruchkraftFloat);assert(n == 1);
+            /* 7 */ n = sscanf(buf.StahlgewichtsanteilChar, "%f", &buf.StahlgewichtsanteilFloat);assert(n == 1);
+            /* 8 */ n = sscanf(buf.StahlquerschnittChar, "%f", &buf.StahlquerschnittFloat);assert(n == 1);
+            char const* fmt2{ "\n%s|\n%d|\n%8.2f|\n%8.2f|\n%8.2f|\n%8.0f|\n%6.2f|\n%8.2f|\n" };
+            printf
+            (
+                fmt2
+                , /*  1 */ buf.DSK
+                , /*  2 */ buf.SeilindexInt
+                , /*  3 */ buf.HoechstzugspannungFloat
+                , /*  4 */ buf.MittelzugspannungFloat
+                , /*  5 */ buf.DauerzugspannungFloat
+                , /*  6 */ buf.BruchkraftFloat
+                , /*  7 */ buf.StahlgewichtsanteilFloat
+                , /*  8 */ buf.StahlquerschnittFloat
+
+            );
+        }
+        else if (std::strcmp("MAST", aDSK) == 0 && g_dictDSKs["MAST"])
+        {
+            struct MAST buf {};
+            char const* fmt{ "%4c%*2c%3c%*1c%6c%*1c%1c%*1c%7c%6c%9c%8c%9c%9c%*1c%33c%6c%*1c%26c" };
+            auto n = sscanf(
+                lineBuf
+                , fmt
+                , /*   1 */ buf.DSK
+                , /*   2 */ buf.MastindexChar
+                , /*   3 */ buf.MastnummerMastname_1
+                , /*   4 */ buf.Masttyp
+                , /*   5 */ buf.Masttypenbezeichnung_1
+                , /*   6 */ buf.AusfuehrungChar
+                , /*   7 */ buf.LaengenstationMaststandortChar
+                , /*   8 */ buf.HoeheMastfusspunktChar
+                , /*   9 */ buf.LeitungswinkelChar
+                , /*  10 */ buf.StellwinkelChar
+                , /*  11 */ buf.Masttypenbezeichnung_2
+                , /*  12 */ buf.OrdinateMaststandortChar
+                , /*  13 */ buf.MastnummerMastname_2
+            );
+            assert(n == 13);
+            /*  2 */ n = sscanf(buf.MastindexChar, "%d", &buf.MastindexInt);assert(n == 1);
+            /*  6 */ n = sscanf(buf.AusfuehrungChar, "%f", &buf.AusfuehrungFloat);assert(n == 1);
+            /*  7 */ n = sscanf(buf.LaengenstationMaststandortChar, "%f", &buf.LaengenstationMaststandortFloat);assert(n == 1);
+            /*  8 */ n = sscanf(buf.HoeheMastfusspunktChar, "%f", &buf.HoeheMastfusspunktFloat);assert(n == 1);
+            /*  9 */ n = sscanf(buf.LeitungswinkelChar, "%f", &buf.LeitungswinkelFloat);assert(n == 1);
+            /* 10 */ n = sscanf(buf.StellwinkelChar, "%f", &buf.StellwinkelFloat);assert(n == 1);
+            /* 12 */ n = sscanf(buf.OrdinateMaststandortChar, "%f", &buf.OrdinateMaststandortFloat);assert(n == 1);
+            char const* fmt2{ "\n%s|\n%d|\n%s|\n%s|\n%s|\n%6.2f|\n%9.2f|\n%8.2f|\n%9.3f|\n%9.3f|\n%s%6.2f|\n%s|\n" };
+            printf
+            (
+                fmt2
+                , /*   1 */ buf.DSK
+                , /*   2 */ buf.MastindexInt
+                , /*   3 */ buf.MastnummerMastname_1
+                , /*   4 */ buf.Masttyp
+                , /*   5 */ buf.Masttypenbezeichnung_1
+                , /*   6 */ buf.AusfuehrungFloat
+                , /*   7 */ buf.LaengenstationMaststandortFloat
+                , /*   8 */ buf.HoeheMastfusspunktFloat
+                , /*   9 */ buf.LeitungswinkelFloat
+                , /*  10 */ buf.StellwinkelFloat
+                , /*  11 */ buf.Masttypenbezeichnung_2
+                , /*  12 */ buf.OrdinateMaststandortFloat
+                , /*  13 */ buf.MastnummerMastname_2
+            );
+        }
+        else if (std::strcmp("TRAV", aDSK) == 0 && g_dictDSKs["TRAV"])
+        {
+            struct TRAV buf {};
+            char const* fmt{ "%4c%*2c%3c%3c%7c%7c%8c%*6c%6c%3c%*1c%7c%7c" };
+            auto n = sscanf(
+                lineBuf
+                , fmt
+                , /*   1 */ buf.DSK
+                , /*   2 */ buf.MastindexChar
+                , /*   3 */ buf.PhasenindexChar
+                , /*   4 */ buf.TraversenhoeheChar
+                , /*   5 */ buf.AusladungChar
+                , /*   6 */ buf.StellwinkelTraverseChar
+                , /*   7 */ buf.KettenlaengeChar
+                , /*   8 */ buf.KettenindexChar
+                , /*   9 */ buf.HoehenbezugStaudruckChar
+                , /*  10 */ buf.TraversenexzentrizitaetChar
+            );
+            assert(n == 10);
+            /*  2 */ n = sscanf(buf.MastindexChar, "%d", &buf.MastindexInt);assert(n == 1);
+            /*  3 */ n = sscanf(buf.PhasenindexChar, "%d", &buf.PhasenindexInt);assert(n == 1);
+            /*  4 */ n = sscanf(buf.TraversenhoeheChar, "%f", &buf.TraversenhoeheFloat);assert(n == 1);
+            /*  5 */ n = sscanf(buf.AusladungChar, "%f", &buf.AusladungFloat);assert(n == 1);
+            /*  6 */ n = sscanf(buf.StellwinkelTraverseChar, "%f", &buf.StellwinkelTraverseFloat);assert(n == 1);
+            /*  7 */ n = sscanf(buf.KettenlaengeChar, "%f", &buf.KettenlaengeFloat);assert(n == 1);
+            /*  8 */ n = sscanf(buf.KettenindexChar, "%d", &buf.KettenindexInt);assert(n == 1);
+            /*  9 */ n = sscanf(buf.HoehenbezugStaudruckChar, "%f", &buf.HoehenbezugStaudruckFloat);assert(n == 1);
+            char const* fmt2{ "\n%s|\n%d|\n%d|\n%7.2f|\n%7.2f|\n%8.2f|\n%6.2f|\n%d|\n%7.2f|\n%7.2f|\n" };
+            printf
+            (
+                fmt2
+                , /*   1 */ buf.DSK
+                , /*   2 */ buf.MastindexInt
+                , /*   3 */ buf.PhasenindexInt
+                , /*   4 */ buf.TraversenhoeheFloat
+                , /*   5 */ buf.AusladungFloat
+                , /*   6 */ buf.StellwinkelTraverseFloat
+                , /*   7 */ buf.KettenlaengeFloat
+                , /*   8 */ buf.KettenindexInt
+                , /*   9 */ buf.HoehenbezugStaudruckFloat
+                , /*  10 */ buf.TraversenexzentrizitaetFloat
+            );
+        }
+        else if (std::strcmp("KET1", aDSK) == 0 && g_dictDSKs["KET1"])
+        {
+            struct KET1 buf {};
+#ifdef FLP
+            char const* fmt{ "%4c%*2c%3c%*1c%1c%3c%*1c%2c%*1c%28c%*1c%9c%*1c%5c" };
+#else
+            char const* fmt{ "%4c%*2c%3c%*1c%1c%3c%*1c%2c%*1c%28c%*1c%9c%*1c" };
+#endif
+            auto n = sscanf(
+                lineBuf
+                , fmt
+                , /*   1 */ buf.DSK
+                , /*   2 */ buf.KettenindexChar
+                , /*   3 */ buf.Kettentyp
+                , /*   4 */ buf.AnzahlKettenstraengeChar
+                , /*   5 */ buf.Kettentypbezeichnung
+                , /*   6 */ buf.KettenbezeichnungIsolator
+                , /*   7 */ buf.Schwingenbezeichnung
+#ifdef FLP
+                , /*   8 */ buf.Kettennummer
+#endif
+            );
+#ifdef FLP
+            assert(n == 8);
+#else
+            assert(n == 7);
+#endif
+            /*  2 */ n = sscanf(buf.KettenindexChar, "%d", &buf.KettenindexInt);assert(n == 1);
+            /*  4 */ n = sscanf(buf.AnzahlKettenstraengeChar, "%d", &buf.AnzahlKettenstraengeInt);assert(n == 1);
+            char const* fmt2{ "\n%s|\n%d|\n%s|\n%d|\n%s|\n%s|\n%s|\n%s|\n" };
+            printf
+            (
+                fmt2
+                , /*   1 */ buf.DSK
+                , /*   2 */ buf.KettenindexInt
+                , /*   3 */ buf.Kettentyp
+                , /*   4 */ buf.AnzahlKettenstraengeInt
+                , /*   5 */ buf.Kettentypbezeichnung
+                , /*   6 */ buf.KettenbezeichnungIsolator
+                , /*   7 */ buf.Schwingenbezeichnung
+#ifdef FIRM_FLP
+                , /*   8 */ buf.Kettennummer
+#endif
+            );
+        }
+        else if (std::strcmp("KET2", aDSK) == 0 && g_dictDSKs["KET2"])
+        {
+            struct KET2 buf {};
+            char const* fmt{ "%4c%*2c%3c%5c%5c%5c%5c%6c%6c%6c%7c%7c%6c%6c%6c%6c%6c%5c%5c" };
+            auto n = sscanf(
+                lineBuf
+                , fmt
+                , /*   1 */ buf.DSK
+                , /*   2 */ buf.KettenindexChar
+                , /*   3 */ buf.KettenlaengeChar
+                , /*   4 */ buf.VLaengeChar
+                , /*   5 */ buf.FesteLaengeChar
+                , /*   6 */ buf.SchwingenlaengeChar
+                , /*   7 */ buf.KettengewichtChar
+                , /*   8 */ buf.EinfachesEisgewichtKetteChar
+                , /*   9 */ buf.SchwingengewichtChar
+                , /*  10 */ buf.GrenzausschwingwinkelInnenChar
+                , /*  11 */ buf.GrenzausschwingwinkelAußenChar
+                , /*  12 */ buf.ZusatzgewichtChar
+                , /*  13 */ buf.EinbaulaengeChar
+                , /*  14 */ buf.SchirmdurchmesserChar
+                , /*  15 */ buf.StrunkdurchmesserChar
+                , /*  16 */ buf.ProjizierteFlaecheChar
+                , /*  17 */ buf.VKetteVersatzAufhaengungMastInnenChar
+                , /*  18 */ buf.VKetteVersatzAufhaengungMastAussenChar
+            );
+            assert(n == 18);
+            /*   2 */ n = sscanf(buf.KettenindexChar, "%d", &buf.KettenindexInt);assert(n == 1);
+            /*   3 */ n = sscanf(buf.KettenlaengeChar, "%f", &buf.KettenlaengeFloat);assert(n == 1);
+            /*   4 */ n = sscanf(buf.VLaengeChar, "%f", &buf.VLaengeFloat);assert(n == 1);
+            /*   5 */ n = sscanf(buf.FesteLaengeChar, "%f", &buf.FesteLaengeFloat);assert(n == 1);
+            /*   6 */ n = sscanf(buf.SchwingenlaengeChar, "%f", &buf.SchwingenlaengeFloat);assert(n == 1);
+            /*   7 */ n = sscanf(buf.KettengewichtChar, "%f", &buf.KettengewichtFloat);assert(n == 1);
+            /*   8 */ n = sscanf(buf.EinfachesEisgewichtKetteChar, "%f", &buf.EinfachesEisgewichtKetteFloat);assert(n == 1);
+            /*   9 */ n = sscanf(buf.SchwingengewichtChar, "%f", &buf.SchwingengewichtFloat);assert(n == 1);
+            /*  10 */ n = sscanf(buf.GrenzausschwingwinkelInnenChar, "%f", &buf.GrenzausschwingwinkelInnenFloat);assert(n == 1);
+            /*  11 */ n = sscanf(buf.GrenzausschwingwinkelAußenChar, "%f", &buf.GrenzausschwingwinkelAußenFloat);assert(n == 1);
+            /*  12 */ n = sscanf(buf.ZusatzgewichtChar, "%f", &buf.ZusatzgewichtFloat);assert(n == 1);
+            /*  13 */ n = sscanf(buf.EinbaulaengeChar, "%f", &buf.EinbaulaengeFloat);assert(n == 1);
+            /*  14 */ n = sscanf(buf.SchirmdurchmesserChar, "%f", &buf.SchirmdurchmesserFloat);assert(n == 1);
+            /*  15 */ n = sscanf(buf.StrunkdurchmesserChar, "%f", &buf.StrunkdurchmesserFloat);assert(n == 1);
+            /*  16 */ n = sscanf(buf.ProjizierteFlaecheChar, "%f", &buf.ProjizierteFlaecheFloat);assert(n == 1);
+            /*  17 */ n = sscanf(buf.VKetteVersatzAufhaengungMastInnenChar, "%f", &buf.VKetteVersatzAufhaengungMastInnenFloat);assert(n == 1);
+            /*  18 */ n = sscanf(buf.VKetteVersatzAufhaengungMastAussenChar, "%f", &buf.VKetteVersatzAufhaengungMastAussenFloat);assert(n == 1);
+            char const* fmt2{ "\n%4s|\n%d|\n%5.2f|\n%5.2f|\n%5.2f|\n%5.2f|\n%6.0f|\n%6.0f|\n%6.0f|\n%7.2f|\n%7.2f|\n%6.0f|\n%6.3f|\n%6.3f|\n%6.3f|\n%6.3f|\n%5.2f|\n%5.2f|\n" };
+            printf
+            (
+                fmt2
+                , /*   1 */ buf.DSK
+                , /*   2 */ buf.KettenindexInt
+                , /*   3 */ buf.KettenlaengeFloat
+                , /*   4 */ buf.VLaengeFloat
+                , /*   5 */ buf.FesteLaengeFloat
+                , /*   6 */ buf.SchwingenlaengeFloat
+                , /*   7 */ buf.KettengewichtFloat
+                , /*   8 */ buf.EinfachesEisgewichtKetteFloat
+                , /*   9 */ buf.SchwingengewichtFloat
+                , /*  10 */ buf.GrenzausschwingwinkelInnenFloat
+                , /*  11 */ buf.GrenzausschwingwinkelAußenFloat
+                , /*  12 */ buf.ZusatzgewichtFloat
+                , /*  13 */ buf.EinbaulaengeFloat
+                , /*  14 */ buf.SchirmdurchmesserFloat
+                , /*  15 */ buf.StrunkdurchmesserFloat
+                , /*  16 */ buf.ProjizierteFlaecheFloat
+                , /*  17 */ buf.VKetteVersatzAufhaengungMastInnenFloat
+                , /*  18 */ buf.VKetteVersatzAufhaengungMastAussenFloat
+            );
+        }
+
+    } // for line by line: dsks
 #endif
 
 

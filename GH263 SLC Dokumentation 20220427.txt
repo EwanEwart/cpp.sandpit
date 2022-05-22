@@ -212,9 +212,7 @@ GH263 Datenformat                                                               
 
 
 
-// INFO: Info Zeile  
-// INFO: Info Zeile  
-// INFO: Info Zeile  
+//: INFO: Info Zeile  
 // Erste Zeile der Datei. Bei allen anderen Daten ist die Reihenfolge frei.  
 
    Spalte              Format            Beschreibung  
@@ -227,9 +225,7 @@ GH263 Datenformat                                                               
 
 
 
-// INFS: Info-Zeile slc (nur in slc-Datei enthalten)   
-// INFS: Info-Zeile slc (nur in slc-Datei enthalten)   
-// INFS: Info-Zeile slc (nur in slc-Datei enthalten)   
+//: INFS: Info-Zeile slc (nur in slc-Datei enthalten)   
 
 // *** Neu ab Version 3.7.4 ***  
 
@@ -243,9 +239,7 @@ GH263 Datenformat                                                               
 
 
 
-// PARS: Aufrufparameter (nur in slc-Datei enthalten) 
-// PARS: Aufrufparameter (nur in slc-Datei enthalten) 
-// PARS: Aufrufparameter (nur in slc-Datei enthalten) 
+//: PARS: Aufrufparameter (nur in slc-Datei enthalten)
 // *** Neu ab Version 3.7.5 ***  
 
    Spalte              Format            Beschreibung  
@@ -257,7 +251,7 @@ GH263 Datenformat                                                               
 
 
 
-// BEAR: Bearbeiter   +++
+//: BEAR: Bearbeiter   +++
 
    Spalte              Format            Beschreibung  
 
@@ -268,7 +262,7 @@ GH263 Datenformat                                                               
 
 
 
-// TXT1, TXT2: Leitung Allgemein, Beschreibung  
+//: "TXT1", TXT2: Leitung Allgemein, Beschreibung  
 
    Spalte              Format            Beschreibung  
 
@@ -280,7 +274,8 @@ GH263 Datenformat                                                               
 *** Neu ab V 3.4.10 4 / Win 263 V 2.8.7 ***  
   73 - 78   char[ 5 + 1]   // Leitungsnummer (Zeichen 7-12, falls vorhanden)  
 
-  
+//: TXT1, "TXT2": Leitung Allgemein, Beschreibung  
+
 
    Spalte              Format            Beschreibung  
 
@@ -292,7 +287,7 @@ GH263 Datenformat                                                               
 
 
 
-// KOMM: Kommentarzeilen (nur Oberfläche)  +++
+//: KOMM: Kommentarzeilen (nur Oberfläche)  +++
 
 
 
@@ -312,7 +307,7 @@ GH263 Datenformat                                           25.01.22            
 
 
 
-// PAR1: Berechnungseinstellungen, allgemein   +++
+//: PAR1: Berechnungseinstellungen, allgemein   +++
 
    Spalte            Format          Beschreibung  
 
@@ -349,7 +344,7 @@ GH263 Datenformat                                            25.01.22           
 
 
 
-// PARX: Erweiterte Parameter   
+//: PARX: Erweiterte Parameter   
 // *** Neu ab XX.09.05 *** (erst ab Kern Version 1.8.5 wirksam) ***  
 
    Spalte             Format           Beschreibung  
@@ -359,7 +354,7 @@ GH263 Datenformat                                            25.01.22           
 
   
 
-// DINE: Einstellungen DIN EN50341   
+//: DINE: Einstellungen DIN EN50341   
 // *** Änderung ab Version 1.6 ***  
 
    Spalte             Format           Beschreibung  
@@ -376,7 +371,7 @@ GH263 Datenformat                                            25.01.22           
 
   
 
-// DBSV: Einstellungen Trassierungsrichtlinie (früher DBE Seilverlegevorschrift)  
+//: DBSV: Einstellungen Trassierungsrichtlinie (früher DBE Seilverlegevorschrift)  
 // *** Änderung ab Version 1.7: Erweiterung auf Trassierungsrichtlinie DBE 2004 ***  
 
    Spalte             Format           Beschreibung  
@@ -388,7 +383,7 @@ GH263 Datenformat                                            25.01.22           
 
   
 
-// TRRL: Erweiterte Daten Trassierungsrichtlinie  
+//: TRRL: Erweiterte Daten Trassierungsrichtlinie  
 // *** Neu ab Version 4.14.2: Namen Trassierungsrichtlinie frei definierbar ***  
 
    Spalte             Format           Beschreibung  
@@ -409,7 +404,7 @@ GH263 Datenformat                                        25.01.22               
 
 
 
-// WIND: Berechnungseinstellungen, Staudruck  
+//: WIND: Berechnungseinstellungen, Staudruck  
 
    Spalte              Format            Beschreibung  
 
@@ -456,8 +451,8 @@ GH263 Datenformat                                           25.01.22            
 
 
 
+//: ZSTA: Allgemeine Angaben zu Zuständen  
 // Berechnungszustände  
-// ZSTA: Allgemeine Angaben zu Zuständen  
 
    Spalte            Format           Beschreibung  
 
@@ -468,7 +463,7 @@ GH263 Datenformat                                           25.01.22            
 
   
 
-// ZSTD: Definition der Berechnungszustände   +++
+//: ZSTD: Definition der Berechnungszustände   +++
 
    Spalte            Format           Beschreibung  
 
@@ -493,40 +488,21 @@ GH263 Datenformat                                           25.01.22            
 
   
 
-ZSAN: Abstandsnachweise   
-
-
+//: ZSAN: Abstandsnachweise   
 
    Spalte            Format           Beschreibung  
 
-  1 -       4   Char               4   Satzkennung ‘ZSAN’  
-
-  7 -       9   int                3   Satzindex (laufende Nummer)  
-
- 10 -      10   Char               1   Kurzbezeichnung ‚Z‘ ‚A‘, ‚U‘ ‚T‘ etc.  
-
- 11 -      11   Char               1   Kennung für Ausschwingen:  
-
-                                      .B‘ beide Leiter schwingen aus (nach DIN/VDE 0210 12.85)  
-
-                                      ‚A‘ nur unterkreuzender schwingt aus  
-
-                                      sonst kein Ausschwingen  
-
-*** neu ab Version 4.7.2 ***  
-
- 12 -      14   int                3   Index Phasensystem  
-
- 20 -     22   Int                 3   Zustandsindex überkreuzende Leitung  
-
- 23 -     25   Int                 3   Zustandsindex unterkreuzende Leitung  
-
-*** neu ab Version 3.7.6 ***  
-
- 26 -     28   Int                 3   Zustandsindex überkreuzende Leitung (Erdseile)  
-
- 29 -     31   Int                 3   Zustandsindex unterkreuzende Leitung (Erdseile)  
-
+/*  1 -  4   4  */ char ;   // Satzkennung ‘ZSAN’  
+/*  7 -  9   3  */ int  ;   // Satzindex (laufende Nummer)  
+/* 10 - 10   1  */ char ;   // Kurzbezeichnung ‚Z‘ ‚A‘, ‚U‘ ‚T‘ etc.  
+/* 11 - 11   1  */ char ;   // Kennung für Ausschwingen: .B‘ beide Leiter schwingen aus (nach DIN/VDE 0210 12.85) ‚A‘ nur unterkreuzender schwingt aus sonst kein Ausschwingen  
+/* *** neu ab Version 4.7.2 ***  */
+/* 12 - 14   3  */ int ;    // Index Phasensystem  
+/* 20 - 22   3  */ int ;    // Zustandsindex überkreuzende Leitung  
+/* 23 - 25   3  */ int ;    // Zustandsindex unterkreuzende Leitung  
+/* *** neu ab Version 3.7.6 ***  */
+/* 26 - 28   3  */ int ;   // Zustandsindex überkreuzende Leitung (Erdseile)  
+/* 29 - 31   3  */ int ;   // Zustandsindex unterkreuzende Leitung (Erdseile)  
 
 
 GH263 Datenformat                                       25.01.22                                                  Seite 7  
@@ -538,102 +514,42 @@ GH263 Datenformat                                       25.01.22                
 
 
 
-DWRE: Druckausgabe Seilkurvenberechnung  
-
-
+//: DWRE: Druckausgabe Seilkurvenberechnung  
 
    Spalte             Format           Beschreibung  
 
-   1 -      4   Char               4   Satzkennung ‘DWRE’  
-
-   7 -      7   Char               1   Blattkennung:  
-
-                                       A-Kettenaufhängepunkte (neu ab Version 3.4.12)  
-
-                                       Z-Zustandblatt  
-
-                                       H-Seilhöhentabelle  
-
-                                       L-Einzellasten (Eingabe) (neu ab Version 4.13.6)  
-
-                                       E-Einzellasten (Ergebnisse)  
-
-                                       D-Durchhänge  
-
-                                       1 – Zusammenfassende Ausgabe  
-
-                                       2 – ergänzende Daten  
-
- 10 -      12   Int                3   PhasenIndex – 0=Alle Phasen  
-
- 13 -      22   Float           10.2   Bei Seilhöhentabelle: Abstand der Druckausgabe  
-
- 23 -      25   Int                3   Zustandsindex 1  
-
- 26 -      28   Int                3   Zustandsindex 2  
-
- 29 -      31   Int                3   Zustandsindex 3  
-
- 32 -      34   Int                3   Zustandsindex 4  
-
-    ...    ...   ...               ...   ...  
-
-   80      82                           Zustandsindex 20  
+/*  1 -  4        4  */ char  ;        // Satzkennung ‘DWRE’  
+/*  7 -  7        1  */ char  ;        // Blattkennung: A-Kettenaufhängepunkte (neu ab Version 3.4.12) Z-Zustandblatt H-Seilhöhentabelle L-Einzellasten (Eingabe) (neu ab Version 4.13.6) E-Einzellasten (Ergebnisse) D-Durchhänge 1 – Zusammenfassende Ausgabe 2 – ergänzende Daten  
+/* 10 - 12        3  */ int   ;        // PhasenIndex – 0=Alle Phasen  
+/* 13 - 22     10.2  */ float ;        // Bei Seilhöhentabelle: Abstand der Druckausgabe  
+/* 23 - 25        3  */ int   ;        // Zustandsindex 1  
+/* 26 - 28        3  */ int   ;        // Zustandsindex 2  
+/* 29 - 31        3  */ int   ;        // Zustandsindex 3  
+/* 32 - 34        3  */ int   ;        // Zustandsindex 4  
+/*  ...    ...   ...               ...   ...  */
+/* 80 - 82                           Zustandsindex 20  */
 
   
-
+/*
 Anmerkungen zu „Druckausgabe Seilkurvenberechnung“  
 
 
 
-•    Es können bis zu acht Datensätze je 263-Datei vorhanden sein. (Blattkennungen  
-
-     A/Z/H/L/E/D/1/2), wobei jede Blattkennung allerdings nur einmal vorhanden sein darf.  
-
+•    Es können bis zu acht Datensätze je 263-Datei vorhanden sein. (Blattkennungen A/Z/H/L/E/D/1/2), wobei jede Blattkennung allerdings nur einmal vorhanden sein darf.  
 •    Die Spalten 13 – 22 werden nur bei Blattkennung ‚H‘ ausgewertet.  
-
 •    Je nach Blattkennung können die Zustandsindize 1-20 unterschiedliche Bedeutungen haben:  
 
-  o       Blattkennung 'A':      Ausgabe der Kettenaufhängepunkte, Zustandsindize werden ignoriert.  
-
-  o       Blattkennung ‚Z‘:      Für jeden Zustand, welcher in den Zustandsindize auftaucht, wird ein  
-
-                                 Zustandsblatt ausgegeben.  
-
-  o       Blattkennung ‚D‘:      Für jeden Zustand,welcher in den Zustandsindize auftaucht, wird ein  
-
-                                 Durchhangsblatt ausgegeben.  
-
-  o       Blattkennung ‚H‘       Ausgabe der Seilhöhentabelle, für jeden Zustand,welcher in den  
-
-                                 Zustandsindize auftaucht, wird ein Blatt mit Seilhöhen ausgegeben.  
-
-  o       Blattkennung ‚L‘       Ausgabe der vorhandenen Einzellasten, Zustandsindize werden ignoriert.  
-
-  o       Blattkennung ‚E‘       Ausgabe Berechnungsergebnisse Einzellasten, für jeden Zustand,welcher  
-
-                                 in den Zustandsindize auftaucht, wird ein Blatt mit Seilhöhen ausgegeben.  
-
-  o       Blattkennung ‚1‘       Für Zustandsindex 1 + 2 werden Gewichtsspannweiten, für Zustandsindize  
-
-                                 3-5 Seilspannungen und für Indize 6-8 werden Durchhänge in dem  
-
-                                 zusammenfassenden Datenblatt ausgegeben. Zustandsindize 9-20 werden  
-
-                                 ignoriert.  
-
-  o       Blattkennung ‚2‘       Für Zustandsinex  1 + 2 werden Gewichtsspannweiten auf dem  
-
-                                 ergänzenden Datenblatt ausgegeben, Zustandsindize 3-20 werden  
-
-                                 ignoriert.  
-
-  
-
-
+o       Blattkennung 'A':      Ausgabe der Kettenaufhängepunkte, Zustandsindize werden ignoriert.  
+o       Blattkennung ‚Z‘:      Für jeden Zustand, welcher in den Zustandsindize auftaucht, wird ein Zustandsblatt ausgegeben.  
+o       Blattkennung ‚D‘:      Für jeden Zustand,welcher in den Zustandsindize auftaucht, wird ein Durchhangsblatt ausgegeben.  
+o       Blattkennung ‚H‘       Ausgabe der Seilhöhentabelle, für jeden Zustand,welcher in den Zustandsindize auftaucht, wird ein Blatt mit Seilhöhen ausgegeben.  
+o       Blattkennung ‚L‘       Ausgabe der vorhandenen Einzellasten, Zustandsindize werden ignoriert.  
+o       Blattkennung ‚E‘       Ausgabe Berechnungsergebnisse Einzellasten, für jeden Zustand,welcher in den Zustandsindize auftaucht, wird ein Blatt mit Seilhöhen ausgegeben.  
+o       Blattkennung ‚1‘       Für Zustandsindex 1 + 2 werden Gewichtsspannweiten, für Zustandsindize 3-5 Seilspannungen und für Indize 6-8 werden Durchhänge in dem zusammenfassenden Datenblatt ausgegeben. Zustandsindize 9-20 werden ignoriert.  
+o       Blattkennung ‚2‘       Für Zustandsinex  1 + 2 werden Gewichtsspannweiten auf dem ergänzenden Datenblatt ausgegeben, Zustandsindize 3-20 werden ignoriert.  
 
 GH263 Datenformat                                       25.01.22                                                   Seite 8  
-
+*/
 
 ----------------------- Page 9-----------------------
 
@@ -641,117 +557,72 @@ GH263 Datenformat                                       25.01.22                
 
 
 
-SLG1, SLG2, SLG3: Seildaten   
+//: "SLG1", SLG2, SLG3: Seildaten   +++
 
-Maximal 30 Seile  
+// Maximal 30 Seile  
 
    Spalte             Format            Beschreibung  
 
-   1 -      4   Char                4   Satzkennung ‘SLG1’  
+/*  1:  1 -  4      1    4  */ char  ;             // Satzkennung ‘SLG1’  
+/*      5 -  6      2    2
+/*  2:  7 -  9      3    3  */ int   ;             // Seilindex (laufende Nummer)  
+       10 - 10      4    1
+/*  3: 11 - 38      5   28  */ char  ;             // Seilbezeichnung  
+/*  4: 39 - 42      6    4  */ int   ;             // Spannungsebene [kV] (‘110’,’220’,’380’...)  
+/*  5: 43 - 44      7    2  */ int   ;             // Anzahl Teilleiter  
+/*  6: 45 - 45      8    1  */ char  ;             // Bündelanordnung (bei 2-er-Bündel:‘H’=Horizontal,’V’=Vertikal)  
+/*  7: 46 - 49      9  4.2  */ float ;             // Teilleiterabstand [m],(‘0.40’)  
+/*  8: 50 - 54     10    5  */ char  ;             // Seiltyp (‘LS’=Leiterseil,’ES’=Erdseil, ‘LWL’=Lichtwellenleiter)  
+/*  9: 55 - 59     11  5.1  */ float ;             // Temperaturdifferenz beim Seilkriechen [°C]  
+/*  10: 60 - 64    12   5.3  */ float ;             // Kriechfaktor [promille]  
+/*  11: 65 - 70    13   6.2  */ float ;             // Überziehfaktor [%]  
+/*  12: 71 - 78    14   8.0  */ float ;             // Kriechzeit [h] (‘262800’=30Jahre)  
+        79 - 79    15     1
+/*  13: 80 - 80    16     1  */ char  ;             // Kennung EN-Seil 'E' = EN-Seil sonst : Seil konventionell  
+/*  14: 81 - 81    17     1  */ char  ;             // Kennung Seil manuell eingefügt (zur Sperrung Gewicht in Win263) ’U’ = Seildatensatz manuell eingefügt, Gewicht editierbar sonst: Gewicht gesperrt.  
+/* *** Neu ab Version 4.12.0 ***  */
+/*  15: 82 - 82    18     1  */ char  ;             // Isolationsart (‘K‘=kunststoffummantelter Leiter, ‘I‘=isoliertes Kabel, sonst: Blanker Leiter)  
+/* *** Neu ab Version 4.12.3 ***  */
+/*  16:83   83     19     1  */ char ;            // Vorzeichen Temperaturdifferenz : ‘-‘ = negativ , sonst: positiv  
+/*  17:84   84     20     1  */ char ;            // Vorzeichen Kriechfaktor: ‘-‘ = negativ , sonst: positiv  
 
-   7 -      9   Int                 3   Seilindex (laufende Nummer)  
-
-  11 -     38   Char              28   Seilbezeichnung  
-
-  39 -    42   Int                  4   Spannungsebene [kV] (‘110’,’220’,’380’...)  
-
-  43 -    44   Int                  2   Anzahl Teilleiter  
-
-  45 -    45   Char                 1   Bündelanordnung (bei 2-er-Bündel:‘H’=Horizontal,’V’=Vertikal)  
-
-  46 -    49   float             4.2   Teilleiterabstand [m],(‘0.40’)  
-
-  50 -     54   char                5   Seiltyp (‘LS’=Leiterseil,’ES’=Erdseil, ‘LWL’=Lichtwellenleiter)  
-
-  55 -     59   float            5.1   Temperaturdifferenz beim Seilkriechen [°C]  
-
-  60 -     64   float            5.3   Kriechfaktor [promille]  
-
-  65 -     70   float            6.2   Überziehfaktor [%]  
-
-  71 -     78   float            8.0   Kriechzeit [h] (‘262800’=30Jahre)  
-
-  80 -     80   Char                1   Kennung EN-Seil  
-
-                                        'E' = EN-Seil  
-
-                                        sonst : Seil konventionell  
-
-  81 -     81   Char                1   Kennung Seil manuell eingefügt (zur Sperrung Gewicht in  
-
-                                        Win263) ’U’ = Seildatensatz manuell eingefügt, Gewicht editierbar  
-
-                                        sonst: Gewicht gesperrt.  
-
-*** Neu ab Version 4.12.0 ***  
-
-  82 -     82   Char                1   Isolationsart (‘K‘=kunststoffummantelter Leiter, ‘I‘=isoliertes Kabel,  
-
-                                        sonst: Blanker Leiter)  
-
-*** Neu ab Version 4.12.3 ***  
-
-   83      83   Char                1   Vorzeichen Temperaturdifferenz : ‘-‘ = negativ , sonst: positiv  
-
-    84     84   Char                1   Vorzeichen Kriechfaktor: ‘-‘ = negativ , sonst: positiv  
-
+//: SLG1, "SLG2", SLG3: Seildaten   +++
   
 
    Spalte              Format            Beschreibung  
 
-   1 -       4   char                 4   Satzkennung ‘SLG2’  
+/*   1:  1 -  4       4  */ char  ;           // Satzkennung ‘SLG2’  
+/*       5 -  6       2
+/*   2:  7 -  9       3  */ int   ;           // Seilindex (laufende Nummer)  
+/*   3: 10 - 15     6.2  */ float ;           // Seildurchmesser [mm]  
+/*   4: 16 - 23     8.2  */ float ;           // Seilquerschnitt [mm²]  
+/*   5: 24 - 31     8.0  */ float ;           // E-Modul [N/mm²]  
+/*   6: 32 - 41    10.8  */ float ;           // Ausdehnungskoeffizient [1/K]  
+/*   7: 42 - 52    11.9  */ float ;           // Spez. Seilgewicht (QLK)[N/mm²m]  
+/*   8: 53 - 59     7.3  */ float ;           // Normale Zusatzlast [N/m] (5+0.1d nach DIN)  
+/*   9: 60 - 63     4.2  */ float ;           // Aerodynamischer Kraftbeiwert (‘1.0’,’1.1’,‘1.2’ oder ‘1,05‘)  
+/*  10: 64 - 71     8.2  */ float ;           // Seilgewicht aus Daten/Datenbank (zum Bestimmen QLK)  
+/*  11: 72 - 79     8.2  */ float ;           // Fettmasse (nur EN-Seile)  
+/**** Neu ab Version 4.0.1 *** (nur als Ergebnis in slc-Datei)  */
+/*  12: 80 - 80       1  */ char ;             // Kennung, ob QLK vorgegeben oder aus Seilgewicht berechnet wurde. ‘V‘ = Vorgabe, ‘G‘=gerechnet  
 
-   7 -       9   int                  3   Seilindex (laufende Nummer)  
-
-  10 -     15   float              6.2   Seildurchmesser [mm]  
-
-  16 -     23   float              8.2   Seilquerschnitt [mm²]  
-
-  24 -     31   float              8.0   E-Modul [N/mm²]  
-
-  32 -     41   float             10.8   Ausdehnungskoeffizient [1/K]  
-
-  42 -     52   float             11.9   Spez. Seilgewicht (QLK)[N/mm²m]  
-
-  53 -     59   float              7.3   Normale Zusatzlast [N/m] (5+0.1d nach DIN)  
-
-  60 -     63   float              4.2   Aerodynamischer Kraftbeiwert (‘1.0’,’1.1’,‘1.2’ oder ‘1,05‘)  
-
-  64 -     71   float              8.2   Seilgewicht aus Daten/Datenbank (zum Bestimmen QLK)  
-
-  72 -     79   float              8.2   Fettmasse (nur EN-Seile)  
-
-*** Neu ab Version 4.0.1 *** (nur als Ergebnis in slc-Datei)  
-
-  80 -     80   char                  1   Kennung, ob QLK vorgegeben oder aus Seilgewicht berechnet  
-
-                                         wurde. ‘V‘ = Vorgabe, ‘G‘=gerechnet  
-
+//: SLG1, SLG2, "SLG3": Seildaten   +++
   
 
    Spalte              Format            Beschreibung  
 
-   1 -       4   char                 4   Satzkennung ‘SLG3’  
+/* 1:  1 -  4       4  */  char  ;  // Satzkennung ‘SLG3’  
+/*     5 -  6       2
+/* 2:  7 -  9       3  */  int   ;  // Seilindex (laufende Nummer)  
+/* 3: 10 - 17     8.2  */  float ;  // zulässige Höchstzugspannung [N/mm²]  
+/* 4: 18 - 25     8.2  */  float ;  // zulässige Mittelzugspannung [N/mm²]  
+/* 5: 26 - 33     8.2  */  float ;  // zulässige Dauerzugspannung [N/mm²]  
+/* 6: 34 - 41     8.0  */  float ;  // rechnerische Bruchkraft [N]  
+/* 7: 42 - 47     6.2  */  float ;  // Stahlgewichtsanteil [%]  
+/* *** Neu ab Version 4 .9.5 *** (zur Berechnung des Stahlgewichtsanteils)  */
+/* 8: 48 - 55     8.2  */  float ;  // Stahlquerschnitt [mm²]  
 
-   7 -       9   int                  3   Seilindex (laufende Nummer)  
-
-  10 -     17   float              8.2   zulässige Höchstzugspannung [N/mm²]  
-
-  18 -     25   float              8.2   zulässige Mittelzugspannung [N/mm²]  
-
-  26 -     33   float              8.2   zulässige Dauerzugspannung [N/mm²]  
-
-  34 -     41   float              8.0   rechnerische Bruchkraft [N]  
-
-  42 -     47   float              6.2   Stahlgewichtsanteil [%]  
-
-*** Neu ab Version 4 .9.5 *** (zur Berechnung des Stahlgewichtsanteils)  
-
-  48 -     55   float              8.2   Stahlquerschnitt [mm²]  
-
-                                            
-
-
+                                        
 
 GH263 Datenformat                                           25.01.22                                                       Seite 9  
 
@@ -762,7 +633,7 @@ GH263 Datenformat                                           25.01.22            
 
 
 
-DTVG: Zeitabhängige Delta-T Vorgaben für Seilkriechen  
+//: DTVG: Zeitabhängige Delta-T Vorgaben für Seilkriechen  
 
 
 
@@ -805,7 +676,7 @@ GH263 Datenformat                                          25.01.22             
 
 
 
-PHAS, PHA2, PHA4, PHA5: Phasen   
+//: "PHAS", PHA2, PHA4, PHA5: Phasen   
 
 Maximal 30 Phasen  
 
@@ -836,6 +707,7 @@ Maximal 30 Phasen
                                         zugeordnet.  
 
   
+//: PHAS, "PHA2", PHA4, PHA5: Phasen   
 
    Spalte             Format            Beschreibung  
 
@@ -880,6 +752,7 @@ Maximal 30 Phasen
    76 -    77   int                 2   Tag des Datums der Durchhangsmessung  
 
   
+//: PHAS, PHA2, "PHA4", PHA5: Phasen   
 
 *** Neu ab Version 4.6.0 ***  
 
@@ -904,6 +777,7 @@ Maximal 30 Phasen
    25 -    27   int                 3   Zustandsindex (wenn <=0 Ausgangszustand)  
 
   
+//: PHAS, PHA2, PHA4, "PHA5": Phasen   
 
 *** Neu ab Version 4.9.2 ***  
 
@@ -928,7 +802,7 @@ GH263 Datenformat                                         25.01.22              
 
 
 
-PSYS: Phasensysteme   
+//: PSYS: Phasensysteme   
 
 
 
@@ -960,7 +834,7 @@ PSYS: Phasensysteme
 
   
 
-PZLF: Zusätzliche Phasenabstandsberechnungen  
+//: PZLF: Zusätzliche Phasenabstandsberechnungen  
 
 
 
@@ -1011,7 +885,8 @@ GH263 Datenformat                                          25.01.22             
 
 
 
-HTMP (oder TPKT): Daten Hochtemperaturseile / Transitionspunkte   
+//: HTMP (oder TPKT): Daten Hochtemperaturseile / Transitionspunkte   
+//: TPKT (oder HTMP): Daten Hochtemperaturseile / Transitionspunkte   
 
 
 
@@ -1079,7 +954,7 @@ HTMP (oder TPKT): Daten Hochtemperaturseile / Transitionspunkte
 
   
 
-HTM2: Daten Hochtemperaturseile 2  
+//: HTM2: Daten Hochtemperaturseile 2  
 
 
 
@@ -1122,91 +997,56 @@ GH263 Datenformat                                        25.01.22               
 
 
 
-MAST: Maststandorte  
-
-Maximal 100 Maste  
+//: MAST: Maststandorte  +++
+// Maximal 100 Masten  
 
    Spalte             Format           Beschreibung  
 
-   1 -      4   char                4   Satzkennung ‘MAST’  
-
-   7 -      9   int                 3   Mastindex (laufende Nummer)  
-
-  11 -     16   char                6   Mastnummer / Mastname, Zeichen 1-6   
-
-  18 -     18   char                1   Masttyp (‘A‘‚ ‘T‘ oder 'X' )  
-
-  20 -     26   char                7   Masttypenbezeichnung(=Masttyp aus CIT-Datei),   
-
-                                       Zeichen 1-7 !Achtung siehe auch Spalte 69-101!  
-
-  27 -     32   Float             6.2   Ausführung (Fußverlängerung) [m]  
-
-  33 -     41   Float             9.2   Längenstation Maststandort [m]  
-
-  42 -     49   Float             8.2   Höhe Mastfußpunkt [m]  
-
-  50 -     58   Float             9.3   Leitungswinkel [gon] (200=Flucht)  
-
-  59 -     67   Float             9.3   Stellwinkel [gon] (0=Winkelhalbierende)  
-
-  69 -   101   char               33   Masttypenbezeichnung,  Zeichen 8-40  
-
-*** neu ab Version 3.6.4 (Änderung IHL) ***  
-
-  102-   107   Float              6.2   Ordinate Maststandort (Wert wird  als Ordinaten-Zuschlag für  
-
-                                       Kettenaufhängepunkte interpretiert. Der Wert bezieht sich  
-
-                                       rechtwinklig auf das dem Mast vorhergehenden Leitungsfeld,  
-
-                                       beim 1. Mast ist es das nachfolgende Feld. )  
-
+/*  1:    1 -   4       4   */ char   ;          //  Satzkennung ‘MAST’  
+/*        5 -   6       2
+/*  2:    7 -   9       3   */ int    ;          //  Mastindex (laufende Nummer)  
+/*       10  - 10       1
+/*  3:   11 -  16       6   */ char   ;          //  Mastnummer / Mastname, Zeichen 1-6   
+/*       17 -  17       1
+/*  4:   18 -  18       1   */ char   ;          //  Masttyp (‘A‘‚ ‘T‘ oder 'X' )  
+/*       19 -  19       1
+/*  5:   20 -  26       7   */ char   ;          //  Masttypenbezeichnung(=Masttyp aus CIT-Datei), Zeichen 1-7 !Achtung siehe auch Spalte 69-101!  
+/*  6:   27 -  32     6.2   */ float  ;          //  Ausführung (Fußverlängerung) [m]  
+/*  7:   33 -  41     9.2   */ float  ;          //  Längenstation Maststandort [m]  
+/*  8:   42 -  49     8.2   */ float  ;          //  Höhe Mastfußpunkt [m]  
+/*  9:   50 -  58     9.3   */ float  ;          //  Leitungswinkel [gon] (200=Flucht)  
+/* 10:   59 -  67     9.3   */ float  ;          //  Stellwinkel [gon] (0=Winkelhalbierende)  
+         68 -  68       1
+/* 11:   69 - 101      33   */ char   ;          //  Masttypenbezeichnung,  Zeichen 8-40  
+/* *** neu ab Version 3.6.4 (Änderung IHL) ***  */
+/* 12:  102 - 107     6.2   */ float              // Ordinate Maststandort (Wert wird  als Ordinaten-Zuschlag für Kettenaufhängepunkte interpretiert. Der Wert bezieht sich rechtwinklig auf das dem Mast vorhergehenden Leitungsfeld, beim 1. Mast ist es das nachfolgende Feld. )  
 *** neu ab Version 4.6.3 ***  
-
-  109-   134   char               26   Mastnummer / Mastname, Zeichen 7-32  
+/*      108 - 108       1
+/* 13:  109 - 134      26    */ char               // Mastnummer / Mastname, Zeichen 7-32  
 
   
 
-TRAV: Aufhängepunkte (Traversen)  
+//: TRAV: Aufhängepunkte (Traversen) +++ 
 
 
 
    Spalte             Format           Beschreibung  
 
-*** Änderung ab Version 4.5.1 Satzkennung auch anders ***  
-
-   1 -      4   char                4   Satzkennung ‘TRAV’ (auch ‘AUFH‘ erlaubt, bitte als Standard  
-
-                                       ‘TRAV‘ verwenden)  
-
-   7 -      9   int                 3   Mastindex  
-
-  10 -     12   int                 3   Phasenindex  
-
-  13 -     19   float             7.2   Traversenhöhe [m]   
-
-  20 -     26   float             7.2   Ausladung (links positiv)  
-
-  27 -     34   float             8.2   Stellwinkel der Traverse (0=Maststellwinkel) [gon]  
-
-                                          
-
-  41 -     46   float             6.2   gemessene Kettenlänge [m]  
-
-  47 -     49   int                 3   Kettenindex  
-
-  51 -     57   float             7.2   Höhenbezug Staudruck (EN-Norm)  
-
-                                       0: Höhenbezug ist Traversenhöhe  
-
-                                       >0 : Direkte Angabe Höhenbezug für Berechnung Staudruck  
-
-*** Neu ab V 3.4.12 / Win 263 V 2.8.8 ***  
-
-  58 -     64   float             7.2   Traversenexzentrizität. Positiv: In Leitungsrichtung, negativ:  
-
-                                       entgegen Leitungsrichtung.  
+/* *** Änderung ab Version 4.5.1 Satzkennung auch anders ***  */
+/*  1:  1  -  4      4  */ char   ;             // Satzkennung ‘TRAV’ (auch ‘AUFH‘ erlaubt, bitte als Standard ‘TRAV‘ verwenden)  
+        5  -  6      2
+/*  2:  7  -  9      3  */ int    ;             // Mastindex  
+/*  3:  10 - 12      3  */ int    ;             // Phasenindex  
+/*  4:  13 - 19    7.2  */ float  ;             // Traversenhöhe [m]   
+/*  5:  20 - 26    7.2  */ float  ;             // Ausladung (links positiv)  
+/*  6:  27 - 34    8.2  */ float  ;             // Stellwinkel der Traverse (0=Maststellwinkel) [gon]  
+        35 - 40      6
+/*  7:  41 - 46    6.2  */ float  ;             // gemessene Kettenlänge [m]  
+/*  8:  47 - 49      3  */ int    ;             // Kettenindex  
+        50 - 50      1
+/*  9:  51 - 57    7.2  */ float  ;             // Höhenbezug Staudruck (EN-Norm) 0: Höhenbezug ist Traversenhöhe >0 : Direkte Angabe Höhenbezug für Berechnung Staudruck  
+/* *** Neu ab V 3.4.12 / Win 263 V 2.8.8 ***  */
+/* 10:  58 - 64    7.2  */ float  ;             // Traversenexzentrizität. Positiv: In Leitungsrichtung, negativ: entgegen Leitungsrichtung.  
 
   
 
@@ -1221,69 +1061,50 @@ GH263 Datenformat                                         25.01.22              
 
 
 
-KET1, KET2: Ketten   
+//: "KET1", KET2: Ketten   +++
+// Maximal 1000 Ketten  
 
-Maximal 1000 Ketten  
+   Spalte             Format            Beschreibung  
+/*  1:    1    1 -  4     4  */  char ;  // Satzkennung ‘KET1’  
+          2    5 -  6     2
+/*  2:    3    7 -  9     3  */  int  ;  // Kettenindex (laufende Nummer)  
+          4   10 - 10     1
+/*  3:    5   11 - 11     1  */  char ;  // Kettentyp (‘A’=Abspann-, ‘H’=Hänge-,’V’=V-Kette, ’S’=Stützer)  
+/*  4:    6   12 - 14     3  */  int  ;  // Anzahl Kettenstränge  
+          7   15 - 15     1
+/*  5:    8   16 - 17     2  */  char ;  // Kettentypbezeichnung (‘DA’,’DH’,’EH’ etc.)  
+          9   18 - 18     1
+/*  6:   10   19 - 46    28  */  char ;  // Kettenbezeichnung/Isolator  
+         11   47 - 47     1
+/*  7:   12   48 - 56     9  */  char ;  // Schwingenbezeichnung  
+         13   57 - 57     1
+/*  8:   14   58 - 62     5  */  char ;  // Kettennummer (nur von FLP verwendet)  
+
+//: KET1, "KET2": Ketten   +++
+// Maximal 1000 Ketten  
 
    Spalte             Format            Beschreibung  
 
-   1 -      4   char                4   Satzkennung ‘KET1’  
-
-   7 -      9   int                 3   Kettenindex (laufende Nummer)  
-
-  11 -     11   char                1   Kettentyp (‘A’=Abspann-, ‘H’=Hänge-,’V’=V-Kette, ’S’=Stützer)  
-
-  12 -     14   int                 3   Anzahl Kettenstränge  
-
-  16 -     17   char                2   Kettentypbezeichnung (‘DA’,’DH’,’EH’ etc.)  
-
-  19 -     46   char               28   Kettenbezeichnung/Isolator  
-
-  48 -     56   char                9   Schwingenbezeichnung  
-
-  58 -     62   char                5   Kettennummer (nur von FLP verwendet)  
-
-  
-
-   Spalte             Format            Beschreibung  
-
-   1 -      4   char                4   Satzkennung ‘KET2’  
-
-   7 -      9   int                 3   Kettenindex (laufende Nummer)  
-
-  10 -     14   float             5.2   Kettenlänge bis UK Bündel [m]  
-
-  15 -     19   float             5.2   V-Länge (nur bei V-Ketten) [m]  
-
-  20 -     24   float             5.2   Feste Länge ab Traverse [m]  
-
-  25 -     29   float             5.2   Schwingenlänge [m]  
-
-  30 -     35   float             6.0   Kettengewicht [N]  
-
-  36 -     41   float             6.0   Einfaches Eisgewicht auf Kette [N]  
-
-  42 -     47   float             6.0   Schwingengewicht [N]  
-
-  48 -     54   float             7.2   Grenzausschwingwinkel innen [grad]  
-
-  55 -     61   float             7.2   Grenzausschwingwinkel außen [grad]  
-
-  62 -     67   float             6.0   Zusatzgewicht [N]  
-
-  68 -     73   float             6.3   Einbaulänge [m]  
-
-  74 -     79   float             6.3   Schirmdurchmesser [m]  
-
-  80 -     85   float             6.3   Strunkdurchmesser [m]  
-
-  86 -     91   float             6.3   Projizierte Fläche [m²]  
-
-*** Neu ab Version 4.10.0 *** (V-Kettenstrangbruch)  
-
-  92 -     96   float             5.2   V-Kette Versatz Aufhängung zum Mast hin (innen)  
-
-  97 -   101   float              5.2   V-Kette Versatz Aufhängung vom Mast weg (außen)  
+/*    1   1 -  4       4    */  char   ;  // Satzkennung ‘KET2’  
+/*        5 -  6       2
+/*    2   7 -  9       3    */  int    ;  // Kettenindex (laufende Nummer)  
+/*    3  10 - 14     5.2    */  float  ;  // Kettenlänge bis UK Bündel [m]  
+/*    4  15 - 19     5.2    */  float  ;  // V-Länge (nur bei V-Ketten) [m]  
+/*    5  20 - 24     5.2    */  float  ;  // Feste Länge ab Traverse [m]  
+/*    6  25 - 29     5.2    */  float  ;  // Schwingenlänge [m]  
+/*    7  30 - 35     6.0    */  float  ;  // Kettengewicht [N]  
+/*    8  36 - 41     6.0    */  float  ;  // Einfaches Eisgewicht auf Kette [N]  
+/*    9  42 - 47     6.0    */  float  ;  // Schwingengewicht [N]  
+/*   10  48 - 54     7.2    */  float  ;  // Grenzausschwingwinkel innen [grad]  
+/*   11  55 - 61     7.2    */  float  ;  // Grenzausschwingwinkel außen [grad]  
+/*   12  62 - 67     6.0    */  float  ;  // Zusatzgewicht [N]  
+/*   13  68 - 73     6.3    */  float  ;  // Einbaulänge [m]  
+/*   14  74 - 79     6.3    */  float  ;  // Schirmdurchmesser [m]  
+/*   15  80 - 85     6.3    */  float  ;  // Strunkdurchmesser [m]  
+/*   16  86 - 91     6.3    */  float  ;  // Projizierte Fläche [m²]  
+/* *** Neu ab Version 4.10.0 *** (V-Kettenstrangbruch)  */
+/*   17  92 - 96    5.2    */  float  ;  //  V-Kette Versatz Aufhängung zum Mast hin (innen)  
+/*   18  97 - 101    5.2    */  float  ;  //  V-Kette Versatz Aufhängung vom Mast weg (außen)  
 
   
 
@@ -1298,7 +1119,7 @@ GH263 Datenformat                                         25.01.22              
 
 
 
-ROLL: Rollen (bei Berechnung Seile in Rollen)  
+//: ROLL: Rollen (bei Berechnung Seile in Rollen)  
 
 Anhang zu Ketten  
 
@@ -1320,7 +1141,7 @@ Anhang zu Ketten
 
   
 
-WRR1, WRR2: Einstellungen Spanntabellen  
+//: "WRR1", WRR2: Einstellungen Spanntabellen  
 
 Wird zur Erstellung von Spanntabellen benötigt  
 
@@ -1349,6 +1170,7 @@ Leerzeichen, so ist die Option nicht gesetzt, ist es hingegen ein 'X' so ist die
 Siehe hierzu folgende Seite.  
 
   
+//: WRR1, "WRR2": Einstellungen Spanntabellen  
 
    Spalte             Format            Beschreibung  
 
@@ -1504,7 +1326,7 @@ Kodierung der einzelnen Zeichen des Strings "Ausgabeoptionen" (WRR1):
 
 
 
-SCSV: Einstellungen Schutzstreifen  
+//: SCSV: Einstellungen Schutzstreifen  
 
 
 
@@ -1540,7 +1362,7 @@ SCSV: Einstellungen Schutzstreifen
 
   
 
-PHAV: Einstellungen Phasenabstandsberechnung  
+//: PHAV: Einstellungen Phasenabstandsberechnung  
 
 
 
@@ -1589,7 +1411,7 @@ GH263 Datenformat                                       25.01.22                
 
 
 
-DHGM: Durchhangsmessungen  
+//: DHGM: Durchhangsmessungen  
 
 
 
@@ -1621,7 +1443,7 @@ DHGM: Durchhangsmessungen
 
   
 
-EZLA: Einzel- und Streckenlasten  
+//: EZLA: Einzel- und Streckenlasten  +++
 
 
 
@@ -1676,7 +1498,7 @@ GH263 Datenformat                                         25.01.22              
 
 
 
-NEIG: Eingabe Seilneigung  
+//: NEIG: Eingabe Seilneigung  
 
 
 
@@ -1720,7 +1542,7 @@ NEIG: Eingabe Seilneigung
 
   
 
-ENEI: Ergebnisse Seilneigung (slc)  
+//: ENEI: Ergebnisse Seilneigung (slc)  
 
 
 
@@ -1742,7 +1564,7 @@ ENEI: Ergebnisse Seilneigung (slc)
 
   
 
-ENET: Ergebnisse Temperaturberechnung aus vorgegebener Seilneigung (slc)  
+//: ENET: Ergebnisse Temperaturberechnung aus vorgegebener Seilneigung (slc)  
 
 
 
@@ -1764,7 +1586,7 @@ ENET: Ergebnisse Temperaturberechnung aus vorgegebener Seilneigung (slc)
 
   
 
-PATH: Dateipfad Berechnungsprogramm (slc)  
+//: PATH: Dateipfad Berechnungsprogramm (slc)  
 
 
 
@@ -1791,7 +1613,7 @@ GH263 Datenformat                                        25.01.22               
 
 
 
-SLK1, SLK2, SLK3: Ergebnis Seilkurvenberechnung (slc)  
+//: "SLK1", SLK2, SLK3: Ergebnis Seilkurvenberechnung (slc)  +++
 
 
 
@@ -1829,6 +1651,7 @@ SLK1, SLK2, SLK3: Ergebnis Seilkurvenberechnung (slc)
 
   106 -   114   float        9.2   Ordinate Seilaufhängepunkt (rechts) [m] (transformiert auf Feld)   
 
+//: SLK1, "SLK2", SLK3: Ergebnis Seilkurvenberechnung (slc)  +++
   
 
    Spalte              Format           Beschreibung  
@@ -1870,6 +1693,7 @@ SLK1, SLK2, SLK3: Ergebnis Seilkurvenberechnung (slc)
   117 -   124   Float             8.2   Seilspannung absolut Aufhängepunkt rechts  
 
   
+//: SLK1, SLK2, "SLK3": Ergebnis Seilkurvenberechnung (slc)  
 
 *** Neu ab Version 4.0.1 ***  
 
@@ -1918,7 +1742,7 @@ GH263 Datenformat                                          25.01.22             
 
 
 
-EDHM: Ergebnisse Durchhangsmessungen (slc)  
+//: EDHM: Ergebnisse Durchhangsmessungen (slc)  
 
 
 
@@ -1942,7 +1766,7 @@ EDHM: Ergebnisse Durchhangsmessungen (slc)
 
   
 
-ELST: Ergebnis Einzellasten (slc)  
+//: ELST: Ergebnis Einzellasten (slc)  
 
 
 
@@ -1974,7 +1798,7 @@ ELST: Ergebnis Einzellasten (slc)
 
   
 
-ESEH: Ergebnis Seilhöhentabellen (slc)  
+//: ESEH: Ergebnis Seilhöhentabellen (slc)  
 
 
 
@@ -2041,7 +1865,7 @@ GH263 Datenformat                                          25.01.22             
 
 
 
-SPAN: Ergebnisse Spannweiten an Maste (slc)  
+//: SPAN: Ergebnisse Spannweiten an Maste (slc)  
 
 
 
@@ -2079,7 +1903,7 @@ SPAN: Ergebnisse Spannweiten an Maste (slc)
 
   
 
-DBPD: Ergebnisse Phasendaten DB Energie (slc)  
+//: DBPD: Ergebnisse Phasendaten DB Energie (slc)  
 
 
 
@@ -2112,7 +1936,7 @@ GH263 Datenformat                                       25.01.22                
 
 
 
-EPHA: Ergebnisse Ausgabe Phasen (slc)  
+//: EPHA: Ergebnisse Ausgabe Phasen (slc)  
 
 
 
@@ -2176,7 +2000,7 @@ EPHA: Ergebnisse Ausgabe Phasen (slc)
 
   
 
-EGZU: Ergebnisse Grenzspannungen überschritten (slc)  
+//: EGZU: Ergebnisse Grenzspannungen überschritten (slc)  
 
 
 
@@ -2209,7 +2033,7 @@ GH263 Datenformat                                       25.01.22                
 
 
 
-EKAP: Ergebnisse Kettenaufhängepunkte (slc)  
+//: EKAP: Ergebnisse Kettenaufhängepunkte (slc)  
 
 
 
@@ -2245,7 +2069,7 @@ EKAP: Ergebnisse Kettenaufhängepunkte (slc)
 
   
 
-EPHF: Ergebnisse feldbezogene Phasendaten (slc)  
+//: EPHF: Ergebnisse feldbezogene Phasendaten (slc)  
 
 
 
@@ -2265,7 +2089,7 @@ EPHF: Ergebnisse feldbezogene Phasendaten (slc)
 
   
 
-OBOP: Einstellungen Berechnung Kreuzungsobjekte  
+//: OBOP: Einstellungen Berechnung Kreuzungsobjekte  
 
 
 
@@ -2338,7 +2162,7 @@ GH263 Datenformat                                       25.01.22                
 
 
 
-OBJ1, OBJ2, OBJ3: Kreuzungsobjekte  
+//: "OBJ1", OBJ2, OBJ3: Kreuzungsobjekte  +++
 
 
 
@@ -2414,7 +2238,8 @@ OBJ1, OBJ2, OBJ3: Kreuzungsobjekte
 
                                         aus Spannungsebene Phase und Zuschlag bei Laufzeit ermittelt)  
 
-  
+//: OBJ1, "OBJ2", OBJ3: Kreuzungsobjekte  +++
+
 
    Spalte             Format            Beschreibung  
 
@@ -2430,7 +2255,8 @@ OBJ1, OBJ2, OBJ3: Kreuzungsobjekte
 
   67 -     69   Int                 3   Kreuzungsobjektindex Teil 2 (Tausenderstellen)  
 
-  
+//: OBJ1, OBJ2, "OBJ3": Kreuzungsobjekte  +++
+
 
    Spalte             Format            Beschreibung  
 
@@ -2461,7 +2287,7 @@ GH263 Datenformat                                         25.01.22              
 
 
 
-OBJA: Erweiterung unterschiedliche Mindestabstände für Nachweiszustände  
+//: OBJA: Erweiterung unterschiedliche Mindestabstände für Nachweiszustände  
 
 
 
@@ -2554,7 +2380,7 @@ GH263 Datenformat                                      25.01.22                 
 
 
 
-OBA1: Erweiterung unterschiedliche Mindestabstände 110kV für  
+//: OBA1: Erweiterung unterschiedliche Mindestabstände 110kV für  
 
 Nachweiszustände (analog zu ‘OBJA‘)  
 
@@ -2665,7 +2491,7 @@ GH263 Datenformat                                      25.01.22                 
 
 
 
-OPKT: Punktobjekte  
+//: OPKT: Punktobjekte  +++
 
 
 
@@ -2703,7 +2529,7 @@ OPKT: Punktobjekte
 
 
 
-OLIN: Linienobjekte  
+//: OLIN: Linienobjekte  +++
 
 
 
@@ -2739,7 +2565,7 @@ OLIN: Linienobjekte
 
 
 
-OBFL: Flächenobjekte  
+//: OBFL: Flächenobjekte  +++
 
 
 
@@ -2796,7 +2622,7 @@ GH263 Datenformat                                          25.01.22             
 
 
 
-OGEL, OGE2: Geländepunkte  
+//: "OGEL", OGE2: Geländepunkte  +++
 
 Wenn vorhanden mindestens zwei Punkte pro Kreuzungsobjekt sortiert nach Station.  
 
@@ -2836,7 +2662,8 @@ Wenn vorhanden mindestens zwei Punkte pro Kreuzungsobjekt sortiert nach Station.
 
   62 -     64   Int                  3   Kreuzungsobjektindex Teil 2 (Tausenderstellen)  
 
-  
+//: OGEL, "OGE2": Geländepunkte  +++
+
 
 *** Neu ab Version 4.1.2: Zusatzzeile für Profilprogramm Käufl (wird von 263 Datei nach slc  
 
@@ -2852,7 +2679,7 @@ durchgereicht, keine Auswertung innerhalb Win263 etc.) ***
 
   
 
-OWEA: Windenergieanlagen  
+//: OWEA: Windenergieanlagen  
 
 
 
@@ -2899,7 +2726,7 @@ GH263 Datenformat                                          25.01.22             
 
 
 
-OKRZ, OKN2, OKN3: Leitungskreuzungen  
+//: "OKRZ", OKN2, OKN3: Leitungskreuzungen  
 
 
 
@@ -2975,7 +2802,8 @@ Anmerkung: Stationswert und Ordinate des 2. Mastes werden nur zur Richtungsfestl
 
 benötigt! (Feldlänge wird aus 263-Datei der kreuzenden Ltg. entnommen.)  
 
-  
+//: OKRZ, "OKN2", OKN3: Leitungskreuzungen  
+
 
 *** Neu ab Version 3.2.1 ***  
 
@@ -3002,6 +2830,7 @@ benötigt! (Feldlänge wird aus 263-Datei der kreuzenden Ltg. entnommen.)
 *** Anmerkung: Kreuzungsobjektindex nur benötig für alte Versionen vor 4.7.4 ***  
 
   
+//: OKRZ, OKN2, "OKN3": Leitungskreuzungen  
 
 *** Neu ab Version 4.7.4 ***  
 
@@ -3026,7 +2855,7 @@ GH263 Datenformat                                       25.01.22                
 
 
 
-OKRV: Einstellungen Berechnung mit vorgegebenen kreuzenden Seilen  
+//: OKRV: Einstellungen Berechnung mit vorgegebenen kreuzenden Seilen  
 
 
 
@@ -3050,7 +2879,7 @@ OKRV: Einstellungen Berechnung mit vorgegebenen kreuzenden Seilen
 
   
 
-OKSE, OKS2: Kreuzende Seile  
+//: "OKSE", OKS2: Kreuzende Seile  
 
 
 
@@ -3102,7 +2931,8 @@ Anmerkung: Bei Abspannketten müssen als Seilaufhängepunkte die Kettenaufhänge
 
 angegeben werden!  
 
-  
+//: OKSE, "OKS2": Kreuzende Seile  
+
 
 *** Neu ab Version 3.7 ***  
 
@@ -3149,7 +2979,7 @@ GH263 Datenformat                                        25.01.22               
 
 
 
-OERG: Kreuzungsobjekte Ergebnis (kleinster Abstand je Nachweis, slc)  
+//: OERG: Kreuzungsobjekte Ergebnis (kleinster Abstand je Nachweis, slc)  
 
 
 
@@ -3268,7 +3098,7 @@ GH263 Datenformat                                         25.01.22              
 
 
 
-OER2: Bei Leitungskreuzungen zusätzlich zweiter Ergebnisdatensatz (slc)  
+//: OER2: Bei Leitungskreuzungen zusätzlich zweiter Ergebnisdatensatz (slc)  
 
 
 
@@ -3330,7 +3160,7 @@ OER2: Bei Leitungskreuzungen zusätzlich zweiter Ergebnisdatensatz (slc)
 
   
 
-OEKB: Daten Kettenstrangbruch bei Abstandsberechnung (slc)  
+//: OEKB: Daten Kettenstrangbruch bei Abstandsberechnung (slc)  
 
 
 
@@ -3356,7 +3186,7 @@ OEKB: Daten Kettenstrangbruch bei Abstandsberechnung (slc)
 
   
 
-OMAB: Ausgabe alle Minderabstände (slc)  
+//: OMAB: Ausgabe alle Minderabstände (slc)  
 
 (Ausgabe durch Aufrufparameter „M“ oder Einstellung in „OBOP“-Zeile)  
 
@@ -3370,7 +3200,7 @@ OMAB: Ausgabe alle Minderabstände (slc)
 
   
 
-OMA2: Bei Leitungskreuzungen zusätzlich zweiter Ergebnisdatensatz (slc)  
+//: OMA2: Bei Leitungskreuzungen zusätzlich zweiter Ergebnisdatensatz (slc)  
 
 
 
@@ -3397,7 +3227,7 @@ GH263 Datenformat                                          25.01.22             
 
 
 
-OEXP: Kreuzungsobjekte, weitere Ergebnisse (slc)  
+//: OEXP: Kreuzungsobjekte, weitere Ergebnisse (slc)  
 
 (wird gefüllt, falls kritischste Phase -bzw. Phasenkombination bei Kreuzungen- aller  
 
@@ -3461,7 +3291,7 @@ Nachweiszustände nicht bei jedem Nachweiszustand den kleinsten Abstand hat)
 
   
 
-OEX2: Bei Leitungskreuzungen zusätzlich zweiter Ergebnisdatensatz (slc)  
+//: OEX2: Bei Leitungskreuzungen zusätzlich zweiter Ergebnisdatensatz (slc)  
 
 
 
@@ -3504,7 +3334,8 @@ GH263 Datenformat                                       25.01.22                
 
 Protokollierte Fehler und Warnungen bei Kreuzungsobjektberechnungen  
 
-OPUO: Kritischer Punkt auf Phase unterhalb des kritischen Punkt auf Objekt  
+
+//: OPUO: Kritischer Punkt auf Phase unterhalb des kritischen Punkt auf Objekt  
 
 (slc)  
 
@@ -3542,7 +3373,7 @@ OPUO: Kritischer Punkt auf Phase unterhalb des kritischen Punkt auf Objekt
 
   
 
-OPER: Berechnungsfehler (kein Ergebnis ermittelt, slc)  
+//: OPER: Berechnungsfehler (kein Ergebnis ermittelt, slc)  
 
 
 
@@ -3578,7 +3409,7 @@ OPER: Berechnungsfehler (kein Ergebnis ermittelt, slc)
 
   
 
-OPIA: Leitungskreuzungen: Phasenkombinationen mit identischen  
+//: OPIA: Leitungskreuzungen: Phasenkombinationen mit identischen  
 
 Aufhängepunkten (slc)  
 
@@ -3602,7 +3433,7 @@ Aufhängepunkten (slc)
 
   
 
-OERI: Allgemeine Informationen zu Kreuzungsobjektberechnungen (slc)  
+//: OERI: Allgemeine Informationen zu Kreuzungsobjektberechnungen (slc)  
 
 
 
@@ -3637,7 +3468,7 @@ GH263 Datenformat                                                               
 
 
 
-OKRA: Ergebnisse Leitungskreuzungsachse (slc)  
+//: OKRA: Ergebnisse Leitungskreuzungsachse (slc)  
 
 
 
@@ -3673,7 +3504,7 @@ OKRA: Ergebnisse Leitungskreuzungsachse (slc)
 
 
 
-OKRK: Ergebnisse Leitungskreuzungsschnitt (slc)  
+//: OKRK: Ergebnisse Leitungskreuzungsschnitt (slc)  
 
 
 
@@ -3703,7 +3534,7 @@ OKRK: Ergebnisse Leitungskreuzungsschnitt (slc)
 
 
 
-OKRS: Ergebnisse Kreuzungsseile(slc)  
+//: OKRS: Ergebnisse Kreuzungsseile(slc)  
 
 Analog ‚SLK1‘ und ‚SLK2‘ nur transformiert auf  Koordinaten der Hauptleitung,  
 
@@ -3760,7 +3591,7 @@ GH263 Datenformat                                          25.01.22             
 
 
 
-OALT: Ergebnisse Auslegungstemperaturen  
+//: OALT: Ergebnisse Auslegungstemperaturen  
 
 (Ausgabe durch Aufrufparameter „T“ oder Einstellung in „OBOP“-Zeile)  
 
@@ -3805,7 +3636,7 @@ GH263 Datenformat                                          25.01.22             
 
 
 
-SCSA: Ergebnisse Schutzstreifenberechnung(slc)  
+//: SCSA: Ergebnisse Schutzstreifenberechnung(slc)  
 
 
 
@@ -3835,7 +3666,7 @@ SCSA: Ergebnisse Schutzstreifenberechnung(slc)
 
 
 
-STAT: Statuscode der Berechnung (slc)  
+//: STAT: Statuscode der Berechnung (slc)  
 
 
 
