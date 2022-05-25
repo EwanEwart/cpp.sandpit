@@ -123,101 +123,101 @@ struct Base
 //     , SCSA
 //     , STAT
 // };
-std::array<DSATTR, 92> dsks
-{
-     "INFO",false
-    ,"INFS",false
-    ,"PARS",false
-    ,"BEAR",true
-    ,"TXT1",false
-    ,"TXT2",false
-    ,"KOMM",true
-    ,"PAR1",true
-    ,"PARX",false
-    ,"DINE",false
-    ,"DBSV",false
-    ,"TRRL",false
-    ,"WIND",false
-    ,"ZSTA",false
-    ,"ZSTD",true
-    ,"ZSAN",false
-    ,"DWRE",false
-    ,"SLG1",false
-    ,"SLG2",false
-    ,"SLG3",false
-    ,"DTVG",false
-    ,"PHAS",false
-    ,"PHA2",false
-    ,"PHA4",false
-    ,"PHA5",false
-    ,"PSYS",false
-    ,"PZLF",false
-    ,"HTMP",false
-    ,"TPKT",false
-    ,"HTM2",false
-    ,"MAST",true
-    ,"TRAV",true
-    ,"KET1",true
-    ,"KET2",true
-    ,"ROLL",false
-    ,"WRR1",false
-    ,"WRR2",false
-    ,"SCSV",false
-    ,"PHAV",false
-    ,"DHGM",false
-    ,"EZLA",true
-    ,"NEIG",false
-    ,"ENEI",false
-    ,"ENET",false
-    ,"PATH",false
-    ,"SLK1",true
-    ,"SLK2",true
-    ,"SLK3",false
-    ,"EDHM",false
-    ,"ELST",false
-    ,"ESEH",false
-    ,"SPAN",false
-    ,"DBPD",false
-    ,"EPHA",false
-    ,"EGZU",false
-    ,"EKAP",false
-    ,"EPHF",false
-    ,"OBOP",false
-    ,"OBJ1",true
-    ,"OBJ2",true
-    ,"OBJ3",true
-    ,"OBJA",false
-    ,"OBA1",false
-    ,"OPKT",true
-    ,"OLIN",true
-    ,"OBFL",true
-    ,"OGEL",true
-    ,"OGE2",true
-    ,"OWEA",false
-    ,"OKRZ",false
-    ,"OKN2",false
-    ,"OKN3",false
-    ,"OKRV",false
-    ,"OKSE",false
-    ,"OKS2",false
-    ,"OERG",false
-    ,"OER2",false
-    ,"OEKB",false
-    ,"OMAB",false
-    ,"OMA2",false
-    ,"OEXP",false
-    ,"OEX2",false
-    ,"OPUO",false
-    ,"OPER",false
-    ,"OPIA",false
-    ,"OERI",false
-    ,"OKRA",false
-    ,"OKRK",false
-    ,"OKRS",false
-    ,"OALT",false
-    ,"SCSA",false
-    ,"STAT",false
-};
+// std::array<DSATTR, 92> dsks
+// {
+//      "INFO",false
+//     ,"INFS",false
+//     ,"PARS",false
+//     ,"BEAR",true
+//     ,"TXT1",false
+//     ,"TXT2",false
+//     ,"KOMM",true
+//     ,"PAR1",true
+//     ,"PARX",false
+//     ,"DINE",false
+//     ,"DBSV",false
+//     ,"TRRL",false
+//     ,"WIND",false
+//     ,"ZSTA",false
+//     ,"ZSTD",true
+//     ,"ZSAN",false
+//     ,"DWRE",false
+//     ,"SLG1",false
+//     ,"SLG2",false
+//     ,"SLG3",false
+//     ,"DTVG",false
+//     ,"PHAS",false
+//     ,"PHA2",false
+//     ,"PHA4",false
+//     ,"PHA5",false
+//     ,"PSYS",false
+//     ,"PZLF",false
+//     ,"HTMP",false
+//     ,"TPKT",false
+//     ,"HTM2",false
+//     ,"MAST",true
+//     ,"TRAV",true
+//     ,"KET1",true
+//     ,"KET2",true
+//     ,"ROLL",false
+//     ,"WRR1",false
+//     ,"WRR2",false
+//     ,"SCSV",false
+//     ,"PHAV",false
+//     ,"DHGM",false
+//     ,"EZLA",true
+//     ,"NEIG",false
+//     ,"ENEI",false
+//     ,"ENET",false
+//     ,"PATH",false
+//     ,"SLK1",true
+//     ,"SLK2",true
+//     ,"SLK3",true
+//     ,"EDHM",false
+//     ,"ELST",false
+//     ,"ESEH",false
+//     ,"SPAN",false
+//     ,"DBPD",false
+//     ,"EPHA",false
+//     ,"EGZU",false
+//     ,"EKAP",false
+//     ,"EPHF",false
+//     ,"OBOP",false
+//     ,"OBJ1",true
+//     ,"OBJ2",true
+//     ,"OBJ3",true
+//     ,"OBJA",false
+//     ,"OBA1",false
+//     ,"OPKT",true
+//     ,"OLIN",true
+//     ,"OBFL",true
+//     ,"OGEL",true
+//     ,"OGE2",true
+//     ,"OWEA",false
+//     ,"OKRZ",false
+//     ,"OKN2",false
+//     ,"OKN3",false
+//     ,"OKRV",false
+//     ,"OKSE",false
+//     ,"OKS2",false
+//     ,"OERG",false
+//     ,"OER2",false
+//     ,"OEKB",false
+//     ,"OMAB",false
+//     ,"OMA2",false
+//     ,"OEXP",false
+//     ,"OEX2",false
+//     ,"OPUO",false
+//     ,"OPER",false
+//     ,"OPIA",false
+//     ,"OERI",false
+//     ,"OKRA",false
+//     ,"OKRK",false
+//     ,"OKRS",false
+//     ,"OALT",false
+//     ,"SCSA",false
+//     ,"STAT",false
+// };
 std::map<std::string, unsigned int> g_dictDSKs
 {
      {"INFO",false}
@@ -267,7 +267,7 @@ std::map<std::string, unsigned int> g_dictDSKs
     ,{"PATH",false}
     ,{"SLK1",true}
     ,{"SLK2",true}
-    ,{"SLK3",false}
+    ,{"SLK3",true}
     ,{"EDHM",false}
     ,{"ELST",false}
     ,{"ESEH",false}
@@ -406,9 +406,9 @@ struct KOMM : Base
     /* 1 -    4    */   char DSK[4];  // Satzkennung ‘KOMM’  
     /* 7 - 1031(*) */   char Kommentartext[1024];  // (*) Kommentartext  
     /*
-    (*): Es können mehrere (maximal 10) KOMM-Zeilen  
-    (Wird in Eingabefeld der Oberfläche auch als einzelne Zeile 
-    Die Gesamtlänge des Textes aller Zeilen (inklusive Zeil 
+    (*): Es können mehrere (maximal 10) KOMM-Ze 
+    (Wird in Eingabefeld der Oberfläche auch als einzelne Z 
+    Die Gesamtlänge des Textes aller Zeilen (inklusive  
     darf aber 1024 nicht ü 
     */
     virtual ~KOMM() {}
@@ -497,11 +497,11 @@ WIND: Berechnungseinstellungen, Staudruck
 Anmerkung: Falls in allgemeinen Einstellungen Windgesetz nach DIN EN 50341 eingestellt ist
 (siehe oben, Datenzeile PAR1, Spalte 34)
 werden die Staudruckdaten anders interpretiert.
-Anstatt des wirklichen Staudruckes werden in den entsprechenden Datenfeldern die Bezugsstaudrüc 
+Anstatt des wirklichen Staudruckes werden in den entsprechenden Datenfeldern die Bezugsstaudrü 
 aus denen erst der reale Staudruck im Berechnungskern ermittelt wird.
-Steht hier eine '-1', so wird der Bezugsstaudruck aus der Formel '100+7*H/6' gemäß DIN EN 50341. 
-Des Weiteren werden die Höhenstufen dann als Schwelle der Geländehöhe für den Mastfußpunkt ert. 
-D.h. ab diesem Wert für den Mastfußpunkt gilt der zugehörige Wert fük.  
+Steht hier eine '-1', so wird der Bezugsstaudruck aus der Formel '100+7*H/6' gemäß DIN EN 5. 
+Des Weiteren werden die Höhenstufen dann als Schwelle der Geländehöhe für den Mastfußpuert. 
+D.h. ab diesem Wert für den Mastfußpunkt gilt der zugehörige W.  
 */
 //: WIND: Berechnungseinstellungen, Staudruck  
 struct WIND : Base
@@ -643,19 +643,19 @@ struct DWRE
     virtual ~DWRE() {}
 };
 /*
-Anmerkungen zu „Druckausgabe Seilkurvenber  
-•    Es können bis zu acht Datensätze je 263-Datei vorhanden sein. (Blattkennungen A/Z/H/L/E/D/1/2), wobei jede Blattkennung allerdings nur einmal vorhanden f.  
+Anmerkungen zu „Druckausgabe Seilk  
+•    Es können bis zu acht Datensätze je 263-Datei vorhanden sein. (Blattkennungen A/Z/H/L/E/D/1/2), wobei jede Blattkennung allerdings nur einmal vof.  
 •    Die Spalten 13 – 22 werden nur bei Blattkennung ‚H‘ertet.  
-•    Je nach Blattkennung können die Zustandsindize 1-20 unterschiedliche Bedeutung:  
+•    Je nach Blattkennung können die Zustandsindize 1-20 unterschiedliche B:  
 
-o       Blattkennung 'A':      Ausgabe der Kettenaufhängepunkte, Zustandsindize werden ignori 
-o       Blattkennung ‚Z‘:      Für jeden Zustand, welcher in den Zustandsindize auftaucht, wird ein Zustandsblatt en.  
-o       Blattkennung ‚D‘:      Für jeden Zustand,welcher in den Zustandsindize auftaucht, wird ein Durchhangsblatt en.  
-o       Blattkennung ‚H‘       Ausgabe der Seilhöhentabelle, für jeden Zustand,welcher in den Zustandsindize auftaucht, wird ein Blatt mit Seilhöheeben.  
-o       Blattkennung ‚L‘       Ausgabe der vorhandenen Einzellasten, Zustandsindize werden t.  
-o       Blattkennung ‚E‘       Ausgabe Berechnungsergebnisse Einzellasten, für jeden Zustand,welcher in den Zustandsindize auftaucht, wird ein Blatt mit Seilhöhenben.  
-o       Blattkennung ‚1‘       Für Zustandsindex 1 + 2 werden Gewichtsspannweiten, für Zustandsindize 3-5 Seilspannungen und für Indize 6-8 werden Durchhänge in dem zusammenfassenden Datenblatt ausgegeben. Zustandsindize 9-20 werriert.  
-o       Blattkennung ‚2‘       Für Zustandsinex  1 + 2 werden Gewichtsspannweiten auf dem ergänzenden Datenblatt ausgegeben, Zustandsindize 3-20 werdeert.  
+o       Blattkennung 'A':      Ausgabe der Kettenaufhängepunkte, Zustandsindize werden ig 
+o       Blattkennung ‚Z‘:      Für jeden Zustand, welcher in den Zustandsindize auftaucht, wird ein Zustanen.  
+o       Blattkennung ‚D‘:      Für jeden Zustand,welcher in den Zustandsindize auftaucht, wird ein Durchhanen.  
+o       Blattkennung ‚H‘       Ausgabe der Seilhöhentabelle, für jeden Zustand,welcher in den Zustandsindize auftaucht, wird ein Blatt mit Seben.  
+o       Blattkennung ‚L‘       Ausgabe der vorhandenen Einzellasten, Zustandsindizet.  
+o       Blattkennung ‚E‘       Ausgabe Berechnungsergebnisse Einzellasten, für jeden Zustand,welcher in den Zustandsindize auftaucht, wird ein Blatt mit Seilen.  
+o       Blattkennung ‚1‘       Für Zustandsindex 1 + 2 werden Gewichtsspannweiten, für Zustandsindize 3-5 Seilspannungen und für Indize 6-8 werden Durchhänge in dem zusammenfassenden Datenblatt ausgegeben. Zustandsindize riert.  
+o       Blattkennung ‚2‘       Für Zustandsinex  1 + 2 werden Gewichtsspannweiten auf dem ergänzenden Datenblatt ausgegeben, Zustandsindize 3-ert.  
 
 GH263 Datenformat                                       25.01.22                                                   Seite 8
 */
@@ -873,43 +873,43 @@ struct KET1
 // Maximal 1000 Ketten  
 struct KET2
 {
-/*    1   1 -  4       4    */  char DSK[4+1]  ;  // Satzkennung ‘KET2’  
-/*        5 -  6       1
-/*    2   7 -  9       3    */  char   KettenindexChar[3+1] ;  // Kettenindex (laufende Nummer)  
-/*    2   7 -  9       3    */  int   KettenindexInt ;  // Kettenindex (laufende Nummer)  
-/*    3  10 - 14     5.2    */  char KettenlaengeChar[5+1] ;  // Kettenlänge bis UK Bündel [m]  
-/*    3  10 - 14     5.2    */  float KettenlaengeFloat ;  // Kettenlänge bis UK Bündel [m]  
-/*    4  15 - 19     5.2    */  char VLaengeChar[5+1] ;  // V-Länge (nur bei V-Ketten) [m]  
-/*    4  15 - 19     5.2    */  float VLaengeFloat ;  // V-Länge (nur bei V-Ketten) [m]  
-/*    5  20 - 24     5.2    */  char FesteLaengeChar[5+1] ;  // Feste Länge ab Traverse [m]  
-/*    5  20 - 24     5.2    */  float FesteLaengeFloat ;  // Feste Länge ab Traverse [m]  
-/*    6  25 - 29     5.2    */  char  SchwingenlaengeChar[5+1];  // Schwingenlänge [m]  
-/*    6  25 - 29     5.2    */  float  SchwingenlaengeFloat;  // Schwingenlänge [m]  
-/*    7  30 - 35     6.0    */  char KettengewichtChar[6+1] ;  // Kettengewicht [N]  
-/*    7  30 - 35     6.0    */  float KettengewichtFloat ;  // Kettengewicht [N]  
-/*    8  36 - 41     6.0    */  char EinfachesEisgewichtKetteChar[6+1] ;  // Einfaches Eisgewicht auf Kette [N]  
-/*    8  36 - 41     6.0    */  float EinfachesEisgewichtKetteFloat ;  // Einfaches Eisgewicht auf Kette [N]  
-/*    9  42 - 47     6.0    */  char SchwingengewichtChar[6+1] ;  // Schwingengewicht [N]  
-/*    9  42 - 47     6.0    */  float SchwingengewichtFloat ;  // Schwingengewicht [N]  
-/*   10  48 - 54     7.2    */  char GrenzausschwingwinkelInnenChar[7+1] ;  // Grenzausschwingwinkel innen [grad]  
-/*   10  48 - 54     7.2    */  float GrenzausschwingwinkelInnenFloat ;  // Grenzausschwingwinkel innen [grad]  
-/*   11  55 - 61     7.2    */  char GrenzausschwingwinkelAußenChar[7+1] ;  // Grenzausschwingwinkel außen [grad]  
-/*   11  55 - 61     7.2    */  float GrenzausschwingwinkelAußenFloat ;  // Grenzausschwingwinkel außen [grad]  
-/*   12  62 - 67     6.0    */  char ZusatzgewichtChar[6+1] ;  // Zusatzgewicht [N]  
-/*   12  62 - 67     6.0    */  float ZusatzgewichtFloat ;  // Zusatzgewicht [N]  
-/*   13  68 - 73     6.3    */  char EinbaulaengeChar[6+1] ;  // Einbaulänge [m]  
-/*   13  68 - 73     6.3    */  float EinbaulaengeFloat ;  // Einbaulänge [m]  
-/*   14  74 - 79     6.3    */  char SchirmdurchmesserChar[6+1] ;  // Schirmdurchmesser [m]  
-/*   14  74 - 79     6.3    */  float SchirmdurchmesserFloat ;  // Schirmdurchmesser [m]  
-/*   15  80 - 85     6.3    */  char StrunkdurchmesserChar[6+1] ;  // Strunkdurchmesser [m]  
-/*   15  80 - 85     6.3    */  float StrunkdurchmesserFloat ;  // Strunkdurchmesser [m]  
-/*   16  86 - 91     6.3    */  char ProjizierteFlaecheChar[6+1] ;  // Projizierte Fläche [m²]  
-/*   16  86 - 91     6.3    */  float ProjizierteFlaecheFloat ;  // Projizierte Fläche [m²]  
-/* *** Neu ab Version 4.10.0 *** (V-Kettenstrangbruch)  */
-/*   17  92 -  96    5.2    */  char VKetteVersatzAufhaengungMastInnenChar[5+1] ;  //  V-Kette Versatz Aufhängung zum Mast hin (innen)  
-/*   17  92 -  96    5.2    */  float VKetteVersatzAufhaengungMastInnenFloat ;  //  V-Kette Versatz Aufhängung zum Mast hin (innen)  
-/*   18  97 - 101    5.2    */  char VKetteVersatzAufhaengungMastAussenChar[5+1] ;  //  V-Kette Versatz Aufhängung vom Mast weg (außen)  
-/*   18  97 - 101    5.2    */  float VKetteVersatzAufhaengungMastAussenFloat ;  //  V-Kette Versatz Aufhängung vom Mast weg (außen)  
+    /*    1   1 -  4       4    */  char DSK[4 + 1];  // Satzkennung ‘KET2’  
+    /*        5 -  6       1
+    /*    2   7 -  9       3    */  char   KettenindexChar[3 + 1];  // Kettenindex (laufende Nummer)  
+    /*    2   7 -  9       3    */  int   KettenindexInt;  // Kettenindex (laufende Nummer)  
+    /*    3  10 - 14     5.2    */  char KettenlaengeChar[5 + 1];  // Kettenlänge bis UK Bündel [m]  
+    /*    3  10 - 14     5.2    */  float KettenlaengeFloat;  // Kettenlänge bis UK Bündel [m]  
+    /*    4  15 - 19     5.2    */  char VLaengeChar[5 + 1];  // V-Länge (nur bei V-Ketten) [m]  
+    /*    4  15 - 19     5.2    */  float VLaengeFloat;  // V-Länge (nur bei V-Ketten) [m]  
+    /*    5  20 - 24     5.2    */  char FesteLaengeChar[5 + 1];  // Feste Länge ab Traverse [m]  
+    /*    5  20 - 24     5.2    */  float FesteLaengeFloat;  // Feste Länge ab Traverse [m]  
+    /*    6  25 - 29     5.2    */  char  SchwingenlaengeChar[5 + 1];  // Schwingenlänge [m]  
+    /*    6  25 - 29     5.2    */  float  SchwingenlaengeFloat;  // Schwingenlänge [m]  
+    /*    7  30 - 35     6.0    */  char KettengewichtChar[6 + 1];  // Kettengewicht [N]  
+    /*    7  30 - 35     6.0    */  float KettengewichtFloat;  // Kettengewicht [N]  
+    /*    8  36 - 41     6.0    */  char EinfachesEisgewichtKetteChar[6 + 1];  // Einfaches Eisgewicht auf Kette [N]  
+    /*    8  36 - 41     6.0    */  float EinfachesEisgewichtKetteFloat;  // Einfaches Eisgewicht auf Kette [N]  
+    /*    9  42 - 47     6.0    */  char SchwingengewichtChar[6 + 1];  // Schwingengewicht [N]  
+    /*    9  42 - 47     6.0    */  float SchwingengewichtFloat;  // Schwingengewicht [N]  
+    /*   10  48 - 54     7.2    */  char GrenzausschwingwinkelInnenChar[7 + 1];  // Grenzausschwingwinkel innen [grad]  
+    /*   10  48 - 54     7.2    */  float GrenzausschwingwinkelInnenFloat;  // Grenzausschwingwinkel innen [grad]  
+    /*   11  55 - 61     7.2    */  char GrenzausschwingwinkelAuszenChar[7 + 1];  // Grenzausschwingwinkel außen [grad]  
+    /*   11  55 - 61     7.2    */  float GrenzausschwingwinkelAuszenFloat;  // Grenzausschwingwinkel außen [grad]  
+    /*   12  62 - 67     6.0    */  char ZusatzgewichtChar[6 + 1];  // Zusatzgewicht [N]  
+    /*   12  62 - 67     6.0    */  float ZusatzgewichtFloat;  // Zusatzgewicht [N]  
+    /*   13  68 - 73     6.3    */  char EinbaulaengeChar[6 + 1];  // Einbaulänge [m]  
+    /*   13  68 - 73     6.3    */  float EinbaulaengeFloat;  // Einbaulänge [m]  
+    /*   14  74 - 79     6.3    */  char SchirmdurchmesserChar[6 + 1];  // Schirmdurchmesser [m]  
+    /*   14  74 - 79     6.3    */  float SchirmdurchmesserFloat;  // Schirmdurchmesser [m]  
+    /*   15  80 - 85     6.3    */  char StrunkdurchmesserChar[6 + 1];  // Strunkdurchmesser [m]  
+    /*   15  80 - 85     6.3    */  float StrunkdurchmesserFloat;  // Strunkdurchmesser [m]  
+    /*   16  86 - 91     6.3    */  char ProjizierteFlaecheChar[6 + 1];  // Projizierte Fläche [m²]  
+    /*   16  86 - 91     6.3    */  float ProjizierteFlaecheFloat;  // Projizierte Fläche [m²]  
+    /* *** Neu ab Version 4.10.0 *** (V-Kettenstrangbruch)  */
+    /*   17  92 -  96    5.2    */  char VKetteVersatzAufhaengungMastInnenChar[5 + 1];  //  V-Kette Versatz Aufhängung zum Mast hin (innen)  
+    /*   17  92 -  96    5.2    */  float VKetteVersatzAufhaengungMastInnenFloat;  //  V-Kette Versatz Aufhängung zum Mast hin (innen)  
+    /*   18  97 - 101    5.2    */  char VKetteVersatzAufhaengungMastAussenChar[5 + 1];  //  V-Kette Versatz Aufhängung vom Mast weg (außen)  
+    /*   18  97 - 101    5.2    */  float VKetteVersatzAufhaengungMastAussenFloat;  //  V-Kette Versatz Aufhängung vom Mast weg (außen)  
 
     virtual ~KET2() {}
 };
@@ -946,6 +946,32 @@ struct DHGM
 //: EZLA: Einzel- und Streckenlasten  +++
 struct EZLA
 {
+    /*    1  1 -  4      4  */  char DSK[4 + 1];  // Satzkennung ‘EZLA’  
+    /*       5 -  6      2
+    /*    2  7 -  9      3  */  char  LastindexChar[1 + 1];  // Lastindex (laufende Nummer)  
+    /*    2  7 -  9      3  */  int  LastindexInd;  // Lastindex (laufende Nummer)  
+    /*    3 10 - 12      3  */  char  PhasenindexChar[3 + 1];  // Phasenindex  
+    /*    3 10 - 12      3  */  int  PhasenindexInt;  // Phasenindex  
+    /*    4 13 - 15      3  */  char   MastindexLinkerMastChar[3 + 1];  // Mastindex linker Mast  
+    /*    4 13 - 15      3  */  int   MastindexLinkerMastInt;  // Mastindex linker Mast  
+    /*      16 - 16      1
+    /*    5 17 - 17      1  */  char  Lasttyp[1 + 1];  // Lasttyp (‘F’=Feldlast, ‘S’=Streckenlast, ‘P’=Punktlast)  
+    /*      18 - 18      1
+    /*    6 19 - 19      1  */  char  KennungLastEndzustand[1 + 1];  // Kennung ‘X’ - Last auf Endzustand  
+    /*    7 20 - 20      1  */  char  KennungLastMontagezustand[1 + 1];  // Kennung ‘X’ - Last auf Montagezustand  
+    /*    8 21 - 21      1  */  char  KennungLastRollenzustand[1 + 1];  // Kennung ‘X’ - Last auf Rollenzustand  
+    /*    9 22 - 24      3  */  char   ZustandsindexChar[3 + 1];  // Zustandsindex, 0-Last auf alle Berechnungszustände, sonst nur auf einzelnen Berechnungszustand  
+    /*    9 22 - 24      3  */  int   ZustandsindexInt;  // Zustandsindex, 0-Last auf alle Berechnungszustände, sonst nur auf einzelnen Berechnungszustand  
+    /*   10 25 - 27      3  */  char   AnzahlLastenChar[3 + 1];  // Anzahl Lasten bei Einzel– oder Feldlast (Bei Feldlast: Anzahl der Felder beginnend ab Startfeld, Werte von <= 0 entsprechen dabei 1)  
+    /*   10 25 - 27      3  */  int   AnzahlLastenInt;  // Anzahl Lasten bei Einzel– oder Feldlast (Bei Feldlast: Anzahl der Felder beginnend ab Startfeld, Werte von <= 0 entsprechen dabei 1)  
+    /*   11 28 - 36    9.2  */  char StationLinkerMastChar[9 + 1];  // Station bzgl. linken Mast  [m]  
+    /*   11 28 - 36    9.2  */  float StationLinkerMastFloat;  // Station bzgl. linken Mast  [m]  
+    /*   12 37 - 45    9.2  */  char AbstandLastenEndestationChar[9 + 1];  // Abstand zwischen Lasten bzw. Endestation  
+    /*   12 37 - 45    9.2  */  float AbstandLastenEndestationFloat;  // Abstand zwischen Lasten bzw. Endestation  
+    /*   13 46 - 54    9.2  */  char LastChar[9 + 1];  // Last [N] bzw [N/m]  
+    /*   13 46 - 54    9.2  */  float LastFloat;  // Last [N] bzw [N/m]  
+    /*   14 55 - 63    9.2  */  char EinfacheEislastChar[9 + 1];  // Einfache Eislast [N] bzw. [N/m]  
+    /*   14 55 - 63    9.2  */  float EinfacheEislastFloat;  // Einfache Eislast [N] bzw. [N/m]  
     virtual ~EZLA() {}
 };
 //: NEIG: Eingabe Seilneigung  
@@ -970,16 +996,104 @@ struct PATH
 //: "SLK1", SLK2, SLK3: Ergebnis Seilkurvenberechnung (slc)  +++
 struct SLK1
 {
+    /*   1:    1    1 -   4    4     */  char DSK[4 + 1];      // Satzkennung ‘SLK1’  
+    /*    :    2    5 -   7    3     */
+    /*   2:    3    8 -  11    4     */  char  SeilkurvenindexChar[4 + 1];      // Seilkurvenindex (laufende Nummer)  
+    /*   2:    3    8 -  11    4     */  int   SeilkurvenindexInt;      // Seilkurvenindex (laufende Nummer)  
+    /*   3:    4   12 -  15    3     */  char  PhasenindexChar[4 + 1];      // Phasenindex  
+    /*   3:    4   12 -  15    3     */  int   PhasenindexInt;      // Phasenindex  
+    /*   4:    5   16 -  18    3     */  char  ZustandsindexChar[3 + 1];      // Zustandsindex  
+    /*   4:    5   16 -  18    3     */  int   ZustandsindexInt;      // Zustandsindex  
+    /*   5:    6   19 -  21    3     */  char  MastindexLinkerMastChar[3 + 1];      // Mastindex linker Mast  
+    /*   5:    6   19 -  21    3     */  int   MastindexLinkerMastInt;      // Mastindex linker Mast  
+    /*   6:    7   22 -  24    3     */  char  MastindexRechterMastChar[3 + 1];      // Mastindex rechter Mast  
+    /*   6:    7   22 -  24    3     */  int   MastindexRechterMastInt;      // Mastindex rechter Mast  
+    /*   7:    8   25 -  33    9.2   */  char  StationSeilaufhaengepunktLinksChar[9 + 1];      // Station Seilaufhängepunkt (links) [m]  
+    /*   7:    8   25 -  33    9.2   */  float StationSeilaufhaengepunktLinksFloat;      // Station Seilaufhängepunkt (links) [m]  
+    /*   8:    9   34 -  42    9.2   */  char  HoeheSeilaufhaengepunktLinksChar[9 + 1];      // Höhe Seilaufhängepunkt (links) [m]  
+    /*   8:    9   34 -  42    9.2   */  float HoeheSeilaufhaengepunktLinksFloat;      // Höhe Seilaufhängepunkt (links) [m]  
+    /*   9:   10   43 -  51    9.2   */  char  OrdinateSeilaufhaengepunktChar[9 + 1];      // Ordinate Seilaufhängepunkt (links) [m]  
+    /*   9:   10   43 -  51    9.2   */  float OrdinateSeilaufhaengepunktFloat;      // Ordinate Seilaufhängepunkt (links) [m]  
+    /*  10:   11   52 -  60    9.2   */  char  StationSeilaufhaengepunktRechtsChar[9 + 1];      // Station Seilaufhängepunkt (rechts) [m]  
+    /*  10:   11   52 -  60    9.2   */  float StationSeilaufhaengepunktRechtsFloat;      // Station Seilaufhängepunkt (rechts) [m]  
+    /*  11:   12   61 -  69    9.2   */  char  HoeheSeilaufhaengepunktRechtsChar[9 + 1];      // Höhe Seilaufhängepunkt (rechts) [m]  
+    /*  11:   12   61 -  69    9.2   */  float HoeheSeilaufhaengepunktRechtsFloat;      // Höhe Seilaufhängepunkt (rechts) [m]  
+    /*  12:   13   70 -  78    9.2   */  char  OrdinateSeilaufhaengepunktRechtsChar[9 + 1];      // Ordinate Seilaufhängepunkt (rechts) [m]  
+    /*  12:   13   70 -  78    9.2   */  float OrdinateSeilaufhaengepunktRechtsFloat;      // Ordinate Seilaufhängepunkt (rechts) [m]  
+    /*  13:   14   79 -  87    9.2   */  char  StationSeilaufhaengepunktLinksTransformChar[9 + 1];      // Station Seilaufhängepunkt (links) [m] (transformiert auf Feld)  
+    /*  13:   14   79 -  87    9.2   */  float StationSeilaufhaengepunktLinksTransformFloat;      // Station Seilaufhängepunkt (links) [m] (transformiert auf Feld)  
+    /*  14:   15   88 -  96    9.2   */  char  OrdinateSeilaufhaengepunktLinksChar[9 + 1];      // Ordinate Seilaufhängepunkt (links) [m] (transformiert auf Feld)  
+    /*  14:   15   88 -  96    9.2   */  float OrdinateSeilaufhaengepunktLinksFloat;      // Ordinate Seilaufhängepunkt (links) [m] (transformiert auf Feld)  
+    /*  15:   16   97 - 105    9.2   */  char  StationSeilaufhaengepunktRechtsTransformChar[9 + 1];      // Station Seilaufhängepunkt (rechts) [m] (transformiert auf Feld)  
+    /*  15:   16   97 - 105    9.2   */  float StationSeilaufhaengepunktRechtsTransformFloat;      // Station Seilaufhängepunkt (rechts) [m] (transformiert auf Feld)  
+    /*  16:   17  106 - 114    9.2   */  char  OrdinateSeilaufhaengepunktRechtsTransformChar[9 + 1];      // Ordinate Seilaufhängepunkt (rechts) [m] (transformiert auf Feld)   
+    /*  16:   17  106 - 114    9.2   */  float OrdinateSeilaufhaengepunktRechtsTransformFloat;      // Ordinate Seilaufhängepunkt (rechts) [m] (transformiert auf Feld)   
+
     virtual ~SLK1() {}
 };
 //: SLK1, "SLK2", SLK3: Ergebnis Seilkurvenberechnung (slc)  +++
 struct SLK2
 {
+    /*   1:     1     1 -   4         4     */   char DSK[4 + 1];    // Satzkennung ‘SLK2’  
+    /*          2     5 -   7         3
+    /*   2:     3     8 -  11         4     */   char    SeilkurvenindexChar[4 + 1];    // Seilkurvenindex (laufende Nummer)  
+    /*   2:     3     8 -  11         4     */   int    SeilkurvenindexInt;    // Seilkurvenindex (laufende Nummer)  
+    /*   3:     4    12 -  18         7.2   */   char  SeilspannungEndzustandChar[7 + 1];    // Seilspannung Endzustand [N/mm²]  
+    /*   3:     4    12 -  18         7.2   */   float  SeilspannungEndzustandFloat;    // Seilspannung Endzustand [N/mm²]  
+    /*   4:     5    19 -  29        11.9   */   char  SeilgewichtEndzustandChar[11 + 1];    // Seilgewicht Endzustand [N/mm²m]  
+    /*   4:     5    19 -  29        11.9   */   float  SeilgewichtEndzustandFloat;    // Seilgewicht Endzustand [N/mm²m]  
+    /*   5:     6    30 -  36         7.2   */   char  SeilausschwingwinkelChar[7 + 1];    // Seilausschwingwinkel  
+    /*   5:     6    30 -  36         7.2   */   float  SeilausschwingwinkelFloat;    // Seilausschwingwinkel  
+    /*   6:     7    37 -  43         7.2   */   char  DurchhangFeldmitteChar[7 + 1];    // Durchhang in Feldmitte  
+    /*   6:     7    37 -  43         7.2   */   float  DurchhangFeldmitteFloat;    // Durchhang in Feldmitte  
+    /*   7:     8    44 -  52         9.2   */   char  StationSeilpunktFeldmitteChar[9 + 2];    // Station Seilpunkt (Feldmitte) [m]  
+    /*   7:     8    44 -  52         9.2   */   float  StationSeilpunktFeldmitteFloat;    // Station Seilpunkt (Feldmitte) [m]  
+    /*   8:     9    53 -  61         9.2   */   char  HoeheSeilpunktFeldmitteChar[9 + 2];    // Höhe Seilpunkt (Feldmitte) [m]  
+    /*   8:     9    53 -  61         9.2   */   float  HoeheSeilpunktFeldmitteFloat;    // Höhe Seilpunkt (Feldmitte) [m]  
+    /*   9:    10    62 -  70         9.2   */   char  OrdinateSeilpunktFeldmitteChar[9 + 2];    // Ordinate Seilpunkt (Feldmitte) [m]  
+    /*   9:    10    62 -  70         9.2   */   float  OrdinateSeilpunktFeldmitteFloat;    // Ordinate Seilpunkt (Feldmitte) [m]  
+    /*  10:    11    71 -  71         1     */   char TiefsterPunktFeldmitte[1 + 1];    // ' * ' falls tiefster Punkt in Feldmitte des Feldes, sonst nichts  
+    /*  11:    12    72 -  72         1     */   char GroeszterDurchhangFeld[1 + 1];    // '#' falls größter Durchhang des Feldes, sonst nichts  
+    /* *** Neu ab Version 4.0.1 ***  */
+    /*  12:    13     73 -  81        9.2   */   char GewichtsspannweiteChar[9 + 1];    // Gewichtsspannweite  
+    /*  12:    13     73 -  81        9.2   */   float GewichtsspannweiteFloat;    // Gewichtsspannweite  
+    /*  13:    14     82 -  90        9.2   */   char BogenlaengeSeilChar[9 + 1];    // Bogenlänge des Seils  
+    /*  13:    14     82 -  90        9.2   */   float BogenlaengeSeilFloat;    // Bogenlänge des Seils  
+    /*  14:    15     91 -  99        9.2   */   char ScheitelpunktEntfernungLinkerMastChar[9 + 1];    // Scheitelpunkt, Entfernung vom linken Mast  
+    /*  14:    15     91 -  99        9.2   */   float ScheitelpunktEntfernungLinkerMastFloat;    // Scheitelpunkt, Entfernung vom linken Mast  
+    /*  15:    16    100 - 108        9.2   */   char ScheitelpunktSeilhoeheChar[9 + 1];    // Scheitelpunkt, Seilhöhe  
+    /*  15:    16    100 - 108        9.2   */   float ScheitelpunktSeilhoeheFloat;    // Scheitelpunkt, Seilhöhe  
+    /*  16:    17    109 - 116        8.2   */   char SeilspannungAbsolutAufhaengepunktLinksChar[8 + 1];    // Seilspannung absolut Aufhängepunkt links  
+    /*  16:    17    109 - 116        8.2   */   float SeilspannungAbsolutAufhaengepunktLinksFloat;    // Seilspannung absolut Aufhängepunkt links  
+    /*  17:    18    117 - 124        8.2   */   char SeilspannungAbsolutAufhaengepunktRechtChar[8 + 1];    // Seilspannung absolut Aufhängepunkt rechts  
+    /*  17:    18    117 - 124        8.2   */   float SeilspannungAbsolutAufhaengepunktRechtsFloat;    // Seilspannung absolut Aufhängepunkt rechts  
+
     virtual ~SLK2() {}
 };
 //: SLK1, SLK2, "SLK3": Ergebnis Seilkurvenberechnung (slc)  
 struct SLK3
 {
+    /*   1:    1 -  4        4     */ char DSK[4 + 1]; // Satzkennung ‘SLK3’  
+    /*         5 -  7        3     */
+    /*   2:    8 - 11        4     */ char SeilkurvenindexChar[4 + 1]; // Seilkurvenindex (laufende Nummer)  
+    /*   2:    8 - 11        4     */ int  SeilkurvenindexInt; // Seilkurvenindex (laufende Nummer)  
+    /*   3:   12 - 18        7.3   */ char KettenauslenkungLinkerMastInLeitungsrichtungChar[7 + 1]; // Kettenauslenkung linker Mast in Leitungsrichtung  
+    /*   3:   12 - 18        7.3   */ float KettenauslenkungLinkerMastInLeitungsrichtungFloat; // Kettenauslenkung linker Mast in Leitungsrichtung  
+    /*   4:   19 - 25        7.3   */ char KettenauslenkungLinkerMastQuerLeitungsrichtungChar[7 + 1]; // Kettenauslenkung linker Mast quer zu Leitungsrichtung (positiv entspr. nach links)  
+    /*   4:   19 - 25        7.3   */ float KettenauslenkungLinkerMastQuerLeitungsrichtungFloat; // Kettenauslenkung linker Mast quer zu Leitungsrichtung (positiv entspr. nach links)  
+    /*   5:   26 - 32        7.3   */ char KettenauslenkungLinkerMastVertikalLeitungsrichtungChar[7 + 1]; // Kettenauslenkung linker Mast vertikal (Höhe, negativ entspr. nach unten)  
+    /*   5:   26 - 32        7.3   */ float KettenauslenkungLinkerMastVertikalLeitungsrichtungFloat; // Kettenauslenkung linker Mast vertikal (Höhe, negativ entspr. nach unten)  
+    /*   6:   33 - 39        7.3   */ char KettenauslenkungRechterMastInLeitungsrichtungChar[7 + 1]; // Kettenauslenkung rechter Mast in Leitungsrichtung  
+    /*   6:   33 - 39        7.3   */ float KettenauslenkungRechterMastInLeitungsrichtungFloat; // Kettenauslenkung rechter Mast in Leitungsrichtung  
+    /*   7:   40 - 46        7.3   */ char KettenauslenkungRechterMastQuerLeitungsrichtungChar[7 + 1]; // Kettenauslenkung rechter Mast quer zu Leitungsrichtung (positiv entspr. nach links)  
+    /*   7:   40 - 46        7.3   */ float KettenauslenkungRechterMastQuerLeitungsrichtungFloat; // Kettenauslenkung rechter Mast quer zu Leitungsrichtung (positiv entspr. nach links)  
+    /*   8:   47 - 53        7.3   */ char KettenauslenkungRechterMastVertikalLeitungsrichtungChar[7 + 1]; // Kettenauslenkung rechter Mast vertikal (Höhe, negativ entspr. nach unten)  
+    /*   8:   47 - 53        7.3   */ float KettenauslenkungRechterMastVertikalLeitungsrichtungFloat; // Kettenauslenkung rechter Mast vertikal (Höhe, negativ entspr. nach unten)  
+    /*   9:   54 - 63       10.2   */ char SeilzugLinksChar[10 + 1]; // Seilzug links  
+    /*   9:   54 - 63       10.2   */ float SeilzugLinksFloat; // Seilzug links  
+    /*  10:   64 - 73       10.2   */ char SeilzugRechtsChar[10 + 1]; // Seilzug rechts  
+    /*  10:   64 - 73       10.2   */ float SeilzugRechtsFloat; // Seilzug rechts  
+
     virtual ~SLK3() {}
 };
 //: EDHM: Ergebnisse Durchhangsmessungen (slc)  
@@ -1035,16 +1149,67 @@ struct OBOP
 //: "OBJ1", OBJ2, OBJ3: Kreuzungsobjekte  +++
 struct OBJ1
 {
+    /*   1:  1  -  4      4           */ char DSK[4 + 1]; //  Satzkennung ‘OBJ1’  
+    /*   2:  7  -  9      3           */ char  KreuzungsobjektindexTeil_1_Char[3 + 1]; //  Kreuzungsobjektindex Teil 1 (Einer- bis Hunderterstellen)  
+    /*   2:  7  -  9      3           */ int   KreuzungsobjektindexTeil_1_Int; //  Kreuzungsobjektindex Teil 1 (Einer- bis Hunderterstellen)  
+    /*   3:  11 - 20     10           */ char  Objektnummer[10 + 1]; //  Objektnummer (Bezeichnung)  
+    /*   4:  21 - 26    6.2           */ char  MindestabstandChar[6 + 1]; //  Mindestabstand [m]  
+    /*   4:  21 - 26    6.2           */ float MindestabstandFloat; //  Mindestabstand [m]  
+    /*   5:  27 - 29      3           */ char  NachweiscodeChar[3 + 1]; //  Nachweiscode (gemäß Abstandstabelle)  
+    /*   5:  27 - 29      3           */ int   NachweiscodeInt; //  Nachweiscode (gemäß Abstandstabelle)  
+    /*   6:  30 - 30      1           */ char  Abstandstyp[1 + 1]; //  Abstandstyp: ‘L’=lotrecht,’D’=direkt,’W’=waagrecht,’P’=profilprojiziert  
+    /*   7:  34 - 37      4           */ char  Nachweiszustaende[4 + 1]; //  Nachweiszustände (‘TZUA’)  
+    /*   8:  38 - 40      3           */ char  MastindexChar[3 + 1]; //  Mastindex, wenn 0 automatisch  
+    /*   8:  38 - 40      3           */ int   MastindexInt; //  Mastindex, wenn 0 automatisch  
+    /*   9:  41 - 43      3           */ char  PhasenindexChar[3 + 1]; //  Phasenindex, wenn 0 kleinster Abstand aus allen Phasen  
+    /*   9:  41 - 43      3           */ int   PhasenindexInt; //  Phasenindex, wenn 0 kleinster Abstand aus allen Phasen  
+    /*  10:  45 - 45      1           */ char  Objekttyp[1 + 1]; //  Objekttyp (alter Objekttyp bzw. Typ der Kreuzungsberechnung)  
+    /*  11:  46 - 46      1           */ char  SteuerungsparameterDruckausgabe[1 + 1]; //  Steuerungsparameter für Druckausgabe  
+    /*  12:  47 - 47      1           */ char  ParameterLeitungskreuzungen[1 + 1]; //  Parameter für Leitungskreuzungen  
+    /*  13:  48 - 48      1           */ char  NeuerObjekttyp[1 + 1]; //  Neuer Objekttyp (’P’=Punkt, ’L’=Linie, ’F’=Fläche, ’G’=Gelände, ’X’=Leitungskreuzung, ‘W‘=Windenergieanlage, sonstiges Zeichen=Benutzerdefiniert)  
+    /* *** Neu ab XX.03.04 ***        */
+    /*  14:  49 - 49      1           */ char  Objektabstand[1 + 1]; // Festlegung Objektabstand '0' = Freie Eingabe '1' = DIN VDE 5.62 ‘2‘ = DIN VDE 5.69 *** neu ab Version 4.5.1 *** '3' = DIN VDE 12.85 '4' = DIN EN 50341 (2002-2011) '5' = DIN EN 50341 (2016-2019) *** neu ab Version 4.11.2 *** Sonst : Freie Eingabe (Default: '0')  
+    /* *** Neu ab Version 3.3.0x ***  */
+    /*  15:  50 - 50      1           */ char  ObjektRechnen[1 + 1]; // Objekt rechnen: ‚N’ : Nicht rechnen Sonst: Rechnen  
+    /* *** Neu ab Version 4.2.1 ***   */
+    /*  16:  51 - 53      3           */ char  KreuzungsobjektindexTeil_2_Char[3 + 1]; // Kreuzungsobjektindex Teil 2 (Tausenderstellen)  
+    /*  16:  51 - 53      3           */ int   KreuzungsobjektindexTeil_2_Int; // Kreuzungsobjektindex Teil 2 (Tausenderstellen)  
+    /* *** Neu ab Version 4.7.2 ***   */
+    /*  17:  54 - 59      6.2         */ char  Mindestabstand110kVChar[6 + 1]; // Mindestabstand 110 kV (wenn angegeben wird Mindestabstand aus Spannungsebene Phase und Zuschlag bei Laufzeit ermittelt)  
+    /*  17:  54 - 59      6.2         */ float Mindestabstand110kVFloat; // Mindestabstand 110 kV (wenn angegeben wird Mindestabstand aus Spannungsebene Phase und Zuschlag bei Laufzeit ermittelt)  
+
     virtual ~OBJ1() {}
 };
 //: OBJ1, "OBJ2", OBJ3: Kreuzungsobjekte  +++
 struct OBJ2
 {
+    /*  1:   1 -  4      4           */ char  DSK[4 + 1];  // Satzkennung ‘OBJ2’  
+    /*       5 -  6      2           */                         //
+    /*  2:   7 -  9      3           */ char  KreuzungsobjektindexTeil_1_Char[3+1];  // Kreuzungsobjektindex Teil 1 (Einer- bis Hunderterstellen)                         
+    /*  2:   7 -  9      3           */ int   KreuzungsobjektindexTeil_1_Int;  // Kreuzungsobjektindex Teil 1 (Einer- bis Hunderterstellen)                         
+    /*      10 - 10      1           */                         // 
+    /*  3:  11 - 38     28           */ char  ObjektbezeichnungZeile_1[28 + 1];  // Objektbezeichnung (1.Zeile)  
+    /*  4:  39 - 66     28           */ char  ObjektbezeichnungZeile_2[28 + 1];  // Objektbezeichnung (2.Zeile)  
+    /* *** Neu ab Version 4.2.1 ***  */                                          //  
+    /*  5:  67 - 69      3           */ char   KreuzungsobjektindexTeil_2_Char[3+1];   // Kreuzungsobjektindex Teil 2 (Tausenderstellen)  
+    /*  5:  67 - 69      3           */ int   KreuzungsobjektindexTeil_2_Int;   // Kreuzungsobjektindex Teil 2 (Tausenderstellen)  
+
     virtual ~OBJ2() {}
 };
 //: OBJ1, OBJ2, "OBJ3": Kreuzungsobjekte  +++
 struct OBJ3
 {
+/*  1:  1 -  4      4            %4c   %s    */ char  DSK[4+1] ; // Satzkennung ‘OBJ3’  
+/*      5 -  6      2            %*2c        */          //
+/*  2:  7 -  9      3            %3c   %d    */ char KreuzungsobjektindexTeil_1_Char[3+1]   ; // Kreuzungsobjektindex Teil 1 (Einer- bis Hunderterstellen)  
+/*  2:  7 -  9      3            %3c   %d    */ int KreuzungsobjektindexTeil_1_Int   ; // Kreuzungsobjektindex Teil 1 (Einer- bis Hunderterstellen)  
+/*     10 - 10      1            %*1c        */
+/*  3: 11 - 38     28            %28c  %s    */ char EigentümerZeile_1[28+1]  ; // Eigentümer (1.Zeile)  
+/*  4: 39 - 66     28            %28c  %s    */ char EigentümerZeile_2[28+1]  ; // Eigentümer (2.Zeile)  
+/* *** Neu ab Version 4.2.1 ***              */
+/*  5: 67 - 69      3            %3c   %d    */ char KreuzungsobjektindexTeil_2_Char[3+1]   ; // Kreuzungsobjektindex Teil 2 (Tausenderstellen)  
+/*  5: 67 - 69      3            %3c   %d    */ int KreuzungsobjektindexTeil_2_Int   ; // Kreuzungsobjektindex Teil 2 (Tausenderstellen)  
+
     virtual ~OBJ3() {}
 };
 //: OBJA: Erweiterung unterschiedliche Mindestabstände für Nachweiszustände  
@@ -1060,26 +1225,178 @@ struct OBA1
 //: OPKT: Punktobjekte  +++
 struct OPKT
 {
+/*   1:   1 -  4   4              %4c   %s     */   char DSK[4+1]  ;   // Satzkennung ‘OPKT’  
+/*        5 -  6   2              %*2c         */               //
+/*   2:   7 -  9   3              %3c   %d     */   char PunktindexTeil_1_Char[3+1]   ;   // Punktindex Teil 1 (Einer- bis Hunderterstellen)   
+/*   2:   7 -  9   3              %3c   %d     */   int PunktindexTeil_1_Int   ;   // Punktindex Teil 1 (Einer- bis Hunderterstellen)   
+/*       10 - 10   1              %*1c         */               //
+/*   3:  11 - 13   3              %3c   %d     */   char   Kreuzungsobjektindex_Teil_1_Char[3+1] ;   // Kreuzungsobjektindex Teil 1 (Einer- bis Hunderterstellen)  
+/*   3:  11 - 13   3              %3c   %d     */   int   Kreuzungsobjektindex_Teil_1_Int ;   // Kreuzungsobjektindex Teil 1 (Einer- bis Hunderterstellen)  
+/*   4:  14 - 22   9.2            %9c   %9.2f  */   char StationChar[9+1] ;   // Station [m]  
+/*   4:  14 - 22   9.2            %9c   %9.2f  */   float StationFloat ;   // Station [m]  
+/*   5:  23 - 29   7.2            %7c   %7.2f  */   char OrdinateChar[7+1] ;   // Ordinate [m]  
+/*   5:  23 - 29   7.2            %7c   %7.2f  */   float OrdinateFloat ;   // Ordinate [m]  
+/*   6:  30 - 37   8.2            %8c   %8.2f  */   char FuszhoeheChar[8+2] ;   // Fußhöhe [m]  
+/*   6:  30 - 37   8.2            %8c   %8.2f  */   float FuszhoeheFloat ;   // Fußhöhe [m]  
+/*   7:  38 - 44   7.2            %7c   %7.2f  */   char ObjekthoeheChar[7+2] ;   // Objekthöhe [m]  
+/*   7:  38 - 44   7.2            %7c   %7.2f  */   float ObjekthoeheFloat ;   // Objekthöhe [m]  
+/*   8:  45 - 52   8              %8c   %s     */   char  PunktnummerVermessung[8+1];   // Punktnummer (aus Vermessung)  
+/*       53 - 53   1              %*1c         */              //
+/*   9:  54 - 56   3              %3c   %d     */   char   Punktindex_Teil_2_Char[3+1] ;   // Punktindex Teil 2 (Tausenderstellen)  
+/*   9:  54 - 56   3              %3c   %d     */   int   Punktindex_Teil_2_Int ;   // Punktindex Teil 2 (Tausenderstellen)  
+/* *** Neu ab XX.09.04 ***                     */              //
+/*  10:  57 - 66  10              %10c  %d     */   char   MS_LinkChar[10+1] ;   // MS-Link (nur von FLP verwendet, irrelevant für Berech- nungsverhalten)  
+/*  10:  57 - 66  10              %10c  %d     */   int   MS_LinkInt ;   // MS-Link (nur von FLP verwendet, irrelevant für Berech- nungsverhalten)  
+/* *** Neu ab Version 4.2.1 ***                */  
+/*  11:  67 - 69   3              %3c   %d     */   char  KreuzungsobjektindexTeil_2_Char[3+1]  ;   // Kreuzungsobjektindex Teil 2 (Tausenderstellen)  
+/*  11:  67 - 69   3              %3c   %d     */   int  KreuzungsobjektindexTeil_2_Int  ;   // Kreuzungsobjektindex Teil 2 (Tausenderstellen)  
+
     virtual ~OPKT() {}
 };
 //: OLIN: Linienobjekte  +++
 struct OLIN
 {
+/*  1:   1 -  4    4               %4c  %s */  char DSK[4+1]  ;  // Satzkennung ‘OLIN’  
+/*       5 -  6    2               %*2c    */           //
+/*  2:   7 -  9    3               %3c  %d */  char   LinienindexTeil_1_Char[3+1] ;  // Linienindex Teil1 (Einer- bis Hunderterstellen)  
+/*  2:   7 -  9    3               %3c  %d */  int   LinienindexTeil_1_Int ;  // Linienindex Teil1 (Einer- bis Hunderterstellen)  
+/*      10 - 10    1               %*1c    */           //
+/*  3:  11 - 13    3               %3c  %d */  char  KreuzungsobjektindexTeil_1_Char[3+1]  ;  // Kreuzungsobjektindex Teil 1 (Einer- bis Hunderterstellen)  
+/*  3:  11 - 13    3               %3c  %d */  int  KreuzungsobjektindexTeil_1_Int  ;  // Kreuzungsobjektindex Teil 1 (Einer- bis Hunderterstellen)  
+
+/*  4:  14 - 16    3               %3c  %d */  char  IndexAnfangspunkt_1_Teil_1_Char[3+1]  ;  // Index Anfangspunkt 1 Teil 1 (Einer- bis Hunderterstellen)  
+/*  4:  14 - 16    3               %3c  %d */  int  IndexAnfangspunkt_1_Teil_1_Int  ;  // Index Anfangspunkt 1 Teil 1 (Einer- bis Hunderterstellen)  
+
+/*  5:  17 - 19    3               %3c  %d */  char  Index_Endpunkt_1_Teil_1_Char[3+1]  ;  // Index Endpunkt 1 Teil 1 (Einer- bis Hunderterstellen)  
+/*  5:  17 - 19    3               %3c  %d */  int  Index_Endpunkt_1_Teil_1_Int  ;  // Index Endpunkt 1 Teil 1 (Einer- bis Hunderterstellen)  
+
+/*  6:  20 - 22    3               %3c  %d */  char  Index_Anfangspunkt_2_Teil_2_Char[3+1]  ;  // Index Anfangspunkt 2 Teil 2 (Tausenderstellen)  
+/*  6:  20 - 22    3               %3c  %d */  int  Index_Anfangspunkt_2_Teil_2_Int  ;  // Index Anfangspunkt 2 Teil 2 (Tausenderstellen)  
+
+/*  7:  23 - 25    3               %3c  %d */  char  IndexEndpunkt_2_Teil_2_Char[3+1]  ;  // Index Endpunkt 2 Teil 2 (Tausenderstellen)  
+/*  7:  23 - 25    3               %3c  %d */  int  IndexEndpunkt_2_Teil_2_Int  ;  // Index Endpunkt 2 Teil 2 (Tausenderstellen)  
+
+/*  *** Neu ab XX.09.04 ***                */           //
+/*  8:  26 - 35   10               %10c %d */  char MS_LinkChar[10+1]   ;  // MS-Link (nur von FLP verwendet, irrelevant für Berech- nungsverhalten)  
+/*  8:  26 - 35   10               %10c %d */  int MS_LinkInt   ;  // MS-Link (nur von FLP verwendet, irrelevant für Berech- nungsverhalten)  
+/*  *** Neu ab Version 4.2.1 ***           */           //
+/*  9:  36 - 38    3               %3c  %d */  char Linienindex_Teil_2_Char[3+1]   ;  //  Linienindex Teil 2 (Tausenderstellen)  
+/*  9:  36 - 38    3               %3c  %d */  int Linienindex_Teil_2_Int   ;  //  Linienindex Teil 2 (Tausenderstellen)  
+
+/* 10:  39 - 41    3               %3c  %d */  char Kreuzungsobjektindex_Teil_2_Char[3+1]   ;  //  Kreuzungsobjektindex Teil 2 (Tausenderstellen)  
+/* 10:  39 - 41    3               %3c  %d */  int Kreuzungsobjektindex_Teil_2_Int   ;  //  Kreuzungsobjektindex Teil 2 (Tausenderstellen)  
+
     virtual ~OLIN() {}
 };
 //: OBFL: Flächenobjekte  +++
 struct OBFL
 {
+/*   1 :   1 -  4   4                 %4c   %s   */  char DSK[4+1]  ;     // Satzkennung ‘OBFL’  
+/*         5 -  6   1                 %*1c                        //
+
+/*   2 :   7 -  9   3                 %3c   %d   */  char Flaechenindex_Teil_1_Char[3+1]  ;     // Flächenindex Teil 1 (Einer- bis Hunderterstellen)  
+/*   2 :   7 -  9   3                 %3c   %d   */  int  Flaechenindex_Teil_1_Int  ;     // Flächenindex Teil 1 (Einer- bis Hunderterstellen)  
+
+/*        10 - 10   1                 %*1c                        //
+
+/*   3 :  11 - 13   3                 %3c   %d   */  char  KreuzungsobjektindexTeil_1_Char[3+1]  ;     // Kreuzungsobjektindex Teil 1 (Einer- bis Hunderterstellen)  
+/*   3 :  11 - 13   3                 %3c   %d   */  int  KreuzungsobjektindexTeil_1_Int  ;     // Kreuzungsobjektindex Teil 1 (Einer- bis Hunderterstellen)  
+
+/*   4 :  14 - 16   3                 %3c   %d   */  char  Punktindex_1_Teil_1_Char[3+1]  ;     // Punktindex 1 Teil 1 (Einer- bis Hunderterstellen)  
+/*   4 :  14 - 16   3                 %3c   %d   */  int  Punktindex_1_Teil_1_Int  ;     // Punktindex 1 Teil 1 (Einer- bis Hunderterstellen)  
+
+/*   5 :  17 - 19   3                 %3c   %d   */  char  Punktindex_2_Teil_1_Char[3+1]  ;     // Punktindex 2 Teil 1 (Einer- bis Hunderterstellen)  
+/*   5 :  17 - 19   3                 %3c   %d   */  int  Punktindex_2_Teil_1_Int  ;     // Punktindex 2 Teil 1 (Einer- bis Hunderterstellen)  
+
+/*   6 :  20 - 22   3                 %3c   %d   */  char  Punktindex_3_Teil_1_Char[3+1]  ;     // Punktindex 3 Teil 1 (Einer- bis Hunderterstellen)  
+/*   6 :  20 - 22   3                 %3c   %d   */  int  Punktindex_3_Teil_1_Int  ;     // Punktindex 3 Teil 1 (Einer- bis Hunderterstellen)  
+
+/*   7 :  23 - 25   3                 %3c   %d   */  char  Punktindex_4_Teil_1_Char[3+1]  ;     // Punktindex 4 Teil 1 (Einer- bis Hunderterstellen)  
+/*   7 :  23 - 25   3                 %3c   %d   */  int  Punktindex_4_Teil_1_Int  ;     // Punktindex 4 Teil 1 (Einer- bis Hunderterstellen)  
+
+/*   8 :  26 - 28   3                 %3c   %d   */  char  Punktindex_1_Teil_2_Char[3+1]  ;     // Punktindex 1 Teil 2 (Tausenderstelle)  
+/*   8 :  26 - 28   3                 %3c   %d   */  int  Punktindex_1_Teil_2_Int  ;     // Punktindex 1 Teil 2 (Tausenderstelle)  
+
+/*   9 :  29 - 31   3                 %3c   %d   */  char  Punktindex_2_Teil_2_Char[3+1]  ;     // Punktindex 2 Teil 2 (Tausenderstelle)  
+/*   9 :  29 - 31   3                 %3c   %d   */  int  Punktindex_2_Teil_2_Int  ;     // Punktindex 2 Teil 2 (Tausenderstelle)  
+
+/*  10 :  32 - 34   3                 %3c   %d   */  char  Punktindex_3_Teil_2_Char[3+1]  ;     // Punktindex 3 Teil 2 (Tausenderstelle)  
+/*  10 :  32 - 34   3                 %3c   %d   */  int  Punktindex_3_Teil_2_Int  ;     // Punktindex 3 Teil 2 (Tausenderstelle)  
+
+/*  11 :  35 - 37   3                 %3c   %d   */  char  Punktindex_4_Teil_2_Char[3+1]  ;     // Punktindex 4 Teil 2 (Tausenderstelle)  
+/*  11 :  35 - 37   3                 %3c   %d   */  int  Punktindex_4_Teil_2_Int  ;     // Punktindex 4 Teil 2 (Tausenderstelle)  
+
+/*   :  *** Neu ab XX.09.04 ***                  */               //
+/*  12 :  38 - 47  10                 %10c   %d  */  char  MS_Link_Char[10+1]  ;     // MS-Link (nur von FLP verwendet, irrelevant für Berech- nungsverhalten)  
+/*  12 :  38 - 47  10                 %10c   %d  */  int  MS_Link_Int  ;     // MS-Link (nur von FLP verwendet, irrelevant für Berech- nungsverhalten)  
+
+/*   :  *** Neu ab Version 4.2.1 ***             */               //
+/*  13 :  48 - 50   3                 %3c   %d   */  char  Flaechenindex_Teil_2_Char[3+1]  ;     // Flächenindex Teil 2 (Tausenderstellen)  
+/*  13 :  48 - 50   3                 %3c   %d   */  int  Flaechenindex_Teil_2_Int  ;     // Flächenindex Teil 2 (Tausenderstellen)  
+
+/*  14 :  51 - 53   3                 %3c   %d   */  char  Kreuzungsobjektindex_Teil_2_Char[3+1]  ;     // Kreuzungsobjektindex Teil 2 (Tausenderstellen)  
+/*  14 :  51 - 53   3                 %3c   %d   */  int  Kreuzungsobjektindex_Teil_2_Int  ;     // Kreuzungsobjektindex Teil 2 (Tausenderstellen)  
+
     virtual ~OBFL() {}
 };
 //: "OGEL", OGE2: Geländepunkte  +++
+// Wenn vorhanden mindestens zwei Punkte pro Kreuzungsobjekt sortiert nach Station.  
+// *** Änderung ab Version 1.5.1: Erweiterung der Punktindize auf 6 Stellen, abgelegt in zwei 3 stelligen Werten, um abwärtskompatibel zu bleiben. ***  
 struct OGEL
 {
+/*  1:  1 -  4  4     %4c   %4s    */  char  DSK[4+1]  ;  // Satzkennung ‘OGEL’  
+/*      5 -  6  2     %*2c         */      
+                 //   
+/*  2:  7 -  9  3     %3c   %3d    */  char   Gelaendepunktindex_Teil_1_Char[3+1]  ;  // Geländepunktindex Teil 1 (Einer- bis Hunderterstellen)  
+/*  2:  7 -  9  3     %3c   %3d    */  int   Gelaendepunktindex_Teil_1_Int  ;  // Geländepunktindex Teil 1 (Einer- bis Hunderterstellen)  
+/*     10 - 10  1     %*1c         */                                           //      
+
+/*  3: 11 - 13  3     %3c   %3d    */  char   Kreuzungsobjektindex_Teil_1_Char[3+1]  ;  // Kreuzungsobjektindex Teil 1 (Einer- bis Hunderterstellen)  
+/*  3: 11 - 13  3     %3c   %3d    */  int   Kreuzungsobjektindex_Teil_1_Int  ;  // Kreuzungsobjektindex Teil 1 (Einer- bis Hunderterstellen)  
+
+/*  4: 14 - 22  9.2   %9c   %9.2f  */  char StationChar[9+1]  ;  // Station  
+/*  4: 14 - 22  9.2   %9c   %9.2f  */  float StationFloat  ;  // Station  
+
+/*  5: 23 - 30  8.2   %8c   %8.2f  */  char GelaendehoeheTrassenmitte_Char[8+1]  ;  // Geländehöhe in Trassenmitte  
+/*  5: 23 - 30  8.2   %8c   %8.2f  */  float GelaendehoeheTrassenmitteFloat  ;  // Geländehöhe in Trassenmitte  
+
+/*  6: 31 - 36  6.2   %6c   %6.2f  */  char OrdinateSeitlichUeberhoehung_1_Char[6+1]  ;  // Ordinate seitliche Überhöhung1 (links)  
+/*  6: 31 - 36  6.2   %6c   %6.2f  */  float OrdinateSeitlichUeberhoehung_1_Float  ;  // Ordinate seitliche Überhöhung1 (links)  
+
+/*  7: 37 - 42  6.2   %6c   %6.2f  */  char SeitlicheUeberhoehung_1_Char[6+1]  ;  // Seitliche Überhöhung 1 (relativ zur Höhe in Trassenmitte, d.h. bei ‚0.00‘ auf Seite gleiche Höhe wie in Trassenmitte)  
+/*  7: 37 - 42  6.2   %6c   %6.2f  */  float SeitlicheUeberhoehung_1_Float  ;  // Seitliche Überhöhung 1 (relativ zur Höhe in Trassenmitte, d.h. bei ‚0.00‘ auf Seite gleiche Höhe wie in Trassenmitte)  
+
+/*  8: 43 - 48  6.2   %6c   %6.2f  */  char OrdinateSeitlicheUeberhoehung_2_Char[6+1]  ;  // Ordinate seitliche Überhöhung2 (rechts)  
+/*  8: 43 - 48  6.2   %6c   %6.2f  */  float OrdinateSeitlicheUeberhoehung_2_Float  ;  // Ordinate seitliche Überhöhung2 (rechts)  
+
+/*  9: 49 - 54  6.2   %6c   %6.2f  */  char SeitlicheUeberhoehung_2_Char[6+1]  ;  // seitliche Überhöhung 2 (relativ zur Höhe in Trassenmitte)  
+/*  9: 49 - 54  6.2   %6c   %6.2f  */  float SeitlicheUeberhoehung_2_Float  ;  // seitliche Überhöhung 2 (relativ zur Höhe in Trassenmitte)  
+
+/*     55 - 55  1     %*1c         */             //   
+
+/*  10: 56 - 58  3     %3c   %3d    */  char Gelaendepunktindex_Teil_2_Char[3+1]    ;  // Geländepunktindex Teil 2 (Tausenderstellen)  
+/*  10: 56 - 58  3     %3c   %3d    */  int Gelaendepunktindex_Teil_2_Int    ;  // Geländepunktindex Teil 2 (Tausenderstellen)  
+
+/*  *** Neu ab Version 4.1.3 ***                               */                    //      
+/*  11: 59 - 61  3     %3c   %3s    */  char KulturartCode[3+1]   ;  // Kulturart Code  
+/*  *** Neu ab Version 4.2.1 ***                               */                    //   
+
+/*  12: 62 - 64  3     %3c   %3d    */  char KreuzungsobjektindexTeil_2_Char[3+1]     ;  // Kreuzungsobjektindex Teil 2 (Tausenderstellen)  
+/*  12: 62 - 64  3     %3c   %3d    */  int KreuzungsobjektindexTeil_2_Int     ;  // Kreuzungsobjektindex Teil 2 (Tausenderstellen)  
+
     virtual ~OGEL() {}
 };
 //: OGEL, "OGE2": Geländepunkte  +++
 struct OGE2
 {
+/*   1:   1 -  4     4   %4c   %s   */ char DSK[4+1]  ;            // Satzkennung ‘OGE2’  
+/*        5 -  6     2   %*2c       */                             //
+
+/*   2:   7 - 12     6   %6c   %d   */ char  GelaendepunktindexChar[6+1]  ;   // Geländepunktindex  
+/*   2:   7 - 12     6   %6c   %d   */ int  GelaendepunktindexInt  ;   // Geländepunktindex  
+
+/*   3:  14 - 43    30   %30c  %s   */ char KulturartReintext[30+1]  ;   // Kulturart Reintext  
+
     virtual ~OGE2() {}
 };
 //: OWEA: Windenergieanlagen  

@@ -1448,40 +1448,23 @@ GH263 Datenformat                                       25.01.22                
 
 
    Spalte             Format            Beschreibung  
-
-   1 -      4   char                4   Satzkennung ‘EZLA’  
-
-   7 -      9   int                 3   Lastindex (laufende Nummer)  
-
-  10 -     12   int                 3   Phasenindex  
-
-  13 -     15   int                 3   Mastindex linker Mast  
-
-  17 -     17   char                1   Lasttyp (‘F’=Feldlast, ‘S’=Streckenlast, ‘P’=Punktlast)  
-
-  19 -     19   char                1   Kennung ‘X’ - Last auf Endzustand  
-
-  20 -     20   char                1   Kennung ‘X’ - Last auf Montagezustand  
-
-  21 -     21   char                1   Kennung ‘X’ - Last auf Rollenzustand  
-
-  22 -     24   int                 3   Zustandsindex, 0-Last auf alle Berechnungszustände, sonst nur  
-
-                                        auf einzelnen Berechnungszustand  
-
-  25 -     27   int                 3   Anzahl Lasten bei Einzel– oder Feldlast (Bei Feldlast: Anzahl  
-
-                                        der Felder beginnend ab Startfeld, Werte von <= 0 entsprechen  
-
-                                        dabei 1)  
-
-  28 -     36   float             9.2   Station bzgl. linken Mast  [m]  
-
-  37 -     45   float             9.2   Abstand zwischen Lasten bzw. Endestation  
-
-  46 -     54   float             9.2   Last [N] bzw [N/m]  
-
-  55 -     63   float             9.2   Einfache Eislast [N] bzw. [N/m]  
+/*    1     1     1 -  4      4  */  char   ;  // Satzkennung ‘EZLA’  
+/*          2     5 -  6      2
+/*    2     3     7 -  9      3  */  int    ;  // Lastindex (laufende Nummer)  
+/*    3     4    10 - 12      3  */  int    ;  // Phasenindex  
+/*    4     5    13 - 15      3  */  int    ;  // Mastindex linker Mast  
+/*          6    16 - 16      1
+/*    5     7    17 - 17      1  */  char   ;  // Lasttyp (‘F’=Feldlast, ‘S’=Streckenlast, ‘P’=Punktlast)  
+/*          8    18 - 18      1
+/*    6     9    19 - 19      1  */  char   ;  // Kennung ‘X’ - Last auf Endzustand  
+/*    7    10    20 - 20      1  */  char   ;  // Kennung ‘X’ - Last auf Montagezustand  
+/*    8    11    21 - 21      1  */  char   ;  // Kennung ‘X’ - Last auf Rollenzustand  
+/*    9    12    22 - 24      3  */  int    ;  // Zustandsindex, 0-Last auf alle Berechnungszustände, sonst nur auf einzelnen Berechnungszustand  
+/*   10    13    25 - 27      3  */  int    ;  // Anzahl Lasten bei Einzel– oder Feldlast (Bei Feldlast: Anzahl der Felder beginnend ab Startfeld, Werte von <= 0 entsprechen dabei 1)  
+/*   11    14    28 - 36    9.2  */  float  ;  // Station bzgl. linken Mast  [m]  
+/*   12    15    37 - 45    9.2  */  float  ;  // Abstand zwischen Lasten bzw. Endestation  
+/*   13    16    46 - 54    9.2  */  float  ;  // Last [N] bzw [N/m]  
+/*   14    17    55 - 63    9.2  */  float  ;  // Einfache Eislast [N] bzw. [N/m]  
 
   
 
@@ -1618,114 +1601,65 @@ GH263 Datenformat                                        25.01.22               
 
 
    Spalte           Format         Beschreibung  
-
-    1 -     4   char            4   Satzkennung ‘SLK1’  
-
-    8 -    11   int             4   Seilkurvenindex (laufende Nummer)  
-
-   12 -    15   Int             3   Phasenindex  
-
-   16 -    18   Int             3   Zustandsindex  
-
-   19 -    21   int             3   Mastindex linker Mast  
-
-   22 -    24   int             3   Mastindex rechter Mast  
-
-   25 -    33   float        9.2   Station Seilaufhängepunkt (links) [m]  
-
-   34 -    42   float        9.2   Höhe Seilaufhängepunkt (links) [m]  
-
-   43 -    51   float        9.2   Ordinate Seilaufhängepunkt (links) [m]  
-
-   52 -    60   float        9.2   Station Seilaufhängepunkt (rechts) [m]  
-
-   61 -    69   float        9.2   Höhe Seilaufhängepunkt (rechts) [m]  
-
-   70 -    78   float        9.2   Ordinate Seilaufhängepunkt (rechts) [m]  
-
-   79 -    87   float        9.2   Station Seilaufhängepunkt (links) [m] (transformiert auf Feld)  
-
-   88 -    96   float        9.2   Ordinate Seilaufhängepunkt (links) [m] (transformiert auf Feld)  
-
-   97 -   105   float        9.2   Station Seilaufhängepunkt (rechts) [m] (transformiert auf Feld)  
-
-  106 -   114   float        9.2   Ordinate Seilaufhängepunkt (rechts) [m] (transformiert auf Feld)   
+/*   1:    1    1 -   4    4     */  char   ;      // Satzkennung ‘SLK1’  
+/*    :    2    5 -   7    3     */   
+/*   2:    3    8 -  11    4     */  int    ;      // Seilkurvenindex (laufende Nummer)
+/*   3:    4   12 -  15    4     */  int    ;      // Phasenindex  
+/*   4:    5   16 -  18    3     */  int    ;      // Zustandsindex  
+/*   5:    6   19 -  21    3     */  int    ;      // Mastindex linker Mast  
+/*   6:    7   22 -  24    3     */  int    ;      // Mastindex rechter Mast  
+/*   7:    8   25 -  33    9.2   */  float  ;      // Station Seilaufhängepunkt (links) [m]  
+/*   8:    9   34 -  42    9.2   */  float  ;      // Höhe Seilaufhängepunkt (links) [m]  
+/*   9:   10   43 -  51    9.2   */  float  ;      // Ordinate Seilaufhängepunkt (links) [m]  
+/*  10:   11   52 -  60    9.2   */  float  ;      // Station Seilaufhängepunkt (rechts) [m]  
+/*  11:   12   61 -  69    9.2   */  float  ;      // Höhe Seilaufhängepunkt (rechts) [m]  
+/*  12:   13   70 -  78    9.2   */  float  ;      // Ordinate Seilaufhängepunkt (rechts) [m]  
+/*  13:   14   79 -  87    9.2   */  float  ;      // Station Seilaufhängepunkt (links) [m] (transformiert auf Feld)  
+/*  14:   15   88 -  96    9.2   */  float  ;      // Ordinate Seilaufhängepunkt (links) [m] (transformiert auf Feld)  
+/*  15:   16   97 - 105    9.2   */  float  ;      // Station Seilaufhängepunkt (rechts) [m] (transformiert auf Feld)  
+/*  16:   17  106 - 114    9.2   */  float  ;      // Ordinate Seilaufhängepunkt (rechts) [m] (transformiert auf Feld)   
 
 //: SLK1, "SLK2", SLK3: Ergebnis Seilkurvenberechnung (slc)  +++
   
 
    Spalte              Format           Beschreibung  
-
-    1 -     4   Char                 4   Satzkennung ‘SLK2’  
-
-    8 -    11   Int                  4   Seilkurvenindex (laufende Nummer)  
-
-   12 -    18   Float             7.2   Seilspannung Endzustand [N/mm²]  
-
-   19 -    29   Float            11.9   Seilgewicht Endzustand [N/mm²m]  
-
-   30 -    36   Float             7.2   Seilausschwingwinkel  
-
-   37 -    43   Float             7.2   Durchhang in Feldmitte  
-
-   44 -    52   Float             9.2   Station Seilpunkt (Feldmitte) [m]  
-
-   53 -    61   Float             9.2   Höhe Seilpunkt (Feldmitte) [m]  
-
-   62 -    70   Float             9.2   Ordinate Seilpunkt (Feldmitte) [m]  
-
-   71 -    71   Char                 1   ' * ' falls tiefster Punkt in Feldmitte des Feldes, sonst nichts  
-
-   72 -    72   Char                 1   '#' falls größter Durchhang des Feldes, sonst nichts  
-
-*** Neu ab Version 4.0.1 ***  
-
-   73 -    81   Float             9.2   Gewichtsspannweite  
-
-   82 -    90   Float             9.2   Bogenlänge des Seils  
-
-   91 -    99   Float             9.2   Scheitelpunkt, Entfernung vom linken Mast  
-
-  100 -   108   Float             9.2   Scheitelpunkt, Seilhöhe  
-
-  109 -   116   Float             8.2   Seilspannung absolut Aufhängepunkt links  
-
-  117 -   124   Float             8.2   Seilspannung absolut Aufhängepunkt rechts  
+/*   1:     1     1 -   4         4     */   char    ;    // Satzkennung ‘SLK2’  
+/*          2     5 -   7         3
+/*   2:     3     8 -  11         4     */   int     ;    // Seilkurvenindex (laufende Nummer)  
+/*   3:     4    12 -  18         7.2   */   float   ;    // Seilspannung Endzustand [N/mm²]  
+/*   4:     5    19 -  29        11.9   */   float   ;    // Seilgewicht Endzustand [N/mm²m]  
+/*   5:     6    30 -  36         7.2   */   float   ;    // Seilausschwingwinkel  
+/*   6:     7    37 -  43         7.2   */   float   ;    // Durchhang in Feldmitte  
+/*   7:     8    44 -  52         9.2   */   float   ;    // Station Seilpunkt (Feldmitte) [m]  
+/*   8:     9    53 -  61         9.2   */   float   ;    // Höhe Seilpunkt (Feldmitte) [m]  
+/*   9:    10    62 -  70         9.2   */   float   ;    // Ordinate Seilpunkt (Feldmitte) [m]  
+/*  10:    11    71 -  71         1     */   char    ;    // ' * ' falls tiefster Punkt in Feldmitte des Feldes, sonst nichts  
+/*  11:    12    72 -  72         1     */   char    ;    // '#' falls größter Durchhang des Feldes, sonst nichts  
+/* *** Neu ab Version 4.0.1 ***  */                 
+/*  12:    13     73 -  81        9.2   */   float  ;    // Gewichtsspannweite  
+/*  13:    14     82 -  90        9.2   */   float  ;    // Bogenlänge des Seils  
+/*  14:    15     91 -  99        9.2   */   float  ;    // Scheitelpunkt, Entfernung vom linken Mast  
+/*  15:    16    100 - 108        9.2   */   float  ;    // Scheitelpunkt, Seilhöhe  
+/*  16:    17    109 - 116        8.2   */   float  ;    // Seilspannung absolut Aufhängepunkt links  
+/*  17:    18    117 - 124        8.2   */   float  ;    // Seilspannung absolut Aufhängepunkt rechts  
 
   
-//: SLK1, SLK2, "SLK3": Ergebnis Seilkurvenberechnung (slc)  
+//: SLK1, SLK2, "SLK3": Ergebnis Seilkurvenberechnung (slc)  +++
 
 *** Neu ab Version 4.0.1 ***  
 
    Spalte              Format           Beschreibung  
-
-    1 -     4   Char                 4   Satzkennung ‘SLK3’  
-
-    8 -    11   Int                  4   Seilkurvenindex (laufende Nummer)  
-
-   12 -    18   Float             7.3   Kettenauslenkung linker Mast in Leitungsrichtung  
-
-   19 -    25   Float             7.3   Kettenauslenkung linker Mast quer zu Leitungsrichtung (positiv  
-
-                                        entspr. nach links)  
-
-   26 -    32   Float             7.3   Kettenauslenkung linker Mast vertikal (Höhe, negativ entspr.  
-
-                                        nach unten)  
-
-   33 -    39   Float             7.3   Kettenauslenkung rechter Mast in Leitungsrichtung  
-
-   40 -    46   Float             7.3   Kettenauslenkung rechter Mast quer zu Leitungsrichtung (positiv  
-
-                                        entspr. nach links)  
-
-   47 -    53   Float             7.3   Kettenauslenkung rechter Mast vertikal (Höhe, negativ entspr.  
-
-                                        nach unten)  
-
-   54 -    63   Float            10.2   Seilzug links  
-
-   64 -    73   Float            10.2   Seilzug rechts  
+/*   1:    1 -  4        4     */ char   ; // Satzkennung ‘SLK3’  
+/*         5 -  7        3     */
+/*   2:    8 - 11        4     */ int    ; // Seilkurvenindex (laufende Nummer)  
+/*   3:   12 - 18        7.3   */ float  ; // Kettenauslenkung linker Mast in Leitungsrichtung  
+/*   4:   19 - 25        7.3   */ float  ; // Kettenauslenkung linker Mast quer zu Leitungsrichtung (positiv entspr. nach links)  
+/*   5:   26 - 32        7.3   */ float  ; // Kettenauslenkung linker Mast vertikal (Höhe, negativ entspr. nach unten)  
+/*   6:   33 - 39        7.3   */ float  ; // Kettenauslenkung rechter Mast in Leitungsrichtung  
+/*   7:   40 - 46        7.3   */ float  ; // Kettenauslenkung rechter Mast quer zu Leitungsrichtung (positiv entspr. nach links)  
+/*   8:   47 - 53        7.3   */ float  ; // Kettenauslenkung rechter Mast vertikal (Höhe, negativ entspr. nach unten)  
+/*   9:   54 - 63       10.2   */ float  ; // Seilzug links  
+/*  10:   64 - 73       10.2   */ float  ; // Seilzug rechts  
 
   
 
@@ -2164,113 +2098,61 @@ GH263 Datenformat                                       25.01.22                
 
 //: "OBJ1", OBJ2, OBJ3: Kreuzungsobjekte  +++
 
+/*    Spalte             Format            Beschreibung  
+/*   1:   1 -  4      4           %4c   %s        */ char   ; //  Satzkennung ‘OBJ1’  
+/*        5 -  6      2           %*2c                           
+/*   2:   7 -  9      3           %3c   %d        */ int    ; //  Kreuzungsobjektindex Teil 1 (Einer- bis Hunderterstellen)  
+/*       10 - 10      1           %*1c               
+/*   3:  11 - 20     10           %10c  %s        */ char   ; //  Objektnummer (Bezeichnung)  
+/*   4:  21 - 26    6.2           %6c   %6.2f     */ float  ; //  Mindestabstand [m]  
+/*   5:  27 - 29      3           %3c   %d        */ int    ; //  Nachweiscode (gemäß Abstandstabelle)  
+/*   6:  30 - 30      1           %1c   %s        */ char   ; //  Abstandstyp: ‘L’=lotrecht,’D’=direkt,’W’=waagrecht,’P’=profilprojiziert  
+         31 - 33      3           %*3c            
+/*   7:  34 - 37      4           %4c   %s        */ char   ; //  Nachweiszustände (‘TZUA’)  
+/*   8:  38 - 40      3           %3c   %d        */ int    ; //  Mastindex, wenn 0 automatisch  
+/*   9:  41 - 43      3           %3c   %d        */ int    ; //  Phasenindex, wenn 0 kleinster Abstand aus allen Phasen  
+/*       44 - 44      1           %*1c            
+/*  10:  45 - 45      1           %1c   %s        */ char   ; //  Objekttyp (alter Objekttyp bzw. Typ der Kreuzungsberechnung)  
+/*  11:  46 - 46      1           %1c   %s        */ char   ; //  Steuerungsparameter für Druckausgabe  
+/*  12:  47 - 47      1           %1c   %s        */ char   ; //  Parameter für Leitungskreuzungen  
+/*  13:  48 - 48      1           %1c   %s        */ char   ; //  Neuer Objekttyp (’P’=Punkt, ’L’=Linie, ’F’=Fläche, ’G’=Gelände, ’X’=Leitungskreuzung, ‘W‘=Windenergieanlage, sonstiges Zeichen=Benutzerdefiniert)  
+/* *** Neu ab XX.03.04 ***                        */ 
+/*  14:  49 - 49      1           %1c   %s        */ char   ; // Festlegung Objektabstand '0' = Freie Eingabe '1' = DIN VDE 5.62 ‘2‘ = DIN VDE 5.69 *** neu ab Version 4.5.1 *** '3' = DIN VDE 12.85 '4' = DIN EN 50341 (2002-2011) '5' = DIN EN 50341 (2016-2019) *** neu ab Version 4.11.2 *** Sonst : Freie Eingabe (Default: '0')  
+/* *** Neu ab Version 3.3.0x ***                  */ 
+/*  15:  50 - 50      1           %1c   %s        */ char   ; // Objekt rechnen: ‚N’ : Nicht rechnen Sonst: Rechnen  
+/* *** Neu ab Version 4.2.1 ***                   */ 
+/*  16:  51 - 53      3           %3c   %d        */ int    ; // Kreuzungsobjektindex Teil 2 (Tausenderstellen)  
+/* *** Neu ab Version 4.7.2 ***                   */ 
+/*  17:  54 - 59      6.2         %6c   %6.2f     */ float  ; // Mindestabstand 110 kV (wenn angegeben wird Mindestabstand aus Spannungsebene Phase und Zuschlag bei Laufzeit ermittelt)  
 
 
-   Spalte             Format            Beschreibung  
-
-   1 -      4   Char                4   Satzkennung ‘OBJ1’  
-
-   7 -      9   Int                 3   Kreuzungsobjektindex Teil 1 (Einer- bis Hunderterstellen)  
-
-  11 -     20   Char               10   Objektnummer (Bezeichnung)  
-
-  21 -     26   Float             6.2   Mindestabstand [m]  
-
-  27 -     29   Int                 3   Nachweiscode (gemäß Abstandstabelle)  
-
-  30 -     30   Char                1   Abstandstyp:  
-
-                                        ‘L’=lotrecht,’D’=direkt,’W’=waagrecht,’P’=profilprojiziert  
-
-  34 -     37   Char                4   Nachweiszustände (‘TZUA’)  
-
-  38 -     40   Int                 3   Mastindex, wenn 0 automatisch  
-
-  41 -     43   Int                 3   Phasenindex, wenn 0 kleinster Abstand aus allen Phasen  
-
-  45 -     45   Char                1   Objekttyp (alter Objekttyp bzw. Typ der Kreuzungsberechnung)  
-
-  46 -     46   Char                1   Steuerungsparameter für Druckausgabe  
-
-  47 -     47   Char                1   Parameter für Leitungskreuzungen  
-
-  48 -     48   Char                1   Neuer Objekttyp (’P’=Punkt, ’L’=Linie, ’F’=Fläche, ’G’=Gelände,  
-
-                                        ’X’=Leitungskreuzung, ‘W‘=Windenergieanlage, sonstiges  
-
-                                        Zeichen=Benutzerdefiniert)  
-
-*** Neu ab XX.03.04 ***  
-
-  49 -     49   Char                1   Festlegung Objektabstand   
-
-                                        '0' = Freie Eingabe  
-
-                                        '1' = DIN VDE 5.62  
-
-                                        ‘2‘ = DIN VDE 5.69 *** neu ab Version 4.5.1 ***  
-
-                                        '3' = DIN VDE 12.85  
-
-                                        '4' = DIN EN 50341 (2002-2011)  
-
-                                        '5' = DIN EN 50341 (2016-2019) *** neu ab Version 4.11.2 ***  
-
-                                        Sonst : Freie Eingabe  
-
-                                        (Default: '0')  
-
-*** Neu ab Version 3.3.0x ***  
-
-  50 -     50   Char                1   Objekt rechnen:  
-
-                                        ‚N’ : Nicht rechnen  
-
-                                        Sonst: Rechnen  
-
-*** Neu ab Version 4.2.1 ***  
-
-  51 -     53   Int                 3   Kreuzungsobjektindex Teil 2 (Tausenderstellen)  
-
-*** Neu ab Version 4.7.2 ***  
-
-  54 -     59   Float             6.2   Mindestabstand 110 kV (wenn angegeben wird Mindestabstand  
-
-                                        aus Spannungsebene Phase und Zuschlag bei Laufzeit ermittelt)  
 
 //: OBJ1, "OBJ2", OBJ3: Kreuzungsobjekte  +++
 
 
    Spalte             Format            Beschreibung  
+/*  1:   1 -  4      4           */      char   ; %4c    %s // Satzkennung ‘OBJ2’  
+/*       5 -  6      2           */                         //
+/*  2:   7 -  9      3           */      int    ; %3c    %d // Kreuzungsobjektindex Teil 1 (Einer- bis Hunderterstellen)
+/*      10 - 10      1           */                         // 
+/*  3:  11 - 38     28           */      char   ; %28c   %s // Objektbezeichnung (1.Zeile)  
+/*  4:  39 - 66     28           */      char   ; %28c   %s // Objektbezeichnung (2.Zeile)  
+/* *** Neu ab Version 4.2.1 ***  */                         //  
+/*  5:  67 - 69      3           */      int   ;  %3c    %d // Kreuzungsobjektindex Teil 2 (Tausenderstellen)  
 
-   1 -      4   Char                4   Satzkennung ‘OBJ2’  
-
-   7 -      9   Int                 3   Kreuzungsobjektindex Teil 1 (Einer- bis Hunderterstellen)                         
-
-  11 -     38   Char               28   Objektbezeichnung (1.Zeile)  
-
-  39 -     66   Char               28   Objektbezeichnung (2.Zeile)  
-
-*** Neu ab Version 4.2.1 ***  
-
-  67 -     69   Int                 3   Kreuzungsobjektindex Teil 2 (Tausenderstellen)  
 
 //: OBJ1, OBJ2, "OBJ3": Kreuzungsobjekte  +++
 
 
    Spalte             Format            Beschreibung  
-
-   1 -      4   Char                4   Satzkennung ‘OBJ3’  
-
-   7 -      9   Int                 3   Kreuzungsobjektindex Teil 1 (Einer- bis Hunderterstellen)  
-
-  11 -     38   Char               28   Eigentümer (1.Zeile)  
-
-  39 -     66   Char               28   Eigentümer (2.Zeile)  
-
-*** Neu ab Version 4.2.1 ***  
-
-  67 -     69   Int                 3   Kreuzungsobjektindex Teil 2 (Tausenderstellen)  
+/*  1:  1 -  4      4            %4c   %s    */ char   ; // Satzkennung ‘OBJ3’  
+/*      5 -  6      2            %*2c        */          //
+/*  2:  7 -  9      3            %3c   %d    */ int    ; // Kreuzungsobjektindex Teil 1 (Einer- bis Hunderterstellen)  
+/*     10 - 10      1            %*1c        */
+/*  3: 11 - 38     28            %28c  %s    */ char   ; // Eigentümer (1.Zeile)  
+/*  4: 39 - 66     28            %28c  %s    */ char   ; // Eigentümer (2.Zeile)  
+/* *** Neu ab Version 4.2.1 ***              */
+/*  5: 67 - 69      3            %3c   %d    */ int    ; // Kreuzungsobjektindex Teil 2 (Tausenderstellen)  
 
   
 
@@ -2496,34 +2378,22 @@ GH263 Datenformat                                      25.01.22                 
 
 
    Spalte             Format            Beschreibung  
-
-   1 -      4   Char                4   Satzkennung ‘OPKT’  
-
-   7 -       9   Int                 3   Punktindex Teil 1 (Einer- bis Hunderterstellen)   
-
-  11 -     13   Int                  3   Kreuzungsobjektindex Teil 1 (Einer- bis Hunderterstellen)  
-
-  14 -     22   Float             9.2   Station [m]  
-
-  23 -     29   Float             7.2   Ordinate [m]  
-
-  30 -     37   Float             8.2   Fußhöhe [m]  
-
-  38 -     44   Float             7.2   Objekthöhe [m]  
-
-  45 -     52   Char                 8   Punktnummer (aus Vermessung)  
-
-  54 -     56   Int                  3   Punktindex Teil 2 (Tausenderstellen)  
-
-*** Neu ab XX.09.04 ***  
-
-  57 -     66   Int                10   MS-Link (nur von FLP verwendet, irrelevant für Berech- 
-
-                                        nungsverhalten)  
-
-*** Neu ab Version 4.2.1 ***  
-
-  67 -     69   Int                  3   Kreuzungsobjektindex Teil 2 (Tausenderstellen)  
+/*   1:   1 -  4   4              %4c   %s     */   char   ;   // Satzkennung ‘OPKT’  
+/*        5 -  6   2              %*2c         */               //
+/*   2:   7 -  9   3              %3c   %d     */   int    ;   // Punktindex Teil 1 (Einer- bis Hunderterstellen)   
+/*       10 - 10   1              %*1c         */               //
+/*   3:  11 - 13   3              %3c   %d     */   int    ;   // Kreuzungsobjektindex Teil 1 (Einer- bis Hunderterstellen)  
+/*   4:  14 - 22   9.2            %9c   %9.2f  */   float  ;   // Station [m]  
+/*   5:  23 - 29   7.2            %7c   %7.2f  */   float  ;   // Ordinate [m]  
+/*   6:  30 - 37   8.2            %8c   %8.2f  */   float  ;   // Fußhöhe [m]  
+/*   7:  38 - 44   7.2            %7c   %7.2f  */   float  ;   // Objekthöhe [m]  
+/*   8:  45 - 52   8              %8c   %s     */   char   ;   // Punktnummer (aus Vermessung)  
+/*       53 - 53   1              %*1c         */              //
+/*   9:  54 - 56   3              %3c   %d     */   int    ;   // Punktindex Teil 2 (Tausenderstellen)  
+/* *** Neu ab XX.09.04 ***                     */              //
+/*  10:  57 - 66  10              %10c  %d     */   int    ;   // MS-Link (nur von FLP verwendet, irrelevant für Berech- nungsverhalten)  
+/* *** Neu ab Version 4.2.1 ***                */  
+/*  11:  67 - 69   3              %3c   %d     */   int    ;   // Kreuzungsobjektindex Teil 2 (Tausenderstellen)  
 
   
 
@@ -2534,34 +2404,21 @@ GH263 Datenformat                                      25.01.22                 
 
 
    Spalte             Format            Beschreibung  
+/*  1:   1 -  4    4               %4c  %s */  char   ;  // Satzkennung ‘OLIN’  
+/*       5 -  6    2               %*2c    */           //
+/*  2:   7 -  9    3               %3c  %d */  int    ;  // Linienindex Teil1 (Einer- bis Hunderterstellen)  
+/*      10 - 10    1               %*1c    */           //
+/*  3:  11 - 13    3               %3c  %d */  int    ;  // Kreuzungsobjektindex Teil 1 (Einer- bis Hunderterstellen)  
+/*  4:  14 - 16    3               %3c  %d */  int    ;  // Index Anfangspunkt 1 Teil 1 (Einer- bis Hunderterstellen)  
+/*  5:  17 - 19    3               %3c  %d */  int    ;  // Index Endpunkt 1 Teil 1 (Einer- bis Hunderterstellen)  
+/*  6:  20 - 22    3               %3c  %d */  int    ;  // Index Anfangspunkt 2 Teil 2 (Tausenderstellen)  
+/*  7:  23 - 25    3               %3c  %d */  int    ;  // Index Endpunkt 2 Teil 2 (Tausenderstellen)  
+/*  *** Neu ab XX.09.04 ***                */           //
+/*  8:  26 - 35   10               %10c %d */  int    ;  // MS-Link (nur von FLP verwendet, irrelevant für Berech- nungsverhalten)  
+/*  *** Neu ab Version 4.2.1 ***           */           //
+/*  9:  36 - 38    3               %3c  %d */  int    ;  //  Linienindex Teil 2 (Tausenderstellen)  
+/* 10:  39 - 41    3               %3c  %d */  int    ;  //  Kreuzungsobjektindex Teil 2 (Tausenderstellen)  
 
-   1 -      4   Char                4   Satzkennung ‘OLIN’  
-
-   7 -       9   Int                 3   Linienindex Teil1 (Einer- bis Hunderterstellen)  
-
-  11 -     13   Int                  3   Kreuzungsobjektindex Teil 1 (Einer- bis Hunderterstellen)  
-
-  14 -     16   Int                  3   Index Anfangspunkt 1 Teil 1 (Einer- bis Hunderterstellen)  
-
-  17 -     19   Int                  3   Index Endpunkt 1 Teil 1 (Einer- bis Hunderterstellen)  
-
-  20 -     22   Int                  3   Index Anfangspunkt 2 Teil 2 (Tausenderstellen)  
-
-  23 -     25   Int                  3   Index Endpunkt 2 Teil 2 (Tausenderstellen)  
-
-*** Neu ab XX.09.04 ***  
-
-  26 -     35   Int                10   MS-Link (nur von FLP verwendet, irrelevant für Berech- 
-
-                                        nungsverhalten)  
-
-*** Neu ab Version 4.2.1 ***  
-
-  36 -     38   Int                  3   Linienindex Teil 2 (Tausenderstellen)  
-
-  39 -     41   Int                  3   Kreuzungsobjektindex Teil 2 (Tausenderstellen)  
-
-  
 
 
 
@@ -2570,40 +2427,24 @@ GH263 Datenformat                                      25.01.22                 
 
 
    Spalte             Format            Beschreibung  
-
-   1 -      4   Char                4   Satzkennung ‘OBFL’  
-
-   7 -       9   Int                 3   Flächenindex Teil 1 (Einer- bis Hunderterstellen)  
-
-  11 -     13   Int                  3   Kreuzungsobjektindex Teil 1 (Einer- bis Hunderterstellen)  
-
-  14 -     16   Int                  3   Punktindex 1 Teil 1 (Einer- bis Hunderterstellen)  
-
-  17 -     19   Int                  3   Punktindex 2 Teil 1 (Einer- bis Hunderterstellen)  
-
-  20 -     22   Int                  3   Punktindex 3 Teil 1 (Einer- bis Hunderterstellen)  
-
-  23 -     25   Int                  3   Punktindex 4 Teil 1 (Einer- bis Hunderterstellen)  
-
-  26 -     28   Int                  3   Punktindex 1 Teil 2 (Tausenderstelle)  
-
-  29 -     31   Int                  3   Punktindex 2 Teil 2 (Tausenderstelle)  
-
-  32 -     34   Int                  3   Punktindex 3 Teil 2 (Tausenderstelle)  
-
-  35 -     37   Int                  3   Punktindex 4 Teil 2 (Tausenderstelle)  
-
-*** Neu ab XX.09.04 ***  
-
-  38 -     47   Int                10   MS-Link (nur von FLP verwendet, irrelevant für Berech- 
-
-                                        nungsverhalten)  
-
-*** Neu ab Version 4.2.1 ***  
-
-  48 -     50   Int                  3   Flächenindex Teil 2 (Tausenderstellen)  
-
-  51 -     53   Int                  3   Kreuzungsobjektindex Teil 2 (Tausenderstellen)  
+/*   1 :   1 -  4   4                 %4c   %s   */  char   ;     // Satzkennung ‘OBFL’  
+/*         5 -  6   2                 %*2c                        //
+/*   2 :   7 -  9   3                 %3c   %d   */  int    ;     // Flächenindex Teil 1 (Einer- bis Hunderterstellen)  
+/*        10 - 10   1                 %*1c                        //
+/*   3 :  11 - 13   3                 %3c   %d   */  int    ;     // Kreuzungsobjektindex Teil 1 (Einer- bis Hunderterstellen)  
+/*   4 :  14 - 16   3                 %3c   %d   */  int    ;     // Punktindex 1 Teil 1 (Einer- bis Hunderterstellen)  
+/*   5 :  17 - 19   3                 %3c   %d   */  int    ;     // Punktindex 2 Teil 1 (Einer- bis Hunderterstellen)  
+/*   6 :  20 - 22   3                 %3c   %d   */  int    ;     // Punktindex 3 Teil 1 (Einer- bis Hunderterstellen)  
+/*   7 :  23 - 25   3                 %3c   %d   */  int    ;     // Punktindex 4 Teil 1 (Einer- bis Hunderterstellen)  
+/*   8 :  26 - 28   3                 %3c   %d   */  int    ;     // Punktindex 1 Teil 2 (Tausenderstelle)  
+/*   9 :  29 - 31   3                 %3c   %d   */  int    ;     // Punktindex 2 Teil 2 (Tausenderstelle)  
+/*  10 :  32 - 34   3                 %3c   %d   */  int    ;     // Punktindex 3 Teil 2 (Tausenderstelle)  
+/*  11 :  35 - 37   3                 %3c   %d   */  int    ;     // Punktindex 4 Teil 2 (Tausenderstelle)  
+/*   :  *** Neu ab XX.09.04 ***                  */               //
+/*  12 :  38 - 47  10                 %10c  %d   */  int    ;     // MS-Link (nur von FLP verwendet, irrelevant für Berech- nungsverhalten)  
+/*   :  *** Neu ab Version 4.2.1 ***             */               //
+/*  13 :  48 - 50   3                 %3c   %d   */  int    ;     // Flächenindex Teil 2 (Tausenderstellen)  
+/*  14 :  51 - 53   3                 %3c   %d   */  int    ;     // Kreuzungsobjektindex Teil 2 (Tausenderstellen)  
 
   
 
@@ -2623,59 +2464,38 @@ GH263 Datenformat                                          25.01.22             
 
 
 //: "OGEL", OGE2: Geländepunkte  +++
-
-Wenn vorhanden mindestens zwei Punkte pro Kreuzungsobjekt sortiert nach Station.  
-
-*** Änderung ab Version 1.5.1: Erweiterung der Punktindize auf 6 Stellen, abgelegt in zwei 3      
-
-    stelligen Werten, um abwärtskompatibel zu bleiben. ***  
+// Wenn vorhanden mindestens zwei Punkte pro Kreuzungsobjekt sortiert nach Station.  
+// *** Änderung ab Version 1.5.1: Erweiterung der Punktindize auf 6 Stellen, abgelegt in zwei 3 stelligen Werten, um abwärtskompatibel zu bleiben. ***  
 
    Spalte              Format            Beschreibung  
+/*   1:  1 -  4                      4     %4c   %4s            */  char    ;         // Satzkennung ‘OGEL’  
+/*       5 -  6                      2     %*2c                 */                    //   
+/*   2:  7 -  9                      3     %3c   %3d            */  int     ;         // Geländepunktindex Teil 1 (Einer- bis Hunderterstellen)  
+/*      10 - 10                      1     %*1c                 */                    //      
+/*   3: 11 - 13                      3     %3c   %3d            */  int     ;         // Kreuzungsobjektindex Teil 1 (Einer- bis Hunderterstellen)  
+/*   4: 14 - 22                      9.2   %9c   %9.2f          */  float   ;         // Station  
+/*   5: 23 - 30                      8.2   %8c   %8.2f          */  float   ;         // Geländehöhe in Trassenmitte  
+/*   6: 31 - 36                      6.2   %6c   %6.2f          */  float   ;         // Ordinate seitliche Überhöhung1 (links)  
+/*   7: 37 - 42                      6.2   %6c   %6.2f          */  float   ;         // Seitliche Überhöhung 1 (relativ zur Höhe in Trassenmitte, d.h. bei ‚0.00‘ auf Seite gleiche Höhe wie in Trassenmitte)  
+/*   8: 43 - 48                      6.2   %6c   %6.2f          */  float   ;         // Ordinate seitliche Überhöhung2 (rechts)  
+/*   9: 49 - 54                      6.2   %6c   %6.2f          */  float   ;         // seitliche Überhöhung 2 (relativ zur Höhe in Trassenmitte)  
+/*   55 - 55                         1     %*1c                 */                    //   
+/*  10: 56 - 58                      3     %3c   %3d            */  int     ;         // Geländepunktindex Teil 2 (Tausenderstellen)  
+/*  *** Neu ab Version 4.1.3 ***                               */                     //      
+/*  11: 59 - 61                      3     %3c   %3s            */  char    ;         // Kulturart Code  
+/*  *** Neu ab Version 4.2.1 ***                               */                     //   
+/*  12: 62 - 64                      3     %3c   %3d            */  int     ;         // Kreuzungsobjektindex Teil 2 (Tausenderstellen)  
 
-   1 -       4   Char                4   Satzkennung ‘OGEL’  
 
-   7 -       9   Int                 3   Geländepunktindex Teil 1 (Einer- bis Hunderterstellen)  
-
-  11 -     13   Int                  3   Kreuzungsobjektindex Teil 1 (Einer- bis Hunderterstellen)  
-
-  14 -     22   Float              9.2   Station  
-
-  23 -     30   Float              8.2   Geländehöhe in Trassenmitte  
-
-  31 -     36   Float              6.2   Ordinate seitliche Überhöhung1 (links)  
-
-  37 -     42   Float              6.2   Seitliche Überhöhung 1 (relativ zur Höhe in Trassenmitte, d.h.  
-
-                                         bei ‚0.00‘ auf Seite gleiche Höhe wie in Trassenmitte)  
-
-  43 -     48   float              6.2   Ordinate seitliche Überhöhung2 (rechts)  
-
-  49 -     54   float              6.2   seitliche Überhöhung 2 (relativ zur Höhe in Trassenmitte)  
-
-  56 -     58   Int                  3   Geländepunktindex Teil 2 (Tausenderstellen)  
-
-*** Neu ab Version 4.1.3 ***  
-
-  59 -     61   Char                 3   Kulturart Code  
-
-*** Neu ab Version 4.2.1 ***  
-
-  62 -     64   Int                  3   Kreuzungsobjektindex Teil 2 (Tausenderstellen)  
 
 //: OGEL, "OGE2": Geländepunkte  +++
-
-
-*** Neu ab Version 4.1.2: Zusatzzeile für Profilprogramm Käufl (wird von 263 Datei nach slc  
-
-durchgereicht, keine Auswertung innerhalb Win263 etc.) ***  
+// *** Neu ab Version 4.1.2: Zusatzzeile für Profilprogramm Käufl (wird von 263 Datei nach slc durchgereicht, keine Auswertung innerhalb Win263 etc.) ***  
 
    Spalte              Format            Beschreibung  
-
-   1 -       4   Char                4   Satzkennung ‘OGE2’  
-
-   7 -     12   Int                  6   Geländepunktindex  
-
-  14 -     43   Char               30   Kulturart Reintext  
+/*   1:   1 -  4     4   %4c   %s   */ char  ;             // Satzkennung ‘OGE2’  
+/*        5 -  6     2   %*2c       */                    //
+/*   2:   7 - 12     6   %6c   %d   */ int   ;             // Geländepunktindex  
+/*   3:  14 - 43    30   %30c  %s   */ char  ;             // Kulturart Reintext  
 
   
 
