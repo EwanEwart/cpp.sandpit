@@ -130,7 +130,6 @@ int main()
 
 #endif
 
-
 #if false
 // The number of bits in a bit field (width) sets the limit to the range of values it can hold:
 #include <stdio.h>
@@ -149,9 +148,8 @@ int main(void)
 }
 #endif
 
-
 #if false
-// Multiple adjacent bit fields are permitted to be (and usually are) packed together: 
+// Multiple adjacent bit fields are permitted to be (and usually are) packed together:
 #include <stdio.h>
 struct S
 {
@@ -274,27 +272,26 @@ int main()
         << "\nb5: " << b5 << "\nb6: " << b6 << "\nb7: " << b7 << '\n';
 }
 
-
 #endif
 
 #if true
 
+#include <boost/core/demangle.hpp>
+#include <typeinfo>
 #include <cstdio>
 #include <string>
 #include <locale.h>
 #include "GH262.h"
 
-int main(int argc, char const* argv[])
+int main(int argc, char const *argv[])
 {
     setlocale(LC_CTYPE, "German.1252");
     setlocale(LC_NUMERIC, "en_US.1252");
     // setlocale(LC_ALL, "de_DE.UTF8"); // ... fourth commit
 
+    char *path{"E:/dev/cpp.sandpit/Muster_024A-027A.SLC"};
 
-
-    char* path{ "E:/dev/cpp.sandpit/Muster_024A-027A.SLC" };
-
-    auto fp{ std::fopen(path,"r") };
+    auto fp{std::fopen(path, "r")};
     if (!fp)
     {
         std::fprintf(stderr, "%s : %d : File opening failed.\n", __FILE__, __LINE__);
@@ -304,124 +301,150 @@ int main(int argc, char const* argv[])
     size_t noOfLines{};
     char lineBuf[1024];
     std::map<std::string, unsigned int> occurrencesDSK{};
-    for (;std::fgets(lineBuf, sizeof lineBuf, fp) != nullptr;)
+    for (; std::fgets(lineBuf, sizeof lineBuf, fp) != nullptr;)
     {
         char aDSK[4 + 1]{};
         // (void)printf("%s", lineBuf);
-        int n{ sscanf(lineBuf,"%4s\n",aDSK) };
+        int n{sscanf(lineBuf, "%4s\n", aDSK)};
         // (void)printf("%s\n", aDSK);
 
         occurrencesDSK[aDSK]++;
 
         noOfLines++;
-
     }
 
 #if true
     // dynamic DSKs <-- .slc
     // dynamic DSKs <-- .slc
     // dynamic DSKs <-- .slc
-    char ruler[]{ "-234567890-234567890-234567890-234567890-234567890-234567890-234567890-234567890-234567890\n" };
     std::rewind(fp);
-    for (;std::fgets(lineBuf, sizeof lineBuf, fp) != nullptr;)
+    for (; std::fgets(lineBuf, sizeof lineBuf, fp) != nullptr;)
     {
         char aDSK[5]{};
 
-        int n{ sscanf(lineBuf,"%4s\n",aDSK) };
+        int n{sscanf(lineBuf, "%4s\n", aDSK)};
 
         if (std::strcmp("INFO", aDSK) == 0 && g_dictDSKs["INFO"])
         {
-            struct INFO buf {};
-            char const* fmt{ "%4c%*2c%25c%38c%4d" };
-            auto n = sscanf
-            (
-                /*   */  lineBuf
-                /*   */, fmt
-                /* 1 */, buf.DSK
-                /* 2 */, buf.KZProgram
-                /* 3 */, buf.LetzeAenderung
-                /* 4 */, &buf.BerechnungsModus
-            );
+            struct INFO buf
+            {
+            };
+            auto n = sscanf(
+                /*   */ lineBuf
+                /*   */,
+                buf.fmtDS
+                /* 1 */,
+                buf.DSK
+                /* 2 */,
+                buf.KZProgram
+                /* 3 */,
+                buf.LetzeAenderung
+                /* 4 */,
+                &buf.BerechnungsModus);
             assert(n == 4);
 
-            fputs(ruler, stdout);
-            char const* fmt2{ "%s|\n%s|\n%s|\n%d|\n" };
-            (void)printf
-            (
-                /*   */  fmt2
-                /* 1 */, buf.DSK
-                /* 2 */, buf.KZProgram
-                /* 3 */, buf.LetzeAenderung
-                /* 4 */, buf.BerechnungsModus
-            );
+            (void)printf(
+                /*   */ buf.fmtPrintf
+                /* 1 */,
+                buf.DSK
+                /* 2 */,
+                buf.KZProgram
+                /* 3 */,
+                buf.LetzeAenderung
+                /* 4 */,
+                buf.BerechnungsModus);
         }
         else if (std::strcmp("BEAR", aDSK) == 0 && g_dictDSKs["BEAR"])
         {
-            struct BEAR buf {};
-            char const* fmt{ "%4c%*2c%28c" };
+            struct BEAR buf
+            {
+            };
+            printf("\ntype : %s\n\n", boost::core::demangle( typeid(buf).name() ).c_str());
+
             auto n = sscanf(
-                /*   */  lineBuf
-                /*   */, fmt
-                /* 1 */, buf.DSK
-                /* 2 */, buf.Bearbeiter
-            );
+                /*   */ lineBuf
+                /*   */,
+                buf.fmtDS
+                /* 1 */,
+                buf.DSK
+                /* 2 */,
+                buf.Bearbeiter);
             assert(n == 2);
 
-            fputs(ruler, stdout);
-            char const* fmt2{ "%s|\n%s|\n" };
-            (void)printf
-            (
-                /*   */  fmt2
-                /* 1 */, buf.DSK
-                /* 2 */, buf.Bearbeiter
-            );
+            (void)printf(
+                /*   */ buf.fmtPrintf
+                /* 1 */,
+                buf.DSK
+                /* 2 */,
+                buf.Bearbeiter);
         }
         else if (std::strcmp("KOMM", aDSK) == 0 && g_dictDSKs["INFO"])
         {
-            struct KOMM buf {};
-            char const* fmt{ "%4s%2ss%28s%1024s" };
+            struct KOMM buf
+            {
+            };
             auto n = sscanf(
-                /*   */  lineBuf
-                /*   */, fmt
-                /* 1 */, buf.DSK
-                /* 2 */, buf.Kommentartext
-            );
+                /*   */ lineBuf
+                /*   */,
+                buf.fmtDS
+                /* 1 */,
+                buf.DSK
+                /* 2 */,
+                buf.Kommentartext);
             assert(n == 2);
 
-            char const* fmt2{ "\n%4s|\n%1024s|\n" };
-            (void)printf
-            (
-                /*   */  fmt2
-                /* 1 */, buf.DSK
-                /* 2 */, buf.Kommentartext
-            );
+            (void)printf(
+                /*   */ buf.fmtPrintf
+                /* 1 */,
+                buf.DSK
+                /* 2 */,
+                buf.Kommentartext);
         }
         else if (std::strcmp("PAR1", aDSK) == 0 && g_dictDSKs["PAR1"])
         {
-            struct PAR1 buf {};
-            char const* fmt{ "%4c%*2c%6c%6c%6c%1c%1c%1c%1c%1c%1c%1c%1c%1c%1c%1c%1c%1c%1c" };
+            struct PAR1 buf
+            {
+            };
             auto n = sscanf(
-                /*     */  lineBuf
-                /*     */, fmt
-                /*   1 */, buf.DSK
-                /*   2 */, buf.SpezEigGewichtChar
-                /*   3 */, buf.UmrechnungsfaktorChar
-                /*   4 */, buf.ReckwertChar
-                /*   5 */, buf.BerechnungEI
-                /*   6 */, buf.Berechnungsvorschrift
-                /*   7 */, buf.BerechnungEM
-                /*   8 */, buf.Seilkriechen
-                /*   9 */, buf.Seilausschwingwinkel
-                /*  10 */, buf.Ausgangsspannung
-                /*  11 */, buf.Reduzierung
-                /*  12 */, buf.Hoehenausgaben
-                /*  13 */, buf.Trassierungsrichtlinie
-                /*  14 */, buf.Windgesetz
-                /*  15 */, buf.Phasenabstaende
-                /*  16 */, buf.Sprache
-                /*  17 */, buf.Mittelzugspannung
-                /*  18 */, buf.LogDateiYN
-            );
+                /*     */ lineBuf
+                /*     */,
+                buf.fmtDS
+                /*   1 */,
+                buf.DSK
+                /*   2 */,
+                buf.SpezEigGewichtChar
+                /*   3 */,
+                buf.UmrechnungsfaktorChar
+                /*   4 */,
+                buf.ReckwertChar
+                /*   5 */,
+                buf.BerechnungEI
+                /*   6 */,
+                buf.Berechnungsvorschrift
+                /*   7 */,
+                buf.BerechnungEM
+                /*   8 */,
+                buf.Seilkriechen
+                /*   9 */,
+                buf.Seilausschwingwinkel
+                /*  10 */,
+                buf.Ausgangsspannung
+                /*  11 */,
+                buf.Reduzierung
+                /*  12 */,
+                buf.Hoehenausgaben
+                /*  13 */,
+                buf.Trassierungsrichtlinie
+                /*  14 */,
+                buf.Windgesetz
+                /*  15 */,
+                buf.Phasenabstaende
+                /*  16 */,
+                buf.Sprache
+                /*  17 */,
+                buf.Mittelzugspannung
+                /*  18 */,
+                buf.LogDateiYN);
             assert(n == 18);
 
             n = sscanf(buf.SpezEigGewichtChar, "%f", &buf.SpezEigGewichtFloat);
@@ -434,346 +457,223 @@ int main(int argc, char const* argv[])
                 buf.ReckwertFloat = 0.0f;
             }
 
-
-            char const* fmt2{ "\n%s|\n%6.0f|\n%6.2f|\n%6.2f|\n%s|\n%s|\n%s|\n%s|\n%s|\n%s|\n%s|\n%s|\n%s|\n%s|\n%s|\n%s|\n%s|\n%s|\n" };
-            (void)printf
-            (
-                /*     */  fmt2
-                /*   1 */, buf.DSK
-                /*   2 */, buf.SpezEigGewichtFloat
-                /*   3 */, buf.UmrechnungsfaktorFloat
-                /*   4 */, buf.ReckwertFloat
-                /*   5 */, buf.BerechnungEI
-                /*   6 */, buf.Berechnungsvorschrift
-                /*   7 */, buf.BerechnungEM
-                /*   8 */, buf.Seilkriechen
-                /*   9 */, buf.Seilausschwingwinkel
-                /*  10 */, buf.Ausgangsspannung
-                /*  11 */, buf.Reduzierung
-                /*  12 */, buf.Hoehenausgaben
-                /*  13 */, buf.Trassierungsrichtlinie
-                /*  14 */, buf.Windgesetz
-                /*  15 */, buf.Phasenabstaende
-                /*  16 */, buf.Sprache
-                /*  17 */, buf.Mittelzugspannung
-                /*  18 */, buf.LogDateiYN
+            (void)printf(
+                /*     */ buf.fmtPrintf
+                /*   1 */,
+                buf.DSK
+                /*   2 */,
+                buf.SpezEigGewichtFloat
+                /*   3 */,
+                buf.UmrechnungsfaktorFloat
+                /*   4 */,
+                buf.ReckwertFloat
+                /*   5 */,
+                buf.BerechnungEI
+                /*   6 */,
+                buf.Berechnungsvorschrift
+                /*   7 */,
+                buf.BerechnungEM
+                /*   8 */,
+                buf.Seilkriechen
+                /*   9 */,
+                buf.Seilausschwingwinkel
+                /*  10 */,
+                buf.Ausgangsspannung
+                /*  11 */,
+                buf.Reduzierung
+                /*  12 */,
+                buf.Hoehenausgaben
+                /*  13 */,
+                buf.Trassierungsrichtlinie
+                /*  14 */,
+                buf.Windgesetz
+                /*  15 */,
+                buf.Phasenabstaende
+                /*  16 */,
+                buf.Sprache
+                /*  17 */,
+                buf.Mittelzugspannung
+                /*  18 */,
+                buf.LogDateiYN
 
             );
         }
         else if (std::strcmp("ZSTD", aDSK) == 0 && g_dictDSKs["ZSTD"])
         {
-            struct ZSTD buf {};
-            char const* fmt{ "%4c%*2c%3c%3c%2c%20c%1c%1c%1c%1c%1c%1c%*4c%6c%6c%6c%6c%*1c%1c%1c" };
+            struct ZSTD buf
+            {
+            };
             auto n = sscanf(
-                lineBuf
-                , fmt
-                , /*  1 */ buf.DSK
-                , /*  2 */ buf.ZustandsindexChar
-                , /*  3 */ buf.TemperaturCChar
-                , /*  4 */ buf.Konstante
-                , /*  5 */ buf.Zustandsbezeichnung
-                , /*  6 */ buf.KennungAusgangszustand
-                , /*  7 */ buf.KennungGrenzlast
-                , /*  8 */ buf.KennungUngleicheEislast
-                , /*  9 */ buf.KennungKettenausschwingwinkels
-                , /* 10 */ buf.KennungZusatzlast
-                , /* 11 */ buf.KennungEiswalze
-                , /* 12 */ buf.LastfaktorChar
-                , /* 13 */ buf.WindlastfaktorChar
-                , /* 14 */ buf.ReckwertChar
-                , /* 15 */ buf.AusnahmelastChar
-                , /* 16 */ buf.Temperaturzuschlag
-                , /* 17 */ buf.GrenzlastBerechnung
-            );
+                lineBuf, buf.fmtDS, /*  1 */ buf.DSK, /*  2 */ buf.ZustandsindexChar, /*  3 */ buf.TemperaturCChar, /*  4 */ buf.Konstante, /*  5 */ buf.Zustandsbezeichnung, /*  6 */ buf.KennungAusgangszustand, /*  7 */ buf.KennungGrenzlast, /*  8 */ buf.KennungUngleicheEislast, /*  9 */ buf.KennungKettenausschwingwinkels, /* 10 */ buf.KennungZusatzlast, /* 11 */ buf.KennungEiswalze, /* 12 */ buf.LastfaktorChar, /* 13 */ buf.WindlastfaktorChar, /* 14 */ buf.ReckwertChar, /* 15 */ buf.AusnahmelastChar, /* 16 */ buf.Temperaturzuschlag, /* 17 */ buf.GrenzlastBerechnung);
             assert(n == 17);
-            n = sscanf(buf.ZustandsindexChar, "%d", &buf.ZustandsindexInt);assert(n == 1);
-            n = sscanf(buf.TemperaturCChar, "%d", &buf.TemperaturCInt);assert(n == 1);
-            n = sscanf(buf.LastfaktorChar, "%f", &buf.LastfaktorFloat);assert(n == 1);
-            n = sscanf(buf.WindlastfaktorChar, "%f", &buf.WindlastfaktorFloat);assert(n == 1);
-            n = sscanf(buf.ReckwertChar, "%f", &buf.ReckwertFloat);assert(n == 1);
-            n = sscanf(buf.AusnahmelastChar, "%f", &buf.AusnahmelastFloat);assert(n == 1);
-            char const* fmt2{ "\n%s|\n%d|\n%d|\n%s|\n%s|\n%s|\n%s|\n%s|\n%s|\n%s|\n%s|\n%6.3f|\n%6.3f|\n%6.2f|\n%6.2f|\n%s|\n%s|\n" };
-            (void)printf
-            (
-                fmt2
-                , /*  1 */ buf.DSK
-                , /*  2 */ buf.ZustandsindexInt
-                , /*  3 */ buf.TemperaturCInt
-                , /*  4 */ buf.Konstante
-                , /*  5 */ buf.Zustandsbezeichnung
-                , /*  6 */ buf.KennungAusgangszustand
-                , /*  7 */ buf.KennungGrenzlast
-                , /*  8 */ buf.KennungUngleicheEislast
-                , /*  9 */ buf.KennungKettenausschwingwinkels
-                , /* 10 */ buf.KennungZusatzlast
-                , /* 11 */ buf.KennungEiswalze
-                , /* 12 */ buf.LastfaktorFloat
-                , /* 13 */ buf.WindlastfaktorFloat
-                , /* 14 */ buf.ReckwertFloat
-                , /* 15 */ buf.AusnahmelastFloat
-                , /* 16 */ buf.Temperaturzuschlag
-                , /* 17 */ buf.GrenzlastBerechnung
+            n = sscanf(buf.ZustandsindexChar, "%d", &buf.ZustandsindexInt);
+            assert(n == 1);
+            n = sscanf(buf.TemperaturCChar, "%d", &buf.TemperaturCInt);
+            assert(n == 1);
+            n = sscanf(buf.LastfaktorChar, "%f", &buf.LastfaktorFloat);
+            assert(n == 1);
+            n = sscanf(buf.WindlastfaktorChar, "%f", &buf.WindlastfaktorFloat);
+            assert(n == 1);
+            n = sscanf(buf.ReckwertChar, "%f", &buf.ReckwertFloat);
+            assert(n == 1);
+            n = sscanf(buf.AusnahmelastChar, "%f", &buf.AusnahmelastFloat);
+            assert(n == 1);
+            (void)printf(
+                buf.fmtPrintf, /*  1 */ buf.DSK, /*  2 */ buf.ZustandsindexInt, /*  3 */ buf.TemperaturCInt, /*  4 */ buf.Konstante, /*  5 */ buf.Zustandsbezeichnung, /*  6 */ buf.KennungAusgangszustand, /*  7 */ buf.KennungGrenzlast, /*  8 */ buf.KennungUngleicheEislast, /*  9 */ buf.KennungKettenausschwingwinkels, /* 10 */ buf.KennungZusatzlast, /* 11 */ buf.KennungEiswalze, /* 12 */ buf.LastfaktorFloat, /* 13 */ buf.WindlastfaktorFloat, /* 14 */ buf.ReckwertFloat, /* 15 */ buf.AusnahmelastFloat, /* 16 */ buf.Temperaturzuschlag, /* 17 */ buf.GrenzlastBerechnung
 
             );
         }
         else if (std::strcmp("SLG1", aDSK) == 0 && g_dictDSKs["SLG1"])
         {
-            struct SLG1 buf {};
-            char const* fmt{ "%4c%*2c%3c%*1c%28c%4c%2c%1c%4c%5c%5c%5c%6c%8c%*1c%1c%1c%1c%1c%1c" };
+            struct SLG1 buf
+            {
+            };
             auto n = sscanf(
-                lineBuf
-                , fmt
-                , /*  1 */ buf.DSK
-                , /*  2 */ buf.SeilindexChar
-                , /*  3 */ buf.Seilbezeichnung
-                , /*  4 */ buf.SpannungsebeneChar
-                , /*  5 */ buf.AnzahlTeilleiterChar
-                , /*  6 */ buf.Buendelanordnung
-                , /*  7 */ buf.TeilleiterabstandChar
-                , /*  8 */ buf.Seiltyp
-                , /*  9 */ buf.TemperaturdifferenzSeilkriechenChar
-                , /* 10 */ buf.KriechfaktorChar
-                , /* 11 */ buf.UeberziehfaktorChar
-                , /* 12 */ buf.KriechzeitChar
-                , /* 13 */ buf.Kennung_EN_Seil
-                , /* 14 */ buf.KennungSeilmanuellEingefuegt
-                , /* 15 */ buf.Isolationsar
-                , /* 16 */ buf.VorzeichenTemperaturdifferenz
-                , /* 17 */ buf.VorzeichenKriechfaktor
-            );
+                lineBuf, buf.fmtDS, /*  1 */ buf.DSK, /*  2 */ buf.SeilindexChar, /*  3 */ buf.Seilbezeichnung, /*  4 */ buf.SpannungsebeneChar, /*  5 */ buf.AnzahlTeilleiterChar, /*  6 */ buf.Buendelanordnung, /*  7 */ buf.TeilleiterabstandChar, /*  8 */ buf.Seiltyp, /*  9 */ buf.TemperaturdifferenzSeilkriechenChar, /* 10 */ buf.KriechfaktorChar, /* 11 */ buf.UeberziehfaktorChar, /* 12 */ buf.KriechzeitChar, /* 13 */ buf.Kennung_EN_Seil, /* 14 */ buf.KennungSeilmanuellEingefuegt, /* 15 */ buf.Isolationsar, /* 16 */ buf.VorzeichenTemperaturdifferenz, /* 17 */ buf.VorzeichenKriechfaktor);
             assert(n == 17);
-            n = sscanf(buf.SeilindexChar, "%d", &buf.SeilindexInt);assert(n == 1);
-            n = sscanf(buf.SpannungsebeneChar, "%d", &buf.SpannungsebeneInt);assert(n == 1);
-            n = sscanf(buf.AnzahlTeilleiterChar, "%d", &buf.AnzahlTeilleiterInt);assert(n == 1);
-            n = sscanf(buf.TeilleiterabstandChar, "%f", &buf.TeilleiterabstandFloat);assert(n == 1);
-            n = sscanf(buf.TemperaturdifferenzSeilkriechenChar, "%f", &buf.TemperaturdifferenzSeilkriechenFloat);assert(n == 1);
-            n = sscanf(buf.KriechfaktorChar, "%f", &buf.KriechfaktorFloat);assert(n == 1);
-            n = sscanf(buf.UeberziehfaktorChar, "%f", &buf.UeberziehfaktorFloat);assert(n == 1);
-            n = sscanf(buf.KriechzeitChar, "%f", &buf.KriechzeitFloat);assert(n == 1);
-            char const* fmt2{ "\n%s|\n%d|\n%s|\n%d|\n%d|\n%s|\n%4.2f|\n%s|\n%5.1f|\n%5.3f|\n%6.2f|\n%8.0f|\n%s|\n%s|\n%s|\n%s|\n%s|\n" };
-            (void)printf
-            (
-                fmt2
-                , /*  1 */ buf.DSK
-                , /*  2 */ buf.SeilindexInt
-                , /*  3 */ buf.Seilbezeichnung
-                , /*  4 */ buf.SpannungsebeneInt
-                , /*  5 */ buf.AnzahlTeilleiterInt
-                , /*  6 */ buf.Buendelanordnung
-                , /*  7 */ buf.TeilleiterabstandFloat
-                , /*  8 */ buf.Seiltyp
-                , /*  9 */ buf.TemperaturdifferenzSeilkriechenFloat
-                , /* 10 */ buf.KriechfaktorFloat
-                , /* 11 */ buf.UeberziehfaktorFloat
-                , /* 12 */ buf.KriechzeitFloat
-                , /* 13 */ buf.Kennung_EN_Seil
-                , /* 14 */ buf.KennungSeilmanuellEingefuegt
-                , /* 15 */ buf.Isolationsar
-                , /* 16 */ buf.VorzeichenTemperaturdifferenz
-                , /* 17 */ buf.VorzeichenKriechfaktor
+            n = sscanf(buf.SeilindexChar, "%d", &buf.SeilindexInt);
+            assert(n == 1);
+            n = sscanf(buf.SpannungsebeneChar, "%d", &buf.SpannungsebeneInt);
+            assert(n == 1);
+            n = sscanf(buf.AnzahlTeilleiterChar, "%d", &buf.AnzahlTeilleiterInt);
+            assert(n == 1);
+            n = sscanf(buf.TeilleiterabstandChar, "%f", &buf.TeilleiterabstandFloat);
+            assert(n == 1);
+            n = sscanf(buf.TemperaturdifferenzSeilkriechenChar, "%f", &buf.TemperaturdifferenzSeilkriechenFloat);
+            assert(n == 1);
+            n = sscanf(buf.KriechfaktorChar, "%f", &buf.KriechfaktorFloat);
+            assert(n == 1);
+            n = sscanf(buf.UeberziehfaktorChar, "%f", &buf.UeberziehfaktorFloat);
+            assert(n == 1);
+            n = sscanf(buf.KriechzeitChar, "%f", &buf.KriechzeitFloat);
+            assert(n == 1);
+            (void)printf(
+                buf.fmtPrintf, /*  1 */ buf.DSK, /*  2 */ buf.SeilindexInt, /*  3 */ buf.Seilbezeichnung, /*  4 */ buf.SpannungsebeneInt, /*  5 */ buf.AnzahlTeilleiterInt, /*  6 */ buf.Buendelanordnung, /*  7 */ buf.TeilleiterabstandFloat, /*  8 */ buf.Seiltyp, /*  9 */ buf.TemperaturdifferenzSeilkriechenFloat, /* 10 */ buf.KriechfaktorFloat, /* 11 */ buf.UeberziehfaktorFloat, /* 12 */ buf.KriechzeitFloat, /* 13 */ buf.Kennung_EN_Seil, /* 14 */ buf.KennungSeilmanuellEingefuegt, /* 15 */ buf.Isolationsar, /* 16 */ buf.VorzeichenTemperaturdifferenz, /* 17 */ buf.VorzeichenKriechfaktor
 
             );
         }
         else if (std::strcmp("SLG2", aDSK) == 0 && g_dictDSKs["SLG2"])
         {
-            struct SLG2 buf {};
-            char const* fmt{ "%4c%*2c%3c%6c%8c%8c%10c%11c%7c%4c%8c%8c%1c" };
+            struct SLG2 buf
+            {
+            };
             auto n = sscanf(
-                lineBuf
-                , fmt
-                , /*  1 */ buf.DSK
-                , /*  2 */ buf.SeilindexChar
-                , /*  3 */ buf.SeildurchmesserChar
-                , /*  4 */ buf.SeilquerschnittChar
-                , /*  5 */ buf.E_ModulChar
-                , /*  6 */ buf.AusdehnungskoeffizientChar
-                , /*  7 */ buf.SpezSeilgewichtChar
-                , /*  8 */ buf.NormaleZusatzlastChar
-                , /*  9 */ buf.AerodynamischerKraftbeiwertChar
-                , /* 10 */ buf.SeilgewichtDBChar
-                , /* 11 */ buf.FettmasseChar
-                , /* 12 */ buf.KennungQLK
-            );
+                lineBuf, buf.fmtDS, /*  1 */ buf.DSK, /*  2 */ buf.SeilindexChar, /*  3 */ buf.SeildurchmesserChar, /*  4 */ buf.SeilquerschnittChar, /*  5 */ buf.E_ModulChar, /*  6 */ buf.AusdehnungskoeffizientChar, /*  7 */ buf.SpezSeilgewichtChar, /*  8 */ buf.NormaleZusatzlastChar, /*  9 */ buf.AerodynamischerKraftbeiwertChar, /* 10 */ buf.SeilgewichtDBChar, /* 11 */ buf.FettmasseChar, /* 12 */ buf.KennungQLK);
             assert(n == 12);
-            /* 2 */ n = sscanf(buf.SeilindexChar, "%d", &buf.SeilindexInt);assert(n == 1);
-            /* 3 */ n = sscanf(buf.SeildurchmesserChar, "%f", &buf.SeildurchmesserFloat);assert(n == 1);
-            /* 4 */ n = sscanf(buf.SeilquerschnittChar, "%f", &buf.SeilquerschnittFloat);assert(n == 1);
-            /* 5 */ n = sscanf(buf.E_ModulChar, "%f", &buf.E_ModulFloat);assert(n == 1);
-            /* 6 */ n = sscanf(buf.AusdehnungskoeffizientChar, "%f", &buf.AusdehnungskoeffizientFloat);assert(n == 1);
-            /* 7 */ n = sscanf(buf.SpezSeilgewichtChar, "%f", &buf.SpezSeilgewichtFloat);assert(n == 1);
-            /* 8 */ n = sscanf(buf.NormaleZusatzlastChar, "%f", &buf.NormaleZusatzlastFloat);assert(n == 1);
-            /* 9 */ n = sscanf(buf.AerodynamischerKraftbeiwertChar, "%f", &buf.AerodynamischerKraftbeiwertFloat);assert(n == 1);
-            /* 0 */ n = sscanf(buf.SeilgewichtDBChar, "%f", &buf.SeilgewichtDBFloat);assert(n == 1);
-            /* 1 */ n = sscanf(buf.FettmasseChar, "%f", &buf.FettmasseFloat);assert(n == 1);
-            char const* fmt2{ "\n%s|\n%d|\n%6.2f|\n%8.2f|\n%8.0f|\n%10.8f|\n%11.9f|\n%7.3f|\n%4.2f|\n%8.2f|\n%8.2f|\n%s|\n" };
-            (void)printf
-            (
-                fmt2
-                , /*  1 */ buf.DSK
-                , /*  2 */ buf.SeilindexInt
-                , /*  3 */ buf.SeildurchmesserFloat
-                , /*  4 */ buf.SeilquerschnittFloat
-                , /*  5 */ buf.E_ModulFloat
-                , /*  6 */ buf.AusdehnungskoeffizientFloat
-                , /*  7 */ buf.SpezSeilgewichtFloat
-                , /*  8 */ buf.NormaleZusatzlastFloat
-                , /*  9 */ buf.AerodynamischerKraftbeiwertFloat
-                , /* 10 */ buf.SeilgewichtDBFloat
-                , /* 11 */ buf.FettmasseFloat
-                , /* 12 */ buf.KennungQLK
+            /* 2 */ n = sscanf(buf.SeilindexChar, "%d", &buf.SeilindexInt);
+            assert(n == 1);
+            /* 3 */ n = sscanf(buf.SeildurchmesserChar, "%f", &buf.SeildurchmesserFloat);
+            assert(n == 1);
+            /* 4 */ n = sscanf(buf.SeilquerschnittChar, "%f", &buf.SeilquerschnittFloat);
+            assert(n == 1);
+            /* 5 */ n = sscanf(buf.E_ModulChar, "%f", &buf.E_ModulFloat);
+            assert(n == 1);
+            /* 6 */ n = sscanf(buf.AusdehnungskoeffizientChar, "%f", &buf.AusdehnungskoeffizientFloat);
+            assert(n == 1);
+            /* 7 */ n = sscanf(buf.SpezSeilgewichtChar, "%f", &buf.SpezSeilgewichtFloat);
+            assert(n == 1);
+            /* 8 */ n = sscanf(buf.NormaleZusatzlastChar, "%f", &buf.NormaleZusatzlastFloat);
+            assert(n == 1);
+            /* 9 */ n = sscanf(buf.AerodynamischerKraftbeiwertChar, "%f", &buf.AerodynamischerKraftbeiwertFloat);
+            assert(n == 1);
+            /* 0 */ n = sscanf(buf.SeilgewichtDBChar, "%f", &buf.SeilgewichtDBFloat);
+            assert(n == 1);
+            /* 1 */ n = sscanf(buf.FettmasseChar, "%f", &buf.FettmasseFloat);
+            assert(n == 1);
+            (void)printf(
+                buf.fmtPrintf, /*  1 */ buf.DSK, /*  2 */ buf.SeilindexInt, /*  3 */ buf.SeildurchmesserFloat, /*  4 */ buf.SeilquerschnittFloat, /*  5 */ buf.E_ModulFloat, /*  6 */ buf.AusdehnungskoeffizientFloat, /*  7 */ buf.SpezSeilgewichtFloat, /*  8 */ buf.NormaleZusatzlastFloat, /*  9 */ buf.AerodynamischerKraftbeiwertFloat, /* 10 */ buf.SeilgewichtDBFloat, /* 11 */ buf.FettmasseFloat, /* 12 */ buf.KennungQLK
 
             );
         }
         else if (std::strcmp("SLG3", aDSK) == 0 && g_dictDSKs["SLG3"])
         {
-            struct SLG3 buf {};
-            char const* fmt{ "%4c%*2c%3c%8c%8c%8c%8c%6c%8c" };
+            struct SLG3 buf
+            {
+            };
             auto n = sscanf(
-                lineBuf
-                , fmt
-                , /*  1 */ buf.DSK
-                , /*  2 */ buf.SeilindexChar
-                , /*  3 */ buf.HoechstzugspannungChar
-                , /*  4 */ buf.MittelzugspannungChar
-                , /*  5 */ buf.DauerzugspannungChar
-                , /*  6 */ buf.BruchkraftChar
-                , /*  7 */ buf.StahlgewichtsanteilChar
-                , /*  8 */ buf.StahlquerschnittChar
-            );
+                lineBuf, buf.fmtDS, /*  1 */ buf.DSK, /*  2 */ buf.SeilindexChar, /*  3 */ buf.HoechstzugspannungChar, /*  4 */ buf.MittelzugspannungChar, /*  5 */ buf.DauerzugspannungChar, /*  6 */ buf.BruchkraftChar, /*  7 */ buf.StahlgewichtsanteilChar, /*  8 */ buf.StahlquerschnittChar);
             assert(n == 8);
-            /* 2 */ n = sscanf(buf.SeilindexChar, "%d", &buf.SeilindexInt);assert(n == 1);
-            /* 3 */ n = sscanf(buf.HoechstzugspannungChar, "%f", &buf.HoechstzugspannungFloat);assert(n == 1);
-            /* 4 */ n = sscanf(buf.MittelzugspannungChar, "%f", &buf.MittelzugspannungFloat);assert(n == 1);
-            /* 5 */ n = sscanf(buf.DauerzugspannungChar, "%f", &buf.DauerzugspannungFloat);assert(n == 1);
-            /* 6 */ n = sscanf(buf.BruchkraftChar, "%f", &buf.BruchkraftFloat);assert(n == 1);
-            /* 7 */ n = sscanf(buf.StahlgewichtsanteilChar, "%f", &buf.StahlgewichtsanteilFloat);assert(n == 1);
-            /* 8 */ n = sscanf(buf.StahlquerschnittChar, "%f", &buf.StahlquerschnittFloat);assert(n == 1);
-            char const* fmt2{ "\n%s|\n%d|\n%8.2f|\n%8.2f|\n%8.2f|\n%8.0f|\n%6.2f|\n%8.2f|\n" };
-            (void)printf
-            (
-                fmt2
-                , /*  1 */ buf.DSK
-                , /*  2 */ buf.SeilindexInt
-                , /*  3 */ buf.HoechstzugspannungFloat
-                , /*  4 */ buf.MittelzugspannungFloat
-                , /*  5 */ buf.DauerzugspannungFloat
-                , /*  6 */ buf.BruchkraftFloat
-                , /*  7 */ buf.StahlgewichtsanteilFloat
-                , /*  8 */ buf.StahlquerschnittFloat
+            /* 2 */ n = sscanf(buf.SeilindexChar, "%d", &buf.SeilindexInt);
+            assert(n == 1);
+            /* 3 */ n = sscanf(buf.HoechstzugspannungChar, "%f", &buf.HoechstzugspannungFloat);
+            assert(n == 1);
+            /* 4 */ n = sscanf(buf.MittelzugspannungChar, "%f", &buf.MittelzugspannungFloat);
+            assert(n == 1);
+            /* 5 */ n = sscanf(buf.DauerzugspannungChar, "%f", &buf.DauerzugspannungFloat);
+            assert(n == 1);
+            /* 6 */ n = sscanf(buf.BruchkraftChar, "%f", &buf.BruchkraftFloat);
+            assert(n == 1);
+            /* 7 */ n = sscanf(buf.StahlgewichtsanteilChar, "%f", &buf.StahlgewichtsanteilFloat);
+            assert(n == 1);
+            /* 8 */ n = sscanf(buf.StahlquerschnittChar, "%f", &buf.StahlquerschnittFloat);
+            assert(n == 1);
+            (void)printf(
+                buf.fmtPrintf, /*  1 */ buf.DSK, /*  2 */ buf.SeilindexInt, /*  3 */ buf.HoechstzugspannungFloat, /*  4 */ buf.MittelzugspannungFloat, /*  5 */ buf.DauerzugspannungFloat, /*  6 */ buf.BruchkraftFloat, /*  7 */ buf.StahlgewichtsanteilFloat, /*  8 */ buf.StahlquerschnittFloat
 
             );
         }
         else if (std::strcmp("MAST", aDSK) == 0 && g_dictDSKs["MAST"])
         {
-            struct MAST buf {};
-            char const* fmt{ "%4c%*2c%3c%*1c%6c%*1c%1c%*1c%7c%6c%9c%8c%9c%9c%*1c%33c%6c%*1c%26c" };
+            struct MAST buf
+            {
+            };
             auto n = sscanf(
-                lineBuf
-                , fmt
-                , /*   1 */ buf.DSK
-                , /*   2 */ buf.MastindexChar
-                , /*   3 */ buf.MastnummerMastname_1
-                , /*   4 */ buf.Masttyp
-                , /*   5 */ buf.Masttypenbezeichnung_1
-                , /*   6 */ buf.AusfuehrungChar
-                , /*   7 */ buf.LaengenstationMaststandortChar
-                , /*   8 */ buf.HoeheMastfusspunktChar
-                , /*   9 */ buf.LeitungswinkelChar
-                , /*  10 */ buf.StellwinkelChar
-                , /*  11 */ buf.Masttypenbezeichnung_2
-                , /*  12 */ buf.OrdinateMaststandortChar
-                , /*  13 */ buf.MastnummerMastname_2
-            );
+                lineBuf, buf.fmtDS, /*   1 */ buf.DSK, /*   2 */ buf.MastindexChar, /*   3 */ buf.MastnummerMastname_1, /*   4 */ buf.Masttyp, /*   5 */ buf.Masttypenbezeichnung_1, /*   6 */ buf.AusfuehrungChar, /*   7 */ buf.LaengenstationMaststandortChar, /*   8 */ buf.HoeheMastfusspunktChar, /*   9 */ buf.LeitungswinkelChar, /*  10 */ buf.StellwinkelChar, /*  11 */ buf.Masttypenbezeichnung_2, /*  12 */ buf.OrdinateMaststandortChar, /*  13 */ buf.MastnummerMastname_2);
             assert(n == 13);
-            /*  2 */ n = sscanf(buf.MastindexChar, "%d", &buf.MastindexInt);assert(n == 1);
-            /*  6 */ n = sscanf(buf.AusfuehrungChar, "%f", &buf.AusfuehrungFloat);assert(n == 1);
-            /*  7 */ n = sscanf(buf.LaengenstationMaststandortChar, "%f", &buf.LaengenstationMaststandortFloat);assert(n == 1);
-            /*  8 */ n = sscanf(buf.HoeheMastfusspunktChar, "%f", &buf.HoeheMastfusspunktFloat);assert(n == 1);
-            /*  9 */ n = sscanf(buf.LeitungswinkelChar, "%f", &buf.LeitungswinkelFloat);assert(n == 1);
-            /* 10 */ n = sscanf(buf.StellwinkelChar, "%f", &buf.StellwinkelFloat);assert(n == 1);
-            /* 12 */ n = sscanf(buf.OrdinateMaststandortChar, "%f", &buf.OrdinateMaststandortFloat);assert(n == 1);
-            char const* fmt2{ "\n%s|\n%d|\n%s|\n%s|\n%s|\n%6.2f|\n%9.2f|\n%8.2f|\n%9.3f|\n%9.3f|\n%s%6.2f|\n%s|\n" };
-            (void)printf
-            (
-                fmt2
-                , /*   1 */ buf.DSK
-                , /*   2 */ buf.MastindexInt
-                , /*   3 */ buf.MastnummerMastname_1
-                , /*   4 */ buf.Masttyp
-                , /*   5 */ buf.Masttypenbezeichnung_1
-                , /*   6 */ buf.AusfuehrungFloat
-                , /*   7 */ buf.LaengenstationMaststandortFloat
-                , /*   8 */ buf.HoeheMastfusspunktFloat
-                , /*   9 */ buf.LeitungswinkelFloat
-                , /*  10 */ buf.StellwinkelFloat
-                , /*  11 */ buf.Masttypenbezeichnung_2
-                , /*  12 */ buf.OrdinateMaststandortFloat
-                , /*  13 */ buf.MastnummerMastname_2
-            );
+            /*  2 */ n = sscanf(buf.MastindexChar, "%d", &buf.MastindexInt);
+            assert(n == 1);
+            /*  6 */ n = sscanf(buf.AusfuehrungChar, "%f", &buf.AusfuehrungFloat);
+            assert(n == 1);
+            /*  7 */ n = sscanf(buf.LaengenstationMaststandortChar, "%f", &buf.LaengenstationMaststandortFloat);
+            assert(n == 1);
+            /*  8 */ n = sscanf(buf.HoeheMastfusspunktChar, "%f", &buf.HoeheMastfusspunktFloat);
+            assert(n == 1);
+            /*  9 */ n = sscanf(buf.LeitungswinkelChar, "%f", &buf.LeitungswinkelFloat);
+            assert(n == 1);
+            /* 10 */ n = sscanf(buf.StellwinkelChar, "%f", &buf.StellwinkelFloat);
+            assert(n == 1);
+            /* 12 */ n = sscanf(buf.OrdinateMaststandortChar, "%f", &buf.OrdinateMaststandortFloat);
+            assert(n == 1);
+            (void)printf(
+                buf.fmtPrintf, /*   1 */ buf.DSK, /*   2 */ buf.MastindexInt, /*   3 */ buf.MastnummerMastname_1, /*   4 */ buf.Masttyp, /*   5 */ buf.Masttypenbezeichnung_1, /*   6 */ buf.AusfuehrungFloat, /*   7 */ buf.LaengenstationMaststandortFloat, /*   8 */ buf.HoeheMastfusspunktFloat, /*   9 */ buf.LeitungswinkelFloat, /*  10 */ buf.StellwinkelFloat, /*  11 */ buf.Masttypenbezeichnung_2, /*  12 */ buf.OrdinateMaststandortFloat, /*  13 */ buf.MastnummerMastname_2);
         }
         else if (std::strcmp("TRAV", aDSK) == 0 && g_dictDSKs["TRAV"])
         {
-            struct TRAV buf {};
-            char const* fmt{ "%4c%*2c%3c%3c%7c%7c%8c%*6c%6c%3c%*1c%7c%7c" };
+            struct TRAV buf
+            {
+            };
             auto n = sscanf(
-                lineBuf
-                , fmt
-                , /*   1 */ buf.DSK
-                , /*   2 */ buf.MastindexChar
-                , /*   3 */ buf.PhasenindexChar
-                , /*   4 */ buf.TraversenhoeheChar
-                , /*   5 */ buf.AusladungChar
-                , /*   6 */ buf.StellwinkelTraverseChar
-                , /*   7 */ buf.KettenlaengeChar
-                , /*   8 */ buf.KettenindexChar
-                , /*   9 */ buf.HoehenbezugStaudruckChar
-                , /*  10 */ buf.TraversenexzentrizitaetChar
-            );
+                lineBuf, buf.fmtDS, /*   1 */ buf.DSK, /*   2 */ buf.MastindexChar, /*   3 */ buf.PhasenindexChar, /*   4 */ buf.TraversenhoeheChar, /*   5 */ buf.AusladungChar, /*   6 */ buf.StellwinkelTraverseChar, /*   7 */ buf.KettenlaengeChar, /*   8 */ buf.KettenindexChar, /*   9 */ buf.HoehenbezugStaudruckChar, /*  10 */ buf.TraversenexzentrizitaetChar);
             assert(n == 10);
-            /*  2 */ n = sscanf(buf.MastindexChar, "%d", &buf.MastindexInt);assert(n == 1);
-            /*  3 */ n = sscanf(buf.PhasenindexChar, "%d", &buf.PhasenindexInt);assert(n == 1);
-            /*  4 */ n = sscanf(buf.TraversenhoeheChar, "%f", &buf.TraversenhoeheFloat);assert(n == 1);
-            /*  5 */ n = sscanf(buf.AusladungChar, "%f", &buf.AusladungFloat);assert(n == 1);
-            /*  6 */ n = sscanf(buf.StellwinkelTraverseChar, "%f", &buf.StellwinkelTraverseFloat);assert(n == 1);
-            /*  7 */ n = sscanf(buf.KettenlaengeChar, "%f", &buf.KettenlaengeFloat);assert(n == 1);
-            /*  8 */ n = sscanf(buf.KettenindexChar, "%d", &buf.KettenindexInt);assert(n == 1);
-            /*  9 */ n = sscanf(buf.HoehenbezugStaudruckChar, "%f", &buf.HoehenbezugStaudruckFloat);assert(n == 1);
-            char const* fmt2{ "\n%s|\n%d|\n%d|\n%7.2f|\n%7.2f|\n%8.2f|\n%6.2f|\n%d|\n%7.2f|\n%7.2f|\n" };
-            (void)printf
-            (
-                fmt2
-                , /*   1 */ buf.DSK
-                , /*   2 */ buf.MastindexInt
-                , /*   3 */ buf.PhasenindexInt
-                , /*   4 */ buf.TraversenhoeheFloat
-                , /*   5 */ buf.AusladungFloat
-                , /*   6 */ buf.StellwinkelTraverseFloat
-                , /*   7 */ buf.KettenlaengeFloat
-                , /*   8 */ buf.KettenindexInt
-                , /*   9 */ buf.HoehenbezugStaudruckFloat
-                , /*  10 */ buf.TraversenexzentrizitaetFloat
-            );
+            /*  2 */ n = sscanf(buf.MastindexChar, "%d", &buf.MastindexInt);
+            assert(n == 1);
+            /*  3 */ n = sscanf(buf.PhasenindexChar, "%d", &buf.PhasenindexInt);
+            assert(n == 1);
+            /*  4 */ n = sscanf(buf.TraversenhoeheChar, "%f", &buf.TraversenhoeheFloat);
+            assert(n == 1);
+            /*  5 */ n = sscanf(buf.AusladungChar, "%f", &buf.AusladungFloat);
+            assert(n == 1);
+            /*  6 */ n = sscanf(buf.StellwinkelTraverseChar, "%f", &buf.StellwinkelTraverseFloat);
+            assert(n == 1);
+            /*  7 */ n = sscanf(buf.KettenlaengeChar, "%f", &buf.KettenlaengeFloat);
+            assert(n == 1);
+            /*  8 */ n = sscanf(buf.KettenindexChar, "%d", &buf.KettenindexInt);
+            assert(n == 1);
+            /*  9 */ n = sscanf(buf.HoehenbezugStaudruckChar, "%f", &buf.HoehenbezugStaudruckFloat);
+            assert(n == 1);
+            (void)printf(
+                buf.fmtPrintf, /*   1 */ buf.DSK, /*   2 */ buf.MastindexInt, /*   3 */ buf.PhasenindexInt, /*   4 */ buf.TraversenhoeheFloat, /*   5 */ buf.AusladungFloat, /*   6 */ buf.StellwinkelTraverseFloat, /*   7 */ buf.KettenlaengeFloat, /*   8 */ buf.KettenindexInt, /*   9 */ buf.HoehenbezugStaudruckFloat, /*  10 */ buf.TraversenexzentrizitaetFloat);
         }
         else if (std::strcmp("KET1", aDSK) == 0 && g_dictDSKs["KET1"])
         {
-            struct KET1 buf {};
-#ifdef FLP
-            char const* fmt{ "%4c%*2c%3c%*1c%1c%3c%*1c%2c%*1c%28c%*1c%9c%*1c%5c" };
-#else
-            char const* fmt{ "%4c%*2c%3c%*1c%1c%3c%*1c%2c%*1c%28c%*1c%9c%*1c" };
-#endif
+            struct KET1 buf
+            {
+            };
             auto n = sscanf(
-                lineBuf
-                , fmt
-                , /*   1 */ buf.DSK
-                , /*   2 */ buf.KettenindexChar
-                , /*   3 */ buf.Kettentyp
-                , /*   4 */ buf.AnzahlKettenstraengeChar
-                , /*   5 */ buf.Kettentypbezeichnung
-                , /*   6 */ buf.KettenbezeichnungIsolator
-                , /*   7 */ buf.Schwingenbezeichnung
+                lineBuf, buf.fmtDS, /*   1 */ buf.DSK, /*   2 */ buf.KettenindexChar, /*   3 */ buf.Kettentyp, /*   4 */ buf.AnzahlKettenstraengeChar, /*   5 */ buf.Kettentypbezeichnung, /*   6 */ buf.KettenbezeichnungIsolator, /*   7 */ buf.Schwingenbezeichnung
 #ifdef FLP
-                , /*   8 */ buf.Kettennummer
+                ,
+                /*   8 */ buf.Kettennummer
 #endif
             );
 #ifdef FLP
@@ -781,664 +681,468 @@ int main(int argc, char const* argv[])
 #else
             assert(n == 7);
 #endif
-            /*  2 */ n = sscanf(buf.KettenindexChar, "%d", &buf.KettenindexInt);assert(n == 1);
-            /*  4 */ n = sscanf(buf.AnzahlKettenstraengeChar, "%d", &buf.AnzahlKettenstraengeInt);assert(n == 1);
-            char const* fmt2{ "\n%s|\n%d|\n%s|\n%d|\n%s|\n%s|\n%s|\n%s|\n" };
-            (void)printf
-            (
-                fmt2
-                , /*   1 */ buf.DSK
-                , /*   2 */ buf.KettenindexInt
-                , /*   3 */ buf.Kettentyp
-                , /*   4 */ buf.AnzahlKettenstraengeInt
-                , /*   5 */ buf.Kettentypbezeichnung
-                , /*   6 */ buf.KettenbezeichnungIsolator
-                , /*   7 */ buf.Schwingenbezeichnung
+            /*  2 */ n = sscanf(buf.KettenindexChar, "%d", &buf.KettenindexInt);
+            assert(n == 1);
+            /*  4 */ n = sscanf(buf.AnzahlKettenstraengeChar, "%d", &buf.AnzahlKettenstraengeInt);
+            assert(n == 1);
+            (void)printf(
+                buf.fmtPrintf, /*   1 */ buf.DSK, /*   2 */ buf.KettenindexInt, /*   3 */ buf.Kettentyp, /*   4 */ buf.AnzahlKettenstraengeInt, /*   5 */ buf.Kettentypbezeichnung, /*   6 */ buf.KettenbezeichnungIsolator, /*   7 */ buf.Schwingenbezeichnung
 #ifdef FIRM_FLP
-                , /*   8 */ buf.Kettennummer
+                ,
+                /*   8 */ buf.Kettennummer
 #endif
             );
         }
         else if (std::strcmp("KET2", aDSK) == 0 && g_dictDSKs["KET2"])
         {
-            struct KET2 buf {};
-            char const* fmt{ "%4c%*2c%3c%5c%5c%5c%5c%6c%6c%6c%7c%7c%6c%6c%6c%6c%6c%5c%5c" };
+            struct KET2 buf
+            {
+            };
             auto n = sscanf(
-                lineBuf
-                , fmt
-                , /*   1 */ buf.DSK
-                , /*   2 */ buf.KettenindexChar
-                , /*   3 */ buf.KettenlaengeChar
-                , /*   4 */ buf.VLaengeChar
-                , /*   5 */ buf.FesteLaengeChar
-                , /*   6 */ buf.SchwingenlaengeChar
-                , /*   7 */ buf.KettengewichtChar
-                , /*   8 */ buf.EinfachesEisgewichtKetteChar
-                , /*   9 */ buf.SchwingengewichtChar
-                , /*  10 */ buf.GrenzausschwingwinkelInnenChar
-                , /*  11 */ buf.GrenzausschwingwinkelAuszenChar
-                , /*  12 */ buf.ZusatzgewichtChar
-                , /*  13 */ buf.EinbaulaengeChar
-                , /*  14 */ buf.SchirmdurchmesserChar
-                , /*  15 */ buf.StrunkdurchmesserChar
-                , /*  16 */ buf.ProjizierteFlaecheChar
-                , /*  17 */ buf.VKetteVersatzAufhaengungMastInnenChar
-                , /*  18 */ buf.VKetteVersatzAufhaengungMastAussenChar
-            );
+                lineBuf, buf.fmtDS, /*   1 */ buf.DSK, /*   2 */ buf.KettenindexChar, /*   3 */ buf.KettenlaengeChar, /*   4 */ buf.VLaengeChar, /*   5 */ buf.FesteLaengeChar, /*   6 */ buf.SchwingenlaengeChar, /*   7 */ buf.KettengewichtChar, /*   8 */ buf.EinfachesEisgewichtKetteChar, /*   9 */ buf.SchwingengewichtChar, /*  10 */ buf.GrenzausschwingwinkelInnenChar, /*  11 */ buf.GrenzausschwingwinkelAuszenChar, /*  12 */ buf.ZusatzgewichtChar, /*  13 */ buf.EinbaulaengeChar, /*  14 */ buf.SchirmdurchmesserChar, /*  15 */ buf.StrunkdurchmesserChar, /*  16 */ buf.ProjizierteFlaecheChar, /*  17 */ buf.VKetteVersatzAufhaengungMastInnenChar, /*  18 */ buf.VKetteVersatzAufhaengungMastAussenChar);
             assert(n == 18);
-            /*   2 */ n = sscanf(buf.KettenindexChar, "%d", &buf.KettenindexInt);assert(n == 1);
-            /*   3 */ n = sscanf(buf.KettenlaengeChar, "%f", &buf.KettenlaengeFloat);assert(n == 1);
-            /*   4 */ n = sscanf(buf.VLaengeChar, "%f", &buf.VLaengeFloat);assert(n == 1);
-            /*   5 */ n = sscanf(buf.FesteLaengeChar, "%f", &buf.FesteLaengeFloat);assert(n == 1);
-            /*   6 */ n = sscanf(buf.SchwingenlaengeChar, "%f", &buf.SchwingenlaengeFloat);assert(n == 1);
-            /*   7 */ n = sscanf(buf.KettengewichtChar, "%f", &buf.KettengewichtFloat);assert(n == 1);
-            /*   8 */ n = sscanf(buf.EinfachesEisgewichtKetteChar, "%f", &buf.EinfachesEisgewichtKetteFloat);assert(n == 1);
-            /*   9 */ n = sscanf(buf.SchwingengewichtChar, "%f", &buf.SchwingengewichtFloat);assert(n == 1);
-            /*  10 */ n = sscanf(buf.GrenzausschwingwinkelInnenChar, "%f", &buf.GrenzausschwingwinkelInnenFloat);assert(n == 1);
-            /*  11 */ n = sscanf(buf.GrenzausschwingwinkelAuszenChar, "%f", &buf.GrenzausschwingwinkelAuszenFloat);assert(n == 1);
-            /*  12 */ n = sscanf(buf.ZusatzgewichtChar, "%f", &buf.ZusatzgewichtFloat);assert(n == 1);
-            /*  13 */ n = sscanf(buf.EinbaulaengeChar, "%f", &buf.EinbaulaengeFloat);assert(n == 1);
-            /*  14 */ n = sscanf(buf.SchirmdurchmesserChar, "%f", &buf.SchirmdurchmesserFloat);assert(n == 1);
-            /*  15 */ n = sscanf(buf.StrunkdurchmesserChar, "%f", &buf.StrunkdurchmesserFloat);assert(n == 1);
-            /*  16 */ n = sscanf(buf.ProjizierteFlaecheChar, "%f", &buf.ProjizierteFlaecheFloat);assert(n == 1);
-            /*  17 */ n = sscanf(buf.VKetteVersatzAufhaengungMastInnenChar, "%f", &buf.VKetteVersatzAufhaengungMastInnenFloat);assert(n == 1);
-            /*  18 */ n = sscanf(buf.VKetteVersatzAufhaengungMastAussenChar, "%f", &buf.VKetteVersatzAufhaengungMastAussenFloat);assert(n == 1);
-            char const* fmt2{ "\n%4s|\n%d|\n%5.2f|\n%5.2f|\n%5.2f|\n%5.2f|\n%6.0f|\n%6.0f|\n%6.0f|\n%7.2f|\n%7.2f|\n%6.0f|\n%6.3f|\n%6.3f|\n%6.3f|\n%6.3f|\n%5.2f|\n%5.2f|\n" };
-            (void)printf
-            (
-                fmt2
-                , /*   1 */ buf.DSK
-                , /*   2 */ buf.KettenindexInt
-                , /*   3 */ buf.KettenlaengeFloat
-                , /*   4 */ buf.VLaengeFloat
-                , /*   5 */ buf.FesteLaengeFloat
-                , /*   6 */ buf.SchwingenlaengeFloat
-                , /*   7 */ buf.KettengewichtFloat
-                , /*   8 */ buf.EinfachesEisgewichtKetteFloat
-                , /*   9 */ buf.SchwingengewichtFloat
-                , /*  10 */ buf.GrenzausschwingwinkelInnenFloat
-                , /*  11 */ buf.GrenzausschwingwinkelAuszenFloat
-                , /*  12 */ buf.ZusatzgewichtFloat
-                , /*  13 */ buf.EinbaulaengeFloat
-                , /*  14 */ buf.SchirmdurchmesserFloat
-                , /*  15 */ buf.StrunkdurchmesserFloat
-                , /*  16 */ buf.ProjizierteFlaecheFloat
-                , /*  17 */ buf.VKetteVersatzAufhaengungMastInnenFloat
-                , /*  18 */ buf.VKetteVersatzAufhaengungMastAussenFloat
-            );
+            /*   2 */ n = sscanf(buf.KettenindexChar, "%d", &buf.KettenindexInt);
+            assert(n == 1);
+            /*   3 */ n = sscanf(buf.KettenlaengeChar, "%f", &buf.KettenlaengeFloat);
+            assert(n == 1);
+            /*   4 */ n = sscanf(buf.VLaengeChar, "%f", &buf.VLaengeFloat);
+            assert(n == 1);
+            /*   5 */ n = sscanf(buf.FesteLaengeChar, "%f", &buf.FesteLaengeFloat);
+            assert(n == 1);
+            /*   6 */ n = sscanf(buf.SchwingenlaengeChar, "%f", &buf.SchwingenlaengeFloat);
+            assert(n == 1);
+            /*   7 */ n = sscanf(buf.KettengewichtChar, "%f", &buf.KettengewichtFloat);
+            assert(n == 1);
+            /*   8 */ n = sscanf(buf.EinfachesEisgewichtKetteChar, "%f", &buf.EinfachesEisgewichtKetteFloat);
+            assert(n == 1);
+            /*   9 */ n = sscanf(buf.SchwingengewichtChar, "%f", &buf.SchwingengewichtFloat);
+            assert(n == 1);
+            /*  10 */ n = sscanf(buf.GrenzausschwingwinkelInnenChar, "%f", &buf.GrenzausschwingwinkelInnenFloat);
+            assert(n == 1);
+            /*  11 */ n = sscanf(buf.GrenzausschwingwinkelAuszenChar, "%f", &buf.GrenzausschwingwinkelAuszenFloat);
+            assert(n == 1);
+            /*  12 */ n = sscanf(buf.ZusatzgewichtChar, "%f", &buf.ZusatzgewichtFloat);
+            assert(n == 1);
+            /*  13 */ n = sscanf(buf.EinbaulaengeChar, "%f", &buf.EinbaulaengeFloat);
+            assert(n == 1);
+            /*  14 */ n = sscanf(buf.SchirmdurchmesserChar, "%f", &buf.SchirmdurchmesserFloat);
+            assert(n == 1);
+            /*  15 */ n = sscanf(buf.StrunkdurchmesserChar, "%f", &buf.StrunkdurchmesserFloat);
+            assert(n == 1);
+            /*  16 */ n = sscanf(buf.ProjizierteFlaecheChar, "%f", &buf.ProjizierteFlaecheFloat);
+            assert(n == 1);
+            /*  17 */ n = sscanf(buf.VKetteVersatzAufhaengungMastInnenChar, "%f", &buf.VKetteVersatzAufhaengungMastInnenFloat);
+            assert(n == 1);
+            /*  18 */ n = sscanf(buf.VKetteVersatzAufhaengungMastAussenChar, "%f", &buf.VKetteVersatzAufhaengungMastAussenFloat);
+            assert(n == 1);
+            (void)printf(
+                buf.fmtPrintf, /*   1 */ buf.DSK, /*   2 */ buf.KettenindexInt, /*   3 */ buf.KettenlaengeFloat, /*   4 */ buf.VLaengeFloat, /*   5 */ buf.FesteLaengeFloat, /*   6 */ buf.SchwingenlaengeFloat, /*   7 */ buf.KettengewichtFloat, /*   8 */ buf.EinfachesEisgewichtKetteFloat, /*   9 */ buf.SchwingengewichtFloat, /*  10 */ buf.GrenzausschwingwinkelInnenFloat, /*  11 */ buf.GrenzausschwingwinkelAuszenFloat, /*  12 */ buf.ZusatzgewichtFloat, /*  13 */ buf.EinbaulaengeFloat, /*  14 */ buf.SchirmdurchmesserFloat, /*  15 */ buf.StrunkdurchmesserFloat, /*  16 */ buf.ProjizierteFlaecheFloat, /*  17 */ buf.VKetteVersatzAufhaengungMastInnenFloat, /*  18 */ buf.VKetteVersatzAufhaengungMastAussenFloat);
         }
         else if (std::strcmp("EZLA", aDSK) == 0 && g_dictDSKs["EZLA"])
         {
-            struct EZLA buf {};
-            char const* fmt{ "%4c%*2c%3c%3c%3c%*1c%1c%*1c%1c%1c%1c%3c%3c%9c%9c%9c%9c" };
+            struct EZLA buf
+            {
+            };
             auto n = sscanf(
-                lineBuf
-                , fmt
-                , /*   1 */ buf.DSK
-                , /*   2 */ buf.LastindexChar
-                , /*   3 */ buf.PhasenindexChar
-                , /*   4 */ buf.MastindexLinkerMastChar
-                , /*   5 */ buf.Lasttyp
-                , /*   6 */ buf.KennungLastEndzustand
-                , /*   7 */ buf.KennungLastMontagezustand
-                , /*   8 */ buf.KennungLastRollenzustand
-                , /*   9 */ buf.ZustandsindexChar
-                , /*  10 */ buf.AnzahlLastenInt
-                , /*  11 */ buf.StationLinkerMastChar
-                , /*  12 */ buf.AbstandLastenEndestationChar
-                , /*  13 */ buf.LastChar
-                , /*  14 */ buf.EinfacheEislastChar
-            );
+                lineBuf, buf.fmtDS, /*   1 */ buf.DSK, /*   2 */ buf.LastindexChar, /*   3 */ buf.PhasenindexChar, /*   4 */ buf.MastindexLinkerMastChar, /*   5 */ buf.Lasttyp, /*   6 */ buf.KennungLastEndzustand, /*   7 */ buf.KennungLastMontagezustand, /*   8 */ buf.KennungLastRollenzustand, /*   9 */ buf.ZustandsindexChar, /*  10 */ buf.AnzahlLastenInt, /*  11 */ buf.StationLinkerMastChar, /*  12 */ buf.AbstandLastenEndestationChar, /*  13 */ buf.LastChar, /*  14 */ buf.EinfacheEislastChar);
             assert(n == 14);
-            /*   2 */ n = sscanf(buf.LastindexChar, "%d", &buf.LastindexInd);assert(n == 1);
-            /*   3 */ n = sscanf(buf.PhasenindexChar, "%d", &buf.PhasenindexInt);assert(n == 1);
-            /*   4 */ n = sscanf(buf.MastindexLinkerMastChar, "%d", &buf.MastindexLinkerMastInt);assert(n == 1);
-            /*   9 */ n = sscanf(buf.ZustandsindexChar, "%d", &buf.ZustandsindexInt);assert(n == 1);
-            /*  10 */ n = sscanf(buf.AnzahlLastenChar, "%d", &buf.AnzahlLastenInt);assert(n == 1);
-            /*  11 */ n = sscanf(buf.StationLinkerMastChar, "%f", &buf.StationLinkerMastFloat);assert(n == 1);
-            /*  12 */ n = sscanf(buf.AbstandLastenEndestationChar, "%f", &buf.AbstandLastenEndestationFloat);assert(n == 1);
-            /*  13 */ n = sscanf(buf.LastChar, "%f", &buf.LastFloat);assert(n == 1);
-            /*  14 */ n = sscanf(buf.EinfacheEislastChar, "%f", &buf.EinfacheEislastFloat);assert(n == 1);
-            char const* fmt2{ "\n%4s|\n%3d|\n%3d|\n%3d|\n%1s|\n%1s|\n%1s|\n%1s|\n%3d|\n%3d|\n%99.2f|\n%9.2f|\n%9.2f|\n%99.2f|\n" };
-            (void)printf
-            (
-                fmt2
-                , /*   1 */ buf.DSK
-                , /*   2 */ buf.LastindexInd
-                , /*   3 */ buf.PhasenindexInt
-                , /*   4 */ buf.MastindexLinkerMastInt
-                , /*   5 */ buf.Lasttyp
-                , /*   6 */ buf.KennungLastEndzustand
-                , /*   7 */ buf.KennungLastMontagezustand
-                , /*   8 */ buf.KennungLastRollenzustand
-                , /*   9 */ buf.ZustandsindexInt
-                , /*  10 */ buf.AnzahlLastenInt
-                , /*  11 */ buf.StationLinkerMastFloat
-                , /*  12 */ buf.AbstandLastenEndestationFloat
-                , /*  13 */ buf.LastFloat
-                , /*  14 */ buf.EinfacheEislastFloat
-            );
+            /*   2 */ n = sscanf(buf.LastindexChar, "%d", &buf.LastindexInd);
+            assert(n == 1);
+            /*   3 */ n = sscanf(buf.PhasenindexChar, "%d", &buf.PhasenindexInt);
+            assert(n == 1);
+            /*   4 */ n = sscanf(buf.MastindexLinkerMastChar, "%d", &buf.MastindexLinkerMastInt);
+            assert(n == 1);
+            /*   9 */ n = sscanf(buf.ZustandsindexChar, "%d", &buf.ZustandsindexInt);
+            assert(n == 1);
+            /*  10 */ n = sscanf(buf.AnzahlLastenChar, "%d", &buf.AnzahlLastenInt);
+            assert(n == 1);
+            /*  11 */ n = sscanf(buf.StationLinkerMastChar, "%f", &buf.StationLinkerMastFloat);
+            assert(n == 1);
+            /*  12 */ n = sscanf(buf.AbstandLastenEndestationChar, "%f", &buf.AbstandLastenEndestationFloat);
+            assert(n == 1);
+            /*  13 */ n = sscanf(buf.LastChar, "%f", &buf.LastFloat);
+            assert(n == 1);
+            /*  14 */ n = sscanf(buf.EinfacheEislastChar, "%f", &buf.EinfacheEislastFloat);
+            assert(n == 1);
+            (void)printf(
+                buf.fmtPrintf, /*   1 */ buf.DSK, /*   2 */ buf.LastindexInd, /*   3 */ buf.PhasenindexInt, /*   4 */ buf.MastindexLinkerMastInt, /*   5 */ buf.Lasttyp, /*   6 */ buf.KennungLastEndzustand, /*   7 */ buf.KennungLastMontagezustand, /*   8 */ buf.KennungLastRollenzustand, /*   9 */ buf.ZustandsindexInt, /*  10 */ buf.AnzahlLastenInt, /*  11 */ buf.StationLinkerMastFloat, /*  12 */ buf.AbstandLastenEndestationFloat, /*  13 */ buf.LastFloat, /*  14 */ buf.EinfacheEislastFloat);
         }
         else if (std::strcmp("SLK1", aDSK) == 0 && g_dictDSKs["SLK1"])
         {
-            struct SLK1 buf {};
-            char const* fmt{ "%4c%*3c%4c%4c%3c%3c%3c%9c%9c%9c%9c%9c%9c%9c%9c%9c%9c" };
+            struct SLK1 buf
+            {
+            };
             auto n = sscanf(
-                lineBuf
-                , fmt
-                , /*   1 */ buf.DSK
-                , /*   2 */ buf.SeilkurvenindexChar
-                , /*   3 */ buf.PhasenindexChar
-                , /*   4 */ buf.ZustandsindexChar
-                , /*   5 */ buf.MastindexLinkerMastChar
-                , /*   6 */ buf.MastindexRechterMastChar
-                , /*   7 */ buf.StationSeilaufhaengepunktLinksChar
-                , /*   8 */ buf.HoeheSeilaufhaengepunktLinksChar
-                , /*   9 */ buf.OrdinateSeilaufhaengepunktChar
-                , /*  10 */ buf.StationSeilaufhaengepunktRechtsChar
-                , /*  11 */ buf.HoeheSeilaufhaengepunktRechtsChar
-                , /*  12 */ buf.OrdinateSeilaufhaengepunktRechtsChar
-                , /*  13 */ buf.StationSeilaufhaengepunktLinksTransformChar
-                , /*  14 */ buf.OrdinateSeilaufhaengepunktLinksChar
-                , /*  15 */ buf.StationSeilaufhaengepunktRechtsTransformChar
-                , /*  16 */ buf.OrdinateSeilaufhaengepunktRechtsTransformChar
-            );
+                lineBuf, buf.fmtDS, /*   1 */ buf.DSK, /*   2 */ buf.SeilkurvenindexChar, /*   3 */ buf.PhasenindexChar, /*   4 */ buf.ZustandsindexChar, /*   5 */ buf.MastindexLinkerMastChar, /*   6 */ buf.MastindexRechterMastChar, /*   7 */ buf.StationSeilaufhaengepunktLinksChar, /*   8 */ buf.HoeheSeilaufhaengepunktLinksChar, /*   9 */ buf.OrdinateSeilaufhaengepunktChar, /*  10 */ buf.StationSeilaufhaengepunktRechtsChar, /*  11 */ buf.HoeheSeilaufhaengepunktRechtsChar, /*  12 */ buf.OrdinateSeilaufhaengepunktRechtsChar, /*  13 */ buf.StationSeilaufhaengepunktLinksTransformChar, /*  14 */ buf.OrdinateSeilaufhaengepunktLinksChar, /*  15 */ buf.StationSeilaufhaengepunktRechtsTransformChar, /*  16 */ buf.OrdinateSeilaufhaengepunktRechtsTransformChar);
             assert(n == 16);
-            /*   2 */ n = sscanf(buf.SeilkurvenindexChar, "%d", &buf.SeilkurvenindexInt);assert(n == 1);
-            /*   3 */ n = sscanf(buf.PhasenindexChar, "%d", &buf.PhasenindexInt);assert(n == 1);
-            /*   4 */ n = sscanf(buf.ZustandsindexChar, "%d", &buf.ZustandsindexInt);assert(n == 1);
-            /*   5 */ n = sscanf(buf.MastindexLinkerMastChar, "%d", &buf.MastindexLinkerMastInt);assert(n == 1);
-            /*   6 */ n = sscanf(buf.MastindexRechterMastChar, "%d", &buf.MastindexRechterMastInt);assert(n == 1);
-            /*   7 */ n = sscanf(buf.StationSeilaufhaengepunktLinksChar, "%f", &buf.StationSeilaufhaengepunktLinksFloat);assert(n == 1);
-            /*   8 */ n = sscanf(buf.HoeheSeilaufhaengepunktLinksChar, "%f", &buf.HoeheSeilaufhaengepunktLinksFloat);assert(n == 1);
-            /*   9 */ n = sscanf(buf.OrdinateSeilaufhaengepunktChar, "%f", &buf.OrdinateSeilaufhaengepunktFloat);assert(n == 1);
-            /*  10 */ n = sscanf(buf.StationSeilaufhaengepunktRechtsChar, "%f", &buf.StationSeilaufhaengepunktRechtsFloat);assert(n == 1);
-            /*  11 */ n = sscanf(buf.HoeheSeilaufhaengepunktRechtsChar, "%f", &buf.HoeheSeilaufhaengepunktRechtsFloat);assert(n == 1);
-            /*  12 */ n = sscanf(buf.OrdinateSeilaufhaengepunktRechtsChar, "%f", &buf.OrdinateSeilaufhaengepunktRechtsFloat);assert(n == 1);
-            /*  13 */ n = sscanf(buf.StationSeilaufhaengepunktLinksTransformChar, "%f", &buf.StationSeilaufhaengepunktLinksTransformFloat);assert(n == 1);
-            /*  14 */ n = sscanf(buf.OrdinateSeilaufhaengepunktLinksChar, "%f", &buf.OrdinateSeilaufhaengepunktLinksFloat);assert(n == 1);
-            /*  15 */ n = sscanf(buf.StationSeilaufhaengepunktRechtsTransformChar, "%f", &buf.StationSeilaufhaengepunktRechtsTransformFloat);assert(n == 1);
-            /*  16 */ n = sscanf(buf.OrdinateSeilaufhaengepunktRechtsTransformChar, "%f", &buf.OrdinateSeilaufhaengepunktRechtsTransformFloat);assert(n == 1);
-            char const* fmt2{ "\n%s|\n%d|\n%d|\n%d|\n%d|\n%d|\n%9.2f|\n%9.2f|\n%9.2f|\n%9.2f|\n%9.2f|\n%9.2f|\n%9.2f|\n%9.2f|\n%9.2f|\n%9.2f|\n" };
-            (void)printf
-            (
-                fmt2
-                , /*   1 */ buf.DSK
-                , /*   2 */ buf.SeilkurvenindexInt
-                , /*   3 */ buf.PhasenindexInt
-                , /*   4 */ buf.ZustandsindexInt
-                , /*   5 */ buf.MastindexLinkerMastInt
-                , /*   6 */ buf.MastindexRechterMastInt
-                , /*   7 */ buf.StationSeilaufhaengepunktLinksFloat
-                , /*   8 */ buf.HoeheSeilaufhaengepunktLinksFloat
-                , /*   9 */ buf.OrdinateSeilaufhaengepunktFloat
-                , /*  10 */ buf.StationSeilaufhaengepunktRechtsFloat
-                , /*  11 */ buf.HoeheSeilaufhaengepunktRechtsFloat
-                , /*  12 */ buf.OrdinateSeilaufhaengepunktRechtsFloat
-                , /*  13 */ buf.StationSeilaufhaengepunktLinksTransformFloat
-                , /*  14 */ buf.OrdinateSeilaufhaengepunktLinksFloat
-                , /*  15 */ buf.StationSeilaufhaengepunktRechtsTransformFloat
-                , /*  16 */ buf.OrdinateSeilaufhaengepunktRechtsTransformFloat
-            );
+            /*   2 */ n = sscanf(buf.SeilkurvenindexChar, "%d", &buf.SeilkurvenindexInt);
+            assert(n == 1);
+            /*   3 */ n = sscanf(buf.PhasenindexChar, "%d", &buf.PhasenindexInt);
+            assert(n == 1);
+            /*   4 */ n = sscanf(buf.ZustandsindexChar, "%d", &buf.ZustandsindexInt);
+            assert(n == 1);
+            /*   5 */ n = sscanf(buf.MastindexLinkerMastChar, "%d", &buf.MastindexLinkerMastInt);
+            assert(n == 1);
+            /*   6 */ n = sscanf(buf.MastindexRechterMastChar, "%d", &buf.MastindexRechterMastInt);
+            assert(n == 1);
+            /*   7 */ n = sscanf(buf.StationSeilaufhaengepunktLinksChar, "%f", &buf.StationSeilaufhaengepunktLinksFloat);
+            assert(n == 1);
+            /*   8 */ n = sscanf(buf.HoeheSeilaufhaengepunktLinksChar, "%f", &buf.HoeheSeilaufhaengepunktLinksFloat);
+            assert(n == 1);
+            /*   9 */ n = sscanf(buf.OrdinateSeilaufhaengepunktChar, "%f", &buf.OrdinateSeilaufhaengepunktFloat);
+            assert(n == 1);
+            /*  10 */ n = sscanf(buf.StationSeilaufhaengepunktRechtsChar, "%f", &buf.StationSeilaufhaengepunktRechtsFloat);
+            assert(n == 1);
+            /*  11 */ n = sscanf(buf.HoeheSeilaufhaengepunktRechtsChar, "%f", &buf.HoeheSeilaufhaengepunktRechtsFloat);
+            assert(n == 1);
+            /*  12 */ n = sscanf(buf.OrdinateSeilaufhaengepunktRechtsChar, "%f", &buf.OrdinateSeilaufhaengepunktRechtsFloat);
+            assert(n == 1);
+            /*  13 */ n = sscanf(buf.StationSeilaufhaengepunktLinksTransformChar, "%f", &buf.StationSeilaufhaengepunktLinksTransformFloat);
+            assert(n == 1);
+            /*  14 */ n = sscanf(buf.OrdinateSeilaufhaengepunktLinksChar, "%f", &buf.OrdinateSeilaufhaengepunktLinksFloat);
+            assert(n == 1);
+            /*  15 */ n = sscanf(buf.StationSeilaufhaengepunktRechtsTransformChar, "%f", &buf.StationSeilaufhaengepunktRechtsTransformFloat);
+            assert(n == 1);
+            /*  16 */ n = sscanf(buf.OrdinateSeilaufhaengepunktRechtsTransformChar, "%f", &buf.OrdinateSeilaufhaengepunktRechtsTransformFloat);
+            assert(n == 1);
+            (void)printf(
+                buf.fmtPrintf, /*   1 */ buf.DSK, /*   2 */ buf.SeilkurvenindexInt, /*   3 */ buf.PhasenindexInt, /*   4 */ buf.ZustandsindexInt, /*   5 */ buf.MastindexLinkerMastInt, /*   6 */ buf.MastindexRechterMastInt, /*   7 */ buf.StationSeilaufhaengepunktLinksFloat, /*   8 */ buf.HoeheSeilaufhaengepunktLinksFloat, /*   9 */ buf.OrdinateSeilaufhaengepunktFloat, /*  10 */ buf.StationSeilaufhaengepunktRechtsFloat, /*  11 */ buf.HoeheSeilaufhaengepunktRechtsFloat, /*  12 */ buf.OrdinateSeilaufhaengepunktRechtsFloat, /*  13 */ buf.StationSeilaufhaengepunktLinksTransformFloat, /*  14 */ buf.OrdinateSeilaufhaengepunktLinksFloat, /*  15 */ buf.StationSeilaufhaengepunktRechtsTransformFloat, /*  16 */ buf.OrdinateSeilaufhaengepunktRechtsTransformFloat);
         }
         else if (std::strcmp("SLK2", aDSK) == 0 && g_dictDSKs["SLK2"])
         {
-            struct SLK2 buf {};
-            char const* fmt{ "%4c%*3c%4c%7c%11c%7c%7c%9c%9c%9c%1c%1c%9c%9c%9c%9c%8c%8c" };
+            struct SLK2 buf
+            {
+            };
             auto n = sscanf(
-                lineBuf
-                , fmt
-                , /*   1 */ buf.DSK
-                , /*   2 */ buf.SeilkurvenindexChar
-                , /*   3 */ buf.SeilspannungEndzustandChar
-                , /*   4 */ buf.SeilgewichtEndzustandChar
-                , /*   5 */ buf.SeilausschwingwinkelChar
-                , /*   6 */ buf.DurchhangFeldmitteChar
-                , /*   7 */ buf.StationSeilpunktFeldmitteChar
-                , /*   8 */ buf.HoeheSeilpunktFeldmitteChar
-                , /*   9 */ buf.OrdinateSeilpunktFeldmitteChar
-                , /*  10 */ buf.TiefsterPunktFeldmitte
-                , /*  11 */ buf.GroeszterDurchhangFeld
-                , /*  12 */ buf.GewichtsspannweiteChar
-                , /*  13 */ buf.BogenlaengeSeilChar
-                , /*  14 */ buf.ScheitelpunktEntfernungLinkerMastChar
-                , /*  15 */ buf.ScheitelpunktSeilhoeheChar
-                , /*  16 */ buf.SeilspannungAbsolutAufhaengepunktLinksChar
-                , /*  17 */ buf.SeilspannungAbsolutAufhaengepunktRechtChar
-            );
+                lineBuf, buf.fmtDS, /*   1 */ buf.DSK, /*   2 */ buf.SeilkurvenindexChar, /*   3 */ buf.SeilspannungEndzustandChar, /*   4 */ buf.SeilgewichtEndzustandChar, /*   5 */ buf.SeilausschwingwinkelChar, /*   6 */ buf.DurchhangFeldmitteChar, /*   7 */ buf.StationSeilpunktFeldmitteChar, /*   8 */ buf.HoeheSeilpunktFeldmitteChar, /*   9 */ buf.OrdinateSeilpunktFeldmitteChar, /*  10 */ buf.TiefsterPunktFeldmitte, /*  11 */ buf.GroeszterDurchhangFeld, /*  12 */ buf.GewichtsspannweiteChar, /*  13 */ buf.BogenlaengeSeilChar, /*  14 */ buf.ScheitelpunktEntfernungLinkerMastChar, /*  15 */ buf.ScheitelpunktSeilhoeheChar, /*  16 */ buf.SeilspannungAbsolutAufhaengepunktLinksChar, /*  17 */ buf.SeilspannungAbsolutAufhaengepunktRechtChar);
             assert(n == 17);
-            /*   2 */ n = sscanf(buf.SeilkurvenindexChar, "%d", &buf.SeilkurvenindexInt);assert(n == 1);
-            /*   3 */ n = sscanf(buf.SeilspannungEndzustandChar, "%f", &buf.SeilspannungEndzustandFloat);assert(n == 1);
-            /*   4 */ n = sscanf(buf.SeilgewichtEndzustandChar, "%f", &buf.SeilgewichtEndzustandFloat);assert(n == 1);
-            /*   5 */ n = sscanf(buf.SeilausschwingwinkelChar, "%f", &buf.SeilausschwingwinkelFloat);assert(n == 1);
-            /*   6 */ n = sscanf(buf.DurchhangFeldmitteChar, "%f", &buf.DurchhangFeldmitteFloat);assert(n == 1);
-            /*   7 */ n = sscanf(buf.StationSeilpunktFeldmitteChar, "%f", &buf.StationSeilpunktFeldmitteFloat);assert(n == 1);
-            /*   8 */ n = sscanf(buf.HoeheSeilpunktFeldmitteChar, "%f", &buf.HoeheSeilpunktFeldmitteFloat);assert(n == 1);
-            /*   9 */ n = sscanf(buf.OrdinateSeilpunktFeldmitteChar, "%f", &buf.OrdinateSeilpunktFeldmitteFloat);assert(n == 1);
-            /*  12 */ n = sscanf(buf.GewichtsspannweiteChar, "%f", &buf.GewichtsspannweiteFloat);assert(n == 1);
-            /*  13 */ n = sscanf(buf.BogenlaengeSeilChar, "%f", &buf.BogenlaengeSeilFloat);assert(n == 1);
-            /*  14 */ n = sscanf(buf.ScheitelpunktEntfernungLinkerMastChar, "%f", &buf.ScheitelpunktEntfernungLinkerMastFloat);assert(n == 1);
-            /*  15 */ n = sscanf(buf.ScheitelpunktSeilhoeheChar, "%f", &buf.ScheitelpunktSeilhoeheFloat);assert(n == 1);
-            /*  16 */ n = sscanf(buf.SeilspannungAbsolutAufhaengepunktLinksChar, "%f", &buf.SeilspannungAbsolutAufhaengepunktLinksFloat);assert(n == 1);
-            /*  17 */ n = sscanf(buf.SeilspannungAbsolutAufhaengepunktRechtChar, "%f", &buf.SeilspannungAbsolutAufhaengepunktRechtsFloat);assert(n == 1);
-            char const* fmt2{ "\n%s|\n%d|\n%7.2f|\n%11.9f|\n%7.2f|\n%7.2f|\n%9.2f|\n%9.2f|\n%9.2f|\n%s|\n%s|\n%9.2f|\n%9.2f|\n%9.2f|\n%9.2f|\n%8.2f|\n%8.2f|\n" };
-            (void)printf
-            (
-                fmt2
-                , /*   1 */ buf.DSK
-                , /*   2 */ buf.SeilkurvenindexInt
-                , /*   3 */ buf.SeilspannungEndzustandFloat
-                , /*   4 */ buf.SeilgewichtEndzustandFloat
-                , /*   5 */ buf.SeilausschwingwinkelFloat
-                , /*   6 */ buf.DurchhangFeldmitteFloat
-                , /*   7 */ buf.StationSeilpunktFeldmitteFloat
-                , /*   8 */ buf.HoeheSeilpunktFeldmitteFloat
-                , /*   9 */ buf.OrdinateSeilpunktFeldmitteFloat
-                , /*  10 */ buf.TiefsterPunktFeldmitte
-                , /*  11 */ buf.GroeszterDurchhangFeld
-                , /*  12 */ buf.GewichtsspannweiteFloat
-                , /*  13 */ buf.BogenlaengeSeilFloat
-                , /*  14 */ buf.ScheitelpunktEntfernungLinkerMastFloat
-                , /*  15 */ buf.ScheitelpunktSeilhoeheFloat
-                , /*  16 */ buf.SeilspannungAbsolutAufhaengepunktLinksFloat
-                , /*  17 */ buf.SeilspannungAbsolutAufhaengepunktRechtsFloat
-            );
+            /*   2 */ n = sscanf(buf.SeilkurvenindexChar, "%d", &buf.SeilkurvenindexInt);
+            assert(n == 1);
+            /*   3 */ n = sscanf(buf.SeilspannungEndzustandChar, "%f", &buf.SeilspannungEndzustandFloat);
+            assert(n == 1);
+            /*   4 */ n = sscanf(buf.SeilgewichtEndzustandChar, "%f", &buf.SeilgewichtEndzustandFloat);
+            assert(n == 1);
+            /*   5 */ n = sscanf(buf.SeilausschwingwinkelChar, "%f", &buf.SeilausschwingwinkelFloat);
+            assert(n == 1);
+            /*   6 */ n = sscanf(buf.DurchhangFeldmitteChar, "%f", &buf.DurchhangFeldmitteFloat);
+            assert(n == 1);
+            /*   7 */ n = sscanf(buf.StationSeilpunktFeldmitteChar, "%f", &buf.StationSeilpunktFeldmitteFloat);
+            assert(n == 1);
+            /*   8 */ n = sscanf(buf.HoeheSeilpunktFeldmitteChar, "%f", &buf.HoeheSeilpunktFeldmitteFloat);
+            assert(n == 1);
+            /*   9 */ n = sscanf(buf.OrdinateSeilpunktFeldmitteChar, "%f", &buf.OrdinateSeilpunktFeldmitteFloat);
+            assert(n == 1);
+            /*  12 */ n = sscanf(buf.GewichtsspannweiteChar, "%f", &buf.GewichtsspannweiteFloat);
+            assert(n == 1);
+            /*  13 */ n = sscanf(buf.BogenlaengeSeilChar, "%f", &buf.BogenlaengeSeilFloat);
+            assert(n == 1);
+            /*  14 */ n = sscanf(buf.ScheitelpunktEntfernungLinkerMastChar, "%f", &buf.ScheitelpunktEntfernungLinkerMastFloat);
+            assert(n == 1);
+            /*  15 */ n = sscanf(buf.ScheitelpunktSeilhoeheChar, "%f", &buf.ScheitelpunktSeilhoeheFloat);
+            assert(n == 1);
+            /*  16 */ n = sscanf(buf.SeilspannungAbsolutAufhaengepunktLinksChar, "%f", &buf.SeilspannungAbsolutAufhaengepunktLinksFloat);
+            assert(n == 1);
+            /*  17 */ n = sscanf(buf.SeilspannungAbsolutAufhaengepunktRechtChar, "%f", &buf.SeilspannungAbsolutAufhaengepunktRechtsFloat);
+            assert(n == 1);
+            (void)printf(
+                buf.fmtPrintf, /*   1 */ buf.DSK, /*   2 */ buf.SeilkurvenindexInt, /*   3 */ buf.SeilspannungEndzustandFloat, /*   4 */ buf.SeilgewichtEndzustandFloat, /*   5 */ buf.SeilausschwingwinkelFloat, /*   6 */ buf.DurchhangFeldmitteFloat, /*   7 */ buf.StationSeilpunktFeldmitteFloat, /*   8 */ buf.HoeheSeilpunktFeldmitteFloat, /*   9 */ buf.OrdinateSeilpunktFeldmitteFloat, /*  10 */ buf.TiefsterPunktFeldmitte, /*  11 */ buf.GroeszterDurchhangFeld, /*  12 */ buf.GewichtsspannweiteFloat, /*  13 */ buf.BogenlaengeSeilFloat, /*  14 */ buf.ScheitelpunktEntfernungLinkerMastFloat, /*  15 */ buf.ScheitelpunktSeilhoeheFloat, /*  16 */ buf.SeilspannungAbsolutAufhaengepunktLinksFloat, /*  17 */ buf.SeilspannungAbsolutAufhaengepunktRechtsFloat);
         }
         else if (std::strcmp("SLK3", aDSK) == 0 && g_dictDSKs["SLK3"])
         {
-            struct SLK3 buf {};
-            char const* fmt{ "%4c%*3c%4c%7c%7c%7c%7c%7c%7c%10c%10c" };
+            struct SLK3 buf
+            {
+            };
             auto n = sscanf(
-                lineBuf
-                , fmt
-                , /*   1 */ buf.DSK
-                , /*   2 */ buf.SeilkurvenindexChar
-                , /*   3 */ buf.KettenauslenkungLinkerMastInLeitungsrichtungChar
-                , /*   4 */ buf.KettenauslenkungLinkerMastQuerLeitungsrichtungChar
-                , /*   5 */ buf.KettenauslenkungLinkerMastVertikalLeitungsrichtungChar
-                , /*   6 */ buf.KettenauslenkungRechterMastInLeitungsrichtungChar
-                , /*   7 */ buf.KettenauslenkungRechterMastQuerLeitungsrichtungChar
-                , /*   8 */ buf.KettenauslenkungRechterMastVertikalLeitungsrichtungChar
-                , /*   9 */ buf.SeilzugLinksChar
-                , /*  10 */ buf.SeilzugRechtsChar
-            );
+                lineBuf, buf.fmtDS, /*   1 */ buf.DSK, /*   2 */ buf.SeilkurvenindexChar, /*   3 */ buf.KettenauslenkungLinkerMastInLeitungsrichtungChar, /*   4 */ buf.KettenauslenkungLinkerMastQuerLeitungsrichtungChar, /*   5 */ buf.KettenauslenkungLinkerMastVertikalLeitungsrichtungChar, /*   6 */ buf.KettenauslenkungRechterMastInLeitungsrichtungChar, /*   7 */ buf.KettenauslenkungRechterMastQuerLeitungsrichtungChar, /*   8 */ buf.KettenauslenkungRechterMastVertikalLeitungsrichtungChar, /*   9 */ buf.SeilzugLinksChar, /*  10 */ buf.SeilzugRechtsChar);
             assert(n == 10);
-            /*   2 */ n = sscanf(buf.SeilkurvenindexChar, "%d", &buf.SeilkurvenindexInt);assert(n == 1);
-            /*   3 */ n = sscanf(buf.KettenauslenkungLinkerMastInLeitungsrichtungChar, "%f", &buf.KettenauslenkungLinkerMastInLeitungsrichtungFloat);assert(n == 1);
-            /*   4 */ n = sscanf(buf.KettenauslenkungLinkerMastQuerLeitungsrichtungChar, "%f", &buf.KettenauslenkungLinkerMastQuerLeitungsrichtungFloat);assert(n == 1);
-            /*   5 */ n = sscanf(buf.KettenauslenkungLinkerMastVertikalLeitungsrichtungChar, "%f", &buf.KettenauslenkungLinkerMastVertikalLeitungsrichtungFloat);assert(n == 1);
-            /*   6 */ n = sscanf(buf.KettenauslenkungRechterMastInLeitungsrichtungChar, "%f", &buf.KettenauslenkungRechterMastInLeitungsrichtungFloat);assert(n == 1);
-            /*   7 */ n = sscanf(buf.KettenauslenkungRechterMastQuerLeitungsrichtungChar, "%f", &buf.KettenauslenkungRechterMastQuerLeitungsrichtungFloat);assert(n == 1);
-            /*   8 */ n = sscanf(buf.KettenauslenkungRechterMastVertikalLeitungsrichtungChar, "%f", &buf.KettenauslenkungRechterMastVertikalLeitungsrichtungFloat);assert(n == 1);
-            /*   9 */ n = sscanf(buf.SeilzugLinksChar, "%f", &buf.SeilzugLinksFloat);assert(n == 1);
-            /*  10 */ n = sscanf(buf.SeilzugRechtsChar, "%f", &buf.SeilzugRechtsFloat);assert(n == 1);
-            char const* fmt2{ "\n%s|\n%d|\n%7.3f|\n%7.3f|\n%7.3f|\n%7.3f|\n%7.3f|\n%7.3f|\n%10.2f|\n%10.2f|\n" };
-            (void)printf
-            (
-                fmt2
-                , /*   1 */ buf.DSK
-                , /*   2 */ buf.SeilkurvenindexInt
-                , /*   3 */ buf.KettenauslenkungLinkerMastInLeitungsrichtungFloat
-                , /*   4 */ buf.KettenauslenkungLinkerMastQuerLeitungsrichtungFloat
-                , /*   5 */ buf.KettenauslenkungLinkerMastVertikalLeitungsrichtungFloat
-                , /*   6 */ buf.KettenauslenkungRechterMastInLeitungsrichtungFloat
-                , /*   7 */ buf.KettenauslenkungRechterMastQuerLeitungsrichtungFloat
-                , /*   8 */ buf.KettenauslenkungRechterMastVertikalLeitungsrichtungFloat
-                , /*   9 */ buf.SeilzugLinksFloat
-                , /*  10 */ buf.SeilzugRechtsFloat
-            );
+            /*   2 */ n = sscanf(buf.SeilkurvenindexChar, "%d", &buf.SeilkurvenindexInt);
+            assert(n == 1);
+            /*   3 */ n = sscanf(buf.KettenauslenkungLinkerMastInLeitungsrichtungChar, "%f", &buf.KettenauslenkungLinkerMastInLeitungsrichtungFloat);
+            assert(n == 1);
+            /*   4 */ n = sscanf(buf.KettenauslenkungLinkerMastQuerLeitungsrichtungChar, "%f", &buf.KettenauslenkungLinkerMastQuerLeitungsrichtungFloat);
+            assert(n == 1);
+            /*   5 */ n = sscanf(buf.KettenauslenkungLinkerMastVertikalLeitungsrichtungChar, "%f", &buf.KettenauslenkungLinkerMastVertikalLeitungsrichtungFloat);
+            assert(n == 1);
+            /*   6 */ n = sscanf(buf.KettenauslenkungRechterMastInLeitungsrichtungChar, "%f", &buf.KettenauslenkungRechterMastInLeitungsrichtungFloat);
+            assert(n == 1);
+            /*   7 */ n = sscanf(buf.KettenauslenkungRechterMastQuerLeitungsrichtungChar, "%f", &buf.KettenauslenkungRechterMastQuerLeitungsrichtungFloat);
+            assert(n == 1);
+            /*   8 */ n = sscanf(buf.KettenauslenkungRechterMastVertikalLeitungsrichtungChar, "%f", &buf.KettenauslenkungRechterMastVertikalLeitungsrichtungFloat);
+            assert(n == 1);
+            /*   9 */ n = sscanf(buf.SeilzugLinksChar, "%f", &buf.SeilzugLinksFloat);
+            assert(n == 1);
+            /*  10 */ n = sscanf(buf.SeilzugRechtsChar, "%f", &buf.SeilzugRechtsFloat);
+            assert(n == 1);
+            (void)printf(
+                buf.fmtPrintf, /*   1 */ buf.DSK, /*   2 */ buf.SeilkurvenindexInt, /*   3 */ buf.KettenauslenkungLinkerMastInLeitungsrichtungFloat, /*   4 */ buf.KettenauslenkungLinkerMastQuerLeitungsrichtungFloat, /*   5 */ buf.KettenauslenkungLinkerMastVertikalLeitungsrichtungFloat, /*   6 */ buf.KettenauslenkungRechterMastInLeitungsrichtungFloat, /*   7 */ buf.KettenauslenkungRechterMastQuerLeitungsrichtungFloat, /*   8 */ buf.KettenauslenkungRechterMastVertikalLeitungsrichtungFloat, /*   9 */ buf.SeilzugLinksFloat, /*  10 */ buf.SeilzugRechtsFloat);
         }
         else if (std::strcmp("OBJ1", aDSK) == 0 && g_dictDSKs["OBJ1"])
         {
-            struct OBJ1 buf {};
-            char const* fmt{ "%4c%*2c%3c%*1c%10c%6c%3c%1c%*3c%4c%3c%3c%*1c%1c%1c%1c%1c%1c%1c%3c%6c" };
+            struct OBJ1 buf
+            {
+            };
 
             auto n = sscanf(
-                lineBuf
-                , fmt
-                , /*   1 */ buf.DSK
-                , /*   2 */ buf.KreuzungsobjektindexTeil_1_Char
-                , /*   3 */ buf.Objektnummer
-                , /*   4 */ buf.MindestabstandChar
-                , /*   5 */ buf.NachweiscodeChar
-                , /*   6 */ buf.Abstandstyp
-                , /*   7 */ buf.Nachweiszustaende
-                , /*   8 */ buf.MastindexChar
-                , /*   9 */ buf.PhasenindexChar
-                , /*  10 */ buf.Objekttyp
-                , /*  11 */ buf.SteuerungsparameterDruckausgabe
-                , /*  12 */ buf.ParameterLeitungskreuzungen
-                , /*  13 */ buf.NeuerObjekttyp
-                , /*  14 */ buf.Objektabstand
-                , /*  15 */ buf.ObjektRechnen
-                , /*  16 */ buf.KreuzungsobjektindexTeil_2_Char
-                , /*  17 */ buf.Mindestabstand110kVChar
-            );
+                lineBuf, buf.fmtDS, /*   1 */ buf.DSK, /*   2 */ buf.KreuzungsobjektindexTeil_1_Char, /*   3 */ buf.Objektnummer, /*   4 */ buf.MindestabstandChar, /*   5 */ buf.NachweiscodeChar, /*   6 */ buf.Abstandstyp, /*   7 */ buf.Nachweiszustaende, /*   8 */ buf.MastindexChar, /*   9 */ buf.PhasenindexChar, /*  10 */ buf.Objekttyp, /*  11 */ buf.SteuerungsparameterDruckausgabe, /*  12 */ buf.ParameterLeitungskreuzungen, /*  13 */ buf.NeuerObjekttyp, /*  14 */ buf.Objektabstand, /*  15 */ buf.ObjektRechnen, /*  16 */ buf.KreuzungsobjektindexTeil_2_Char, /*  17 */ buf.Mindestabstand110kVChar);
             assert(n == 17);
-            /*   2 */ n = sscanf(buf.KreuzungsobjektindexTeil_1_Char, "%d", &buf.KreuzungsobjektindexTeil_1_Int);assert(n == 1);
-            /*   4 */ n = sscanf(buf.MindestabstandChar, "%f", &buf.MindestabstandFloat);assert(n == 1);
-            /*   5 */ n = sscanf(buf.NachweiscodeChar, "%d", &buf.NachweiscodeInt);assert(n == 1);
-            /*   8 */ n = sscanf(buf.MastindexChar, "%d", &buf.MastindexInt);assert(n == 1);
-            /*   9 */ n = sscanf(buf.PhasenindexChar, "%d", &buf.PhasenindexInt);assert(n == 1);
-            /*  16 */ n = sscanf(buf.KreuzungsobjektindexTeil_2_Char, "%d", &buf.KreuzungsobjektindexTeil_2_Int);assert(n == 1);
-            /*  17 */ n = sscanf(buf.Mindestabstand110kVChar, "%f", &buf.Mindestabstand110kVFloat);assert(n == 1);
-            char const* fmt2{ "\n%s|\n%d|\n%s|\n%6.2f|\n%d|\n%s|\n%s|\n%d|\n%d|\n%s|\n%s|\n%s|\n%s|\n%s|\n%s|\n%d|\n%6.2f|\n" };
+            /*   2 */ n = sscanf(buf.KreuzungsobjektindexTeil_1_Char, "%d", &buf.KreuzungsobjektindexTeil_1_Int);
+            assert(n == 1);
+            /*   4 */ n = sscanf(buf.MindestabstandChar, "%f", &buf.MindestabstandFloat);
+            assert(n == 1);
+            /*   5 */ n = sscanf(buf.NachweiscodeChar, "%d", &buf.NachweiscodeInt);
+            assert(n == 1);
+            /*   8 */ n = sscanf(buf.MastindexChar, "%d", &buf.MastindexInt);
+            assert(n == 1);
+            /*   9 */ n = sscanf(buf.PhasenindexChar, "%d", &buf.PhasenindexInt);
+            assert(n == 1);
+            /*  16 */ n = sscanf(buf.KreuzungsobjektindexTeil_2_Char, "%d", &buf.KreuzungsobjektindexTeil_2_Int);
+            assert(n == 1);
+            /*  17 */ n = sscanf(buf.Mindestabstand110kVChar, "%f", &buf.Mindestabstand110kVFloat);
+            assert(n == 1);
 
-            (void)printf
-            (
-                fmt2
-                , /*   1 */ buf.DSK
-                , /*   2 */ buf.KreuzungsobjektindexTeil_1_Int
-                , /*   3 */ buf.Objektnummer
-                , /*   4 */ buf.MindestabstandFloat
-                , /*   5 */ buf.NachweiscodeInt
-                , /*   6 */ buf.Abstandstyp
-                , /*   7 */ buf.Nachweiszustaende
-                , /*   8 */ buf.MastindexInt
-                , /*   9 */ buf.PhasenindexInt
-                , /*  10 */ buf.Objekttyp
-                , /*  11 */ buf.SteuerungsparameterDruckausgabe
-                , /*  12 */ buf.ParameterLeitungskreuzungen
-                , /*  13 */ buf.NeuerObjekttyp
-                , /*  14 */ buf.Objektabstand
-                , /*  15 */ buf.ObjektRechnen
-                , /*  16 */ buf.KreuzungsobjektindexTeil_2_Int
-                , /*  17 */ buf.Mindestabstand110kVFloat
-            );
+            (void)printf(
+                buf.fmtPrintf, /*   1 */ buf.DSK, /*   2 */ buf.KreuzungsobjektindexTeil_1_Int, /*   3 */ buf.Objektnummer, /*   4 */ buf.MindestabstandFloat, /*   5 */ buf.NachweiscodeInt, /*   6 */ buf.Abstandstyp, /*   7 */ buf.Nachweiszustaende, /*   8 */ buf.MastindexInt, /*   9 */ buf.PhasenindexInt, /*  10 */ buf.Objekttyp, /*  11 */ buf.SteuerungsparameterDruckausgabe, /*  12 */ buf.ParameterLeitungskreuzungen, /*  13 */ buf.NeuerObjekttyp, /*  14 */ buf.Objektabstand, /*  15 */ buf.ObjektRechnen, /*  16 */ buf.KreuzungsobjektindexTeil_2_Int, /*  17 */ buf.Mindestabstand110kVFloat);
         }
         else if (std::strcmp("OBJ2", aDSK) == 0 && g_dictDSKs["OBJ2"])
         {
-            struct OBJ2 buf {};
-            char const* fmt{ "%4c%*2c%3c%*1c%28c%28c%3c" };
+            struct OBJ2 buf
+            {
+            };
 
             auto n = sscanf(
-                lineBuf
-                , fmt
-                , /*   1 */ buf.DSK
-                , /*   2 */ buf.KreuzungsobjektindexTeil_1_Char
-                , /*   3 */ buf.ObjektbezeichnungZeile_1
-                , /*   4 */ buf.ObjektbezeichnungZeile_2
-                , /*   5 */ buf.KreuzungsobjektindexTeil_2_Char
-            );
+                lineBuf, buf.fmtDS, /*   1 */ buf.DSK, /*   2 */ buf.KreuzungsobjektindexTeil_1_Char, /*   3 */ buf.ObjektbezeichnungZeile_1, /*   4 */ buf.ObjektbezeichnungZeile_2, /*   5 */ buf.KreuzungsobjektindexTeil_2_Char);
             assert(n == 5);
-            /*   2 */ n = sscanf(buf.KreuzungsobjektindexTeil_1_Char, "%d", &buf.KreuzungsobjektindexTeil_1_Int);assert(n == 1);
-            /*   5 */ n = sscanf(buf.KreuzungsobjektindexTeil_2_Char, "%d", &buf.KreuzungsobjektindexTeil_2_Int);assert(n == 1);
-            char const* fmt2{ "\n%s|\n%d|\n%s|\n%s|\n%d|\n" };
+            /*   2 */ n = sscanf(buf.KreuzungsobjektindexTeil_1_Char, "%d", &buf.KreuzungsobjektindexTeil_1_Int);
+            assert(n == 1);
+            /*   5 */ n = sscanf(buf.KreuzungsobjektindexTeil_2_Char, "%d", &buf.KreuzungsobjektindexTeil_2_Int);
+            assert(n == 1);
 
-            (void)printf
-            (
-                fmt2
-                , /*   1 */ buf.DSK
-                , /*   2 */ buf.KreuzungsobjektindexTeil_1_Int
-                , /*   3 */ buf.ObjektbezeichnungZeile_1
-                , /*   4 */ buf.ObjektbezeichnungZeile_2
-                , /*   5 */ buf.KreuzungsobjektindexTeil_2_Int
-            );
+            (void)printf(
+                buf.fmtPrintf, /*   1 */ buf.DSK, /*   2 */ buf.KreuzungsobjektindexTeil_1_Int, /*   3 */ buf.ObjektbezeichnungZeile_1, /*   4 */ buf.ObjektbezeichnungZeile_2, /*   5 */ buf.KreuzungsobjektindexTeil_2_Int);
         }
         else if (std::strcmp("OBJ3", aDSK) == 0 && g_dictDSKs["OBJ3"])
         {
-            struct OBJ3 buf {};
-            char const* fmt{ "%4c%*2c%3c%*1c%28c%28c%3c" };
+            struct OBJ3 buf
+            {
+            };
 
             auto n = sscanf(
-                lineBuf
-                , fmt
-                , /*   1 */ buf.DSK
-                , /*   2 */ buf.KreuzungsobjektindexTeil_1_Char
-                , /*   3 */ buf.EigentümerZeile_1
-                , /*   4 */ buf.EigentümerZeile_2
-                , /*   5 */ buf.KreuzungsobjektindexTeil_2_Char
-            );
+                lineBuf, buf.fmtDS, /*   1 */ buf.DSK, /*   2 */ buf.KreuzungsobjektindexTeil_1_Char, /*   3 */ buf.EigentümerZeile_1, /*   4 */ buf.EigentümerZeile_2, /*   5 */ buf.KreuzungsobjektindexTeil_2_Char);
             assert(n == 5);
-            /*   2 */ n = sscanf(buf.KreuzungsobjektindexTeil_1_Char, "%d", &buf.KreuzungsobjektindexTeil_1_Int);assert(n == 1);
-            /*   5 */ n = sscanf(buf.KreuzungsobjektindexTeil_2_Char, "%d", &buf.KreuzungsobjektindexTeil_2_Int);assert(n == 1);
-            char const* fmt2{ "\n%s|\n%d|\n%s|\n%s|\n%d|\n" };
+            /*   2 */ n = sscanf(buf.KreuzungsobjektindexTeil_1_Char, "%d", &buf.KreuzungsobjektindexTeil_1_Int);
+            assert(n == 1);
+            /*   5 */ n = sscanf(buf.KreuzungsobjektindexTeil_2_Char, "%d", &buf.KreuzungsobjektindexTeil_2_Int);
+            assert(n == 1);
 
-            (void)printf
-            (
-                fmt2
-                , /*   1 */ buf.DSK
-                , /*   2 */ buf.KreuzungsobjektindexTeil_1_Int
-                , /*   3 */ buf.EigentümerZeile_1
-                , /*   4 */ buf.EigentümerZeile_2
-                , /*   5 */ buf.KreuzungsobjektindexTeil_2_Int
-            );
+            (void)printf(
+                buf.fmtPrintf, /*   1 */ buf.DSK, /*   2 */ buf.KreuzungsobjektindexTeil_1_Int, /*   3 */ buf.EigentümerZeile_1, /*   4 */ buf.EigentümerZeile_2, /*   5 */ buf.KreuzungsobjektindexTeil_2_Int);
         }
         else if (std::strcmp("OPKT", aDSK) == 0 && g_dictDSKs["OPKT"])
         {
-            struct OPKT buf {};
-            char const* fmt{ "%4c%*2c%3c%*1c%3c%9c%7c%8c%7c%8c%*1c%3c%10c%3c" };
+            struct OPKT buf
+            {
+            };
 
             auto n = sscanf(
-                lineBuf
-                , fmt
-                , /*    1 */ buf.DSK
-                , /*    2 */ buf.PunktindexTeil_1_Char
-                , /*    3 */ buf.Kreuzungsobjektindex_Teil_1_Char
-                , /*    4 */ buf.StationChar
-                , /*    5 */ buf.OrdinateChar
-                , /*    6 */ buf.FuszhoeheChar
-                , /*    7 */ buf.ObjekthoeheChar
-                , /*    8 */ buf.PunktnummerVermessung
-                , /*    9 */ buf.Punktindex_Teil_2_Char
-                , /*   10 */ buf.MS_LinkChar
-                , /*   11 */ buf.KreuzungsobjektindexTeil_2_Char
-            );
+                lineBuf, buf.fmtDS, /*    1 */ buf.DSK, /*    2 */ buf.PunktindexTeil_1_Char, /*    3 */ buf.Kreuzungsobjektindex_Teil_1_Char, /*    4 */ buf.StationChar, /*    5 */ buf.OrdinateChar, /*    6 */ buf.FuszhoeheChar, /*    7 */ buf.ObjekthoeheChar, /*    8 */ buf.PunktnummerVermessung, /*    9 */ buf.Punktindex_Teil_2_Char
+#ifdef FLP
+                ,
+                /*   10 */ buf.MS_LinkChar
+#endif
+                ,
+                /*   11 */ buf.KreuzungsobjektindexTeil_2_Char);
+#ifdef FLP
             assert(n == 11);
-            /*   2 */ n = sscanf(buf.PunktindexTeil_1_Char, "%d", &buf.PunktindexTeil_1_Int);assert(n == 1);
-            /*   3 */ n = sscanf(buf.Kreuzungsobjektindex_Teil_1_Char, "%d", &buf.Kreuzungsobjektindex_Teil_1_Int);assert(n == 1);
-            /*   4 */ n = sscanf(buf.StationChar, "%f", &buf.StationFloat);assert(n == 1);
-            /*   5 */ n = sscanf(buf.OrdinateChar, "%f", &buf.OrdinateFloat);assert(n == 1);
-            /*   6 */ n = sscanf(buf.FuszhoeheChar, "%f", &buf.FuszhoeheFloat);assert(n == 1);
-            /*   7 */ n = sscanf(buf.ObjekthoeheChar, "%f", &buf.ObjekthoeheFloat);assert(n == 1);
-            /*   9 */ n = sscanf(buf.Punktindex_Teil_2_Char, "%d", &buf.Punktindex_Teil_2_Int);assert(n == 1);
-            /*  10 */ n = sscanf(buf.MS_LinkChar, "%d", &buf.MS_LinkInt);assert(n == 1);
-            /*  11 */ n = sscanf(buf.KreuzungsobjektindexTeil_2_Char, "%d", &buf.KreuzungsobjektindexTeil_2_Int);assert(n == 1);
-            char const* fmt2{ "\n%s|\n%d|\n%d|\n%9.2f|\n%7.2f|\n%8.2f|\n%7.2f|\n%s|\n%d|\n%d|\n%d|\n" };
+#else
+            assert(n == 10);
+#endif
+            /*   2 */ n = sscanf(buf.PunktindexTeil_1_Char, "%d", &buf.PunktindexTeil_1_Int);
+            assert(n == 1);
+            /*   3 */ n = sscanf(buf.Kreuzungsobjektindex_Teil_1_Char, "%d", &buf.Kreuzungsobjektindex_Teil_1_Int);
+            assert(n == 1);
+            /*   4 */ n = sscanf(buf.StationChar, "%f", &buf.StationFloat);
+            assert(n == 1);
+            /*   5 */ n = sscanf(buf.OrdinateChar, "%f", &buf.OrdinateFloat);
+            assert(n == 1);
+            /*   6 */ n = sscanf(buf.FuszhoeheChar, "%f", &buf.FuszhoeheFloat);
+            assert(n == 1);
+            /*   7 */ n = sscanf(buf.ObjekthoeheChar, "%f", &buf.ObjekthoeheFloat);
+            assert(n == 1);
+            /*   9 */ n = sscanf(buf.Punktindex_Teil_2_Char, "%d", &buf.Punktindex_Teil_2_Int);
+            assert(n == 1);
+#ifdef FLP
+            /*  10 */ n = sscanf(buf.MS_LinkChar, "%d", &buf.MS_LinkInt);
+            assert(n == 1);
+#endif
+            /*  11 */ n = sscanf(buf.KreuzungsobjektindexTeil_2_Char, "%d", &buf.KreuzungsobjektindexTeil_2_Int);
+            assert(n == 1);
 
-            (void)printf
-            (
-                fmt2
-                , /*    1 */ buf.DSK
-                , /*    2 */ buf.PunktindexTeil_1_Int
-                , /*    3 */ buf.Kreuzungsobjektindex_Teil_1_Int
-                , /*    4 */ buf.StationFloat
-                , /*    5 */ buf.OrdinateFloat
-                , /*    6 */ buf.FuszhoeheFloat
-                , /*    7 */ buf.ObjekthoeheFloat
-                , /*    8 */ buf.PunktnummerVermessung
-                , /*    9 */ buf.Punktindex_Teil_2_Int
-                , /*   10 */ buf.MS_LinkInt
-                , /*   11 */ buf.KreuzungsobjektindexTeil_2_Int
-            );
+            (void)printf(
+                buf.fmtPrintf, /*    1 */ buf.DSK, /*    2 */ buf.PunktindexTeil_1_Int, /*    3 */ buf.Kreuzungsobjektindex_Teil_1_Int, /*    4 */ buf.StationFloat, /*    5 */ buf.OrdinateFloat, /*    6 */ buf.FuszhoeheFloat, /*    7 */ buf.ObjekthoeheFloat, /*    8 */ buf.PunktnummerVermessung, /*    9 */ buf.Punktindex_Teil_2_Int
+#ifdef FLP
+                ,
+                /*   10 */ buf.MS_LinkInt
+#endif
+                ,
+                /*   11 */ buf.KreuzungsobjektindexTeil_2_Int);
         }
         else if (std::strcmp("OLIN", aDSK) == 0 && g_dictDSKs["OLIN"])
         {
-            struct OLIN buf {};
-            char const* fmt{ "%4c%*2c%3c%*1c%3c%3c%3c%3c%3c%10c%3c%3c" };
+            struct OLIN buf
+            {
+            };
 
             auto n = sscanf(
-                lineBuf
-                , fmt
-                , /*    1 */ buf.DSK
-                , /*    2 */ buf.LinienindexTeil_1_Char
-                , /*    3 */ buf.KreuzungsobjektindexTeil_1_Char
-                , /*    4 */ buf.IndexAnfangspunkt_1_Teil_1_Char
-                , /*    5 */ buf.Index_Endpunkt_1_Teil_1_Char
-                , /*    6 */ buf.Index_Anfangspunkt_2_Teil_2_Char
-                , /*    7 */ buf.IndexEndpunkt_2_Teil_2_Char
-                , /*    8 */ buf.MS_LinkChar
-                , /*    9 */ buf.Linienindex_Teil_2_Char
-                , /*   10 */ buf.Kreuzungsobjektindex_Teil_2_Char
-                , /*   11 */ buf.Kreuzungsobjektindex_Teil_2_Char
-                , /*   12 */ buf.Kreuzungsobjektindex_Teil_2_Char
-                , /*   13 */ buf.Kreuzungsobjektindex_Teil_2_Char
-                , /*   1 */ buf.Kreuzungsobjektindex_Teil_2_Char
-            );
+                lineBuf, buf.fmtDS, /*    1 */ buf.DSK, /*    2 */ buf.LinienindexTeil_1_Char, /*    3 */ buf.KreuzungsobjektindexTeil_1_Char, /*    4 */ buf.IndexAnfangspunkt_1_Teil_1_Char, /*    5 */ buf.Index_Endpunkt_1_Teil_1_Char, /*    6 */ buf.Index_Anfangspunkt_2_Teil_2_Char, /*    7 */ buf.IndexEndpunkt_2_Teil_2_Char
+#ifdef FLP
+                ,
+                /*    8 */ buf.MS_LinkChar
+#endif
+                ,
+                /*    9 */ buf.Linienindex_Teil_2_Char, /*   10 */ buf.Kreuzungsobjektindex_Teil_2_Char);
+#ifdef FLP
             assert(n == 10);
-            /*   2 */ n = sscanf(buf.LinienindexTeil_1_Char, "%d", &buf.LinienindexTeil_1_Int);assert(n == 1);
-            /*   3 */ n = sscanf(buf.KreuzungsobjektindexTeil_1_Char, "%d", &buf.KreuzungsobjektindexTeil_1_Int);assert(n == 1);
-            /*   4 */ n = sscanf(buf.IndexAnfangspunkt_1_Teil_1_Char, "%d", &buf.IndexAnfangspunkt_1_Teil_1_Int);assert(n == 1);
-            /*   5 */ n = sscanf(buf.Index_Endpunkt_1_Teil_1_Char, "%d", &buf.Index_Endpunkt_1_Teil_1_Int);assert(n == 1);
-            /*   6 */ n = sscanf(buf.Index_Anfangspunkt_2_Teil_2_Char, "%d", &buf.Index_Anfangspunkt_2_Teil_2_Int);assert(n == 1);
-            /*   7 */ n = sscanf(buf.IndexEndpunkt_2_Teil_2_Char, "%d", &buf.IndexEndpunkt_2_Teil_2_Int);assert(n == 1);
-            /*   8 */ n = sscanf(buf.MS_LinkChar, "%d", &buf.MS_LinkInt);assert(n == 1);
-            /*   9 */ n = sscanf(buf.Linienindex_Teil_2_Char, "%d", &buf.Linienindex_Teil_2_Int);assert(n == 1);
-            /*  10 */ n = sscanf(buf.Kreuzungsobjektindex_Teil_2_Char, "%d", &buf.Kreuzungsobjektindex_Teil_2_Int);assert(n == 1);
-            char const* fmt2{ "\n%s|\n%d|\n%d|\n%d|\n%d|\n%d|\n%d|\n%d|\n%d|\n%d|\n" };
+#else
+            assert(n == 9);
+#endif
+            /*   2 */ n = sscanf(buf.LinienindexTeil_1_Char, "%d", &buf.LinienindexTeil_1_Int);
+            assert(n == 1);
+            /*   3 */ n = sscanf(buf.KreuzungsobjektindexTeil_1_Char, "%d", &buf.KreuzungsobjektindexTeil_1_Int);
+            assert(n == 1);
+            /*   4 */ n = sscanf(buf.IndexAnfangspunkt_1_Teil_1_Char, "%d", &buf.IndexAnfangspunkt_1_Teil_1_Int);
+            assert(n == 1);
+            /*   5 */ n = sscanf(buf.Index_Endpunkt_1_Teil_1_Char, "%d", &buf.Index_Endpunkt_1_Teil_1_Int);
+            assert(n == 1);
+            /*   6 */ n = sscanf(buf.Index_Anfangspunkt_2_Teil_2_Char, "%d", &buf.Index_Anfangspunkt_2_Teil_2_Int);
+            assert(n == 1);
+            /*   7 */ n = sscanf(buf.IndexEndpunkt_2_Teil_2_Char, "%d", &buf.IndexEndpunkt_2_Teil_2_Int);
+            assert(n == 1);
+#ifdef FLP
+            /*   8 */ n = sscanf(buf.MS_LinkChar, "%d", &buf.MS_LinkInt);
+            assert(n == 1);
+#endif
+            /*   9 */ n = sscanf(buf.Linienindex_Teil_2_Char, "%d", &buf.Linienindex_Teil_2_Int);
+            assert(n == 1);
+            /*  10 */ n = sscanf(buf.Kreuzungsobjektindex_Teil_2_Char, "%d", &buf.Kreuzungsobjektindex_Teil_2_Int);
+            assert(n == 1);
 
-            (void)printf
-            (
-                fmt2
-                , /*    1 */ buf.DSK
-                , /*    2 */ buf.LinienindexTeil_1_Int
-                , /*    3 */ buf.KreuzungsobjektindexTeil_1_Int
-                , /*    4 */ buf.IndexAnfangspunkt_1_Teil_1_Int
-                , /*    5 */ buf.Index_Endpunkt_1_Teil_1_Int
-                , /*    6 */ buf.Index_Anfangspunkt_2_Teil_2_Int
-                , /*    7 */ buf.IndexEndpunkt_2_Teil_2_Int
-                , /*    8 */ buf.MS_LinkInt
-                , /*    9 */ buf.Linienindex_Teil_2_Int
-                , /*   10 */ buf.MS_LinkInt
-            );
+            (void)printf(
+                buf.fmtPrintf, /*    1 */ buf.DSK, /*    2 */ buf.LinienindexTeil_1_Int, /*    3 */ buf.KreuzungsobjektindexTeil_1_Int, /*    4 */ buf.IndexAnfangspunkt_1_Teil_1_Int, /*    5 */ buf.Index_Endpunkt_1_Teil_1_Int, /*    6 */ buf.Index_Anfangspunkt_2_Teil_2_Int, /*    7 */ buf.IndexEndpunkt_2_Teil_2_Int
+#ifdef FLP
+                ,
+                /*    8 */ buf.MS_LinkInt
+#endif
+                ,
+                /*    9 */ buf.Linienindex_Teil_2_Int, /*   10 */ buf.Kreuzungsobjektindex_Teil_2_Char);
         }
         else if (std::strcmp("OBFL", aDSK) == 0 && g_dictDSKs["OBFL"])
         {
-            struct OBFL buf {};
-            char const* fmt{ "%4c%*2c%3c%*1c%3c%3c%3c%3c%3c%3c%3c%3c%3c%10c%3c%3c" };
+            struct OBFL buf
+            {
+            };
 
             auto n = sscanf(
-                lineBuf
-                , fmt
-                , /*    1 */ buf.DSK
-                , /*    2 */ buf.Flaechenindex_Teil_1_Char
-                , /*    3 */ buf.KreuzungsobjektindexTeil_1_Char
-                , /*    4 */ buf.Punktindex_1_Teil_1_Char
-                , /*    5 */ buf.Punktindex_2_Teil_1_Char
-                , /*    6 */ buf.Punktindex_3_Teil_1_Char
-                , /*    7 */ buf.Punktindex_4_Teil_1_Char
-                , /*    8 */ buf.Punktindex_1_Teil_2_Char
-                , /*    9 */ buf.Punktindex_2_Teil_2_Char
-                , /*   10 */ buf.Punktindex_3_Teil_2_Char
-                , /*   11 */ buf.Punktindex_4_Teil_2_Char
-                , /*   12 */ buf.MS_Link_Char
-                , /*   13 */ buf.Flaechenindex_Teil_2_Char
-                , /*   14 */ buf.Kreuzungsobjektindex_Teil_2_Char
-            );
+                lineBuf, buf.fmtDS, /*    1 */ buf.DSK, /*    2 */ buf.Flaechenindex_Teil_1_Char, /*    3 */ buf.KreuzungsobjektindexTeil_1_Char, /*    4 */ buf.Punktindex_1_Teil_1_Char, /*    5 */ buf.Punktindex_2_Teil_1_Char, /*    6 */ buf.Punktindex_3_Teil_1_Char, /*    7 */ buf.Punktindex_4_Teil_1_Char, /*    8 */ buf.Punktindex_1_Teil_2_Char, /*    9 */ buf.Punktindex_2_Teil_2_Char, /*   10 */ buf.Punktindex_3_Teil_2_Char, /*   11 */ buf.Punktindex_4_Teil_2_Char
+#ifdef FLP
+                ,
+                /*   12 */ buf.MS_Link_Char
+#endif
+                ,
+                /*   13 */ buf.Flaechenindex_Teil_2_Char, /*   14 */ buf.Kreuzungsobjektindex_Teil_2_Char);
+#ifdef FLP
             assert(n == 14);
-            /*   2 */ n = sscanf(buf.Flaechenindex_Teil_1_Char, "%d", &buf.Flaechenindex_Teil_1_Int);assert(n == 1);
-            /*   3 */ n = sscanf(buf.KreuzungsobjektindexTeil_1_Char, "%d", &buf.KreuzungsobjektindexTeil_1_Int);assert(n == 1);
-            /*   4 */ n = sscanf(buf.Punktindex_1_Teil_1_Char, "%d", &buf.Punktindex_1_Teil_1_Int);assert(n == 1);
-            /*   5 */ n = sscanf(buf.Punktindex_2_Teil_1_Char, "%d", &buf.Punktindex_2_Teil_1_Int);assert(n == 1);
-            /*   6 */ n = sscanf(buf.Punktindex_3_Teil_1_Char, "%d", &buf.Punktindex_3_Teil_1_Int);assert(n == 1);
-            /*   7 */ n = sscanf(buf.Punktindex_4_Teil_1_Char, "%d", &buf.Punktindex_4_Teil_1_Int);assert(n == 1);
-            /*   8 */ n = sscanf(buf.Punktindex_1_Teil_2_Char, "%d", &buf.Punktindex_1_Teil_2_Int);assert(n == 1);
-            /*   9 */ n = sscanf(buf.Punktindex_2_Teil_2_Char, "%d", &buf.Punktindex_2_Teil_2_Int);assert(n == 1);
-            /*  10 */ n = sscanf(buf.Punktindex_3_Teil_2_Char, "%d", &buf.Punktindex_3_Teil_2_Int);assert(n == 1);
-            /*  11 */ n = sscanf(buf.Punktindex_4_Teil_2_Char, "%d", &buf.Punktindex_4_Teil_2_Int);assert(n == 1);
-            /*  12 */ n = sscanf(buf.MS_Link_Char, "%d", &buf.MS_Link_Int);assert(n == 1);
-            /*  13 */ n = sscanf(buf.Flaechenindex_Teil_2_Char, "%d", &buf.Flaechenindex_Teil_2_Int);assert(n == 1);
-            /*  14 */ n = sscanf(buf.Kreuzungsobjektindex_Teil_2_Char, "%d", &buf.Kreuzungsobjektindex_Teil_2_Int);assert(n == 1);
-            char const* fmt2{ "\n%s|\n%d|\n%d|\n%d|\n%d|\n%d|\n%d|\n%d|\n%d|\n%d|\n%d|\n%d|\n%d|\n%d|\n" };
+#else
+            assert(n == 13);
+#endif
+            /*   2 */ n = sscanf(buf.Flaechenindex_Teil_1_Char, "%d", &buf.Flaechenindex_Teil_1_Int);
+            assert(n == 1);
+            /*   3 */ n = sscanf(buf.KreuzungsobjektindexTeil_1_Char, "%d", &buf.KreuzungsobjektindexTeil_1_Int);
+            assert(n == 1);
+            /*   4 */ n = sscanf(buf.Punktindex_1_Teil_1_Char, "%d", &buf.Punktindex_1_Teil_1_Int);
+            assert(n == 1);
+            /*   5 */ n = sscanf(buf.Punktindex_2_Teil_1_Char, "%d", &buf.Punktindex_2_Teil_1_Int);
+            assert(n == 1);
+            /*   6 */ n = sscanf(buf.Punktindex_3_Teil_1_Char, "%d", &buf.Punktindex_3_Teil_1_Int);
+            assert(n == 1);
+            /*   7 */ n = sscanf(buf.Punktindex_4_Teil_1_Char, "%d", &buf.Punktindex_4_Teil_1_Int);
+            assert(n == 1);
+            /*   8 */ n = sscanf(buf.Punktindex_1_Teil_2_Char, "%d", &buf.Punktindex_1_Teil_2_Int);
+            assert(n == 1);
+            /*   9 */ n = sscanf(buf.Punktindex_2_Teil_2_Char, "%d", &buf.Punktindex_2_Teil_2_Int);
+            assert(n == 1);
+            /*  10 */ n = sscanf(buf.Punktindex_3_Teil_2_Char, "%d", &buf.Punktindex_3_Teil_2_Int);
+            assert(n == 1);
+            /*  11 */ n = sscanf(buf.Punktindex_4_Teil_2_Char, "%d", &buf.Punktindex_4_Teil_2_Int);
+            assert(n == 1);
+#ifdef FLP
+            /*  12 */ n = sscanf(buf.MS_Link_Char, "%d", &buf.MS_Link_Int);
+            assert(n == 1);
+#endif
+            /*  13 */ n = sscanf(buf.Flaechenindex_Teil_2_Char, "%d", &buf.Flaechenindex_Teil_2_Int);
+            assert(n == 1);
+            /*  14 */ n = sscanf(buf.Kreuzungsobjektindex_Teil_2_Char, "%d", &buf.Kreuzungsobjektindex_Teil_2_Int);
+            assert(n == 1);
 
-            (void)printf
-            (
-                fmt2
-                , /*    1 */ buf.DSK
-                , /*    2 */ buf.Flaechenindex_Teil_1_Int
-                , /*    3 */ buf.KreuzungsobjektindexTeil_1_Int
-                , /*    4 */ buf.Punktindex_1_Teil_1_Int
-                , /*    5 */ buf.Punktindex_2_Teil_1_Int
-                , /*    6 */ buf.Punktindex_3_Teil_1_Int
-                , /*    7 */ buf.Punktindex_4_Teil_1_Int
-                , /*    8 */ buf.Punktindex_1_Teil_2_Int
-                , /*    9 */ buf.Punktindex_2_Teil_2_Int
-                , /*   10 */ buf.Punktindex_3_Teil_2_Int
-                , /*   11 */ buf.Punktindex_4_Teil_2_Int
-                , /*   12 */ buf.MS_Link_Int
-                , /*   13 */ buf.Flaechenindex_Teil_2_Int
-                , /*   14 */ buf.Kreuzungsobjektindex_Teil_2_Int
-            );
+            (void)printf(
+                buf.fmtPrintf, /*    1 */ buf.DSK, /*    2 */ buf.Flaechenindex_Teil_1_Int, /*    3 */ buf.KreuzungsobjektindexTeil_1_Int, /*    4 */ buf.Punktindex_1_Teil_1_Int, /*    5 */ buf.Punktindex_2_Teil_1_Int, /*    6 */ buf.Punktindex_3_Teil_1_Int, /*    7 */ buf.Punktindex_4_Teil_1_Int, /*    8 */ buf.Punktindex_1_Teil_2_Int, /*    9 */ buf.Punktindex_2_Teil_2_Int, /*   10 */ buf.Punktindex_3_Teil_2_Int, /*   11 */ buf.Punktindex_4_Teil_2_Int
+#ifdef FLP
+                ,
+                /*   12 */ buf.MS_Link_Int
+#endif
+                ,
+                /*   13 */ buf.Flaechenindex_Teil_2_Int, /*   14 */ buf.Kreuzungsobjektindex_Teil_2_Int);
         }
         else if (std::strcmp("OGEL", aDSK) == 0 && g_dictDSKs["OGEL"])
         {
-            struct OGEL buf {};
-            char const* fmt{ "%4c%*2c%3c%*1c%3c%9c%8c%6c%6c%6c%6c%*1c%3c%3c%3c" };
+            struct OGEL buf
+            {
+            };
 
             auto n = sscanf(
-                lineBuf
-                , fmt
-                , /*    1 */ buf.DSK
-                , /*    2 */ buf.Gelaendepunktindex_Teil_1_Char
-                , /*    3 */ buf.Kreuzungsobjektindex_Teil_1_Char
-                , /*    4 */ buf.StationChar
-                , /*    5 */ buf.GelaendehoeheTrassenmitte_Char
-                , /*    6 */ buf.OrdinateSeitlichUeberhoehung_1_Char
-                , /*    7 */ buf.SeitlicheUeberhoehung_1_Char
-                , /*    8 */ buf.OrdinateSeitlicheUeberhoehung_2_Char
-                , /*    9 */ buf.SeitlicheUeberhoehung_2_Char
-                , /*   10 */ buf.Gelaendepunktindex_Teil_2_Char
-                , /*   11 */ buf.KulturartCode
-                , /*   12 */ buf.KreuzungsobjektindexTeil_2_Char
-            );
+                lineBuf, buf.fmtDS, /*    1 */ buf.DSK, /*    2 */ buf.Gelaendepunktindex_Teil_1_Char, /*    3 */ buf.Kreuzungsobjektindex_Teil_1_Char, /*    4 */ buf.StationChar, /*    5 */ buf.GelaendehoeheTrassenmitte_Char, /*    6 */ buf.OrdinateSeitlichUeberhoehung_1_Char, /*    7 */ buf.SeitlicheUeberhoehung_1_Char, /*    8 */ buf.OrdinateSeitlicheUeberhoehung_2_Char, /*    9 */ buf.SeitlicheUeberhoehung_2_Char, /*   10 */ buf.Gelaendepunktindex_Teil_2_Char, /*   11 */ buf.KulturartCode, /*   12 */ buf.KreuzungsobjektindexTeil_2_Char);
             assert(n == 12);
-            /*   2 */ n = sscanf(buf.Gelaendepunktindex_Teil_1_Char, "%d", &buf.Gelaendepunktindex_Teil_1_Int);assert(n == 1);
-            /*   3 */ n = sscanf(buf.Kreuzungsobjektindex_Teil_1_Char, "%d", &buf.Kreuzungsobjektindex_Teil_1_Int);assert(n == 1);
-            /*   4 */ n = sscanf(buf.StationChar, "%f", &buf.StationFloat);assert(n == 1);
-            /*   5 */ n = sscanf(buf.GelaendehoeheTrassenmitte_Char, "%f", &buf.GelaendehoeheTrassenmitteFloat);assert(n == 1);
-            /*   6 */ n = sscanf(buf.OrdinateSeitlichUeberhoehung_1_Char, "%f", &buf.OrdinateSeitlichUeberhoehung_1_Float);assert(n == 1);
-            /*   7 */ n = sscanf(buf.SeitlicheUeberhoehung_1_Char, "%f", &buf.SeitlicheUeberhoehung_1_Float);assert(n == 1);
-            /*   8 */ n = sscanf(buf.OrdinateSeitlicheUeberhoehung_2_Char, "%f", &buf.OrdinateSeitlicheUeberhoehung_2_Float);assert(n == 1);
-            /*   9 */ n = sscanf(buf.SeitlicheUeberhoehung_2_Char, "%f", &buf.SeitlicheUeberhoehung_2_Float);assert(n == 1);
-            /*  10 */ n = sscanf(buf.Gelaendepunktindex_Teil_2_Char, "%d", &buf.Gelaendepunktindex_Teil_2_Int);assert(n == 1);
-            /*  12 */ n = sscanf(buf.KreuzungsobjektindexTeil_2_Char, "%d", &buf.KreuzungsobjektindexTeil_2_Int);assert(n == 1);
-            char const* fmt2{ "\n%4s|\n%3d|\n%3d|\n%9.2f|\n%8.2f|\n%6.2f|\n%6.2f|\n%6.2f|\n%6.2f|\n%3d|\n%3s|\n%3d|\n" };
+            /*   2 */ n = sscanf(buf.Gelaendepunktindex_Teil_1_Char, "%d", &buf.Gelaendepunktindex_Teil_1_Int);
+            assert(n == 1);
+            /*   3 */ n = sscanf(buf.Kreuzungsobjektindex_Teil_1_Char, "%d", &buf.Kreuzungsobjektindex_Teil_1_Int);
+            assert(n == 1);
+            /*   4 */ n = sscanf(buf.StationChar, "%f", &buf.StationFloat);
+            assert(n == 1);
+            /*   5 */ n = sscanf(buf.GelaendehoeheTrassenmitte_Char, "%f", &buf.GelaendehoeheTrassenmitteFloat);
+            assert(n == 1);
+            /*   6 */ n = sscanf(buf.OrdinateSeitlichUeberhoehung_1_Char, "%f", &buf.OrdinateSeitlichUeberhoehung_1_Float);
+            assert(n == 1);
+            /*   7 */ n = sscanf(buf.SeitlicheUeberhoehung_1_Char, "%f", &buf.SeitlicheUeberhoehung_1_Float);
+            assert(n == 1);
+            /*   8 */ n = sscanf(buf.OrdinateSeitlicheUeberhoehung_2_Char, "%f", &buf.OrdinateSeitlicheUeberhoehung_2_Float);
+            assert(n == 1);
+            /*   9 */ n = sscanf(buf.SeitlicheUeberhoehung_2_Char, "%f", &buf.SeitlicheUeberhoehung_2_Float);
+            assert(n == 1);
+            /*  10 */ n = sscanf(buf.Gelaendepunktindex_Teil_2_Char, "%d", &buf.Gelaendepunktindex_Teil_2_Int);
+            assert(n == 1);
+            /*  12 */ n = sscanf(buf.KreuzungsobjektindexTeil_2_Char, "%d", &buf.KreuzungsobjektindexTeil_2_Int);
+            assert(n == 1);
 
-            (void)printf
-            (
-                fmt2
-                , /*    1 */ buf.DSK
-                , /*    2 */ buf.Gelaendepunktindex_Teil_1_Int
-                , /*    3 */ buf.Kreuzungsobjektindex_Teil_1_Int
-                , /*    4 */ buf.StationFloat
-                , /*    5 */ buf.GelaendehoeheTrassenmitteFloat
-                , /*    6 */ buf.OrdinateSeitlichUeberhoehung_1_Float
-                , /*    7 */ buf.SeitlicheUeberhoehung_1_Float
-                , /*    8 */ buf.OrdinateSeitlicheUeberhoehung_2_Float
-                , /*    9 */ buf.SeitlicheUeberhoehung_2_Float
-                , /*   10 */ buf.Gelaendepunktindex_Teil_2_Int
-                , /*   11 */ buf.KulturartCode
-                , /*   12 */ buf.KreuzungsobjektindexTeil_2_Int
-            );
+            (void)printf(
+                buf.fmtPrintf, /*    1 */ buf.DSK, /*    2 */ buf.Gelaendepunktindex_Teil_1_Int, /*    3 */ buf.Kreuzungsobjektindex_Teil_1_Int, /*    4 */ buf.StationFloat, /*    5 */ buf.GelaendehoeheTrassenmitteFloat, /*    6 */ buf.OrdinateSeitlichUeberhoehung_1_Float, /*    7 */ buf.SeitlicheUeberhoehung_1_Float, /*    8 */ buf.OrdinateSeitlicheUeberhoehung_2_Float, /*    9 */ buf.SeitlicheUeberhoehung_2_Float, /*   10 */ buf.Gelaendepunktindex_Teil_2_Int, /*   11 */ buf.KulturartCode, /*   12 */ buf.KreuzungsobjektindexTeil_2_Int);
         }
         else if (std::strcmp("OGE2", aDSK) == 0 && g_dictDSKs["OGE2"])
         {
-            struct OGE2 buf {};
-            char const* fmt{ "%4c%*2c%6c%30c" };
+            struct OGE2 buf
+            {
+            };
 
             auto n = sscanf(
-                lineBuf
-                , fmt
-                , /*    1 */ buf.DSK
-                , /*    2 */ buf.GelaendepunktindexChar
-                , /*    3 */ buf.KulturartReintext
-            );
+                lineBuf, buf.fmtDS, /*    1 */ buf.DSK, /*    2 */ buf.GelaendepunktindexChar, /*    3 */ buf.KulturartReintext);
             assert(n == 12);
-            /*   2 */ n = sscanf(buf.GelaendepunktindexChar, "%d", &buf.GelaendepunktindexInt);assert(n == 1);
-            char const* fmt2{ "\n%s|\n%d|\n%s|\n" };
+            /*   2 */ n = sscanf(buf.GelaendepunktindexChar, "%d", &buf.GelaendepunktindexInt);
+            assert(n == 1);
 
-            (void)printf
-            (
-                fmt2
-                , /*    1 */ buf.DSK
-                , /*    2 */ buf.GelaendepunktindexInt
-                , /*    3 */ buf.KulturartReintext
-            );
+            (void)printf(
+                buf.fmtPrintf, /*    1 */ buf.DSK, /*    2 */ buf.GelaendepunktindexInt, /*    3 */ buf.KulturartReintext);
         }
 
     } // for line by line: dsks
 #endif
-
 
     fclose(fp);
 
