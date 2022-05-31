@@ -11,8 +11,9 @@
                 "/EHsc",
                 "/nologo",
                 "/Fe:",
-                "${fileDirname}\\${fileBasenameNoExtension}.exe",
-                "${file}"
+                "${fileDirname}/${fileBasenameNoExtension}.exe",
+                "${file}", 
+                "${fileDirname}/ParserGH263.cpp",
             ],
             "options": {
                 "cwd": "${fileDirname}"
