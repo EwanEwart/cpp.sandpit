@@ -5,6 +5,7 @@
             "type": "cppbuild",
             "command": "cl.exe",
             "args": [
+                "/UNDEBUG",
 				"/I${BOOST_ROOT}",
                 "/Zi",
                 "/EHsc",

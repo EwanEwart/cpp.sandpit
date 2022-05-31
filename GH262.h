@@ -123,103 +123,196 @@ struct Base
 //     , SCSA
 //     , STAT
 // };
-// std::array<DSATTR, 92> dsks
-// {
-//      "INFO",false
-//     ,"INFS",false
-//     ,"PARS",false
-//     ,"BEAR",true
-//     ,"TXT1",false
-//     ,"TXT2",false
-//     ,"KOMM",true
-//     ,"PAR1",true
-//     ,"PARX",false
-//     ,"DINE",false
-//     ,"DBSV",false
-//     ,"TRRL",false
-//     ,"WIND",false
-//     ,"ZSTA",false
-//     ,"ZSTD",true
-//     ,"ZSAN",false
-//     ,"DWRE",false
-//     ,"SLG1",false
-//     ,"SLG2",false
-//     ,"SLG3",false
-//     ,"DTVG",false
-//     ,"PHAS",false
-//     ,"PHA2",false
-//     ,"PHA4",false
-//     ,"PHA5",false
-//     ,"PSYS",false
-//     ,"PZLF",false
-//     ,"HTMP",false
-//     ,"TPKT",false
-//     ,"HTM2",false
-//     ,"MAST",true
-//     ,"TRAV",true
-//     ,"KET1",true
-//     ,"KET2",true
-//     ,"ROLL",false
-//     ,"WRR1",false
-//     ,"WRR2",false
-//     ,"SCSV",false
-//     ,"PHAV",false
-//     ,"DHGM",false
-//     ,"EZLA",true
-//     ,"NEIG",false
-//     ,"ENEI",false
-//     ,"ENET",false
-//     ,"PATH",false
-//     ,"SLK1",true
-//     ,"SLK2",true
-//     ,"SLK3",true
-//     ,"EDHM",false
-//     ,"ELST",false
-//     ,"ESEH",false
-//     ,"SPAN",false
-//     ,"DBPD",false
-//     ,"EPHA",false
-//     ,"EGZU",false
-//     ,"EKAP",false
-//     ,"EPHF",false
-//     ,"OBOP",false
-//     ,"OBJ1",true
-//     ,"OBJ2",true
-//     ,"OBJ3",true
-//     ,"OBJA",false
-//     ,"OBA1",false
-//     ,"OPKT",true
-//     ,"OLIN",true
-//     ,"OBFL",true
-//     ,"OGEL",true
-//     ,"OGE2",true
-//     ,"OWEA",false
-//     ,"OKRZ",false
-//     ,"OKN2",false
-//     ,"OKN3",false
-//     ,"OKRV",false
-//     ,"OKSE",false
-//     ,"OKS2",false
-//     ,"OERG",false
-//     ,"OER2",false
-//     ,"OEKB",false
-//     ,"OMAB",false
-//     ,"OMA2",false
-//     ,"OEXP",false
-//     ,"OEX2",false
-//     ,"OPUO",false
-//     ,"OPER",false
-//     ,"OPIA",false
-//     ,"OERI",false
-//     ,"OKRA",false
-//     ,"OKRK",false
-//     ,"OKRS",false
-//     ,"OALT",false
-//     ,"SCSA",false
-//     ,"STAT",false
-// };
-std::map<std::string, unsigned int> g_dictDSKs{
-    {"INFO", false}, {"INFS", false}, {"PARS", false}, {"BEAR", true}, {"TXT1", false}, {"TXT2", false}, {"KOMM", true}, {"PAR1", true}, {"PARX", false}, {"DINE", false}, {"DBSV", false}, {"TRRL", false}, {"WIND", false}, {"ZSTA", false}, {"ZSTD", true}, {"ZSAN", false}, {"DWRE", false}, {"SLG1", true}, {"SLG2", true}, {"SLG3", true}, {"DTVG", false}, {"PHAS", false}, {"PHA2", false}, {"PHA4", false}, {"PHA5", false}, {"PSYS", false}, {"PZLF", false}, {"HTMP", false}, {"TPKT", false}, {"HTM2", false}, {"MAST", true}, {"TRAV", true}, {"KET1", true}, {"KET2", true}, {"ROLL", false}, {"WRR1", false}, {"WRR2", false}, {"SCSV", false}, {"PHAV", false}, {"DHGM", false}, {"EZLA", true}, {"NEIG", false}, {"ENEI", false}, {"ENET", false}, {"PATH", false}, {"SLK1", true}, {"SLK2", true}, {"SLK3", true}, {"EDHM", false}, {"ELST", false}, {"ESEH", false}, {"SPAN", false}, {"DBPD", false}, {"EPHA", false}, {"EGZU", false}, {"EKAP", false}, {"EPHF", false}, {"OBOP", false}, {"OBJ1", true}, {"OBJ2", true}, {"OBJ3", true}, {"OBJA", false}, {"OBA1", false}, {"OPKT", true}, {"OLIN", true}, {"OBFL", true}, {"OGEL", true}, {"OGE2", true}, {"OWEA", false}, {"OKRZ", false}, {"OKN2", false}, {"OKN3", false}, {"OKRV", false}, {"OKSE", false}, {"OKS2", false}, {"OERG", false}, {"OER2", false}, {"OEKB", false}, {"OMAB", false}, {"OMA2", false}, {"OEXP", false}, {"OEX2", false}, {"OPUO", false}, {"OPER", false}, {"OPIA", false}, {"OERI", false}, {"OKRA", false}, {"OKRK", false}, {"OKRS", false}, {"OALT", false}, {"SCSA", false}, {"STAT", false}};
+std::array<DSATTR, 92> g_arr_dsks
+{
+     "INFO",false
+    ,"INFS",false
+    ,"PARS",false
+    ,"BEAR",true
+    ,"TXT1",false
+    ,"TXT2",false
+    ,"KOMM",true
+    ,"PAR1",true
+    ,"PARX",false
+    ,"DINE",false
+    ,"DBSV",false
+    ,"TRRL",false
+    ,"WIND",false
+    ,"ZSTA",false
+    ,"ZSTD",true
+    ,"ZSAN",false
+    ,"DWRE",false
+    ,"SLG1",false
+    ,"SLG2",false
+    ,"SLG3",false
+    ,"DTVG",false
+    ,"PHAS",false
+    ,"PHA2",false
+    ,"PHA4",false
+    ,"PHA5",false
+    ,"PSYS",false
+    ,"PZLF",false
+    ,"HTMP",false
+    ,"TPKT",false
+    ,"HTM2",false
+    ,"MAST",true
+    ,"TRAV",true
+    ,"KET1",true
+    ,"KET2",true
+    ,"ROLL",false
+    ,"WRR1",false
+    ,"WRR2",false
+    ,"SCSV",false
+    ,"PHAV",false
+    ,"DHGM",false
+    ,"EZLA",true
+    ,"NEIG",false
+    ,"ENEI",false
+    ,"ENET",false
+    ,"PATH",false
+    ,"SLK1",true
+    ,"SLK2",true
+    ,"SLK3",true
+    ,"EDHM",false
+    ,"ELST",false
+    ,"ESEH",false
+    ,"SPAN",false
+    ,"DBPD",false
+    ,"EPHA",false
+    ,"EGZU",false
+    ,"EKAP",false
+    ,"EPHF",false
+    ,"OBOP",false
+    ,"OBJ1",true
+    ,"OBJ2",true
+    ,"OBJ3",true
+    ,"OBJA",false
+    ,"OBA1",false
+    ,"OPKT",true
+    ,"OLIN",true
+    ,"OBFL",true
+    ,"OGEL",true
+    ,"OGE2",true
+    ,"OWEA",false
+    ,"OKRZ",false
+    ,"OKN2",false
+    ,"OKN3",false
+    ,"OKRV",false
+    ,"OKSE",false
+    ,"OKS2",false
+    ,"OERG",false
+    ,"OER2",false
+    ,"OEKB",false
+    ,"OMAB",false
+    ,"OMA2",false
+    ,"OEXP",false
+    ,"OEX2",false
+    ,"OPUO",false
+    ,"OPER",false
+    ,"OPIA",false
+    ,"OERI",false
+    ,"OKRA",false
+    ,"OKRK",false
+    ,"OKRS",false
+    ,"OALT",false
+    ,"SCSA",false
+    ,"STAT",false
+};
+std::map<std::string, unsigned int> g_dictDSKs
+{
+      {"INFO", false}
+    , {"INFS", false}
+    , {"PARS", false}
+    , {"BEAR", true}
+    , {"TXT1", false}
+    , {"TXT2", false}
+    , {"KOMM", true}
+    , {"PAR1", true}
+    , {"PARX", false}
+    , {"DINE", false}
+    , {"DBSV", false}
+    , {"TRRL", false}
+    , {"WIND", false}
+    , {"ZSTA", false}
+    , {"ZSTD", true}
+    , {"ZSAN", false}
+    , {"DWRE", false}
+    , {"SLG1", true}
+    , {"SLG2", true}
+    , {"SLG3", true}
+    , {"DTVG", false}
+    , {"PHAS", false}
+    , {"PHA2", false}
+    , {"PHA4", false}
+    , {"PHA5", false}
+    , {"PSYS", false}
+    , {"PZLF", false}
+    , {"HTMP", false}
+    , {"TPKT", false}
+    , {"HTM2", false}
+    , {"MAST", true}
+    , {"TRAV", true}
+    , {"KET1", true}
+    , {"KET2", true}
+    , {"ROLL", false}
+    , {"WRR1", false}
+    , {"WRR2", false}
+    , {"SCSV", false}
+    , {"PHAV", false}
+    , {"DHGM", false}
+    , {"EZLA", true}
+    , {"NEIG", false}
+    , {"ENEI", false}
+    , {"ENET", false}
+    , {"PATH", false}
+    , {"SLK1", true}
+    , {"SLK2", true}
+    , {"SLK3", true}
+    , {"EDHM", false}
+    , {"ELST", false}
+    , {"ESEH", false}
+    , {"SPAN", false}
+    , {"DBPD", false}
+    , {"EPHA", false}
+    , {"EGZU", false}
+    , {"EKAP", false}
+    , {"EPHF", false}
+    , {"OBOP", false}
+    , {"OBJ1", true}
+    , {"OBJ2", true}
+    , {"OBJ3", true}
+    , {"OBJA", false}
+    , {"OBA1", false}
+    , {"OPKT", true}
+    , {"OLIN", true}
+    , {"OBFL", true}
+    , {"OGEL", true}
+    , {"OGE2", true}
+    , {"OWEA", false}
+    , {"OKRZ", false}
+    , {"OKN2", false}
+    , {"OKN3", false}
+    , {"OKRV", false}
+    , {"OKSE", false}
+    , {"OKS2", false}
+    , {"OERG", false}
+    , {"OER2", false}
+    , {"OEKB", false}
+    , {"OMAB", false}
+    , {"OMA2", false}
+    , {"OEXP", false}
+    , {"OEX2", false}
+    , {"OPUO", false}
+    , {"OPER", false}
+    , {"OPIA", false}
+    , {"OERI", false}
+    , {"OKRA", false}
+    , {"OKRK", false}
+    , {"OKRS", false}
+    , {"OALT", false}
+    , {"SCSA", false}
+    , {"STAT", false}
+};
 
 //: INFO: Info Zeile
 // Erste Zeile der Datei. Bei allen anderen Daten ist die Reihenfolge frei.
@@ -477,7 +570,7 @@ struct ZSTD : Base
     virtual ~ZSTD() {}
 };
 //: ZSAN: Abstandsnachweise
-struct ZSAN
+struct ZSAN : Base
 {
     /*  1 -  4   4  */ char DSK[4 + 1];                                    // Satzkennung ‘ZSAN’
     /*  7 -  9   3  */ char SatzindexChar[3 + 1];                          // Satzindex (laufende Nummer)
@@ -497,7 +590,7 @@ struct ZSAN
     virtual ~ZSAN() {}
 };
 //: DWRE: Druckausgabe Seilkurvenberechnung
-struct DWRE
+struct DWRE : Base
 {
     /*  1 -  4        4  */ char DSK[4 + 1];                    // Satzkennung ‘DWRE’
     /*  7 -  7        1  */ char Blattkennung[1 + 1];           // Blattkennung: A-Kettenaufhängepunkte (neu ab Version 3.4.12) Z-Zustandblatt H-Seilhöhentabelle L-Einzellasten (Eingabe) (neu ab Version 4.13.6) E-Einzellasten (Ergebnisse) D-Durchhänge 1 – Zusammenfassende Ausgabe 2 – ergänzende Daten
@@ -567,7 +660,7 @@ GH263 Datenformat                                       25.01.22                
 
 //: "SLG1", SLG2, SLG3: Seildaten   +++
 // Maximal 30 Seile
-struct SLG1
+struct SLG1 : Base
 {
     char const *fmtDS{"%4c%*2c%3c%*1c%28c%4c%2c%1c%4c%5c%5c%5c%6c%8c%*1c%1c%1c%1c%1c%1c"};
     char const *fmtPrintf{"\n%s|\n%d|\n%s|\n%d|\n%d|\n%s|\n%4.2f|\n%s|\n%5.1f|\n%5.3f|\n%6.2f|\n%8.0f|\n%s|\n%s|\n%s|\n%s|\n%s|\n"};
@@ -605,7 +698,7 @@ struct SLG1
 
 //: SLG1, "SLG2", SLG3: Seildaten   +++
 // Maximal 30 Seile
-struct SLG2
+struct SLG2 : Base
 {
     char const *fmtDS{"%4c%*2c%3c%6c%8c%8c%10c%11c%7c%4c%8c%8c%1c"};
     char const *fmtPrintf{"\n%s|\n%d|\n%6.2f|\n%8.2f|\n%8.0f|\n%10.8f|\n%11.9f|\n%7.3f|\n%4.2f|\n%8.2f|\n%8.2f|\n%s|\n"};
@@ -639,7 +732,7 @@ struct SLG2
 
 //: SLG1, SLG2, "SLG3": Seildaten   +++
 // Maximal 30 Seile
-struct SLG3
+struct SLG3 : Base
 {
     char const *fmtDS{"%4c%*2c%3c%8c%8c%8c%8c%6c%8c"};
     char const *fmtPrintf{"\n%s|\n%d|\n%8.2f|\n%8.2f|\n%8.2f|\n%8.0f|\n%6.2f|\n%8.2f|\n"};
@@ -664,54 +757,54 @@ struct SLG3
     virtual ~SLG3() {}
 };
 //: DTVG: Zeitabhängige Delta-T Vorgaben für Seilkriechen
-struct DTVG
+struct DTVG : Base
 {
     virtual ~DTVG() {}
 };
 //: "PHAS", PHA2, PHA4, PHA5: Phasen
-struct PHAS
+struct PHAS : Base
 {
     virtual ~PHAS() {}
 };
 //: PHAS, "PHA2", PHA4, PHA5: Phasen
-struct PHA2
+struct PHA2 : Base
 {
     virtual ~PHA2() {}
 };
 //: PHAS, PHA2, "PHA4", PHA5: Phasen
-struct PHA4
+struct PHA4 : Base
 {
     virtual ~PHA4() {}
 };
 //: PHAS, PHA2, PHA4, "PHA5": Phasen
-struct PHA5
+struct PHA5 : Base
 {
     virtual ~PHA5() {}
 };
 //: PSYS: Phasensysteme
-struct PSYS
+struct PSYS : Base
 {
     virtual ~PSYS() {}
 };
 //: PZLF: Zusätzliche Phasenabstandsberechnungen
-struct PZLF
+struct PZLF : Base
 {
     virtual ~PZLF() {}
 };
 //: HTMP (oder TPKT): Daten Hochtemperaturseile / Transitionspunkte
 //: TPKT (oder HTMP): Daten Hochtemperaturseile / Transitionspunkte
-struct HTMP
+struct HTMP : Base
 {
     virtual ~HTMP() {}
 };
 //: HTM2: Daten Hochtemperaturseile 2
-struct HTM2
+struct HTM2 : Base
 {
     virtual ~HTM2() {}
 };
 //: MAST: Maststandorte  +++
 // Maximal 100 Maste
-struct MAST
+struct MAST : Base
 {
     char const *fmtDS{"%4c%*2c%3c%*1c%6c%*1c%1c%*1c%7c%6c%9c%8c%9c%9c%*1c%33c%6c%*1c%26c"};
     char const *fmtPrintf{"\n%s|\n%d|\n%s|\n%s|\n%s|\n%6.2f|\n%9.2f|\n%8.2f|\n%9.3f|\n%9.3f|\n%s%6.2f|\n%s|\n"};
@@ -742,7 +835,7 @@ struct MAST
     virtual ~MAST() {}
 };
 //: TRAV: Aufhängepunkte (Traversen) +++
-struct TRAV
+struct TRAV : Base
 {
     char const *fmtDS{"%4c%*2c%3c%3c%7c%7c%8c%*6c%6c%3c%*1c%7c%7c"};
     char const *fmtPrintf{"\n%s|\n%d|\n%d|\n%7.2f|\n%7.2f|\n%8.2f|\n%6.2f|\n%d|\n%7.2f|\n%7.2f|\n"};
@@ -773,7 +866,7 @@ struct TRAV
 };
 //: "KET1", KET2: Ketten   +++
 // Maximal 1000 Ketten
-struct KET1
+struct KET1 : Base
 {
 #ifdef FLP
     char const *fmtDS{"%4c%*2c%3c%*1c%1c%3c%*1c%2c%*1c%28c%*1c%9c%*1c%5c"};
@@ -802,7 +895,7 @@ struct KET1
 
 //: KET1, "KET2": Ketten   +++
 // Maximal 1000 Ketten
-struct KET2
+struct KET2 : Base
 {
     char const *fmtDS{"%4c%*2c%3c%5c%5c%5c%5c%6c%6c%6c%7c%7c%6c%6c%6c%6c%6c%5c%5c"};
     char const *fmtPrintf{"\n%4s|\n%d|\n%5.2f|\n%5.2f|\n%5.2f|\n%5.2f|\n%6.0f|\n%6.0f|\n%6.0f|\n%7.2f|\n%7.2f|\n%6.0f|\n%6.3f|\n%6.3f|\n%6.3f|\n%6.3f|\n%5.2f|\n%5.2f|\n"};
@@ -849,37 +942,37 @@ struct KET2
     virtual ~KET2() {}
 };
 //: ROLL: Rollen (bei Berechnung Seile in Rollen)
-struct ROLL
+struct ROLL : Base
 {
     virtual ~ROLL() {}
 };
 //: "WRR1", WRR2: Einstellungen Spanntabellen
-struct WRR1
+struct WRR1 : Base
 {
     virtual ~WRR1() {}
 };
 //: WRR1, "WRR2": Einstellungen Spanntabellen
-struct WRR2
+struct WRR2 : Base
 {
     virtual ~WRR2() {}
 };
 //: SCSV: Einstellungen Schutzstreifen
-struct SCSV
+struct SCSV : Base
 {
     virtual ~SCSV() {}
 };
 //: PHAV: Einstellungen Phasenabstandsberechnung
-struct PHAV
+struct PHAV : Base
 {
     virtual ~PHAV() {}
 };
 //: DHGM: Durchhangsmessungen
-struct DHGM
+struct DHGM : Base
 {
     virtual ~DHGM() {}
 };
 //: EZLA: Einzel- und Streckenlasten  +++
-struct EZLA
+struct EZLA : Base
 {
     char const *fmtDS{"%4c%*2c%3c%3c%3c%*1c%1c%*1c%1c%1c%1c%3c%3c%9c%9c%9c%9c"};
     char const *fmtPrintf{"\n%4s|\n%3d|\n%3d|\n%3d|\n%1s|\n%1s|\n%1s|\n%1s|\n%3d|\n%3d|\n%99.2f|\n%9.2f|\n%9.2f|\n%99.2f|\n"};
@@ -916,26 +1009,26 @@ struct EZLA
     virtual ~EZLA() {}
 };
 //: NEIG: Eingabe Seilneigung
-struct NEIG
+struct NEIG : Base
 {
     virtual ~NEIG() {}
 };
-struct ENEI
+struct ENEI : Base
 {
     virtual ~ENEI() {}
 };
 //: ENEI: Ergebnisse Seilneigung (slc)
-struct ENET
+struct ENET : Base
 {
     virtual ~ENET() {}
 };
 //: PATH: Dateipfad Berechnungsprogramm (slc)
-struct PATH
+struct PATH : Base
 {
     virtual ~PATH() {}
 };
 //: "SLK1", SLK2, SLK3: Ergebnis Seilkurvenberechnung (slc)  +++
-struct SLK1
+struct SLK1 : Base
 {
     char const *fmtDS{"%4c%*3c%4c%4c%3c%3c%3c%9c%9c%9c%9c%9c%9c%9c%9c%9c%9c"};
     char const *fmtPrintf{"\n%s|\n%d|\n%d|\n%d|\n%d|\n%d|\n%9.2f|\n%9.2f|\n%9.2f|\n%9.2f|\n%9.2f|\n%9.2f|\n%9.2f|\n%9.2f|\n%9.2f|\n%9.2f|\n"};
@@ -976,7 +1069,7 @@ struct SLK1
     virtual ~SLK1() {}
 };
 //: SLK1, "SLK2", SLK3: Ergebnis Seilkurvenberechnung (slc)  +++
-struct SLK2
+struct SLK2 : Base
 {
     char const *fmtDS{"%4c%*3c%4c%7c%11c%7c%7c%9c%9c%9c%1c%1c%9c%9c%9c%9c%8c%8c"};
     char const *fmtPrintf{"\n%s|\n%d|\n%7.2f|\n%11.9f|\n%7.2f|\n%7.2f|\n%9.2f|\n%9.2f|\n%9.2f|\n%s|\n%s|\n%9.2f|\n%9.2f|\n%9.2f|\n%9.2f|\n%8.2f|\n%8.2f|\n"};
@@ -1019,7 +1112,7 @@ struct SLK2
     virtual ~SLK2() {}
 };
 //: SLK1, SLK2, "SLK3": Ergebnis Seilkurvenberechnung (slc)
-struct SLK3
+struct SLK3 : Base
 {
     char const *fmtDS{"%4c%*3c%4c%7c%7c%7c%7c%7c%7c%10c%10c"};
     char const *fmtPrintf{"\n%s|\n%d|\n%7.3f|\n%7.3f|\n%7.3f|\n%7.3f|\n%7.3f|\n%7.3f|\n%10.2f|\n%10.2f|\n"};
@@ -1048,57 +1141,57 @@ struct SLK3
     virtual ~SLK3() {}
 };
 //: EDHM: Ergebnisse Durchhangsmessungen (slc)
-struct EDHM
+struct EDHM : Base
 {
     virtual ~EDHM() {}
 };
 //: ELST: Ergebnis Einzellasten (slc)
-struct ELST
+struct ELST : Base
 {
     virtual ~ELST() {}
 };
 //: ESEH: Ergebnis Seilhöhentabellen (slc)
-struct ESEH
+struct ESEH : Base
 {
     virtual ~ESEH() {}
 };
 //: SPAN: Ergebnisse Spannweiten an Maste (slc)
-struct SPAN
+struct SPAN : Base
 {
     virtual ~SPAN() {}
 };
 //: DBPD: Ergebnisse Phasendaten DB Energie (slc)
-struct DBPD
+struct DBPD : Base
 {
     virtual ~DBPD() {}
 };
 //: EPHA: Ergebnisse Ausgabe Phasen (slc)
-struct EPHA
+struct EPHA : Base
 {
     virtual ~EPHA() {}
 };
 //: EGZU: Ergebnisse Grenzspannungen überschritten (slc)
-struct EGZU
+struct EGZU : Base
 {
     virtual ~EGZU() {}
 };
 //: EKAP: Ergebnisse Kettenaufhängepunkte (slc)
-struct EKAP
+struct EKAP : Base
 {
     virtual ~EKAP() {}
 };
 //: EPHF: Ergebnisse feldbezogene Phasendaten (slc)
-struct EPHF
+struct EPHF : Base
 {
     virtual ~EPHF() {}
 };
 //: OBOP: Einstellungen Berechnung Kreuzungsobjekte
-struct OBOP
+struct OBOP : Base
 {
     virtual ~OBOP() {}
 };
 //: "OBJ1", OBJ2, OBJ3: Kreuzungsobjekte  +++
-struct OBJ1
+struct OBJ1 : Base
 {
     char const *fmtDS{"%4c%*2c%3c%*1c%10c%6c%3c%1c%*3c%4c%3c%3c%*1c%1c%1c%1c%1c%1c%1c%3c%6c"};
     char const *fmtPrintf{"\n%s|\n%d|\n%s|\n%6.2f|\n%d|\n%s|\n%s|\n%d|\n%d|\n%s|\n%s|\n%s|\n%s|\n%s|\n%s|\n%d|\n%6.2f|\n"};
@@ -1135,7 +1228,7 @@ struct OBJ1
     virtual ~OBJ1() {}
 };
 //: OBJ1, "OBJ2", OBJ3: Kreuzungsobjekte  +++
-struct OBJ2
+struct OBJ2 : Base
 {
     char const *fmtDS{"%4c%*2c%3c%*1c%28c%28c%3c"};
     char const *fmtPrintf{"\n%s|\n%d|\n%s|\n%s|\n%d|\n"};
@@ -1154,7 +1247,7 @@ struct OBJ2
     virtual ~OBJ2() {}
 };
 //: OBJ1, OBJ2, "OBJ3": Kreuzungsobjekte  +++
-struct OBJ3
+struct OBJ3 : Base
 {
     char const *fmtDS{"%4c%*2c%3c%*1c%28c%28c%3c"};
     char const *fmtPrintf{"\n%s|\n%d|\n%s|\n%s|\n%d|\n"};
@@ -1173,17 +1266,17 @@ struct OBJ3
     virtual ~OBJ3() {}
 };
 //: OBJA: Erweiterung unterschiedliche Mindestabstände für Nachweiszustände
-struct OBJA
+struct OBJA : Base
 {
     virtual ~OBJA() {}
 };
 //: OBA1: Erweiterung unterschiedliche Mindestabstände 110kV für
-struct OBA1
+struct OBA1 : Base
 {
     virtual ~OBA1() {}
 };
 //: OPKT: Punktobjekte  +++
-struct OPKT
+struct OPKT : Base
 {
 #ifdef FLP
     char const *fmtDS{"%4c%*2c%3c%*1c%3c%9c%7c%8c%7c%8c%*1c%3c%10c%3c"};
@@ -1223,7 +1316,7 @@ struct OPKT
     virtual ~OPKT() {}
 };
 //: OLIN: Linienobjekte  +++
-struct OLIN
+struct OLIN : Base
 {
 #ifdef FLP
     char const *fmtDS{"%4c%*2c%3c%*1c%3c%3c%3c%3c%3c%10c%3c%3c"};
@@ -1267,7 +1360,7 @@ struct OLIN
     virtual ~OLIN() {}
 };
 //: OBFL: Flächenobjekte  +++
-struct OBFL
+struct OBFL : Base
 {
 #ifdef FLP
     char const *fmtDS{"%4c%*2c%3c%*1c%3c%3c%3c%3c%3c%3c%3c%3c%3c%10c%3c%3c"};
@@ -1329,7 +1422,7 @@ struct OBFL
 //: "OGEL", OGE2: Geländepunkte  +++
 // Wenn vorhanden mindestens zwei Punkte pro Kreuzungsobjekt sortiert nach Station.
 // *** Änderung ab Version 1.5.1: Erweiterung der Punktindize auf 6 Stellen, abgelegt in zwei 3 stelligen Werten, um abwärtskompatibel zu bleiben. ***
-struct OGEL
+struct OGEL : Base
 {
     char const *fmtDS{"%4c%*2c%3c%*1c%3c%9c%8c%6c%6c%6c%6c%*1c%3c%3c%3c"};
     char const *fmtPrintf{"\n%4s|\n%3d|\n%3d|\n%9.2f|\n%8.2f|\n%6.2f|\n%6.2f|\n%6.2f|\n%6.2f|\n%3d|\n%3s|\n%3d|\n"};
@@ -1377,7 +1470,7 @@ struct OGEL
     virtual ~OGEL() {}
 };
 //: OGEL, "OGE2": Geländepunkte  +++
-struct OGE2
+struct OGE2 : Base
 {
     char const *fmtDS{"%4c%*2c%6c%30c"};
     char const *fmtPrintf{"\n%s|\n%d|\n%s|\n"};
@@ -1393,122 +1486,122 @@ struct OGE2
     virtual ~OGE2() {}
 };
 //: OWEA: Windenergieanlagen
-struct OWEA
+struct OWEA : Base
 {
     virtual ~OWEA() {}
 };
 //: "OKRZ", OKN2, OKN3: Leitungskreuzungen
-struct OKRZ
+struct OKRZ : Base
 {
     virtual ~OKRZ() {}
 };
 //: OKRZ, "OKN2", OKN3: Leitungskreuzungen
-struct OKN2
+struct OKN2 : Base
 {
     virtual ~OKN2() {}
 };
 //: OKRZ, OKN2, "OKN3": Leitungskreuzungen
-struct OKN3
+struct OKN3 : Base
 {
     virtual ~OKN3() {}
 };
 //: OKRV: Einstellungen Berechnung mit vorgegebenen kreuzenden Seilen
-struct OKRV
+struct OKRV : Base
 {
     virtual ~OKRV() {}
 };
 //: "OKSE", OKS2: Kreuzende Seile
-struct OKSE
+struct OKSE : Base
 {
     virtual ~OKSE() {}
 };
 //: OKSE, "OKS2": Kreuzende Seile
-struct OKS2
+struct OKS2 : Base
 {
     virtual ~OKS2() {}
 };
 //: OERG: Kreuzungsobjekte Ergebnis (kleinster Abstand je Nachweis, slc)
-struct OERG
+struct OERG : Base
 {
     virtual ~OERG() {}
 };
 //: OER2: Bei Leitungskreuzungen zusätzlich zweiter Ergebnisdatensatz (slc)
-struct OER2
+struct OER2 : Base
 {
     virtual ~OER2() {}
 };
 //: OEKB: Daten Kettenstrangbruch bei Abstandsberechnung (slc)
-struct OEKB
+struct OEKB : Base
 {
     virtual ~OEKB() {}
 };
 //: OMAB: Ausgabe alle Minderabstände (slc)
-struct OMAB
+struct OMAB : Base
 {
     virtual ~OMAB() {}
 };
 //: OMA2: Bei Leitungskreuzungen zusätzlich zweiter Ergebnisdatensatz (slc)
-struct OMA2
+struct OMA2 : Base
 {
     virtual ~OMA2() {}
 };
 //: OEXP: Kreuzungsobjekte, weitere Ergebnisse (slc)
-struct OEXP
+struct OEXP : Base
 {
     virtual ~OEXP() {}
 };
 //: OEX2: Bei Leitungskreuzungen zusätzlich zweiter Ergebnisdatensatz (slc)
-struct OEX2
+struct OEX2 : Base
 {
     virtual ~OEX2() {}
 };
 //: OPUO: Kritischer Punkt auf Phase unterhalb des kritischen Punkt auf Objekt
-struct OPUO
+struct OPUO : Base
 {
     virtual ~OPUO() {}
 };
 //: OPER: Berechnungsfehler (kein Ergebnis ermittelt, slc)
-struct OPER
+struct OPER : Base
 {
     virtual ~OPER() {}
 };
 //: OPIA: Leitungskreuzungen: Phasenkombinationen mit identischen
-struct OPIA
+struct OPIA : Base
 {
     virtual ~OPIA() {}
 };
 //: OERI: Allgemeine Informationen zu Kreuzungsobjektberechnungen (slc)
-struct OERI
+struct OERI : Base
 {
     virtual ~OERI() {}
 };
 //: OKRA: Ergebnisse Leitungskreuzungsachse (slc)
-struct OKRA
+struct OKRA : Base
 {
     virtual ~OKRA() {}
 };
 //: OKRK: Ergebnisse Leitungskreuzungsschnitt (slc)
-struct OKRK
+struct OKRK : Base
 {
     virtual ~OKRK() {}
 };
 //: OKRS: Ergebnisse Kreuzungsseile(slc)
-struct OKRS
+struct OKRS : Base
 {
     virtual ~OKRS() {}
 };
 //: OALT: Ergebnisse Auslegungstemperaturen
-struct OALT
+struct OALT : Base
 {
     virtual ~OALT() {}
 };
 //: SCSA: Ergebnisse Schutzstreifenberechnung(slc)
-struct SCSA
+struct SCSA : Base
 {
     virtual ~SCSA() {}
 };
 //: STAT: Statuscode der Berechnung (slc)
-struct STAT
+struct STAT : Base
 {
     virtual ~STAT() {}
 };
