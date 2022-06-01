@@ -279,25 +279,21 @@ int main()
 #include <typeinfo>
 #include <cstdio>
 #include <string>
-#include <locale.h>
 #include "ParserGH263.h"
+#include "SimpleLogger.h"
 
 using namespace cc::parser;
 
 int main(int argc, char const* argv[])
 {
 
-    setlocale(LC_CTYPE, "German.1252");
-    setlocale(LC_NUMERIC, "en_US.1252");
-    // setlocale(LC_ALL, "de_DE.UTF8"); // ... fourth commit
-
     auto upParserGH263{ std::make_unique<ParserGH263>("E:/dev/cpp.sandpit/Muster_024A-027A.SLC") };
 
-    upParserGH263->statistics();
+    // upParserGH263->statistics();
 
     upParserGH263->parse();
 
-    upParserGH263->printRecordsOnConsole();
+    upParserGH263->logRecords();
 
     return 0;
 }

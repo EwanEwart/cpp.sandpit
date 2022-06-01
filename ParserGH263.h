@@ -3,7 +3,7 @@
 
 #include <array>
 #include <map>
-#include <locale>
+// #include <locale>
 #include <memory>
 #include <queue>
 #include <tuple>
@@ -1442,7 +1442,7 @@ namespace cc
         FILE* getFP();
         void parse();
         void statistics();
-        void printRecordsOnConsole();
+        void logRecords();
     };
     } // ns parser
 } // ns cc

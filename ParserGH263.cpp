@@ -1,4 +1,5 @@
 #include "ParserGH263.h"
+#include "SimpleLogger.h"
 namespace cc
 {
     namespace parser
@@ -203,8 +204,7 @@ namespace cc
             fp = std::fopen(filePath, "r");
             if (!fp)
             {
-                std::fprintf(stderr, "%s : %d : File opening failed.\n", __FILE__, __LINE__);
-                // todo: log error
+                LOGGER->Log("%d : %d : opening SLC %s failed.\n", __FILE__, __LINE__, filePath);
             }
 
         }
@@ -227,6 +227,10 @@ namespace cc
         }
         void ParserGH263::parse()
         {
+            // setlocale(LC_CTYPE, "German.1252");
+            // setlocale(LC_NUMERIC, "en_US.1252");
+            // setlocale(LC_ALL, "de_DE.UTF8"); // ... fourth commit
+
             std::rewind(fp);
             for (; std::fgets(lineBuf, sizeof lineBuf, fp) != nullptr;)
             {
@@ -1038,9 +1042,9 @@ namespace cc
             for (; std::fgets(lineBuf, sizeof lineBuf, fp) != nullptr;)
             {
                 char aDSK[4 + 1]{};
-                // (void)printf("%s", lineBuf);
+                // LOGGER->Log("%s", lineBuf);
                 int n{ sscanf(lineBuf, "%4s\n", aDSK) };
-                // (void)printf("%s\n", aDSK);
+                // LOGGER->Log("%s\n", aDSK);
 
                 occurrencesDSK[aDSK]++;
 
@@ -1049,7 +1053,7 @@ namespace cc
 
             for (auto const& item : occurrencesDSK)
             {
-                (void)printf
+                LOGGER->Log
                 (
                     "%s : %4u\n"
                     , item.first.c_str()
@@ -1064,27 +1068,25 @@ namespace cc
                     greens++;
                 }
             }
-            (void)printf("\nCount documented DSKs == %zd\n", g_arr_dsks.size());
-            (void)printf("\nCount green DSKs == %zd\n", greens);
-            (void)printf("\nCount different DSKs  == %zd\n", occurrencesDSK.size());
-            (void)printf("\nNo of lines .SLC      == %zd\n", noOfLines);
-
-            (void)printf("\n");
+            LOGGER->Log("\nCount documented DSKs == %zd\n", g_arr_dsks.size());
+            LOGGER->Log("\nCount green DSKs      == %zd\n", greens);
+            LOGGER->Log("\nCount different DSKs  == %zd\n", occurrencesDSK.size());
+            LOGGER->Log("\nNo of lines .SLC      == %zd\n\n", noOfLines);
         }
-        void ParserGH263::printRecordsOnConsole()
+        void ParserGH263::logRecords()
         {
             for (;!queueDSKs.empty();)
             {
                 auto ds{ queueDSKs.front() };
                 auto aDSK{ ds.first.c_str() };
-                printf("==> %s\n", aDSK);
+                LOGGER->Log("==> %s\n", aDSK);
                 auto buf = std::static_pointer_cast<INFO>(ds.second);
 
                 if (std::strcmp("INFO", aDSK) == 0 && g_dictDSKs["INFO"])
                 {
                     auto buf = std::static_pointer_cast<INFO>(ds.second);
 
-                    (void)printf
+                    LOGGER->Log
                     (
                         /*    */ buf->fmtPrintf
                         /* 1 */, buf->DSK
@@ -1099,7 +1101,7 @@ namespace cc
 
                     // printf("\ntype : %s\n\n", boost::core::demangle(typeid(buf).name()).c_str());
 
-                    (void)printf
+                    LOGGER->Log
                     (
                         /*    */ buf->fmtPrintf
                         /* 1 */, buf->DSK
@@ -1110,7 +1112,7 @@ namespace cc
                 {
                     auto buf = std::static_pointer_cast<KOMM>(ds.second);
 
-                    (void)printf
+                    LOGGER->Log
                     (
                         /*    */ buf->fmtPrintf
                         /* 1 */, buf->DSK
@@ -1121,7 +1123,7 @@ namespace cc
                 {
                     auto buf = std::static_pointer_cast<PAR1>(ds.second);
 
-                    (void)printf
+                    LOGGER->Log
                     (
                         /*      */ buf->fmtPrintf
                         /*   1 */, buf->DSK
@@ -1149,7 +1151,7 @@ namespace cc
                 {
                     auto buf = std::static_pointer_cast<ZSTD>(ds.second);
 
-                    (void)printf
+                    LOGGER->Log
                     (
                         /*       */buf->fmtPrintf
                         , /*  1 */ buf->DSK
@@ -1175,7 +1177,7 @@ namespace cc
                 else if (std::strcmp("SLG1", aDSK) == 0 && g_dictDSKs["SLG1"])
                 {
                     auto buf = std::static_pointer_cast<SLG1>(ds.second);
-                    (void)printf
+                    LOGGER->Log
                     (
                         /*       */buf->fmtPrintf
                         , /*  1 */ buf->DSK
@@ -1201,7 +1203,7 @@ namespace cc
                 {
                     auto buf = std::static_pointer_cast<SLG2>(ds.second);
 
-                    (void)printf
+                    LOGGER->Log
                     (
                         buf->fmtPrintf
                         , /*  1 */ buf->DSK
@@ -1223,7 +1225,7 @@ namespace cc
                 {
                     auto buf = std::static_pointer_cast<SLG3>(ds.second);
 
-                    (void)printf
+                    LOGGER->Log
                     (
                         buf->fmtPrintf
                         , /*  1 */ buf->DSK
@@ -1240,7 +1242,7 @@ namespace cc
                 {
                     auto buf = std::static_pointer_cast<MAST>(ds.second);
 
-                    (void)printf
+                    LOGGER->Log
                     (
                         buf->fmtPrintf
                         , /*   1 */ buf->DSK
@@ -1262,7 +1264,7 @@ namespace cc
                 {
                     auto buf = std::static_pointer_cast<TRAV>(ds.second);
 
-                    (void)printf
+                    LOGGER->Log
                     (
                         buf->fmtPrintf
                         , /*   1 */ buf->DSK
@@ -1281,7 +1283,7 @@ namespace cc
                 {
                     auto buf = std::static_pointer_cast<KET1>(ds.second);
 
-                    (void)printf
+                    LOGGER->Log
                     (
                         buf->fmtPrintf
                         , /*   1 */ buf->DSK
@@ -1300,7 +1302,7 @@ namespace cc
                 {
                     auto buf = std::static_pointer_cast<KET2>(ds.second);
 
-                    (void)printf
+                    LOGGER->Log
                     (
                         buf->fmtPrintf
                         , /*   1 */ buf->DSK
@@ -1327,7 +1329,7 @@ namespace cc
                 {
                     auto buf = std::static_pointer_cast<EZLA>(ds.second);
 
-                    (void)printf
+                    LOGGER->Log
                     (
                         buf->fmtPrintf
                         , /*   1 */ buf->DSK
@@ -1350,7 +1352,7 @@ namespace cc
                 {
                     auto buf = std::static_pointer_cast<SLK1>(ds.second);
 
-                    (void)printf
+                    LOGGER->Log
                     (
                         buf->fmtPrintf
                         , /*   1 */ buf->DSK
@@ -1375,7 +1377,7 @@ namespace cc
                 {
                     auto buf = std::static_pointer_cast<SLK2>(ds.second);
 
-                    (void)printf
+                    LOGGER->Log
                     (
                         buf->fmtPrintf
                         , /*   1 */ buf->DSK
@@ -1401,7 +1403,7 @@ namespace cc
                 {
                     auto buf = std::static_pointer_cast<SLK3>(ds.second);
 
-                    (void)printf
+                    LOGGER->Log
                     (
                         buf->fmtPrintf
                         , /*   1 */ buf->DSK
@@ -1420,7 +1422,7 @@ namespace cc
                 {
                     auto buf = std::static_pointer_cast<OBJ1>(ds.second);
 
-                    (void)printf
+                    LOGGER->Log
                     (
                         buf->fmtPrintf
                         , /*   1 */ buf->DSK
@@ -1446,7 +1448,7 @@ namespace cc
                 {
                     auto buf = std::static_pointer_cast<OBJ2>(ds.second);
 
-                    (void)printf
+                    LOGGER->Log
                     (
                         buf->fmtPrintf
                         , /*   1 */ buf->DSK
@@ -1460,7 +1462,7 @@ namespace cc
                 {
                     auto buf = std::static_pointer_cast<OBJ3>(ds.second);
 
-                    (void)printf
+                    LOGGER->Log
                     (
                         buf->fmtPrintf
                         , /*   1 */ buf->DSK
@@ -1474,7 +1476,7 @@ namespace cc
                 {
                     auto buf = std::static_pointer_cast<OPKT>(ds.second);
 
-                    (void)printf
+                    LOGGER->Log
                     (
                         buf->fmtPrintf
                         , /*    1 */ buf->DSK
@@ -1495,7 +1497,7 @@ namespace cc
                 {
                     auto buf = std::static_pointer_cast<OLIN>(ds.second);
 
-                    (void)printf
+                    LOGGER->Log
                     (
                         buf->fmtPrintf
                         , /*    1 */ buf->DSK
@@ -1516,7 +1518,7 @@ namespace cc
                 {
                     auto buf = std::static_pointer_cast<OBFL>(ds.second);
 
-                    (void)printf
+                    LOGGER->Log
                     (
                         buf->fmtPrintf
                         , /*    1 */ buf->DSK
@@ -1539,7 +1541,7 @@ namespace cc
                 {
                     auto buf = std::static_pointer_cast<OGEL>(ds.second);
 
-                    (void)printf
+                    LOGGER->Log
                     (
                         buf->fmtPrintf
                         , /*    1 */ buf->DSK
@@ -1559,7 +1561,7 @@ namespace cc
                 {
                     auto buf = std::static_pointer_cast<OGE2>(ds.second);
 
-                    (void)printf
+                    LOGGER->Log
                     (
                         buf->fmtPrintf
                         , /*    1 */ buf->DSK
