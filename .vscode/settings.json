@@ -8,6 +8,7 @@
         "utility": "cpp",
         "memory": "cpp",
         "xstring": "cpp",
-        "locale": "cpp"
+        "locale": "cpp",
+        "*.ipp": "cpp"
     }
 }
