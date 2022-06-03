@@ -67,8 +67,8 @@ namespace cc
             ,"OBJ1",true
             ,"OBJ2",true
             ,"OBJ3",true
-            ,"OBJA",false
-            ,"OBA1",false
+            ,"OBJA",true
+            ,"OBA1",true
             ,"OPKT",true
             ,"OLIN",true
             ,"OBFL",true
@@ -162,8 +162,8 @@ namespace cc
             , {"OBJ1", true}
             , {"OBJ2", true}
             , {"OBJ3", true}
-            , {"OBJA", false}
-            , {"OBA1", false}
+            , {"OBJA", true}
+            , {"OBA1", true}
             , {"OPKT", true}
             , {"OLIN", true}
             , {"OBFL", true}
@@ -801,12 +801,12 @@ namespace cc
                     assert(n == 17);
 
                     /*   2 */ n = sscanf(buf->KreuzungsobjektindexTeil_1_Char, "%d", &buf->KreuzungsobjektindexTeil_1_Int); assert(n == 1);
-                    /*   4 */ n = sscanf(buf->MindestabstandChar, "%f", &buf->MindestabstandFloat); assert(n == 1);
-                    /*   5 */ n = sscanf(buf->NachweiscodeChar, "%d", &buf->NachweiscodeInt); assert(n == 1);
-                    /*   8 */ n = sscanf(buf->MastindexChar, "%d", &buf->MastindexInt); assert(n == 1);
-                    /*   9 */ n = sscanf(buf->PhasenindexChar, "%d", &buf->PhasenindexInt); assert(n == 1);
+                    /*   4 */ n = sscanf(buf->MindestabstandChar,              "%f", &buf->MindestabstandFloat); assert(n == 1);
+                    /*   5 */ n = sscanf(buf->NachweiscodeChar,                "%d", &buf->NachweiscodeInt); assert(n == 1);
+                    /*   8 */ n = sscanf(buf->MastindexChar,                   "%d", &buf->MastindexInt); assert(n == 1);
+                    /*   9 */ n = sscanf(buf->PhasenindexChar,                 "%d", &buf->PhasenindexInt); assert(n == 1);
                     /*  16 */ n = sscanf(buf->KreuzungsobjektindexTeil_2_Char, "%d", &buf->KreuzungsobjektindexTeil_2_Int); assert(n == 1);
-                    /*  17 */ n = sscanf(buf->Mindestabstand110kVChar, "%f", &buf->Mindestabstand110kVFloat); assert(n == 1);
+                    /*  17 */ n = sscanf(buf->Mindestabstand110kVChar,         "%f", &buf->Mindestabstand110kVFloat); assert(n == 1);
                 }
                 else if (std::strcmp("OBJ2", aDSK) == 0 && g_dictDSKs["OBJ2"])
                 {
@@ -849,6 +849,90 @@ namespace cc
 
                     /*   2 */ n = sscanf(buf->KreuzungsobjektindexTeil_1_Char, "%d", &buf->KreuzungsobjektindexTeil_1_Int); assert(n == 1);
                     /*   5 */ n = sscanf(buf->KreuzungsobjektindexTeil_2_Char, "%d", &buf->KreuzungsobjektindexTeil_2_Int); assert(n == 1);
+                }
+                else if (std::strcmp("OBJA", aDSK) == 0 && g_dictDSKs["OBJA"])
+                {
+                    // struct OBJA buf { };
+                    auto buf{ std::make_shared<OBJA>() };
+                    queueDSKs.push(std::pair<std::string, std::shared_ptr<Base>>("OBJA", std::static_pointer_cast<Base>(buf)));
+
+                    auto n = sscanf
+                    (
+                        lineBuf
+                        , buf->fmtDS
+                        , /*    1 */ buf->DSK
+                        , /*    2 */ buf->Kreuzungsobjektindex_Teil_1_Char
+                        , /*    3 */ buf->Kennung_Nr_1
+                        , /*    4 */ buf->Mindestabstand_1_Char
+                        , /*    5 */ buf->Kennung_Nr_2
+                        , /*    6 */ buf->Mindestabstand_2_Char
+                        , /*    7 */ buf->Kennung_Nr_3
+                        , /*    8 */ buf->Mindestabstand_3_Char
+                        , /*    9 */ buf->Kennung_Nr_4
+                        , /*   10 */ buf->Mindestabstand_4_Char
+                        , /*   11 */ buf->Kennung_Nr_5
+                        , /*   12 */ buf->Mindestabstand_5_Char
+                        , /*   13 */ buf->Kennung_Nr_6
+                        , /*   14 */ buf->Mindestabstand_6_Char
+                        , /*   15 */ buf->Kennung_Nr_7
+                        , /*   16 */ buf->Mindestabstand_7_Char
+                        , /*   17 */ buf->Kennung_Nr_8
+                        , /*   18 */ buf->Mindestabstand_8_Char
+                        , /*   19 */ buf->Kreuzungsobjektindex_Teil_2_Char
+                    );
+                    assert(n == 19);
+
+                    /*  2  */ n = sscanf(buf->Kreuzungsobjektindex_Teil_1_Char, "%d", &buf->Kreuzungsobjektindex_Teil_1_Int); assert(n == 1);
+                    /*  4  */ n = sscanf(buf->Mindestabstand_1_Char, "%f", &buf->Mindestabstand_1_Float); assert(n == 1);
+                    /*  6  */ n = sscanf(buf->Mindestabstand_2_Char, "%f", &buf->Mindestabstand_2_Float); assert(n == 1);
+                    /*  8  */ n = sscanf(buf->Mindestabstand_3_Char, "%f", &buf->Mindestabstand_3_Float); assert(n == 1);
+                    /* 10  */ n = sscanf(buf->Mindestabstand_4_Char, "%f", &buf->Mindestabstand_4_Float); assert(n == 1);
+                    /* 12  */ n = sscanf(buf->Mindestabstand_5_Char, "%f", &buf->Mindestabstand_5_Float); assert(n == 1);
+                    /* 14  */ n = sscanf(buf->Mindestabstand_6_Char, "%f", &buf->Mindestabstand_6_Float); assert(n == 1);
+                    /* 16  */ n = sscanf(buf->Mindestabstand_7_Char, "%f", &buf->Mindestabstand_7_Float); assert(n == 1);
+                    /* 18  */ n = sscanf(buf->Mindestabstand_8_Char, "%f", &buf->Mindestabstand_8_Float); assert(n == 1);
+                    /* 19  */ n = sscanf(buf->Kreuzungsobjektindex_Teil_2_Char, "%d", &buf->Kreuzungsobjektindex_Teil_2_Int); assert(n == 1);
+                }
+                else if (std::strcmp("OBA1", aDSK) == 0 && g_dictDSKs["OBA1"])
+                {
+                    // struct OBA1 buf { };
+                    auto buf{ std::make_shared<OBA1>() };
+                    queueDSKs.push(std::pair<std::string, std::shared_ptr<Base>>("OBA1", std::static_pointer_cast<Base>(buf)));
+
+                    auto n = sscanf
+                    (
+                        lineBuf
+                        , buf->fmtDS
+                        , /*    1 */ buf->DSK
+                        , /*    2 */ buf->Kreuzungsobjektindex_Char
+                        , /*    3 */ buf->Kennung_Nr_1
+                        , /*    4 */ buf->Mindestabstand_110kV_1_Char
+                        , /*    5 */ buf->Kennung_Nr_2
+                        , /*    6 */ buf->Mindestabstand_110kV_2_Char
+                        , /*    7 */ buf->Kennung_Nr_3
+                        , /*    8 */ buf->Mindestabstand_110kV_3_Char
+                        , /*    9 */ buf->Kennung_Nr_4
+                        , /*   10 */ buf->Mindestabstand_110kV_4_Char
+                        , /*   11 */ buf->Kennung_Nr_5
+                        , /*   12 */ buf->Mindestabstand_110kV_5_Char
+                        , /*   13 */ buf->Kennung_Nr_6
+                        , /*   14 */ buf->Mindestabstand_110kV_6_Char
+                        , /*   15 */ buf->Kennung_Nr_7
+                        , /*   16 */ buf->Mindestabstand_110kV_7_Char
+                        , /*   17 */ buf->Kennung_Nr_8
+                        , /*   18 */ buf->Mindestabstand_110kV_8_Char
+                    );
+                    assert(n == 18);
+
+                    /*  2  */ n = sscanf(buf->Kreuzungsobjektindex_Char,   "%d", &buf->Kreuzungsobjektindex_Int); assert(n == 1);
+                    /*  4  */ n = sscanf(buf->Mindestabstand_110kV_1_Char, "%f", &buf->Mindestabstand_110kV_1_Float); assert(n == 1);
+                    /*  6  */ n = sscanf(buf->Mindestabstand_110kV_2_Char, "%f", &buf->Mindestabstand_110kV_2_Float); assert(n == 1);
+                    /*  8  */ n = sscanf(buf->Mindestabstand_110kV_3_Char, "%f", &buf->Mindestabstand_110kV_3_Float); assert(n == 1);
+                    /* 10  */ n = sscanf(buf->Mindestabstand_110kV_4_Char, "%f", &buf->Mindestabstand_110kV_4_Float); assert(n == 1);
+                    /* 12  */ n = sscanf(buf->Mindestabstand_110kV_5_Char, "%f", &buf->Mindestabstand_110kV_5_Float); assert(n == 1);
+                    /* 14  */ n = sscanf(buf->Mindestabstand_110kV_6_Char, "%f", &buf->Mindestabstand_110kV_6_Float); assert(n == 1);
+                    /* 16  */ n = sscanf(buf->Mindestabstand_110kV_7_Char, "%f", &buf->Mindestabstand_110kV_7_Float); assert(n == 1);
+                    /* 18  */ n = sscanf(buf->Mindestabstand_110kV_8_Char, "%f", &buf->Mindestabstand_110kV_8_Float); assert(n == 1);
                 }
                 else if (std::strcmp("OPKT", aDSK) == 0 && g_dictDSKs["OPKT"])
                 {
@@ -1470,6 +1554,61 @@ namespace cc
                         , /*   3 */ buf->EigentümerZeile_1
                         , /*   4 */ buf->EigentümerZeile_2
                         , /*   5 */ buf->KreuzungsobjektindexTeil_2_Int
+                    );
+                }
+                else if (std::strcmp("OBJA", aDSK) == 0 && g_dictDSKs["OBJA"])
+                {
+                    auto buf = std::static_pointer_cast<OBJA>(ds.second);
+
+                    LOGGER->Log
+                    (
+                        buf->fmtPrintf
+                        , /*    1 */ buf->DSK, buf->
+                        , /*    2 */ buf->Kreuzungsobjektindex_Teil_1_Int
+                        , /*    3 */ buf->Kennung_Nr_1
+                        , /*    4 */ buf->Mindestabstand_1_Float
+                        , /*    5 */ buf->Kennung_Nr_2
+                        , /*    6 */ buf->Mindestabstand_2_Float
+                        , /*    7 */ buf->Kennung_Nr_3
+                        , /*    8 */ buf->Mindestabstand_3_Float
+                        , /*    9 */ buf->Kennung_Nr_4
+                        , /*   10 */ buf->Mindestabstand_4_Float
+                        , /*   11 */ buf->Kennung_Nr_5
+                        , /*   12 */ buf->Mindestabstand_5_Float
+                        , /*   13 */ buf->Kennung_Nr_6
+                        , /*   14 */ buf->Mindestabstand_6_Char
+                        , /*   15 */ buf->Kennung_Nr_7
+                        , /*   16 */ buf->Mindestabstand_7_Float
+                        , /*   17 */ buf->Kennung_Nr_8
+                        , /*   18 */ buf->Mindestabstand_8_Float
+                        , /*   19 */ buf->Kreuzungsobjektindex_Teil_2_Int
+                    );
+                }
+                else if (std::strcmp("OBA1", aDSK) == 0 && g_dictDSKs["OBA1"])
+                {
+                    auto buf = std::static_pointer_cast<OBA1>(ds.second);
+
+                    LOGGER->Log
+                    (
+                        buf->fmtPrintf
+                        , /*    1 */ buf->DSK
+                        , /*    2 */ buf->Kreuzungsobjektindex_Int
+                        , /*    3 */ buf->Kennung_Nr_1
+                        , /*    4 */ buf->Mindestabstand_110kV_1_Float
+                        , /*    5 */ buf->Kennung_Nr_2
+                        , /*    6 */ buf->Mindestabstand_110kV_2_Float
+                        , /*    7 */ buf->Kennung_Nr_3
+                        , /*    8 */ buf->Mindestabstand_110kV_3_Float
+                        , /*    9 */ buf->Kennung_Nr_4
+                        , /*   10 */ buf->Mindestabstand_110kV_4_Float
+                        , /*   11 */ buf->Kennung_Nr_5
+                        , /*   12 */ buf->Mindestabstand_110kV_5_Float
+                        , /*   13 */ buf->Kennung_Nr_6
+                        , /*   14 */ buf->Mindestabstand_110kV_6_Float
+                        , /*   15 */ buf->Kennung_Nr_7
+                        , /*   16 */ buf->Mindestabstand_110kV_7_Float
+                        , /*   17 */ buf->Kennung_Nr_8
+                        , /*   18 */ buf->Mindestabstand_110kV_8_Float
                     );
                 }
                 else if (std::strcmp("OPKT", aDSK) == 0 && g_dictDSKs["OPKT"])

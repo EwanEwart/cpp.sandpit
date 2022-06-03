@@ -145,13 +145,25 @@ namespace cc
         /*  7 - 31 = 25 */ std::string KZProgram;      // Kennung erzeugendes Programm/Version
         /* 32 - 69 = 38 */ std::string LetzeAenderung; // Datum/Uhrzeit letzte Änderung durch Programm
         /* 70 - 73 =  4 */ int BerechnungsModus;       // Kennung spezieller Berechnungsmodus: '0' oder fehlend(' ') : Standard / konventionell 1 : Berechnung Spanntabellen für Ausland/Export ? Braucht man noch?
-        INFO()
-            : DSK{ "" }, KZProgram{ "" }, LetzeAenderung{ "" }, BerechnungsModus{ 0 }
+        INFO() 
+        : DSK{ "" }
+        , KZProgram{ "" }
+        , LetzeAenderung{ "" }
+        , BerechnungsModus{ 0 }
         {
         }
-        INFO(
-            std::string DSK, std::string KZProgram, std::string LetzeAenderung, int BerechnungsModus)
-            : DSK(DSK), KZProgram(KZProgram), LetzeAenderung(LetzeAenderung), BerechnungsModus(BerechnungsModus)
+        INFO
+        (
+            std::string DSK
+            , std::string KZProgram
+            , std::string LetzeAenderung
+            , int BerechnungsModus
+        )
+        : DSK(DSK)
+        , KZProgram(KZProgram)
+        , LetzeAenderung(LetzeAenderung)
+        , BerechnungsModus(BerechnungsModus
+        )
         {
         }
         virtual ~INFO() {};
@@ -164,8 +176,10 @@ namespace cc
         /*  1 -  4 =  4 */ std::string DSK;                   // Datensatzkennung INFS
         /*  7 - 22 = 16 */ std::string DatZeitProgrAend;      // Datum/Uhrzeit letzte Änderung durch Programm (Format tag.monat.jahr stunde:minute)
         /* 24 - 39 = 16 */ std::string DatZeit263EingDatAend; // Datum/Uhrzeit 263-Eingabedatei (Format tag.monat.jahr stunde:minute)
-        INFS()
-            : DSK{}, DatZeitProgrAend{}, DatZeit263EingDatAend{}
+        INFS() 
+        : DSK{}
+        , DatZeitProgrAend{}
+        , DatZeit263EingDatAend{}
         {
         }
         virtual ~INFS() {}
@@ -195,13 +209,13 @@ namespace cc
     //: "TXT1", TXT2: Leitung Allgemein, Beschreibung
     struct TXT1 : Base
     {
-        /*  1 -  4 */ char DSK[4 + 1];             // Satzkennung ‘TXT1’
-        /*  7 - 34 */ char Leitung1[28 + 1];       // Leitung (1.Zeile)
-        /* 35 - 62 */ char Leitung2[28 + 1];       // Leitung (2.Zeile)
-        /* 63 - 68 */ char Leitungsnummer1[6 + 1]; // Leitungsnummer
-        /* 69 - 71 */ int Abschnittsnummer;        // 3 digits, Abschnittsnummer
-        //   *** Neu ab V 3.4.10 4 / Win 263 V 2.8.7 ***
-        /* 73 - 78 */ char Leitungsnummer2[5 + 1]; // Leitungsnummer (Zeichen 7-12, falls vorhanden)
+        /*  1 -  4 */ char DSK[4 + 1];                      // Satzkennung ‘TXT1’
+        /*  7 - 34 */ char Leitung1[28 + 1];                // Leitung (1.Zeile)
+        /* 35 - 62 */ char Leitung2[28 + 1];                // Leitung (2.Zeile)
+        /* 63 - 68 */ char Leitungsnummer1[6 + 1];          // Leitungsnummer
+        /* 69 - 71 */ int Abschnittsnummer;                 // 3 digits, Abschnittsnummer
+        //   *** Neu ab V 3.4.10 4 / Win 263 V 2.8.7 ***    //
+        /* 73 - 78 */ char Leitungsnummer2[5 + 1];          // Leitungsnummer (Zeichen 7-12, falls vorhanden)
         virtual ~TXT1() {}
     };
     //: TXT1, "TXT2": Leitung Allgemein, Beschreibung
@@ -236,30 +250,30 @@ namespace cc
         char const* fmtDS{ "%4c%*2c%6c%6c%6c%1c%1c%1c%1c%1c%1c%1c%1c%1c%1c%1c%1c%1c%1c" };
         char const* fmtPrintf{ "\n%s|\n%6.0f|\n%6.2f|\n%6.2f|\n%s|\n%s|\n%s|\n%s|\n%s|\n%s|\n%s|\n%s|\n%s|\n%s|\n%s|\n%s|\n%s|\n%s|\n" };
 
-        /*  1 -  4  */ char DSK[4 + 1];                    // Satzkennung ‘PAR1’
-        /*  7 - 12  */ char SpezEigGewichtChar[6 + 1];     // 6.0   // Spezifisches Eisgewicht [N/m³], (‘7500’)
-        /*  7 - 12  */ float SpezEigGewichtFloat;          // 6.0   // Spezifisches Eisgewicht [N/m³], (‘7500’)
-        /* 13 - 18  */ char UmrechnungsfaktorChar[6 + 1];  // 6.2   // Umrechnungsfaktor [kg/N], (‘10.00’ bzw. ‘9.81’)
-        /* 13 - 18  */ float UmrechnungsfaktorFloat;       // 6.2   // Umrechnungsfaktor [kg/N], (‘10.00’ bzw. ‘9.81’)
-        /* 19 - 24  */ char ReckwertChar[6 + 1];           // 6.2   // Reckwert [m], (0=kein Reckwert)
-        /* 19 - 24  */ float ReckwertFloat;                // 6.2   // Reckwert [m], (0=kein Reckwert)
-        /* 25 - 25  */ char BerechnungEI[1 + 1];           // Berechnung: E=Exakte,I=Ideell
-        /* 26 - 26  */ char Berechnungsvorschrift[1 + 1];  // Berechnungsvorschrift (als Auswahlmenü) 0=Benutzerdefiniert 1= DIN VDE/0210 12.85 2= DIN VDE/0210 5.62 3= TGL (nur Eislast in Oberfläche) 4= DIN EN 50341 03.2002-01.2011 6= DIN VDE/0210 5.69 *** neu ab Version 4.5.1 *** 7= DIN EN 50341 04.2016 *** neu ab Version 4.11.1*** 8= DIN EN 50341 09.2019 *** neu ab Version 4.13.6***
-        /* 27 - 27  */ char BerechnungEM[1 + 1];           // Berechnung: E=Endzustände, M=Montagezustände (default ‚E‘)
-        // *** Neu ab V4.14.3 : Option „V“ ***
-        /* 28 -  28 */ char Seilkriechen[1 + 1];           // Seilkriechen: T=Temperaturdifferenz, K=Kriechfaktor, U=Überziehen,Z=Kriechzeit, V=Temperaturdifferenz aus Zeitvorgabe, ' '=kein
-        /* 29 -  29 */ char Seilausschwingwinkel[1 + 1];   // Berechnung Seilausschwingwinkel: J=Spannweitenreduktion nach DIN VDE 0210/12 85 N=Keine Spannweitenreduktion (Default ‚J‘)
-        /* 30 -  30 */ char Ausgangsspannung[1 + 1];       // Ausgangsspannung : V=Spannungsvorgabe, M=aus Mittelwert der gemessenen Durchhänge U=aus Ungünstigstem gemessenem Durchhang B=aus Vorgabe Bogenlänge 69 *** neu ab Version 4.7.3 *** (Default ‚V‘)
-        /* 31 -  31 */ char Reduzierung[1 + 1];            // Reduzierung des Kettenausschwingwinkels nach DIN 85 (Faktor 0.8) ‚N‘=Keine Reduzierung des Kettenausschwingwinkels Sonst= Reduzierung des Kettenausschwingwinkels (Default:‘ ')
-        /* 32 -  32 */ char Hoehenausgaben[1 + 1];         // Höhenausgaben in Ergebnisprotokollen in 'NN' bzw. 'HN' 'H'= Ausgabe in 'HN' 'N'= Ausgabe in 'NHN' Sonst= Ausgabe in 'NN' (Default: ' ')
-        /* 33-   33 */ char Trassierungsrichtlinie[1 + 1]; // Einschalten einer Trassierungsrichtlinie (Standard: “Seilverlegevorschrift DB 2004" (Objektabstände: Bautoleranz berücksichtigen (siehe 'DBSV'), altern. Temperaturwert bei Zuständen wird ausgewertet.) 'D'= Trassierungsrichtlinie ein, Sonst= Trassierungsrichtlinie aus
-        /* 34 -  34 */ char Windgesetz[1 + 1];             // Festlegung Berechnung Windgesetz 'E' = DIN EN 50341 03.02 'T' = TGL 200-0614/20 (Stand September 1987) Sonst : DIN VDE 12.85 (Default: ' ')
-        /* 35 -  35 */ char Phasenabstaende[1 + 1];        // Einstellung Berechnung Phasenabstände und Dauerzugprüfung 'E' = DIN EN 50341 03.02 Sonst : DIN VDE 12.85 (Default: ' ')
-        /* 36 -  36 */ char Sprache[1 + 1];                // Einstellung Sprache Ergebnisausgabe: 'E' = Englisch Sonst: deutsch
-        // *** Neu ab V4.1.9 ***
-        /* 37 - 37  */ char Mittelzugspannung[1 + 1];      // Einstellung Ermittlung Mittelzugspannung bei zeitabhängigem Kriechen: ‘E‘ = Exakte Berechnung (Ausgangszustand auf Mittelzugspannungsprüfung gesetzt), sonst nach ideeller Berechnung
-        // *** Neu ab V4.7.4 ***
-        /* 38 - 38  */ char LogDateiYN[1 + 1];             // Einstellung *.log-Datei: ‚L‘ : Datei erstellen, sonst nicht (Logdatei kann auch über Programmparameter ‚L‘ erzeugt werden.)
+        /*  1 -  4  */ char DSK[4 + 1];                     // Satzkennung ‘PAR1’
+        /*  7 - 12  */ char SpezEigGewichtChar[6 + 1];      // 6.0   // Spezifisches Eisgewicht [N/m³], (‘7500’)
+        /*  7 - 12  */ float SpezEigGewichtFloat;           // 6.0   // Spezifisches Eisgewicht [N/m³], (‘7500’)
+        /* 13 - 18  */ char UmrechnungsfaktorChar[6 + 1];   // 6.2   // Umrechnungsfaktor [kg/N], (‘10.00’ bzw. ‘9.81’)
+        /* 13 - 18  */ float UmrechnungsfaktorFloat;        // 6.2   // Umrechnungsfaktor [kg/N], (‘10.00’ bzw. ‘9.81’)
+        /* 19 - 24  */ char ReckwertChar[6 + 1];            // 6.2   // Reckwert [m], (0=kein Reckwert)
+        /* 19 - 24  */ float ReckwertFloat;                 // 6.2   // Reckwert [m], (0=kein Reckwert)
+        /* 25 - 25  */ char BerechnungEI[1 + 1];            // Berechnung: E=Exakte,I=Ideell
+        /* 26 - 26  */ char Berechnungsvorschrift[1 + 1];   // Berechnungsvorschrift (als Auswahlmenü) 0=Benutzerdefiniert 1= DIN VDE/0210 12.85 2= DIN VDE/0210 5.62 3= TGL (nur Eislast in Oberfläche) 4= DIN EN 50341 03.2002-01.2011 6= DIN VDE/0210 5.69 *** neu ab Version 4.5.1 *** 7= DIN EN 50341 04.2016 *** neu ab Version 4.11.1*** 8= DIN EN 50341 09.2019 *** neu ab Version 4.13.6***
+        /* 27 - 27  */ char BerechnungEM[1 + 1];            // Berechnung: E=Endzustände, M=Montagezustände (default ‚E‘)
+        // *** Neu ab V4.14.3 : Option „V“ ***              //
+        /* 28 -  28 */ char Seilkriechen[1 + 1];            // Seilkriechen: T=Temperaturdifferenz, K=Kriechfaktor, U=Überziehen,Z=Kriechzeit, V=Temperaturdifferenz aus Zeitvorgabe, ' '=kein
+        /* 29 -  29 */ char Seilausschwingwinkel[1 + 1];    // Berechnung Seilausschwingwinkel: J=Spannweitenreduktion nach DIN VDE 0210/12 85 N=Keine Spannweitenreduktion (Default ‚J‘)
+        /* 30 -  30 */ char Ausgangsspannung[1 + 1];        // Ausgangsspannung : V=Spannungsvorgabe, M=aus Mittelwert der gemessenen Durchhänge U=aus Ungünstigstem gemessenem Durchhang B=aus Vorgabe Bogenlänge 69 *** neu ab Version 4.7.3 *** (Default ‚V‘)
+        /* 31 -  31 */ char Reduzierung[1 + 1];             // Reduzierung des Kettenausschwingwinkels nach DIN 85 (Faktor 0.8) ‚N‘=Keine Reduzierung des Kettenausschwingwinkels Sonst= Reduzierung des Kettenausschwingwinkels (Default:‘ ')
+        /* 32 -  32 */ char Hoehenausgaben[1 + 1];          // Höhenausgaben in Ergebnisprotokollen in 'NN' bzw. 'HN' 'H'= Ausgabe in 'HN' 'N'= Ausgabe in 'NHN' Sonst= Ausgabe in 'NN' (Default: ' ')
+        /* 33-   33 */ char Trassierungsrichtlinie[1 + 1];  // Einschalten einer Trassierungsrichtlinie (Standard: “Seilverlegevorschrift DB 2004" (Objektabstände: Bautoleranz berücksichtigen (siehe 'DBSV'), altern. Temperaturwert bei Zuständen wird ausgewertet.) 'D'= Trassierungsrichtlinie ein, Sonst= Trassierungsrichtlinie aus
+        /* 34 -  34 */ char Windgesetz[1 + 1];              // Festlegung Berechnung Windgesetz 'E' = DIN EN 50341 03.02 'T' = TGL 200-0614/20 (Stand September 1987) Sonst : DIN VDE 12.85 (Default: ' ')
+        /* 35 -  35 */ char Phasenabstaende[1 + 1];         // Einstellung Berechnung Phasenabstände und Dauerzugprüfung 'E' = DIN EN 50341 03.02 Sonst : DIN VDE 12.85 (Default: ' ')
+        /* 36 -  36 */ char Sprache[1 + 1];                 // Einstellung Sprache Ergebnisausgabe: 'E' = Englisch Sonst: deutsch
+        // *** Neu ab V4.1.9 ***                            //
+        /* 37 - 37  */ char Mittelzugspannung[1 + 1];       // Einstellung Ermittlung Mittelzugspannung bei zeitabhängigem Kriechen: ‘E‘ = Exakte Berechnung (Ausgangszustand auf Mittelzugspannungsprüfung gesetzt), sonst nach ideeller Berechnung
+        // *** Neu ab V4.7.4 ***                            //
+        /* 38 - 38  */ char LogDateiYN[1 + 1];              // Einstellung *.log-Datei: ‚L‘ : Datei erstellen, sonst nicht (Logdatei kann auch über Programmparameter ‚L‘ erzeugt werden.)
         virtual ~PAR1() {}
     };
 
@@ -277,15 +291,15 @@ namespace cc
     // *** Änderung ab Version 1.6 ***
     struct DINE : Base
     {
-        /*  1 -  4 */ char DSK[4 + 1];                 // Satzkennung ‘DINE’
-        /*  7 -  7 */ int Eislastzone;                 //   1  // Eislastzone
-        /*  9 -  9 */ int Windlastzone;                //   1  // Windlastzone
-        /* 11 - 15 */ float AlternativerObjektabstand; // 5.2   // Alternativer Objektabstand (a_som), wird nur vom Kern ausgewertet, wenn mindestens bei einem Kreuzungsobjekt der Objektabstand nach DIN EN ausgewählt ist, s.u. Satzkennung "OBJ1". Für jedes Kreuzungsobjekt, für welches der Mindestabstand gemäß DIN EN eingestellt ist, wird geprüft, ob 1.1*a_som > angegebener Mindestabstand. Ist dies der Fall, wird der Mindestabstand auf 1.1*a_som gesetzt.
-        // *** Neu ab V 3.4.0 / Win 263 V 2.8.0 ***
-        /* 17 - 17 */ char ENStandEislast[1 + 1];      // EN-Stand Eislast: '0' oder ' '  : Eislast nach EN 03/2002 '1’ : Eislast ab EN 01/20 11
-        /* 18 - 18 */ char ENStandWindlast[1 + 1];     // EN-Stand Windlast: ''0' oder ' ' : Windlast nach EN 03/2002 '1' : Windlast ab EN 01/20 11
-        // ***Neu ab V 3.4.3 / Win 263 V 2.8.2 * **
-        /* 19 - 19 */ char Staudruck[1 + 1];           // Modus Angabe Staudruck-Höhentabelle: '0' oder '' : Bezugsstaudruck '1' : Absoluter Staudruck
+        /*  1 -  4 */ char DSK[4 + 1];                  // Satzkennung ‘DINE’
+        /*  7 -  7 */ int Eislastzone;                  //   1  // Eislastzone
+        /*  9 -  9 */ int Windlastzone;                 //   1  // Windlastzone
+        /* 11 - 15 */ float AlternativerObjektabstand;  // 5.2   // Alternativer Objektabstand (a_som), wird nur vom Kern ausgewertet, wenn mindestens bei einem Kreuzungsobjekt der Objektabstand nach DIN EN ausgewählt ist, s.u. Satzkennung "OBJ1". Für jedes Kreuzungsobjekt, für welches der Mindestabstand gemäß DIN EN eingestellt ist, wird geprüft, ob 1.1*a_som > angegebener Mindestabstand. Ist dies der Fall, wird der Mindestabstand auf 1.1*a_som gesetzt.
+        // *** Neu ab V 3.4.0 / Win 263 V 2.8.0 ***     //
+        /* 17 - 17 */ char ENStandEislast[1 + 1];       // EN-Stand Eislast: '0' oder ' '  : Eislast nach EN 03/2002 '1’ : Eislast ab EN 01/20 11
+        /* 18 - 18 */ char ENStandWindlast[1 + 1];      // EN-Stand Windlast: ''0' oder ' ' : Windlast nach EN 03/2002 '1' : Windlast ab EN 01/20 11
+        // ***Neu ab V 3.4.3 / Win 263 V 2.8.2 * **     //
+        /* 19 - 19 */ char Staudruck[1 + 1];            // Modus Angabe Staudruck-Höhentabelle: '0' oder '' : Bezugsstaudruck '1' : Absoluter Staudruck
         virtual ~DINE() {}
     };
 
@@ -293,10 +307,10 @@ namespace cc
     // *** Änderung ab Version 1.7: Erweiterung auf Trassierungsrichtlinie DBE 2004 ***
     struct DBSV : Base
     {
-        /*  1 -  4 */ char DSK[4 + 1];                // Satzkennung ‘DBSV’
-        /*  7 - 13 */ float Bautoleranz;              // 7.2   // Vorsorge (Bautoleranz)
-        // *** Neu ab V  3.4.4 / Win 263 V 2.8.3 ***
-        /* 14 - 14 */ char Sicherheitsabstand[1 + 1]; // Einstellung Vorsorge und Sicherheitsabstand Schutzstreifen : 'S' : Bautoleranz zu Sicherheitsabstand addieren sonst : Bautoleranz nicht zu Sicherheitsabstand addieren
+        /*  1 -  4 */ char DSK[4 + 1];                  // Satzkennung ‘DBSV’
+        /*  7 - 13 */ float Bautoleranz;                // 7.2   // Vorsorge (Bautoleranz)
+        // *** Neu ab V  3.4.4 / Win 263 V 2.8.3 ***    //
+        /* 14 - 14 */ char Sicherheitsabstand[1 + 1];   // Einstellung Vorsorge und Sicherheitsabstand Schutzstreifen : 'S' : Bautoleranz zu Sicherheitsabstand addieren sonst : Bautoleranz nicht zu Sicherheitsabstand addieren
         virtual ~DBSV() {}
     };
 
@@ -363,30 +377,30 @@ namespace cc
         char const* fmtDS{ "%4c%*2c%3c%3c%2c%20c%1c%1c%1c%1c%1c%1c%*4c%6c%6c%6c%6c%*1c%1c%1c" };
         char const* fmtPrintf{ "\n%s|\n%d|\n%d|\n%s|\n%s|\n%s|\n%s|\n%s|\n%s|\n%s|\n%s|\n%6.3f|\n%6.3f|\n%6.2f|\n%6.2f|\n%s|\n%s|\n" };
 
-        /*  1:     1 -  4      4  */ char DSK[4 + 1];                            // Datensatzkennung ‘ZSTD’
-        /*  2:     7 -  9      3  */ char ZustandsindexChar[3 + 1];              // Zustandsindex (laufende Nummer)
-        /*  2:     7 -  9      3  */ int ZustandsindexInt;                       // Zustandsindex (laufende Nummer)
-        /*  3:    10 - 12      3  */ char TemperaturCChar[3 + 1];                // Temperatur °C
-        /*  3:    10 - 12      3  */ int TemperaturCInt;                         // Temperatur °C
-        /*  4:    13 - 14         */ char Konstante[2 + 1];                      // '°C' Konstante
-        /*  5:    15 - 34     20  */ char Zustandsbezeichnung[20 + 1];           // Zustandsbezeichnung
-        /*  6:    35 - 35      1  */ char KennungAusgangszustand[1 + 1];         // Kennung ‚A‘ Für Ausgangszustand, (darf nur einmal vergeben werden)
-        /*  7:    36 - 36      1  */ char KennungGrenzlast[1 + 1];               // Kennung Grenzlast (‚H‘=Höchstzug, ‚M‘=Mittelzug, 'D'=Dauerzug nach EN 2002, 'B'=Bruchkraft nach EN 2006/2009)
-        /*  8:    37 - 37      1  */ char KennungUngleicheEislast[1 + 1];        // Kennung ‚U‘ für ungleiche Eislast, darf nur einmal vergeben werden.
-        /*  9:    38 - 38      1  */ char KennungKettenausschwingwinkels[1 + 1]; // Kennung für ‚K’ Überprüfung des Kettenausschwingwinkels (darf nur einmal vergeben werden)
-        /*  10:   39 - 39      1  */ char KennungZusatzlast[1 + 1];              // Kennung ‚E‘ Berechnung mit erhöhter Zusatzlast falls diese ungleich 1 (In ZSTA)
-        /*  11:   40 - 40      1  */ char KennungEiswalze[1 + 1];                // Kennung ‚X‘ Berechnung mit Eiswalze
-        /*  12:   45 - 50    6.3  */ char LastfaktorChar[6 + 1];                 // Lastfaktor (Zusatz- bzw. Eislast)
-        /*  12:   45 - 50    6.3  */ float LastfaktorFloat;                      // Lastfaktor (Zusatz- bzw. Eislast)
-        /*  13:   51 - 56    6.3  */ char WindlastfaktorChar[6 + 1];             // Windlastfaktor
-        /*  13:   51 - 56    6.3  */ float WindlastfaktorFloat;                  // Windlastfaktor
-        /*  14:   57 - 62    6.2  */ char ReckwertChar[6 + 1];                   // Reckwert
-        /*  14:   57 - 62    6.2  */ float ReckwertFloat;                        // Reckwert
-        /*  15:   63 - 68    6.2  */ char AusnahmelastChar[6 + 1];               // Ausnahmelast in N/m
-        /*  15:   63 - 68    6.2  */ float AusnahmelastFloat;                    // Ausnahmelast in N/m
-        /*  16:   70 - 70      1  */ char Temperaturzuschlag[1 + 1];             // Flag, ob Zustand mit Temperaturzuschlag (aus Phasendaten) gemäss DB gerechnet wird. '+' : Mit Temperaturzschlag sonst: ohne Temperaturzuschlag
-        /* *** neu ab Version 3.6.4 *** */
-        /*  17:   71 - 71      1  */ char GrenzlastBerechnung[1 + 1];            // Flag, ob Grenzlast Berechnung beeinflusst oder eine Grenzlastüberschreitung nur protokolliert wird. 'P' : nur protokollieren sonst: Einfluss auf Berechnung (Reduktion Ausgangsspannung)
+        /*  1:     1 -  4      4  */ char DSK[4 + 1];                           // Datensatzkennung ‘ZSTD’
+        /*  2:     7 -  9      3  */ char ZustandsindexChar[3 + 1];             // Zustandsindex (laufende Nummer)
+        /*  2:     7 -  9      3  */ int ZustandsindexInt;                      // Zustandsindex (laufende Nummer)
+        /*  3:    10 - 12      3  */ char TemperaturCChar[3 + 1];               // Temperatur °C
+        /*  3:    10 - 12      3  */ int TemperaturCInt;                        // Temperatur °C
+        /*  4:    13 - 14         */ char Konstante[2 + 1];                     // '°C' Konstante
+        /*  5:    15 - 34     20  */ char Zustandsbezeichnung[20 + 1];          // Zustandsbezeichnung
+        /*  6:    35 - 35      1  */ char KennungAusgangszustand[1 + 1];        // Kennung ‚A‘ Für Ausgangszustand, (darf nur einmal vergeben werden)
+        /*  7:    36 - 36      1  */ char KennungGrenzlast[1 + 1];              // Kennung Grenzlast (‚H‘=Höchstzug, ‚M‘=Mittelzug, 'D'=Dauerzug nach EN 2002, 'B'=Bruchkraft nach EN 2006/2009)
+        /*  8:    37 - 37      1  */ char KennungUngleicheEislast[1 + 1];       // Kennung ‚U‘ für ungleiche Eislast, darf nur einmal vergeben werden.
+        /*  9:    38 - 38      1  */ char KennungKettenausschwingwinkels[1 + 1];// Kennung für ‚K’ Überprüfung des Kettenausschwingwinkels (darf nur einmal vergeben werden)
+        /*  10:   39 - 39      1  */ char KennungZusatzlast[1 + 1];             // Kennung ‚E‘ Berechnung mit erhöhter Zusatzlast falls diese ungleich 1 (In ZSTA)
+        /*  11:   40 - 40      1  */ char KennungEiswalze[1 + 1];               // Kennung ‚X‘ Berechnung mit Eiswalze
+        /*  12:   45 - 50    6.3  */ char LastfaktorChar[6 + 1];                // Lastfaktor (Zusatz- bzw. Eislast)
+        /*  12:   45 - 50    6.3  */ float LastfaktorFloat;                     // Lastfaktor (Zusatz- bzw. Eislast)
+        /*  13:   51 - 56    6.3  */ char WindlastfaktorChar[6 + 1];            // Windlastfaktor
+        /*  13:   51 - 56    6.3  */ float WindlastfaktorFloat;                 // Windlastfaktor
+        /*  14:   57 - 62    6.2  */ char ReckwertChar[6 + 1];                  // Reckwert
+        /*  14:   57 - 62    6.2  */ float ReckwertFloat;                       // Reckwert
+        /*  15:   63 - 68    6.2  */ char AusnahmelastChar[6 + 1];              // Ausnahmelast in N/m
+        /*  15:   63 - 68    6.2  */ float AusnahmelastFloat;                   // Ausnahmelast in N/m
+        /*  16:   70 - 70      1  */ char Temperaturzuschlag[1 + 1];            // Flag, ob Zustand mit Temperaturzuschlag (aus Phasendaten) gemäss DB gerechnet wird. '+' : Mit Temperaturzschlag sonst: ohne Temperaturzuschlag
+        /* *** neu ab Version 3.6.4 *** */                                      //
+        /*  17:   71 - 71      1  */ char GrenzlastBerechnung[1 + 1];           // Flag, ob Grenzlast Berechnung beeinflusst oder eine Grenzlastüberschreitung nur protokolliert wird. 'P' : nur protokollieren sonst: Einfluss auf Berechnung (Reduktion Ausgangsspannung)
         virtual ~ZSTD() {}
     };
     //: ZSAN: Abstandsnachweise
@@ -397,14 +411,14 @@ namespace cc
         /*  7 -  9   3  */ int SatzindexInt;                                   // Satzindex (laufende Nummer)
         /* 10 - 10   1  */ char Kurzbezeichnung[1 + 1];                        // Kurzbezeichnung ‚Z‘ ‚A‘, ‚U‘ ‚T‘ etc.
         /* 11 - 11   1  */ char KennungAusschwingen[1 + 1];                    // Kennung für Ausschwingen: .B‘ beide Leiter schwingen aus (nach DIN/VDE 0210 12.85) ‚A‘ nur unterkreuzender schwingt aus sonst kein Ausschwingen
-        /* *** neu ab Version 4.7.2 ***  */
+        /* *** neu ab Version 4.7.2 ***  */                                    //
         /* 12 - 14   3  */ char IndexPhasensystemChar[3 + 1];                  // Index Phasensystem
         /* 12 - 14   3  */ int IndexPhasensystemInt;                           // Index Phasensystem
         /* 20 - 22   3  */ char ZustandsindexUeberkreuzendeLeitungChar[3 + 1]; // Zustandsindex überkreuzende Leitung
         /* 20 - 22   3  */ int ZustandsindexUeberkreuzendeLeitungInt;          // Zustandsindex überkreuzende Leitung
         /* 23 - 25   3  */ char ZustandsindexUnterkreuzendeLeitungChar[3 + 1]; // Zustandsindex unterkreuzende Leitung
         /* 23 - 25   3  */ int ZustandsindexUnterkreuzendeLeitungInt;          // Zustandsindex unterkreuzende Leitung
-        /* *** neu ab Version 3.7.6 ***  */
+        /* *** neu ab Version 3.7.6 ***  */                                    //
         /* 26 - 28   3  */ int ZustandsindexUeberkreuzendeLeitung;             // Zustandsindex überkreuzende Leitung (Erdseile)
         /* 29 - 31   3  */ int ZustandsindexUnterkreuzendeLeitung;             // Zustandsindex unterkreuzende Leitung (Erdseile)
         virtual ~ZSAN() {}
@@ -507,9 +521,9 @@ namespace cc
         /* 12: 71 - 78    8.0  */ float KriechzeitFloat;                           // Kriechzeit [h] (‘262800’=30Jahre)
         /* 13: 80 - 80      1  */ char Kennung_EN_Seil[1 + 1];                     //  'E' = EN-Seil sonst : Seil konventionell
         /* 14: 81 - 81      1  */ char KennungSeilmanuellEingefuegt[1 + 1];        // Kennung Seil manuell eingefügt (zur Sperrung Gewicht in Win263) ’U’ = Seildatensatz manuell eingefügt, Gewicht editierbar sonst: Gewicht gesperrt.
-        /* *** Neu ab Version 4.12.0 ***  */
+        /* *** Neu ab Version 4.12.0 ***  */                                       //
         /* 15: 82 - 82     1   */ char Isolationsar[1 + 1];                        // Isolationsart (‘K‘=kunststoffummantelter Leiter, ‘I‘=isoliertes Kabel, sonst: Blanker Leiter)
-        /* *** Neu ab Version 4.12.3 ***  */
+        /* *** Neu ab Version 4.12.3 ***  */                                       //
         /* 16: 83   83     1   */ char VorzeichenTemperaturdifferenz[1 + 1];       // Vorzeichen Temperaturdifferenz : ‘-‘ = negativ , sonst: positiv
         /* 17: 84   84     1   */ char VorzeichenKriechfaktor[1 + 1];              // Vorzeichen Kriechfaktor: ‘-‘ = negativ , sonst: positiv
 
@@ -544,7 +558,7 @@ namespace cc
         /* 10 64 - 71     8.2  */ float SeilgewichtDBFloat;                    // Seilgewicht aus Daten/Datenbank (zum Bestimmen QLK)
         /* 11 72 - 79     8.2  */ char FettmasseChar[8 + 1];                   // Fettmasse (nur EN-Seile)
         /* 11 72 - 79     8.2  */ float FettmasseFloat;                        // Fettmasse (nur EN-Seile)
-        /**** Neu ab Version 4.0.1 *** (nur als Ergebnis in slc-Datei)  */
+        /**** Neu ab Version 4.0.1 *** (nur als Ergebnis in slc-Datei)  */     //
         /* 12 80 - 80       1  */ char KennungQLK[1 + 1];                      // Kennung, ob QLK vorgegeben oder aus Seilgewicht berechnet wurde. ‘V‘ = Vorgabe, ‘G‘=gerechnet
 
         virtual ~SLG2() {}
@@ -646,10 +660,10 @@ namespace cc
         /* 10:   59 -  67     9.3   */ char StellwinkelChar[9 + 1];                //  Stellwinkel [gon] (0=Winkelhalbierende)
         /* 10:   59 -  67     9.3   */ float StellwinkelFloat;                     //  Stellwinkel [gon] (0=Winkelhalbierende)
         /* 11:   69 - 101      33   */ char Masttypenbezeichnung_2[33 + 1];        //  Masttypenbezeichnung,  Zeichen 8-40
-        /* *** neu ab Version 3.6.4 (Änderung IHL) ***  */
+        /* *** neu ab Version 3.6.4 (Änderung IHL) ***  */                         //
         /* 12:  102 - 107     6.2   */ char OrdinateMaststandortChar[6 + 1];       // Ordinate Maststandort (Wert wird  als Ordinaten-Zuschlag für Kettenaufhängepunkte interpretiert. Der Wert bezieht sich rechtwinklig auf das dem Mast vorhergehenden Leitungsfeld, beim 1. Mast ist es das nachfolgende Feld. )
         /* 12:  102 - 107     6.2   */ float OrdinateMaststandortFloat;            // Ordinate Maststandort (Wert wird  als Ordinaten-Zuschlag für Kettenaufhängepunkte interpretiert. Der Wert bezieht sich rechtwinklig auf das dem Mast vorhergehenden Leitungsfeld, beim 1. Mast ist es das nachfolgende Feld. )
-        /* *** neu ab Version 4.6.3 ***  */
+        /* *** neu ab Version 4.6.3 ***  */                                        //
         /* 13:  109 - 134     26    */ char MastnummerMastname_2[26 + 1];          // Mastnummer / Mastname, Zeichen 7-32
 
         virtual ~MAST() {}
@@ -678,7 +692,7 @@ namespace cc
         /*  8:  47 - 49      3  */ int KettenindexInt;                      // Kettenindex
         /*  9:  51 - 57    7.2  */ char HoehenbezugStaudruckChar[7 + 1];    // Höhenbezug Staudruck (EN-Norm) 0: Höhenbezug ist Traversenhöhe >0 : Direkte Angabe Höhenbezug für Berechnung Staudruck
         /*  9:  51 - 57    7.2  */ float HoehenbezugStaudruckFloat;         // Höhenbezug Staudruck (EN-Norm) 0: Höhenbezug ist Traversenhöhe >0 : Direkte Angabe Höhenbezug für Berechnung Staudruck
-        /* *** Neu ab V 3.4.12 / Win 263 V 2.8.8 ***  */
+        /* *** Neu ab V 3.4.12 / Win 263 V 2.8.8 ***  */                    //
         /* 10:  58 - 64    7.2  */ char TraversenexzentrizitaetChar[7 + 1]; // Traversenexzentrizität. Positiv: In Leitungsrichtung, negativ: entgegen Leitungsrichtung.
         /* 10:  58 - 64    7.2  */ float TraversenexzentrizitaetFloat;      // Traversenexzentrizität. Positiv: In Leitungsrichtung, negativ: entgegen Leitungsrichtung.
 
@@ -721,9 +735,8 @@ namespace cc
         char const* fmtPrintf{ "\n%4s|\n%d|\n%5.2f|\n%5.2f|\n%5.2f|\n%5.2f|\n%6.0f|\n%6.0f|\n%6.0f|\n%7.2f|\n%7.2f|\n%6.0f|\n%6.3f|\n%6.3f|\n%6.3f|\n%6.3f|\n%5.2f|\n%5.2f|\n" };
 
         /*    1   1 -  4       4    */ char DSK[4 + 1];                                    // Satzkennung ‘KET2’
-        /*        5 -  6       1
-        /*    2   7 -  9       3    */
-        char KettenindexChar[3 + 1];                                                       // Kettenindex (laufende Nummer)
+        /*        5 -  6       1                                                           //
+        /*    2   7 -  9       3    */ char KettenindexChar[3 + 1];                        // Kettenindex (laufende Nummer)
         /*    2   7 -  9       3    */ int KettenindexInt;                                 // Kettenindex (laufende Nummer)
         /*    3  10 - 14     5.2    */ char KettenlaengeChar[5 + 1];                       // Kettenlänge bis UK Bündel [m]
         /*    3  10 - 14     5.2    */ float KettenlaengeFloat;                            // Kettenlänge bis UK Bündel [m]
@@ -753,7 +766,7 @@ namespace cc
         /*   15  80 - 85     6.3    */ float StrunkdurchmesserFloat;                       // Strunkdurchmesser [m]
         /*   16  86 - 91     6.3    */ char ProjizierteFlaecheChar[6 + 1];                 // Projizierte Fläche [m²]
         /*   16  86 - 91     6.3    */ float ProjizierteFlaecheFloat;                      // Projizierte Fläche [m²]
-        /* *** Neu ab Version 4.10.0 *** (V-Kettenstrangbruch)  */
+        /* *** Neu ab Version 4.10.0 *** (V-Kettenstrangbruch)  */                         //
         /*   17  92 -  96    5.2    */ char VKetteVersatzAufhaengungMastInnenChar[5 + 1];  //  V-Kette Versatz Aufhängung zum Mast hin (innen)
         /*   17  92 -  96    5.2    */ float VKetteVersatzAufhaengungMastInnenFloat;       //  V-Kette Versatz Aufhängung zum Mast hin (innen)
         /*   18  97 - 101    5.2    */ char VKetteVersatzAufhaengungMastAussenChar[5 + 1]; //  V-Kette Versatz Aufhängung vom Mast weg (außen)
@@ -798,20 +811,17 @@ namespace cc
         char const* fmtPrintf{ "\n%4s|\n%3d|\n%3d|\n%3d|\n%1s|\n%1s|\n%1s|\n%1s|\n%3d|\n%3d|\n%99.2f|\n%9.2f|\n%9.2f|\n%99.2f|\n" };
 
         /*    1  1 -  4      4  */ char DSK[4 + 1];                          // Satzkennung ‘EZLA’
-        /*       5 -  6      2
-        /*    2  7 -  9      3  */
-        char LastindexChar[1 + 1];                                           // Lastindex (laufende Nummer)
+        /*       5 -  6      2                                               //
+        /*    2  7 -  9      3  */ char LastindexChar[1 + 1];                // Lastindex (laufende Nummer)
         /*    2  7 -  9      3  */ int LastindexInd;                         // Lastindex (laufende Nummer)
         /*    3 10 - 12      3  */ char PhasenindexChar[3 + 1];              // Phasenindex
         /*    3 10 - 12      3  */ int PhasenindexInt;                       // Phasenindex
         /*    4 13 - 15      3  */ char MastindexLinkerMastChar[3 + 1];      // Mastindex linker Mast
         /*    4 13 - 15      3  */ int MastindexLinkerMastInt;               // Mastindex linker Mast
-        /*      16 - 16      1
-        /*    5 17 - 17      1  */
-        char Lasttyp[1 + 1];                                                 // Lasttyp (‘F’=Feldlast, ‘S’=Streckenlast, ‘P’=Punktlast)
-        /*      18 - 18      1
-        /*    6 19 - 19      1  */
-        char KennungLastEndzustand[1 + 1];                                   // Kennung ‘X’ - Last auf Endzustand
+        /*      16 - 16      1                                               //
+        /*    5 17 - 17      1  */ char Lasttyp[1 + 1];                      // Lasttyp (‘F’=Feldlast, ‘S’=Streckenlast, ‘P’=Punktlast)
+        /*      18 - 18      1                                               //
+        /*    6 19 - 19      1  */ char KennungLastEndzustand[1 + 1];        // Kennung ‘X’ - Last auf Endzustand
         /*    7 20 - 20      1  */ char KennungLastMontagezustand[1 + 1];    // Kennung ‘X’ - Last auf Montagezustand
         /*    8 21 - 21      1  */ char KennungLastRollenzustand[1 + 1];     // Kennung ‘X’ - Last auf Rollenzustand
         /*    9 22 - 24      3  */ char ZustandsindexChar[3 + 1];            // Zustandsindex, 0-Last auf alle Berechnungszustände, sonst nur auf einzelnen Berechnungszustand
@@ -853,38 +863,38 @@ namespace cc
         char const* fmtDS{ "%4c%*3c%4c%4c%3c%3c%3c%9c%9c%9c%9c%9c%9c%9c%9c%9c%9c" };
         char const* fmtPrintf{ "\n%s|\n%d|\n%d|\n%d|\n%d|\n%d|\n%9.2f|\n%9.2f|\n%9.2f|\n%9.2f|\n%9.2f|\n%9.2f|\n%9.2f|\n%9.2f|\n%9.2f|\n%9.2f|\n" };
 
-        /*   1:    1    1 -   4    4     */ char DSK[4 + 1];                                           // Satzkennung ‘SLK1’
-        /*    :    2    5 -   7    3     */
-        /*   2:    3    8 -  11    4     */ char SeilkurvenindexChar[4 + 1];                           // Seilkurvenindex (laufende Nummer)
-        /*   2:    3    8 -  11    4     */ int SeilkurvenindexInt;                                    // Seilkurvenindex (laufende Nummer)
-        /*   3:    4   12 -  15    3     */ char PhasenindexChar[4 + 1];                               // Phasenindex
-        /*   3:    4   12 -  15    3     */ int PhasenindexInt;                                        // Phasenindex
-        /*   4:    5   16 -  18    3     */ char ZustandsindexChar[3 + 1];                             // Zustandsindex
-        /*   4:    5   16 -  18    3     */ int ZustandsindexInt;                                      // Zustandsindex
-        /*   5:    6   19 -  21    3     */ char MastindexLinkerMastChar[3 + 1];                       // Mastindex linker Mast
-        /*   5:    6   19 -  21    3     */ int MastindexLinkerMastInt;                                // Mastindex linker Mast
-        /*   6:    7   22 -  24    3     */ char MastindexRechterMastChar[3 + 1];                      // Mastindex rechter Mast
-        /*   6:    7   22 -  24    3     */ int MastindexRechterMastInt;                               // Mastindex rechter Mast
-        /*   7:    8   25 -  33    9.2   */ char StationSeilaufhaengepunktLinksChar[9 + 1];            // Station Seilaufhängepunkt (links) [m]
-        /*   7:    8   25 -  33    9.2   */ float StationSeilaufhaengepunktLinksFloat;                 // Station Seilaufhängepunkt (links) [m]
-        /*   8:    9   34 -  42    9.2   */ char HoeheSeilaufhaengepunktLinksChar[9 + 1];              // Höhe Seilaufhängepunkt (links) [m]
-        /*   8:    9   34 -  42    9.2   */ float HoeheSeilaufhaengepunktLinksFloat;                   // Höhe Seilaufhängepunkt (links) [m]
-        /*   9:   10   43 -  51    9.2   */ char OrdinateSeilaufhaengepunktChar[9 + 1];                // Ordinate Seilaufhängepunkt (links) [m]
-        /*   9:   10   43 -  51    9.2   */ float OrdinateSeilaufhaengepunktFloat;                     // Ordinate Seilaufhängepunkt (links) [m]
-        /*  10:   11   52 -  60    9.2   */ char StationSeilaufhaengepunktRechtsChar[9 + 1];           // Station Seilaufhängepunkt (rechts) [m]
-        /*  10:   11   52 -  60    9.2   */ float StationSeilaufhaengepunktRechtsFloat;                // Station Seilaufhängepunkt (rechts) [m]
-        /*  11:   12   61 -  69    9.2   */ char HoeheSeilaufhaengepunktRechtsChar[9 + 1];             // Höhe Seilaufhängepunkt (rechts) [m]
-        /*  11:   12   61 -  69    9.2   */ float HoeheSeilaufhaengepunktRechtsFloat;                  // Höhe Seilaufhängepunkt (rechts) [m]
-        /*  12:   13   70 -  78    9.2   */ char OrdinateSeilaufhaengepunktRechtsChar[9 + 1];          // Ordinate Seilaufhängepunkt (rechts) [m]
-        /*  12:   13   70 -  78    9.2   */ float OrdinateSeilaufhaengepunktRechtsFloat;               // Ordinate Seilaufhängepunkt (rechts) [m]
-        /*  13:   14   79 -  87    9.2   */ char StationSeilaufhaengepunktLinksTransformChar[9 + 1];   // Station Seilaufhängepunkt (links) [m] (transformiert auf Feld)
-        /*  13:   14   79 -  87    9.2   */ float StationSeilaufhaengepunktLinksTransformFloat;        // Station Seilaufhängepunkt (links) [m] (transformiert auf Feld)
-        /*  14:   15   88 -  96    9.2   */ char OrdinateSeilaufhaengepunktLinksChar[9 + 1];           // Ordinate Seilaufhängepunkt (links) [m] (transformiert auf Feld)
-        /*  14:   15   88 -  96    9.2   */ float OrdinateSeilaufhaengepunktLinksFloat;                // Ordinate Seilaufhängepunkt (links) [m] (transformiert auf Feld)
-        /*  15:   16   97 - 105    9.2   */ char StationSeilaufhaengepunktRechtsTransformChar[9 + 1];  // Station Seilaufhängepunkt (rechts) [m] (transformiert auf Feld)
-        /*  15:   16   97 - 105    9.2   */ float StationSeilaufhaengepunktRechtsTransformFloat;       // Station Seilaufhängepunkt (rechts) [m] (transformiert auf Feld)
-        /*  16:   17  106 - 114    9.2   */ char OrdinateSeilaufhaengepunktRechtsTransformChar[9 + 1]; // Ordinate Seilaufhängepunkt (rechts) [m] (transformiert auf Feld)
-        /*  16:   17  106 - 114    9.2   */ float OrdinateSeilaufhaengepunktRechtsTransformFloat;      // Ordinate Seilaufhängepunkt (rechts) [m] (transformiert auf Feld)
+        /*   1:    1    1 -   4    4     */ char DSK[4 + 1];                                            // Satzkennung ‘SLK1’
+        /*    :    2    5 -   7    3     */                                                             //
+        /*   2:    3    8 -  11    4     */ char SeilkurvenindexChar[4 + 1];                            // Seilkurvenindex (laufende Nummer)
+        /*   2:    3    8 -  11    4     */ int SeilkurvenindexInt;                                     // Seilkurvenindex (laufende Nummer)
+        /*   3:    4   12 -  15    3     */ char PhasenindexChar[4 + 1];                                // Phasenindex
+        /*   3:    4   12 -  15    3     */ int PhasenindexInt;                                         // Phasenindex
+        /*   4:    5   16 -  18    3     */ char ZustandsindexChar[3 + 1];                              // Zustandsindex
+        /*   4:    5   16 -  18    3     */ int ZustandsindexInt;                                       // Zustandsindex
+        /*   5:    6   19 -  21    3     */ char MastindexLinkerMastChar[3 + 1];                        // Mastindex linker Mast
+        /*   5:    6   19 -  21    3     */ int MastindexLinkerMastInt;                                 // Mastindex linker Mast
+        /*   6:    7   22 -  24    3     */ char MastindexRechterMastChar[3 + 1];                       // Mastindex rechter Mast
+        /*   6:    7   22 -  24    3     */ int MastindexRechterMastInt;                                // Mastindex rechter Mast
+        /*   7:    8   25 -  33    9.2   */ char StationSeilaufhaengepunktLinksChar[9 + 1];             // Station Seilaufhängepunkt (links) [m]
+        /*   7:    8   25 -  33    9.2   */ float StationSeilaufhaengepunktLinksFloat;                  // Station Seilaufhängepunkt (links) [m]
+        /*   8:    9   34 -  42    9.2   */ char HoeheSeilaufhaengepunktLinksChar[9 + 1];               // Höhe Seilaufhängepunkt (links) [m]
+        /*   8:    9   34 -  42    9.2   */ float HoeheSeilaufhaengepunktLinksFloat;                    // Höhe Seilaufhängepunkt (links) [m]
+        /*   9:   10   43 -  51    9.2   */ char OrdinateSeilaufhaengepunktChar[9 + 1];                 // Ordinate Seilaufhängepunkt (links) [m]
+        /*   9:   10   43 -  51    9.2   */ float OrdinateSeilaufhaengepunktFloat;                      // Ordinate Seilaufhängepunkt (links) [m]
+        /*  10:   11   52 -  60    9.2   */ char StationSeilaufhaengepunktRechtsChar[9 + 1];            // Station Seilaufhängepunkt (rechts) [m]
+        /*  10:   11   52 -  60    9.2   */ float StationSeilaufhaengepunktRechtsFloat;                 // Station Seilaufhängepunkt (rechts) [m]
+        /*  11:   12   61 -  69    9.2   */ char HoeheSeilaufhaengepunktRechtsChar[9 + 1];              // Höhe Seilaufhängepunkt (rechts) [m]
+        /*  11:   12   61 -  69    9.2   */ float HoeheSeilaufhaengepunktRechtsFloat;                   // Höhe Seilaufhängepunkt (rechts) [m]
+        /*  12:   13   70 -  78    9.2   */ char OrdinateSeilaufhaengepunktRechtsChar[9 + 1];           // Ordinate Seilaufhängepunkt (rechts) [m]
+        /*  12:   13   70 -  78    9.2   */ float OrdinateSeilaufhaengepunktRechtsFloat;                // Ordinate Seilaufhängepunkt (rechts) [m]
+        /*  13:   14   79 -  87    9.2   */ char StationSeilaufhaengepunktLinksTransformChar[9 + 1];    // Station Seilaufhängepunkt (links) [m] (transformiert auf Feld)
+        /*  13:   14   79 -  87    9.2   */ float StationSeilaufhaengepunktLinksTransformFloat;         // Station Seilaufhängepunkt (links) [m] (transformiert auf Feld)
+        /*  14:   15   88 -  96    9.2   */ char OrdinateSeilaufhaengepunktLinksChar[9 + 1];            // Ordinate Seilaufhängepunkt (links) [m] (transformiert auf Feld)
+        /*  14:   15   88 -  96    9.2   */ float OrdinateSeilaufhaengepunktLinksFloat;                 // Ordinate Seilaufhängepunkt (links) [m] (transformiert auf Feld)
+        /*  15:   16   97 - 105    9.2   */ char StationSeilaufhaengepunktRechtsTransformChar[9 + 1];   // Station Seilaufhängepunkt (rechts) [m] (transformiert auf Feld)
+        /*  15:   16   97 - 105    9.2   */ float StationSeilaufhaengepunktRechtsTransformFloat;        // Station Seilaufhängepunkt (rechts) [m] (transformiert auf Feld)
+        /*  16:   17  106 - 114    9.2   */ char OrdinateSeilaufhaengepunktRechtsTransformChar[9 + 1];  // Ordinate Seilaufhängepunkt (rechts) [m] (transformiert auf Feld)
+        /*  16:   17  106 - 114    9.2   */ float OrdinateSeilaufhaengepunktRechtsTransformFloat;       // Ordinate Seilaufhängepunkt (rechts) [m] (transformiert auf Feld)
 
         virtual ~SLK1() {}
     };
@@ -894,40 +904,39 @@ namespace cc
         char const* fmtDS{ "%4c%*3c%4c%7c%11c%7c%7c%9c%9c%9c%1c%1c%9c%9c%9c%9c%8c%8c" };
         char const* fmtPrintf{ "\n%s|\n%d|\n%7.2f|\n%11.9f|\n%7.2f|\n%7.2f|\n%9.2f|\n%9.2f|\n%9.2f|\n%s|\n%s|\n%9.2f|\n%9.2f|\n%9.2f|\n%9.2f|\n%8.2f|\n%8.2f|\n" };
 
-        /*   1:     1     1 -   4         4     */ char DSK[4 + 1];                                        // Satzkennung ‘SLK2’
-        /*          2     5 -   7         3
-        /*   2:     3     8 -  11         4     */
-        char SeilkurvenindexChar[4 + 1];                                                                   // Seilkurvenindex (laufende Nummer)
-        /*   2:     3     8 -  11         4     */ int SeilkurvenindexInt;                                 // Seilkurvenindex (laufende Nummer)
-        /*   3:     4    12 -  18         7.2   */ char SeilspannungEndzustandChar[7 + 1];                 // Seilspannung Endzustand [N/mm²]
-        /*   3:     4    12 -  18         7.2   */ float SeilspannungEndzustandFloat;                      // Seilspannung Endzustand [N/mm²]
-        /*   4:     5    19 -  29        11.9   */ char SeilgewichtEndzustandChar[11 + 1];                 // Seilgewicht Endzustand [N/mm²m]
-        /*   4:     5    19 -  29        11.9   */ float SeilgewichtEndzustandFloat;                       // Seilgewicht Endzustand [N/mm²m]
-        /*   5:     6    30 -  36         7.2   */ char SeilausschwingwinkelChar[7 + 1];                   // Seilausschwingwinkel
-        /*   5:     6    30 -  36         7.2   */ float SeilausschwingwinkelFloat;                        // Seilausschwingwinkel
-        /*   6:     7    37 -  43         7.2   */ char DurchhangFeldmitteChar[7 + 1];                     // Durchhang in Feldmitte
-        /*   6:     7    37 -  43         7.2   */ float DurchhangFeldmitteFloat;                          // Durchhang in Feldmitte
-        /*   7:     8    44 -  52         9.2   */ char StationSeilpunktFeldmitteChar[9 + 2];              // Station Seilpunkt (Feldmitte) [m]
-        /*   7:     8    44 -  52         9.2   */ float StationSeilpunktFeldmitteFloat;                   // Station Seilpunkt (Feldmitte) [m]
-        /*   8:     9    53 -  61         9.2   */ char HoeheSeilpunktFeldmitteChar[9 + 2];                // Höhe Seilpunkt (Feldmitte) [m]
-        /*   8:     9    53 -  61         9.2   */ float HoeheSeilpunktFeldmitteFloat;                     // Höhe Seilpunkt (Feldmitte) [m]
-        /*   9:    10    62 -  70         9.2   */ char OrdinateSeilpunktFeldmitteChar[9 + 2];             // Ordinate Seilpunkt (Feldmitte) [m]
-        /*   9:    10    62 -  70         9.2   */ float OrdinateSeilpunktFeldmitteFloat;                  // Ordinate Seilpunkt (Feldmitte) [m]
-        /*  10:    11    71 -  71         1     */ char TiefsterPunktFeldmitte[1 + 1];                     // ' * ' falls tiefster Punkt in Feldmitte des Feldes, sonst nichts
-        /*  11:    12    72 -  72         1     */ char GroeszterDurchhangFeld[1 + 1];                     // '#' falls größter Durchhang des Feldes, sonst nichts
-        /* *** Neu ab Version 4.0.1 ***  */
-        /*  12:    13     73 -  81        9.2   */ char GewichtsspannweiteChar[9 + 1];                     // Gewichtsspannweite
-        /*  12:    13     73 -  81        9.2   */ float GewichtsspannweiteFloat;                          // Gewichtsspannweite
-        /*  13:    14     82 -  90        9.2   */ char BogenlaengeSeilChar[9 + 1];                        // Bogenlänge des Seils
-        /*  13:    14     82 -  90        9.2   */ float BogenlaengeSeilFloat;                             // Bogenlänge des Seils
-        /*  14:    15     91 -  99        9.2   */ char ScheitelpunktEntfernungLinkerMastChar[9 + 1];      // Scheitelpunkt, Entfernung vom linken Mast
-        /*  14:    15     91 -  99        9.2   */ float ScheitelpunktEntfernungLinkerMastFloat;           // Scheitelpunkt, Entfernung vom linken Mast
-        /*  15:    16    100 - 108        9.2   */ char ScheitelpunktSeilhoeheChar[9 + 1];                 // Scheitelpunkt, Seilhöhe
-        /*  15:    16    100 - 108        9.2   */ float ScheitelpunktSeilhoeheFloat;                      // Scheitelpunkt, Seilhöhe
-        /*  16:    17    109 - 116        8.2   */ char SeilspannungAbsolutAufhaengepunktLinksChar[8 + 1]; // Seilspannung absolut Aufhängepunkt links
-        /*  16:    17    109 - 116        8.2   */ float SeilspannungAbsolutAufhaengepunktLinksFloat;      // Seilspannung absolut Aufhängepunkt links
-        /*  17:    18    117 - 124        8.2   */ char SeilspannungAbsolutAufhaengepunktRechtChar[8 + 1]; // Seilspannung absolut Aufhängepunkt rechts
-        /*  17:    18    117 - 124        8.2   */ float SeilspannungAbsolutAufhaengepunktRechtsFloat;     // Seilspannung absolut Aufhängepunkt rechts
+        /*   1:     1     1 -   4         4     */ char DSK[4 + 1];                                         // Satzkennung ‘SLK2’
+        /*          2     5 -   7         3                                                                 //
+        /*   2:     3     8 -  11         4     */ char SeilkurvenindexChar[4 + 1];                         // Seilkurvenindex (laufende Nummer)
+        /*   2:     3     8 -  11         4     */ int SeilkurvenindexInt;                                  // Seilkurvenindex (laufende Nummer)
+        /*   3:     4    12 -  18         7.2   */ char SeilspannungEndzustandChar[7 + 1];                  // Seilspannung Endzustand [N/mm²]
+        /*   3:     4    12 -  18         7.2   */ float SeilspannungEndzustandFloat;                       // Seilspannung Endzustand [N/mm²]
+        /*   4:     5    19 -  29        11.9   */ char SeilgewichtEndzustandChar[11 + 1];                  // Seilgewicht Endzustand [N/mm²m]
+        /*   4:     5    19 -  29        11.9   */ float SeilgewichtEndzustandFloat;                        // Seilgewicht Endzustand [N/mm²m]
+        /*   5:     6    30 -  36         7.2   */ char SeilausschwingwinkelChar[7 + 1];                    // Seilausschwingwinkel
+        /*   5:     6    30 -  36         7.2   */ float SeilausschwingwinkelFloat;                         // Seilausschwingwinkel
+        /*   6:     7    37 -  43         7.2   */ char DurchhangFeldmitteChar[7 + 1];                      // Durchhang in Feldmitte
+        /*   6:     7    37 -  43         7.2   */ float DurchhangFeldmitteFloat;                           // Durchhang in Feldmitte
+        /*   7:     8    44 -  52         9.2   */ char StationSeilpunktFeldmitteChar[9 + 2];               // Station Seilpunkt (Feldmitte) [m]
+        /*   7:     8    44 -  52         9.2   */ float StationSeilpunktFeldmitteFloat;                    // Station Seilpunkt (Feldmitte) [m]
+        /*   8:     9    53 -  61         9.2   */ char HoeheSeilpunktFeldmitteChar[9 + 2];                 // Höhe Seilpunkt (Feldmitte) [m]
+        /*   8:     9    53 -  61         9.2   */ float HoeheSeilpunktFeldmitteFloat;                      // Höhe Seilpunkt (Feldmitte) [m]
+        /*   9:    10    62 -  70         9.2   */ char OrdinateSeilpunktFeldmitteChar[9 + 2];              // Ordinate Seilpunkt (Feldmitte) [m]
+        /*   9:    10    62 -  70         9.2   */ float OrdinateSeilpunktFeldmitteFloat;                   // Ordinate Seilpunkt (Feldmitte) [m]
+        /*  10:    11    71 -  71         1     */ char TiefsterPunktFeldmitte[1 + 1];                      // ' * ' falls tiefster Punkt in Feldmitte des Feldes, sonst nichts
+        /*  11:    12    72 -  72         1     */ char GroeszterDurchhangFeld[1 + 1];                      // '#' falls größter Durchhang des Feldes, sonst nichts
+        /* *** Neu ab Version 4.0.1 ***  */                                                                 //
+        /*  12:    13     73 -  81        9.2   */ char GewichtsspannweiteChar[9 + 1];                      // Gewichtsspannweite
+        /*  12:    13     73 -  81        9.2   */ float GewichtsspannweiteFloat;                           // Gewichtsspannweite
+        /*  13:    14     82 -  90        9.2   */ char BogenlaengeSeilChar[9 + 1];                         // Bogenlänge des Seils
+        /*  13:    14     82 -  90        9.2   */ float BogenlaengeSeilFloat;                              // Bogenlänge des Seils
+        /*  14:    15     91 -  99        9.2   */ char ScheitelpunktEntfernungLinkerMastChar[9 + 1];       // Scheitelpunkt, Entfernung vom linken Mast
+        /*  14:    15     91 -  99        9.2   */ float ScheitelpunktEntfernungLinkerMastFloat;            // Scheitelpunkt, Entfernung vom linken Mast
+        /*  15:    16    100 - 108        9.2   */ char ScheitelpunktSeilhoeheChar[9 + 1];                  // Scheitelpunkt, Seilhöhe
+        /*  15:    16    100 - 108        9.2   */ float ScheitelpunktSeilhoeheFloat;                       // Scheitelpunkt, Seilhöhe
+        /*  16:    17    109 - 116        8.2   */ char SeilspannungAbsolutAufhaengepunktLinksChar[8 + 1];  // Seilspannung absolut Aufhängepunkt links
+        /*  16:    17    109 - 116        8.2   */ float SeilspannungAbsolutAufhaengepunktLinksFloat;       // Seilspannung absolut Aufhängepunkt links
+        /*  17:    18    117 - 124        8.2   */ char SeilspannungAbsolutAufhaengepunktRechtChar[8 + 1];  // Seilspannung absolut Aufhängepunkt rechts
+        /*  17:    18    117 - 124        8.2   */ float SeilspannungAbsolutAufhaengepunktRechtsFloat;      // Seilspannung absolut Aufhängepunkt rechts
 
         virtual ~SLK2() {}
     };
@@ -937,26 +946,26 @@ namespace cc
         char const* fmtDS{ "%4c%*3c%4c%7c%7c%7c%7c%7c%7c%10c%10c" };
         char const* fmtPrintf{ "\n%s|\n%d|\n%7.3f|\n%7.3f|\n%7.3f|\n%7.3f|\n%7.3f|\n%7.3f|\n%10.2f|\n%10.2f|\n" };
 
-        /*   1:    1 -  4        4     */ char DSK[4 + 1];                                                     // Satzkennung ‘SLK3’
-        /*         5 -  7        3     */
-        /*   2:    8 - 11        4     */ char SeilkurvenindexChar[4 + 1];                                     // Seilkurvenindex (laufende Nummer)
-        /*   2:    8 - 11        4     */ int SeilkurvenindexInt;                                              // Seilkurvenindex (laufende Nummer)
-        /*   3:   12 - 18        7.3   */ char KettenauslenkungLinkerMastInLeitungsrichtungChar[7 + 1];        // Kettenauslenkung linker Mast in Leitungsrichtung
-        /*   3:   12 - 18        7.3   */ float KettenauslenkungLinkerMastInLeitungsrichtungFloat;             // Kettenauslenkung linker Mast in Leitungsrichtung
-        /*   4:   19 - 25        7.3   */ char KettenauslenkungLinkerMastQuerLeitungsrichtungChar[7 + 1];      // Kettenauslenkung linker Mast quer zu Leitungsrichtung (positiv entspr. nach links)
-        /*   4:   19 - 25        7.3   */ float KettenauslenkungLinkerMastQuerLeitungsrichtungFloat;           // Kettenauslenkung linker Mast quer zu Leitungsrichtung (positiv entspr. nach links)
-        /*   5:   26 - 32        7.3   */ char KettenauslenkungLinkerMastVertikalLeitungsrichtungChar[7 + 1];  // Kettenauslenkung linker Mast vertikal (Höhe, negativ entspr. nach unten)
-        /*   5:   26 - 32        7.3   */ float KettenauslenkungLinkerMastVertikalLeitungsrichtungFloat;       // Kettenauslenkung linker Mast vertikal (Höhe, negativ entspr. nach unten)
-        /*   6:   33 - 39        7.3   */ char KettenauslenkungRechterMastInLeitungsrichtungChar[7 + 1];       // Kettenauslenkung rechter Mast in Leitungsrichtung
-        /*   6:   33 - 39        7.3   */ float KettenauslenkungRechterMastInLeitungsrichtungFloat;            // Kettenauslenkung rechter Mast in Leitungsrichtung
-        /*   7:   40 - 46        7.3   */ char KettenauslenkungRechterMastQuerLeitungsrichtungChar[7 + 1];     // Kettenauslenkung rechter Mast quer zu Leitungsrichtung (positiv entspr. nach links)
-        /*   7:   40 - 46        7.3   */ float KettenauslenkungRechterMastQuerLeitungsrichtungFloat;          // Kettenauslenkung rechter Mast quer zu Leitungsrichtung (positiv entspr. nach links)
-        /*   8:   47 - 53        7.3   */ char KettenauslenkungRechterMastVertikalLeitungsrichtungChar[7 + 1]; // Kettenauslenkung rechter Mast vertikal (Höhe, negativ entspr. nach unten)
-        /*   8:   47 - 53        7.3   */ float KettenauslenkungRechterMastVertikalLeitungsrichtungFloat;      // Kettenauslenkung rechter Mast vertikal (Höhe, negativ entspr. nach unten)
-        /*   9:   54 - 63       10.2   */ char SeilzugLinksChar[10 + 1];                                       // Seilzug links
-        /*   9:   54 - 63       10.2   */ float SeilzugLinksFloat;                                             // Seilzug links
-        /*  10:   64 - 73       10.2   */ char SeilzugRechtsChar[10 + 1];                                      // Seilzug rechts
-        /*  10:   64 - 73       10.2   */ float SeilzugRechtsFloat;                                            // Seilzug rechts
+        /*   1:    1 -  4        4     */ char DSK[4 + 1];                                                      // Satzkennung ‘SLK3’
+        /*         5 -  7        3     */                                                                       //
+        /*   2:    8 - 11        4     */ char SeilkurvenindexChar[4 + 1];                                      // Seilkurvenindex (laufende Nummer)
+        /*   2:    8 - 11        4     */ int SeilkurvenindexInt;                                               // Seilkurvenindex (laufende Nummer)
+        /*   3:   12 - 18        7.3   */ char KettenauslenkungLinkerMastInLeitungsrichtungChar[7 + 1];         // Kettenauslenkung linker Mast in Leitungsrichtung
+        /*   3:   12 - 18        7.3   */ float KettenauslenkungLinkerMastInLeitungsrichtungFloat;              // Kettenauslenkung linker Mast in Leitungsrichtung
+        /*   4:   19 - 25        7.3   */ char KettenauslenkungLinkerMastQuerLeitungsrichtungChar[7 + 1];       // Kettenauslenkung linker Mast quer zu Leitungsrichtung (positiv entspr. nach links)
+        /*   4:   19 - 25        7.3   */ float KettenauslenkungLinkerMastQuerLeitungsrichtungFloat;            // Kettenauslenkung linker Mast quer zu Leitungsrichtung (positiv entspr. nach links)
+        /*   5:   26 - 32        7.3   */ char KettenauslenkungLinkerMastVertikalLeitungsrichtungChar[7 + 1];   // Kettenauslenkung linker Mast vertikal (Höhe, negativ entspr. nach unten)
+        /*   5:   26 - 32        7.3   */ float KettenauslenkungLinkerMastVertikalLeitungsrichtungFloat;        // Kettenauslenkung linker Mast vertikal (Höhe, negativ entspr. nach unten)
+        /*   6:   33 - 39        7.3   */ char KettenauslenkungRechterMastInLeitungsrichtungChar[7 + 1];        // Kettenauslenkung rechter Mast in Leitungsrichtung
+        /*   6:   33 - 39        7.3   */ float KettenauslenkungRechterMastInLeitungsrichtungFloat;             // Kettenauslenkung rechter Mast in Leitungsrichtung
+        /*   7:   40 - 46        7.3   */ char KettenauslenkungRechterMastQuerLeitungsrichtungChar[7 + 1];      // Kettenauslenkung rechter Mast quer zu Leitungsrichtung (positiv entspr. nach links)
+        /*   7:   40 - 46        7.3   */ float KettenauslenkungRechterMastQuerLeitungsrichtungFloat;           // Kettenauslenkung rechter Mast quer zu Leitungsrichtung (positiv entspr. nach links)
+        /*   8:   47 - 53        7.3   */ char KettenauslenkungRechterMastVertikalLeitungsrichtungChar[7 + 1];  // Kettenauslenkung rechter Mast vertikal (Höhe, negativ entspr. nach unten)
+        /*   8:   47 - 53        7.3   */ float KettenauslenkungRechterMastVertikalLeitungsrichtungFloat;       // Kettenauslenkung rechter Mast vertikal (Höhe, negativ entspr. nach unten)
+        /*   9:   54 - 63       10.2   */ char SeilzugLinksChar[10 + 1];                                        // Seilzug links
+        /*   9:   54 - 63       10.2   */ float SeilzugLinksFloat;                                              // Seilzug links
+        /*  10:   64 - 73       10.2   */ char SeilzugRechtsChar[10 + 1];                                       // Seilzug rechts
+        /*  10:   64 - 73       10.2   */ float SeilzugRechtsFloat;                                             // Seilzug rechts
 
         virtual ~SLK3() {}
     };
@@ -1017,7 +1026,7 @@ namespace cc
         char const* fmtPrintf{ "\n%s|\n%d|\n%s|\n%6.2f|\n%d|\n%s|\n%s|\n%d|\n%d|\n%s|\n%s|\n%s|\n%s|\n%s|\n%s|\n%d|\n%6.2f|\n" };
 
         /*   1:  1  -  4      4           */ char DSK[4 + 1];                             //  Satzkennung ‘OBJ1’
-        /*   2:  7  -  9      3           */ char KreuzungsobjektindexTeil_1_Char[3 + 1]; //  Kreuzungsobjektindex Teil 1 (Einer- bis Hunderterstellen)
+        /*   2:  7  -  9      3           */ char KreuzungsobjektindexTeil_1_Char[3 + 1] ; //  Kreuzungsobjektindex Teil 1 (Einer- bis Hunderterstellen)
         /*   2:  7  -  9      3           */ int KreuzungsobjektindexTeil_1_Int;          //  Kreuzungsobjektindex Teil 1 (Einer- bis Hunderterstellen)
         /*   3:  11 - 20     10           */ char Objektnummer[10 + 1];                   //  Objektnummer (Bezeichnung)
         /*   4:  21 - 26    6.2           */ char MindestabstandChar[6 + 1];              //  Mindestabstand [m]
@@ -1034,14 +1043,14 @@ namespace cc
         /*  11:  46 - 46      1           */ char SteuerungsparameterDruckausgabe[1 + 1]; //  Steuerungsparameter für Druckausgabe
         /*  12:  47 - 47      1           */ char ParameterLeitungskreuzungen[1 + 1];     //  Parameter für Leitungskreuzungen
         /*  13:  48 - 48      1           */ char NeuerObjekttyp[1 + 1];                  //  Neuer Objekttyp (’P’=Punkt, ’L’=Linie, ’F’=Fläche, ’G’=Gelände, ’X’=Leitungskreuzung, ‘W‘=Windenergieanlage, sonstiges Zeichen=Benutzerdefiniert)
-        /* *** Neu ab XX.03.04 ***        */
+        /* *** Neu ab XX.03.04 ***        */                                              //
         /*  14:  49 - 49      1           */ char Objektabstand[1 + 1];                   // Festlegung Objektabstand '0' = Freie Eingabe '1' = DIN VDE 5.62 ‘2‘ = DIN VDE 5.69 *** neu ab Version 4.5.1 *** '3' = DIN VDE 12.85 '4' = DIN EN 50341 (2002-2011) '5' = DIN EN 50341 (2016-2019) *** neu ab Version 4.11.2 *** Sonst : Freie Eingabe (Default: '0')
-        /* *** Neu ab Version 3.3.0x ***  */
+        /* *** Neu ab Version 3.3.0x ***  */                                              //
         /*  15:  50 - 50      1           */ char ObjektRechnen[1 + 1];                   // Objekt rechnen: ‚N’ : Nicht rechnen Sonst: Rechnen
-        /* *** Neu ab Version 4.2.1 ***   */
+        /* *** Neu ab Version 4.2.1 ***   */                                              //
         /*  16:  51 - 53      3           */ char KreuzungsobjektindexTeil_2_Char[3 + 1]; // Kreuzungsobjektindex Teil 2 (Tausenderstellen)
         /*  16:  51 - 53      3           */ int KreuzungsobjektindexTeil_2_Int;          // Kreuzungsobjektindex Teil 2 (Tausenderstellen)
-        /* *** Neu ab Version 4.7.2 ***   */
+        /* *** Neu ab Version 4.7.2 ***   */                                              //
         /*  17:  54 - 59      6.2         */ char Mindestabstand110kVChar[6 + 1];         // Mindestabstand 110 kV (wenn angegeben wird Mindestabstand aus Spannungsebene Phase und Zuschlag bei Laufzeit ermittelt)
         /*  17:  54 - 59      6.2         */ float Mindestabstand110kVFloat;              // Mindestabstand 110 kV (wenn angegeben wird Mindestabstand aus Spannungsebene Phase und Zuschlag bei Laufzeit ermittelt)
 
@@ -1076,10 +1085,10 @@ namespace cc
         /*      5 -  6      2            %*2c        */                                              //
         /*  2:  7 -  9      3            %3c   %d    */ char KreuzungsobjektindexTeil_1_Char[3 + 1]; // Kreuzungsobjektindex Teil 1 (Einer- bis Hunderterstellen)
         /*  2:  7 -  9      3            %3c   %d    */ int KreuzungsobjektindexTeil_1_Int;          // Kreuzungsobjektindex Teil 1 (Einer- bis Hunderterstellen)
-        /*     10 - 10      1            %*1c        */
+        /*     10 - 10      1            %*1c        */                                              //
         /*  3: 11 - 38     28            %28c  %s    */ char EigentümerZeile_1[28 + 1];              // Eigentümer (1.Zeile)
         /*  4: 39 - 66     28            %28c  %s    */ char EigentümerZeile_2[28 + 1];              // Eigentümer (2.Zeile)
-        /* *** Neu ab Version 4.2.1 ***              */
+        /* *** Neu ab Version 4.2.1 ***              */                                              //
         /*  5: 67 - 69      3            %3c   %d    */ char KreuzungsobjektindexTeil_2_Char[3 + 1]; // Kreuzungsobjektindex Teil 2 (Tausenderstellen)
         /*  5: 67 - 69      3            %3c   %d    */ int KreuzungsobjektindexTeil_2_Int;          // Kreuzungsobjektindex Teil 2 (Tausenderstellen)
 
@@ -1088,11 +1097,92 @@ namespace cc
     //: OBJA: Erweiterung unterschiedliche Mindestabstände für Nachweiszustände
     struct OBJA : Base
     {
+        char const* fmtDS{ "%4c%*2c%3c%*1c%1c%6c%*1c%1c%6c%*1c%1c%6c%*1c%1c%6c%*1c%1c%6c%*1c%1c%6c%*1c%1c%6c%*1c%1c%6c%*1c%3c" };
+        char const* fmtPrintf{ "\n%s|\n%d|\n%s|\n%6.2f|\n%s|\n%6.2f|\n%s|\n%6.2f|\n%s|\n%6.2f|\n%s|\n%6.2f|\n%s|\n%6.2f|\n%s|\n%6.2f|\n%s|\n%6.2f|\n%d|\n" };
+
+        /*   1:  1 -  4      4  %4c      %s     */ char  DSK[4+1]                               ;   // Satzkennung ‘OBJA’  
+        /*       5 -  6      2  %*2c            */                                                  //
+        /*   2:  7 -  9      3  %3c      %d     */ char  Kreuzungsobjektindex_Teil_1_Char[3+1]  ;   // Kreuzungsobjektindex Teil 1 (Einer- bis Hunderterstellen) 
+        /*   2:  7 -  9      3  %3c      %d     */ int   Kreuzungsobjektindex_Teil_1_Int        ;   // Kreuzungsobjektindex Teil 1 (Einer- bis Hunderterstellen) 
+        /*      10 - 10      1  %*1c            */                                                  //
+        /*   3: 11 - 11      1  %1c      %s     */ char  Kennung_Nr_1[1+1]                      ;   // Kennung Nr. 1 ('TZUA1234') auf Nachweiszustand ('ZSAN'-Satz), für den ein anderer Mindestabstand als der Wert aus 'OBJ1' verwendet werden soll (falls ' ' wird nachfolgender Abstand ignoriert).  
+        /*   4: 12 - 17    6.2  %6c      %6.2f  */ char  Mindestabstand_1_Char[6+1]             ;   // Mindestabstand für vorausgehend angegebenen Nachweiszustand [m]  
+        /*   4: 12 - 17    6.2  %6c      %6.2f  */ float Mindestabstand_1_Float                 ;   // Mindestabstand für vorausgehend angegebenen Nachweiszustand [m]  
+        /*      18 - 18      1  %*1c            */                                                  //
+        /*   5: 19 - 19      1  %1c      %s     */ char  Kennung_Nr_2[1+1]                      ;   // Kennung Nr. 2 ('TZUA1234') auf Nachweiszustand ('ZSAN'-Satz), für den ein anderer Mindestabstand als der Wert aus 'OBJ1' verwendet werden soll (falls ' ' wird nachfolgender Abstand ignoriert)           
+        /*   6: 20 - 25    6.2  %6c      %6.2f  */ char  Mindestabstand_2_Char[6+1]             ;   // Mindestabstand für vorausgehend angegebenen Nachweiszustand [m]  
+        /*   6: 20 - 25    6.2  %6c      %6.2f  */ float Mindestabstand_2_Float                 ;   // Mindestabstand für vorausgehend angegebenen Nachweiszustand [m]  
+        /*      26 - 26      1  %*1c            */                                                  //
+        /*   7: 27 - 27      1  %1c      %s     */ char  Kennung_Nr_3[1+1]                      ;   // Kennung Nr. 3 ('TZUA1234') auf Nachweiszustand ('ZSAN'-Satz), für den ein anderer Mindestabstand als der Wert aus 'OBJ1' verwendet werden soll (falls ' ' wird nachfolgender Abstand ignoriert).  
+        /*   8: 28 - 33    6.2  %6c      %6.2f  */ char  Mindestabstand_3_Char[6+1]             ;   // Mindestabstand für vorausgehend angegebenen Nachweiszustand [m]  
+        /*   8: 28 - 33    6.2  %6c      %6.2f  */ float Mindestabstand_3_Float                 ;   // Mindestabstand für vorausgehend angegebenen Nachweiszustand [m]  
+        /*      34 - 34      1  %*1c            */                                                  //
+        /*   9: 35 - 35      1  %1c      %s     */ char  Kennung_Nr_4[1+1]                      ;   // Kennung Nr. 4 ('TZUA1234') auf Nachweiszustand ('ZSAN'-Satz), für den ein anderer Mindestabstand als der Wert aus 'OBJ1' verwendet werden soll (falls ' ' wird nachfolgender Abstand ignoriert).  
+        /*  10: 36 - 41    6.2  %6c      %f     */ char  Mindestabstand_4_Char[6+1]             ;   // Mindestabstand für vorausgehend angegebenen Nachweiszustand [m]  
+        /*  10: 36 - 41    6.2  %6c      %f     */ float Mindestabstand_4_Float                 ;   // Mindestabstand für vorausgehend angegebenen Nachweiszustand [m]  
+        /*      42 - 42      1  %*1c            */                                                  //
+        /*  11: 43 - 43      1  %1c      %s     */ char  Kennung_Nr_5[1+1]                      ;   // Kennung Nr. 5 ('TZUA1234') auf Nachweiszustand ('ZSAN'-Satz), für  
+        /*  12: 44 - 49    6.2  %6c      %6.2f  */ char  Mindestabstand_5_Char[6+1]             ;   // Mindestabstand für vorausgehend angegebenen Nachweiszustand [m]  
+        /*  12: 44 - 49    6.2  %6c      %6.2f  */ float Mindestabstand_5_Float                 ;   // Mindestabstand für vorausgehend angegebenen Nachweiszustand [m]  
+        /*      50 - 50      1  %*1c            */                                                  //
+        /*  13: 51 - 51      1  %1c      %s     */ char  Kennung_Nr_6[1+1]                      ;   // Kennung Nr. 6 ('TZUA1234') auf Nachweiszustand ('ZSAN'-Satz), für den ein anderer Mindestabstand als der Wert aus 'OBJ1' verwendet werden soll (falls ' ' wird nachfolgender Abstand ignoriert).  
+        /*  14: 52 - 57    6.2  %6c      %6.2f  */ char  Mindestabstand_6_Char[6+1]             ;   // Mindestabstand für vorausgehend angegebenen Nachweiszustand [m]  
+        /*  14: 52 - 57    6.2  %6c      %6.2f  */ float Mindestabstand_6_Float                 ;   // Mindestabstand für vorausgehend angegebenen Nachweiszustand [m]  
+        /*      58 - 58      1  %*1c            */                                                  //
+        /*  15: 59 - 59      1  %1c      %s     */ char  Kennung_Nr_7[1+1]                      ;   // Kennung Nr. 7 ('TZUA1234') auf Nachweiszustand ('ZSAN'-Satz), für den ein anderer Mindestabstand als der Wert aus 'OBJ1' verwendet werden soll (falls ' ' wird nachfolgender Abstand ignoriert).  
+        /*  16: 60 - 65    6.2  %6c      %6.2f  */ char  Mindestabstand_7_Char[6+1]             ;   // Mindestabstand für vorausgehend angegebenen Nachweiszustand [m]  
+        /*  16: 60 - 65    6.2  %6c      %6.2f  */ float Mindestabstand_7_Float                 ;   // Mindestabstand für vorausgehend angegebenen Nachweiszustand [m]  
+        /*      66 - 66      1  %*1c            */                                                  //
+        /*  17: 67 - 67      1  %1c      %s     */ char  Kennung_Nr_8[1+1]                      ;   // Kennung Nr. 8 ('TZUA1234') auf Nachweiszustand ('ZSAN'-Satz), für den ein anderer Mindestabstand als der Wert aus 'OBJ1' verwendet werden soll (falls ' ' wird nachfolgender Abstand ignoriert).  
+        /*  18: 68 - 73    6.2  %6c      %6.2f  */ char  Mindestabstand_8_Char[6+1]             ;   // Mindestabstand für vorausgehend angegebenen Nachweiszustand [m]  
+        /*  18: 68 - 73    6.2  %6c      %6.2f  */ float Mindestabstand_8_Float                 ;   // Mindestabstand für vorausgehend angegebenen Nachweiszustand [m]  
+        /*      74 - 74      1  %*1c            */                                                  //
+        /* *** Neu ab Version 4.2.1 ***         */                                                  //
+        /*  19: 75 - 77      3  %3c      %d     */ char  Kreuzungsobjektindex_Teil_2_Char[3+1]  ;    // Kreuzungsobjektindex Teil 2 (Tausenderstellen)  
+        /*  19: 75 - 77      3  %3c      %d     */ int   Kreuzungsobjektindex_Teil_2_Int        ;    // Kreuzungsobjektindex Teil 2 (Tausenderstellen)  
         virtual ~OBJA() {}
     };
     //: OBA1: Erweiterung unterschiedliche Mindestabstände 110kV für
     struct OBA1 : Base
     {
+        char const* fmtDS{ "%4c%*2c%6c%*1c%1c%6c%*1c%1c%6c%*1c%1c%6c%*1c%1c%6c%*1c%1c%6c%*1c%1c%6c%*1c%1c%6c%*1c%1c%6c" };
+        char const* fmtPrintf{ "\n%s|\n%d|\n%s|\n%6.2f|\n%s|\n%6.2f|\n%s|\n%6.2f|\n%s|\n%6.2f|\n%s|\n%6.2f|\n%s|\n%6.2f|\n%s|\n%6.2f|\n%s|\n%6.2f|\n" };
+        /*   1:  1 -  4      4      %4c     %s      */  char DSK[4+1]                           ;   // Satzkennung "OBA1"  
+        /*       5 -  6      2      %*2c            */                                              //
+        /*   2:  7 - 12      6      %6c     %d      */  char  Kreuzungsobjektindex_Char[6+1]    ;   // Kreuzungsobjektindex  
+        /*   2:  7 - 12      6      %6c     %d      */  int   Kreuzungsobjektindex_Int          ;   // Kreuzungsobjektindex  
+        /*      13 - 13      1      %*1c            */                                              // 
+        /*   3: 14 - 14      1      %1c     %s      */  char  Kennung_Nr_1[1+1]                 ;   // Kennung Nr. 1 ("TZUA1234") auf Nachweiszustand ("ZSAN"-Satz), für den ein anderer 110kV-Mindestabstand als der Wert aus "OBJ1" verwendet werden soll (falls " " wird nachfolgender Abstand ignoriert).  
+        /*   4: 15 - 20    6.2      %6c     %6.2f   */  char  Mindestabstand_110kV_1_Char[6+1]  ;   // 110kV-Mindestabstand für vorausgehend angegebenen Nachweiszustand [m]  
+        /*   4: 15 - 20    6.2      %6c     %6.2f   */  float Mindestabstand_110kV_1_Float      ;   // 110kV-Mindestabstand für vorausgehend angegebenen Nachweiszustand [m]  
+        /*      21 - 21      1      %*1c            */                                          ;   //
+        /*   5: 22 - 22      1      %1c     %s      */  char  Kennung_Nr_2[1+1]                 ;   // Kennung Nr. 2 ("TZUA1234") auf Nachweiszustand ("ZSAN"-Satz), für den ein anderer 110kV-Mindestabstand als der Wert aus "OBJ1" verwendet werden soll (falls " " wird nachfolgender Abstand ignoriert).  
+        /*   6: 23 - 28    6.2      %6c     %6.2f   */  char  Mindestabstand_110kV_2_Char[6+1]  ;   // 110kV-Mindestabstand für vorausgehend angegebenen Nachweiszustand [m]  
+        /*   6: 23 - 28    6.2      %6c     %6.2f   */  float Mindestabstand_110kV_2_Float      ;   // 110kV-Mindestabstand für vorausgehend angegebenen Nachweiszustand [m]  
+        /*      29 - 29      1      %*1c            */                                              //
+        /*   7: 30 - 30      1      %1c     %s      */  char  Kennung_Nr_3[1+1]                 ;   // Kennung Nr. 3 ("TZUA1234") auf Nachweiszustand ("ZSAN"-Satz), für den ein anderer 110kV-Mindestabstand als der Wert aus "OBJ1" verwendet werden soll (falls " " wird nachfolgender Abstand ignoriert).  
+        /*   8: 31 - 36    6.2      %6c     %6.2f   */  char  Mindestabstand_110kV_3_Char[6+1]  ;   // 110kV-Mindestabstand für vorausgehend angegebenen Nachweiszustand [m]  
+        /*   8: 31 - 36    6.2      %6c     %6.2f   */  float Mindestabstand_110kV_3_Float      ;   // 110kV-Mindestabstand für vorausgehend angegebenen Nachweiszustand [m]  
+        /*      37 - 37      1      %*1c            */                                              //
+        /*   9: 38 - 38      1      %1c     %s      */  char  Kennung_Nr_4[1+1]                 ;   // Kennung Nr. 4 ("TZUA1234") auf Nachweiszustand ("ZSAN"-Satz), für den ein anderer 110kV-Mindestabstand als der Wert aus "OBJ1" verwendet werden soll (falls " " wird nachfolgender Abstand ignoriert).  
+        /*  10: 39 - 44    6.2      %6c     %6.2f   */  char  Mindestabstand_110kV_4_Char[6+1]  ;   // 110kV-Mindestabstand für vorausgehend angegebenen Nachweiszustand [m]  
+        /*  10: 39 - 44    6.2      %6c     %6.2f   */  float Mindestabstand_110kV_4_Float      ;   // 110kV-Mindestabstand für vorausgehend angegebenen Nachweiszustand [m]  
+        /*      45 - 45      1      %*1c            */                                              //
+        /*  11: 46 - 46      1      %1c     %s      */  char  Kennung_Nr_5[1+1]                 ;   // Kennung Nr. 5 ("TZUA1234") auf Nachweiszustand ("ZSAN"-Satz), für den ein anderer 110kV-Mindestabstand als der Wert aus "OBJ1" verwendet werden soll (falls " " wird nachfolgender Abstand ignoriert).  
+        /*  12: 47 - 52    6.2      %6c     %6.2f   */  char  Mindestabstand_110kV_5_Char[6+1]  ;   // 110kV-Mindestabstand für vorausgehend angegebenen Nachweiszustand [m]  
+        /*  12: 47 - 52    6.2      %6c     %6.2f   */  float Mindestabstand_110kV_5_Float      ;   // 110kV-Mindestabstand für vorausgehend angegebenen Nachweiszustand [m]  
+        /*      53 - 53      1      %*1c            */                                              //
+        /*  13: 54 - 54      1      %1c     %s      */  char  Kennung_Nr_6[1+1]                 ;   // Kennung Nr. 6 ("TZUA1234") auf Nachweiszustand ("ZSAN"-Satz), für den ein anderer 110kV-Mindestabstand als der Wert aus "OBJ1" verwendet werden soll (falls " " wird nachfolgender Abstand ignoriert).  
+        /*  14: 55 - 60    6.2      %6c     %6.2f   */  char  Mindestabstand_110kV_6_Char[6+1]  ;   // 110kV-Mindestabstand für vorausgehend angegebenen Nachweiszustand [m]  
+        /*  14: 55 - 60    6.2      %6c     %6.2f   */  float Mindestabstand_110kV_6_Float      ;   // 110kV-Mindestabstand für vorausgehend angegebenen Nachweiszustand [m]  
+        /*      61 - 61      1      %*1c            */                                              //
+        /*  15: 62 - 62      1      %1c     %s      */  char  Kennung_Nr_7[1+1]                 ;   // Kennung Nr. 7 ("TZUA1234") auf Nachweiszustand ("ZSAN"-Satz), für den ein anderer 110kV-Mindestabstand als der Wert aus "OBJ1" verwendet werden soll (falls " " wird nachfolgender Abstand ignoriert).  
+        /*  16: 63 - 68    6.2      %6c     %6.2f   */  char  Mindestabstand_110kV_7_Char[6+1]  ;   // 110kV-Mindestabstand für vorausgehend angegebenen Nachweiszustand [m]  
+        /*  16: 63 - 68    6.2      %6c     %6.2f   */  float Mindestabstand_110kV_7_Float      ;   // 110kV-Mindestabstand für vorausgehend angegebenen Nachweiszustand [m]  
+        /*      69 - 69      1      %*1c            */                                              //
+        /*  17: 70 - 70      1      %1c     %s      */  char  Kennung_Nr_8[1+1]                 ;   // Kennung Nr. 8 ("TZUA1234") auf Nachweiszustand ("ZSAN"-Satz), für den ein anderer 110kV-Mindestabstand als der Wert aus "OBJ1" verwendet werden soll (falls " " wird nachfolgender Abstand ignoriert).  
+        /*  18: 71 - 76    6.2      %6c     %6.2f   */  char  Mindestabstand_110kV_8_Char[6+1]  ;   // 110kV-Mindestabstand für vorausgehend angegebenen Nachweiszustand [m]  
+        /*  18: 71 - 76    6.2      %6c     %6.2f   */  float Mindestabstand_110kV_8_Float      ;   // 110kV-Mindestabstand für vorausgehend angegebenen Nachweiszustand [m]  
         virtual ~OBA1() {}
     };
     //: OPKT: Punktobjekte  +++
@@ -1125,13 +1215,13 @@ namespace cc
         /*   9:  54 - 56   3              %3c   %d     */ char Punktindex_Teil_2_Char[3 + 1];           // Punktindex Teil 2 (Tausenderstellen)
         /*   9:  54 - 56   3              %3c   %d     */ int Punktindex_Teil_2_Int;                    // Punktindex Teil 2 (Tausenderstellen)
         /* *** Neu ab XX.09.04 ***                     */                                               //
-#ifdef FLP
-        /*  10:  57 - 66  10              %10c  %d     */ char MS_LinkChar[10 + 1]; // MS-Link (nur von FLP verwendet, irrelevant für Berech- nungsverhalten)
-        /*  10:  57 - 66  10              %10c  %d     */ int MS_LinkInt;           // MS-Link (nur von FLP verwendet, irrelevant für Berech- nungsverhalten)
-#endif
-        /* *** Neu ab Version 4.2.1 ***                */
-        /*  11:  67 - 69   3              %3c   %d     */ char KreuzungsobjektindexTeil_2_Char[3 + 1]; // Kreuzungsobjektindex Teil 2 (Tausenderstellen)
-        /*  11:  67 - 69   3              %3c   %d     */ int KreuzungsobjektindexTeil_2_Int;          // Kreuzungsobjektindex Teil 2 (Tausenderstellen)
+#ifdef FLP                                                                                              //
+        /*  10:  57 - 66  10              %10c  %d     */ char MS_LinkChar[10 + 1];                     // MS-Link (nur von FLP verwendet, irrelevant für Berech- nungsverhalten)
+        /*  10:  57 - 66  10              %10c  %d     */ int MS_LinkInt;                               // MS-Link (nur von FLP verwendet, irrelevant für Berech- nungsverhalten)
+#endif                                                                                                  //
+        /* *** Neu ab Version 4.2.1 ***                */                                               //
+        /*  11:  67 - 69   3              %3c   %d     */ char KreuzungsobjektindexTeil_2_Char[3 + 1];  // Kreuzungsobjektindex Teil 2 (Tausenderstellen)
+        /*  11:  67 - 69   3              %3c   %d     */ int KreuzungsobjektindexTeil_2_Int;           // Kreuzungsobjektindex Teil 2 (Tausenderstellen)
 
         virtual ~OPKT() {}
     };
@@ -1145,35 +1235,29 @@ namespace cc
         char const* fmtDS{ "%4c%*2c%3c%*1c%3c%3c%3c%3c%3c%*10c%3c%3c" };
         char const* fmtPrintf{ "\n%s|\n%d|\n%d|\n%d|\n%d|\n%d|\n%d|\n%d|\n%d|\n" };
 #endif
-        /*  1:   1 -  4    4               %4c  %s */ char DSK[4 + 1];                             // Satzkennung ‘OLIN’
-        /*       5 -  6    2               %*2c    */                                              //
-        /*  2:   7 -  9    3               %3c  %d */ char LinienindexTeil_1_Char[3 + 1];          // Linienindex Teil1 (Einer- bis Hunderterstellen)
-        /*  2:   7 -  9    3               %3c  %d */ int LinienindexTeil_1_Int;                   // Linienindex Teil1 (Einer- bis Hunderterstellen)
-        /*      10 - 10    1               %*1c    */                                              //
-        /*  3:  11 - 13    3               %3c  %d */ char KreuzungsobjektindexTeil_1_Char[3 + 1]; // Kreuzungsobjektindex Teil 1 (Einer- bis Hunderterstellen)
-        /*  3:  11 - 13    3               %3c  %d */ int KreuzungsobjektindexTeil_1_Int;          // Kreuzungsobjektindex Teil 1 (Einer- bis Hunderterstellen)
-
-        /*  4:  14 - 16    3               %3c  %d */ char IndexAnfangspunkt_1_Teil_1_Char[3 + 1]; // Index Anfangspunkt 1 Teil 1 (Einer- bis Hunderterstellen)
-        /*  4:  14 - 16    3               %3c  %d */ int IndexAnfangspunkt_1_Teil_1_Int;          // Index Anfangspunkt 1 Teil 1 (Einer- bis Hunderterstellen)
-
-        /*  5:  17 - 19    3               %3c  %d */ char Index_Endpunkt_1_Teil_1_Char[3 + 1]; // Index Endpunkt 1 Teil 1 (Einer- bis Hunderterstellen)
-        /*  5:  17 - 19    3               %3c  %d */ int Index_Endpunkt_1_Teil_1_Int;          // Index Endpunkt 1 Teil 1 (Einer- bis Hunderterstellen)
-
+        /*  1:   1 -  4    4               %4c  %s */ char DSK[4 + 1];                              // Satzkennung ‘OLIN’
+        /*       5 -  6    2               %*2c    */                                               //
+        /*  2:   7 -  9    3               %3c  %d */ char LinienindexTeil_1_Char[3 + 1];           // Linienindex Teil1 (Einer- bis Hunderterstellen)
+        /*  2:   7 -  9    3               %3c  %d */ int LinienindexTeil_1_Int;                    // Linienindex Teil1 (Einer- bis Hunderterstellen)
+        /*      10 - 10    1               %*1c    */                                               //
+        /*  3:  11 - 13    3               %3c  %d */ char KreuzungsobjektindexTeil_1_Char[3 + 1];  // Kreuzungsobjektindex Teil 1 (Einer- bis Hunderterstellen)
+        /*  3:  11 - 13    3               %3c  %d */ int KreuzungsobjektindexTeil_1_Int;           // Kreuzungsobjektindex Teil 1 (Einer- bis Hunderterstellen)
+        /*  4:  14 - 16    3               %3c  %d */ char IndexAnfangspunkt_1_Teil_1_Char[3 + 1];  // Index Anfangspunkt 1 Teil 1 (Einer- bis Hunderterstellen)
+        /*  4:  14 - 16    3               %3c  %d */ int IndexAnfangspunkt_1_Teil_1_Int;           // Index Anfangspunkt 1 Teil 1 (Einer- bis Hunderterstellen)
+        /*  5:  17 - 19    3               %3c  %d */ char Index_Endpunkt_1_Teil_1_Char[3 + 1];     // Index Endpunkt 1 Teil 1 (Einer- bis Hunderterstellen)
+        /*  5:  17 - 19    3               %3c  %d */ int Index_Endpunkt_1_Teil_1_Int;              // Index Endpunkt 1 Teil 1 (Einer- bis Hunderterstellen)
         /*  6:  20 - 22    3               %3c  %d */ char Index_Anfangspunkt_2_Teil_2_Char[3 + 1]; // Index Anfangspunkt 2 Teil 2 (Tausenderstellen)
         /*  6:  20 - 22    3               %3c  %d */ int Index_Anfangspunkt_2_Teil_2_Int;          // Index Anfangspunkt 2 Teil 2 (Tausenderstellen)
-
-        /*  7:  23 - 25    3               %3c  %d */ char IndexEndpunkt_2_Teil_2_Char[3 + 1]; // Index Endpunkt 2 Teil 2 (Tausenderstellen)
-        /*  7:  23 - 25    3               %3c  %d */ int IndexEndpunkt_2_Teil_2_Int;          // Index Endpunkt 2 Teil 2 (Tausenderstellen)
-
-        /*  *** Neu ab XX.09.04 ***                */ //
-#ifdef FLP
-        /*  8:  26 - 35   10               %10c %d */ char MS_LinkChar[10 + 1]; // MS-Link (nur von FLP verwendet, irrelevant für Berech- nungsverhalten)
-        /*  8:  26 - 35   10               %10c %d */ int MS_LinkInt;           // MS-Link (nur von FLP verwendet, irrelevant für Berech- nungsverhalten)
-#endif
-        /*  *** Neu ab Version 4.2.1 ***           */                                      //
-        /*  9:  36 - 38    3               %3c  %d */ char Linienindex_Teil_2_Char[3 + 1]; //  Linienindex Teil 2 (Tausenderstellen)
-        /*  9:  36 - 38    3               %3c  %d */ int Linienindex_Teil_2_Int;          //  Linienindex Teil 2 (Tausenderstellen)
-
+        /*  7:  23 - 25    3               %3c  %d */ char IndexEndpunkt_2_Teil_2_Char[3 + 1];      // Index Endpunkt 2 Teil 2 (Tausenderstellen)
+        /*  7:  23 - 25    3               %3c  %d */ int IndexEndpunkt_2_Teil_2_Int;               // Index Endpunkt 2 Teil 2 (Tausenderstellen)
+        /*  *** Neu ab XX.09.04 ***                */                                               //
+#ifdef FLP                                                                                          //
+        /*  8:  26 - 35   10               %10c %d */ char MS_LinkChar[10 + 1];                     // MS-Link (nur von FLP verwendet, irrelevant für Berech- nungsverhalten)
+        /*  8:  26 - 35   10               %10c %d */ int MS_LinkInt;                               // MS-Link (nur von FLP verwendet, irrelevant für Berech- nungsverhalten)
+#endif                                                                                              //
+        /*  *** Neu ab Version 4.2.1 ***           */                                               //
+        /*  9:  36 - 38    3               %3c  %d */ char Linienindex_Teil_2_Char[3 + 1];          //  Linienindex Teil 2 (Tausenderstellen)
+        /*  9:  36 - 38    3               %3c  %d */ int Linienindex_Teil_2_Int;                   //  Linienindex Teil 2 (Tausenderstellen)
         /* 10:  39 - 41    3               %3c  %d */ char Kreuzungsobjektindex_Teil_2_Char[3 + 1]; //  Kreuzungsobjektindex Teil 2 (Tausenderstellen)
         /* 10:  39 - 41    3               %3c  %d */ int Kreuzungsobjektindex_Teil_2_Int;          //  Kreuzungsobjektindex Teil 2 (Tausenderstellen)
 
@@ -1189,53 +1273,39 @@ namespace cc
         char const* fmtDS{ "%4c%*2c%3c%*1c%3c%3c%3c%3c%3c%3c%3c%3c%3c%*10c%3c%3c" };
         char const* fmtPrintf{ "\n%s|\n%d|\n%d|\n%d|\n%d|\n%d|\n%d|\n%d|\n%d|\n%d|\n%d|\n%d|\n%d|\n" };
 #endif
-        /*   1 :   1 -  4   4                 %4c   %s   */ char DSK[4 + 1];              // Satzkennung ‘OBFL’
-        /*         5 -  6   1                 %*1c                        //
-
-        /*   2 :   7 -  9   3                 %3c   %d   */
-        char Flaechenindex_Teil_1_Char[3 + 1];                                            // Flächenindex Teil 1 (Einer- bis Hunderterstellen)
-        /*   2 :   7 -  9   3                 %3c   %d   */ int Flaechenindex_Teil_1_Int; // Flächenindex Teil 1 (Einer- bis Hunderterstellen)
-
-        /*        10 - 10   1                 %*1c                        //
-
-        /*   3 :  11 - 13   3                 %3c   %d   */
-        char KreuzungsobjektindexTeil_1_Char[3 + 1];                                            // Kreuzungsobjektindex Teil 1 (Einer- bis Hunderterstellen)
-        /*   3 :  11 - 13   3                 %3c   %d   */ int KreuzungsobjektindexTeil_1_Int; // Kreuzungsobjektindex Teil 1 (Einer- bis Hunderterstellen)
-
-        /*   4 :  14 - 16   3                 %3c   %d   */ char Punktindex_1_Teil_1_Char[3 + 1]; // Punktindex 1 Teil 1 (Einer- bis Hunderterstellen)
-        /*   4 :  14 - 16   3                 %3c   %d   */ int Punktindex_1_Teil_1_Int;          // Punktindex 1 Teil 1 (Einer- bis Hunderterstellen)
-
-        /*   5 :  17 - 19   3                 %3c   %d   */ char Punktindex_2_Teil_1_Char[3 + 1]; // Punktindex 2 Teil 1 (Einer- bis Hunderterstellen)
-        /*   5 :  17 - 19   3                 %3c   %d   */ int Punktindex_2_Teil_1_Int;          // Punktindex 2 Teil 1 (Einer- bis Hunderterstellen)
-
-        /*   6 :  20 - 22   3                 %3c   %d   */ char Punktindex_3_Teil_1_Char[3 + 1]; // Punktindex 3 Teil 1 (Einer- bis Hunderterstellen)
-        /*   6 :  20 - 22   3                 %3c   %d   */ int Punktindex_3_Teil_1_Int;          // Punktindex 3 Teil 1 (Einer- bis Hunderterstellen)
-
-        /*   7 :  23 - 25   3                 %3c   %d   */ char Punktindex_4_Teil_1_Char[3 + 1]; // Punktindex 4 Teil 1 (Einer- bis Hunderterstellen)
-        /*   7 :  23 - 25   3                 %3c   %d   */ int Punktindex_4_Teil_1_Int;          // Punktindex 4 Teil 1 (Einer- bis Hunderterstellen)
-
-        /*   8 :  26 - 28   3                 %3c   %d   */ char Punktindex_1_Teil_2_Char[3 + 1]; // Punktindex 1 Teil 2 (Tausenderstelle)
-        /*   8 :  26 - 28   3                 %3c   %d   */ int Punktindex_1_Teil_2_Int;          // Punktindex 1 Teil 2 (Tausenderstelle)
-
-        /*   9 :  29 - 31   3                 %3c   %d   */ char Punktindex_2_Teil_2_Char[3 + 1]; // Punktindex 2 Teil 2 (Tausenderstelle)
-        /*   9 :  29 - 31   3                 %3c   %d   */ int Punktindex_2_Teil_2_Int;          // Punktindex 2 Teil 2 (Tausenderstelle)
-
-        /*  10 :  32 - 34   3                 %3c   %d   */ char Punktindex_3_Teil_2_Char[3 + 1]; // Punktindex 3 Teil 2 (Tausenderstelle)
-        /*  10 :  32 - 34   3                 %3c   %d   */ int Punktindex_3_Teil_2_Int;          // Punktindex 3 Teil 2 (Tausenderstelle)
-
-        /*  11 :  35 - 37   3                 %3c   %d   */ char Punktindex_4_Teil_2_Char[3 + 1]; // Punktindex 4 Teil 2 (Tausenderstelle)
-        /*  11 :  35 - 37   3                 %3c   %d   */ int Punktindex_4_Teil_2_Int;          // Punktindex 4 Teil 2 (Tausenderstelle)
-#ifdef FLP
-        /*   :  *** Neu ab XX.09.04 ***                  */                            //
-        /*  12 :  38 - 47  10                 %10c   %d  */ char MS_Link_Char[10 + 1]; // MS-Link (nur von FLP verwendet, irrelevant für Berech- nungsverhalten)
-        /*  12 :  38 - 47  10                 %10c   %d  */ int MS_Link_Int;           // MS-Link (nur von FLP verwendet, irrelevant für Berech- nungsverhalten)
-#endif
-        /*   :  *** Neu ab Version 4.2.1 ***             */                                        //
-        /*  13 :  48 - 50   3                 %3c   %d   */ char Flaechenindex_Teil_2_Char[3 + 1]; // Flächenindex Teil 2 (Tausenderstellen)
-        /*  13 :  48 - 50   3                 %3c   %d   */ int Flaechenindex_Teil_2_Int;          // Flächenindex Teil 2 (Tausenderstellen)
-
-        /*  14 :  51 - 53   3                 %3c   %d   */ char Kreuzungsobjektindex_Teil_2_Char[3 + 1]; // Kreuzungsobjektindex Teil 2 (Tausenderstellen)
-        /*  14 :  51 - 53   3                 %3c   %d   */ int Kreuzungsobjektindex_Teil_2_Int;          // Kreuzungsobjektindex Teil 2 (Tausenderstellen)
+        /*   1 :   1 -  4   4                 %4c   %s   */ char DSK[4 + 1];                                // Satzkennung ‘OBFL’
+        /*         5 -  6   1                 %*1c                                                          //
+        /*   2 :   7 -  9   3                 %3c   %d   */ char Flaechenindex_Teil_1_Char[3 + 1];          // Flächenindex Teil 1 (Einer- bis Hunderterstellen)
+        /*   2 :   7 -  9   3                 %3c   %d   */ int Flaechenindex_Teil_1_Int;                   // Flächenindex Teil 1 (Einer- bis Hunderterstellen)
+        /*        10 - 10   1                 %*1c                                                          //
+        /*   3 :  11 - 13   3                 %3c   %d   */ char KreuzungsobjektindexTeil_1_Char[3 + 1];    // Kreuzungsobjektindex Teil 1 (Einer- bis Hunderterstellen)
+        /*   3 :  11 - 13   3                 %3c   %d   */ int KreuzungsobjektindexTeil_1_Int;             // Kreuzungsobjektindex Teil 1 (Einer- bis Hunderterstellen)
+        /*   4 :  14 - 16   3                 %3c   %d   */ char Punktindex_1_Teil_1_Char[3 + 1];           // Punktindex 1 Teil 1 (Einer- bis Hunderterstellen)
+        /*   4 :  14 - 16   3                 %3c   %d   */ int Punktindex_1_Teil_1_Int;                    // Punktindex 1 Teil 1 (Einer- bis Hunderterstellen)
+        /*   5 :  17 - 19   3                 %3c   %d   */ char Punktindex_2_Teil_1_Char[3 + 1];           // Punktindex 2 Teil 1 (Einer- bis Hunderterstellen)
+        /*   5 :  17 - 19   3                 %3c   %d   */ int Punktindex_2_Teil_1_Int;                    // Punktindex 2 Teil 1 (Einer- bis Hunderterstellen)
+        /*   6 :  20 - 22   3                 %3c   %d   */ char Punktindex_3_Teil_1_Char[3 + 1];           // Punktindex 3 Teil 1 (Einer- bis Hunderterstellen)
+        /*   6 :  20 - 22   3                 %3c   %d   */ int Punktindex_3_Teil_1_Int;                    // Punktindex 3 Teil 1 (Einer- bis Hunderterstellen)
+        /*   7 :  23 - 25   3                 %3c   %d   */ char Punktindex_4_Teil_1_Char[3 + 1];           // Punktindex 4 Teil 1 (Einer- bis Hunderterstellen)
+        /*   7 :  23 - 25   3                 %3c   %d   */ int Punktindex_4_Teil_1_Int;                    // Punktindex 4 Teil 1 (Einer- bis Hunderterstellen)
+        /*   8 :  26 - 28   3                 %3c   %d   */ char Punktindex_1_Teil_2_Char[3 + 1];           // Punktindex 1 Teil 2 (Tausenderstelle)
+        /*   8 :  26 - 28   3                 %3c   %d   */ int Punktindex_1_Teil_2_Int;                    // Punktindex 1 Teil 2 (Tausenderstelle)
+        /*   9 :  29 - 31   3                 %3c   %d   */ char Punktindex_2_Teil_2_Char[3 + 1];           // Punktindex 2 Teil 2 (Tausenderstelle)
+        /*   9 :  29 - 31   3                 %3c   %d   */ int Punktindex_2_Teil_2_Int;                    // Punktindex 2 Teil 2 (Tausenderstelle)
+        /*  10 :  32 - 34   3                 %3c   %d   */ char Punktindex_3_Teil_2_Char[3 + 1];           // Punktindex 3 Teil 2 (Tausenderstelle)
+        /*  10 :  32 - 34   3                 %3c   %d   */ int Punktindex_3_Teil_2_Int;                    // Punktindex 3 Teil 2 (Tausenderstelle)
+        /*  11 :  35 - 37   3                 %3c   %d   */ char Punktindex_4_Teil_2_Char[3 + 1];           // Punktindex 4 Teil 2 (Tausenderstelle)
+        /*  11 :  35 - 37   3                 %3c   %d   */ int Punktindex_4_Teil_2_Int;                    // Punktindex 4 Teil 2 (Tausenderstelle)
+#ifdef FLP                                                                                                  //
+        /*   :  *** Neu ab XX.09.04 ***                  */                                                 //
+        /*  12 :  38 - 47  10                 %10c   %d  */ char MS_Link_Char[10 + 1];                      // MS-Link (nur von FLP verwendet, irrelevant für Berech- nungsverhalten)
+        /*  12 :  38 - 47  10                 %10c   %d  */ int MS_Link_Int;                                // MS-Link (nur von FLP verwendet, irrelevant für Berech- nungsverhalten)
+#endif                                                                                                      //
+        /*   :  *** Neu ab Version 4.2.1 ***             */                                                 //
+        /*  13 :  48 - 50   3                 %3c   %d   */ char Flaechenindex_Teil_2_Char[3 + 1];          // Flächenindex Teil 2 (Tausenderstellen)
+        /*  13 :  48 - 50   3                 %3c   %d   */ int Flaechenindex_Teil_2_Int;                   // Flächenindex Teil 2 (Tausenderstellen)
+        /*  14 :  51 - 53   3                 %3c   %d   */ char Kreuzungsobjektindex_Teil_2_Char[3 + 1];   // Kreuzungsobjektindex Teil 2 (Tausenderstellen)
+        /*  14 :  51 - 53   3                 %3c   %d   */ int Kreuzungsobjektindex_Teil_2_Int;            // Kreuzungsobjektindex Teil 2 (Tausenderstellen)
 
         virtual ~OBFL() {}
     };
@@ -1247,46 +1317,33 @@ namespace cc
         char const* fmtDS{ "%4c%*2c%3c%*1c%3c%9c%8c%6c%6c%6c%6c%*1c%3c%3c%3c" };
         char const* fmtPrintf{ "\n%4s|\n%3d|\n%3d|\n%9.2f|\n%8.2f|\n%6.2f|\n%6.2f|\n%6.2f|\n%6.2f|\n%3d|\n%3s|\n%3d|\n" };
 
-        /*  1:  1 -  4  4     %4c   %4s    */ char DSK[4 + 1];                            // Satzkennung ‘OGEL’
-        /*      5 -  6  2     %*2c         */
-        //
-        /*  2:  7 -  9  3     %3c   %3d    */ char Gelaendepunktindex_Teil_1_Char[3 + 1]; // Geländepunktindex Teil 1 (Einer- bis Hunderterstellen)
-        /*  2:  7 -  9  3     %3c   %3d    */ int Gelaendepunktindex_Teil_1_Int;          // Geländepunktindex Teil 1 (Einer- bis Hunderterstellen)
-        /*     10 - 10  1     %*1c         */                                             //
-
-        /*  3: 11 - 13  3     %3c   %3d    */ char Kreuzungsobjektindex_Teil_1_Char[3 + 1]; // Kreuzungsobjektindex Teil 1 (Einer- bis Hunderterstellen)
-        /*  3: 11 - 13  3     %3c   %3d    */ int Kreuzungsobjektindex_Teil_1_Int;          // Kreuzungsobjektindex Teil 1 (Einer- bis Hunderterstellen)
-
-        /*  4: 14 - 22  9.2   %9c   %9.2f  */ char StationChar[9 + 1]; // Station
-        /*  4: 14 - 22  9.2   %9c   %9.2f  */ float StationFloat;      // Station
-
-        /*  5: 23 - 30  8.2   %8c   %8.2f  */ char GelaendehoeheTrassenmitte_Char[8 + 1]; // Geländehöhe in Trassenmitte
-        /*  5: 23 - 30  8.2   %8c   %8.2f  */ float GelaendehoeheTrassenmitteFloat;       // Geländehöhe in Trassenmitte
-
-        /*  6: 31 - 36  6.2   %6c   %6.2f  */ char OrdinateSeitlichUeberhoehung_1_Char[6 + 1]; // Ordinate seitliche Überhöhung1 (links)
-        /*  6: 31 - 36  6.2   %6c   %6.2f  */ float OrdinateSeitlichUeberhoehung_1_Float;      // Ordinate seitliche Überhöhung1 (links)
-
-        /*  7: 37 - 42  6.2   %6c   %6.2f  */ char SeitlicheUeberhoehung_1_Char[6 + 1]; // Seitliche Überhöhung 1 (relativ zur Höhe in Trassenmitte, d.h. bei ‚0.00‘ auf Seite gleiche Höhe wie in Trassenmitte)
-        /*  7: 37 - 42  6.2   %6c   %6.2f  */ float SeitlicheUeberhoehung_1_Float;      // Seitliche Überhöhung 1 (relativ zur Höhe in Trassenmitte, d.h. bei ‚0.00‘ auf Seite gleiche Höhe wie in Trassenmitte)
-
+        /*  1:  1 -  4  4     %4c   %4s    */ char DSK[4 + 1];                                  // Satzkennung ‘OGEL’
+        /*      5 -  6  2     %*2c         */                                                   //
+        /*  2:  7 -  9  3     %3c   %3d    */ char Gelaendepunktindex_Teil_1_Char[3 + 1];       // Geländepunktindex Teil 1 (Einer- bis Hunderterstellen)
+        /*  2:  7 -  9  3     %3c   %3d    */ int Gelaendepunktindex_Teil_1_Int;                // Geländepunktindex Teil 1 (Einer- bis Hunderterstellen)
+        /*     10 - 10  1     %*1c         */                                                   //
+        /*  3: 11 - 13  3     %3c   %3d    */ char Kreuzungsobjektindex_Teil_1_Char[3 + 1];     // Kreuzungsobjektindex Teil 1 (Einer- bis Hunderterstellen)
+        /*  3: 11 - 13  3     %3c   %3d    */ int Kreuzungsobjektindex_Teil_1_Int;              // Kreuzungsobjektindex Teil 1 (Einer- bis Hunderterstellen)
+        /*  4: 14 - 22  9.2   %9c   %9.2f  */ char StationChar[9 + 1];                          // Station
+        /*  4: 14 - 22  9.2   %9c   %9.2f  */ float StationFloat;                               // Station
+        /*  5: 23 - 30  8.2   %8c   %8.2f  */ char GelaendehoeheTrassenmitte_Char[8 + 1];       // Geländehöhe in Trassenmitte
+        /*  5: 23 - 30  8.2   %8c   %8.2f  */ float GelaendehoeheTrassenmitteFloat;             // Geländehöhe in Trassenmitte
+        /*  6: 31 - 36  6.2   %6c   %6.2f  */ char OrdinateSeitlichUeberhoehung_1_Char[6 + 1];  // Ordinate seitliche Überhöhung1 (links)
+        /*  6: 31 - 36  6.2   %6c   %6.2f  */ float OrdinateSeitlichUeberhoehung_1_Float;       // Ordinate seitliche Überhöhung1 (links)
+        /*  7: 37 - 42  6.2   %6c   %6.2f  */ char SeitlicheUeberhoehung_1_Char[6 + 1];         // Seitliche Überhöhung 1 (relativ zur Höhe in Trassenmitte, d.h. bei ‚0.00‘ auf Seite gleiche Höhe wie in Trassenmitte)
+        /*  7: 37 - 42  6.2   %6c   %6.2f  */ float SeitlicheUeberhoehung_1_Float;              // Seitliche Überhöhung 1 (relativ zur Höhe in Trassenmitte, d.h. bei ‚0.00‘ auf Seite gleiche Höhe wie in Trassenmitte)
         /*  8: 43 - 48  6.2   %6c   %6.2f  */ char OrdinateSeitlicheUeberhoehung_2_Char[6 + 1]; // Ordinate seitliche Überhöhung2 (rechts)
         /*  8: 43 - 48  6.2   %6c   %6.2f  */ float OrdinateSeitlicheUeberhoehung_2_Float;      // Ordinate seitliche Überhöhung2 (rechts)
-
-        /*  9: 49 - 54  6.2   %6c   %6.2f  */ char SeitlicheUeberhoehung_2_Char[6 + 1]; // seitliche Überhöhung 2 (relativ zur Höhe in Trassenmitte)
-        /*  9: 49 - 54  6.2   %6c   %6.2f  */ float SeitlicheUeberhoehung_2_Float;      // seitliche Überhöhung 2 (relativ zur Höhe in Trassenmitte)
-
-        /*     55 - 55  1     %*1c         */ //
-
-        /*  10: 56 - 58  3     %3c   %3d    */ char Gelaendepunktindex_Teil_2_Char[3 + 1]; // Geländepunktindex Teil 2 (Tausenderstellen)
-        /*  10: 56 - 58  3     %3c   %3d    */ int Gelaendepunktindex_Teil_2_Int;          // Geländepunktindex Teil 2 (Tausenderstellen)
-
-        /*  *** Neu ab Version 4.1.3 ***                               */ //
-        /*  11: 59 - 61  3     %3c   %3s    */ char KulturartCode[3 + 1]; // Kulturart Code
-        /*  *** Neu ab Version 4.2.1 ***                               */ //
-
-        /*  12: 62 - 64  3     %3c   %3d    */ char KreuzungsobjektindexTeil_2_Char[3 + 1]; // Kreuzungsobjektindex Teil 2 (Tausenderstellen)
-        /*  12: 62 - 64  3     %3c   %3d    */ int KreuzungsobjektindexTeil_2_Int;          // Kreuzungsobjektindex Teil 2 (Tausenderstellen)
-
+        /*  9: 49 - 54  6.2   %6c   %6.2f  */ char SeitlicheUeberhoehung_2_Char[6 + 1];         // seitliche Überhöhung 2 (relativ zur Höhe in Trassenmitte)
+        /*  9: 49 - 54  6.2   %6c   %6.2f  */ float SeitlicheUeberhoehung_2_Float;              // seitliche Überhöhung 2 (relativ zur Höhe in Trassenmitte)
+        /*     55 - 55  1     %*1c         */                                                   //
+        /*  10: 56 - 58  3     %3c   %3d   */ char Gelaendepunktindex_Teil_2_Char[3 + 1];       // Geländepunktindex Teil 2 (Tausenderstellen)
+        /*  10: 56 - 58  3     %3c   %3d   */ int Gelaendepunktindex_Teil_2_Int;                // Geländepunktindex Teil 2 (Tausenderstellen)
+        /*  *** Neu ab Version 4.1.3 ***   */                                                   //
+        /*  11: 59 - 61  3     %3c   %3s   */ char KulturartCode[3 + 1];                        // Kulturart Code
+        /*  *** Neu ab Version 4.2.1 ***   */                                                   //
+        /*  12: 62 - 64  3     %3c   %3d   */ char KreuzungsobjektindexTeil_2_Char[3 + 1];      // Kreuzungsobjektindex Teil 2 (Tausenderstellen)
+        /*  12: 62 - 64  3     %3c   %3d   */ int KreuzungsobjektindexTeil_2_Int;               // Kreuzungsobjektindex Teil 2 (Tausenderstellen)
         virtual ~OGEL() {}
     };
     //: OGEL, "OGE2": Geländepunkte  +++
@@ -1294,15 +1351,11 @@ namespace cc
     {
         char const* fmtDS{ "%4c%*2c%6c%30c" };
         char const* fmtPrintf{ "\n%s|\n%d|\n%s|\n" };
-
-        /*   1:   1 -  4     4   %4c   %s   */ char DSK[4 + 1]; // Satzkennung ‘OGE2’
-        /*        5 -  6     2   %*2c       */                  //
-
-        /*   2:   7 - 12     6   %6c   %d   */ char GelaendepunktindexChar[6 + 1]; // Geländepunktindex
-        /*   2:   7 - 12     6   %6c   %d   */ int GelaendepunktindexInt;          // Geländepunktindex
-
-        /*   3:  14 - 43    30   %30c  %s   */ char KulturartReintext[30 + 1]; // Kulturart Reintext
-
+        /*   1:   1 -  4     4   %4c   %s   */ char DSK[4 + 1];                     // Satzkennung ‘OGE2’
+        /*        5 -  6     2   %*2c       */                                      //
+        /*   2:   7 - 12     6   %6c   %d   */ char GelaendepunktindexChar[6 + 1];  // Geländepunktindex
+        /*   2:   7 - 12     6   %6c   %d   */ int GelaendepunktindexInt;           // Geländepunktindex
+        /*   3:  14 - 43    30   %30c  %s   */ char KulturartReintext[30 + 1];      // Kulturart Reintext
         virtual ~OGE2() {}
     };
     //: OWEA: Windenergieanlagen

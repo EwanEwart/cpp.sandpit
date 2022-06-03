@@ -33,3 +33,9 @@
 
 # Log files
 *.Log
+
+# vs
+*.suo
+Browse.VC.*
+PARSERGH263.ipch
+*.vs
