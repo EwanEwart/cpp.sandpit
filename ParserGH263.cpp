@@ -1563,7 +1563,7 @@ namespace cc
                     LOGGER->Log
                     (
                         buf->fmtPrintf
-                        , /*    1 */ buf->DSK, buf->
+                        , /*    1 */ buf->DSK
                         , /*    2 */ buf->Kreuzungsobjektindex_Teil_1_Int
                         , /*    3 */ buf->Kennung_Nr_1
                         , /*    4 */ buf->Mindestabstand_1_Float

@@ -39,3 +39,7 @@
 Browse.VC.*
 PARSERGH263.ipch
 *.vs
+
+#vs code
+*.pdb
+*.ilk
