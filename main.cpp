@@ -287,7 +287,14 @@ using namespace cc::parser;
 int main(int argc, char const* argv[])
 {
 
+#if defined(_WIN32) || defined(_WIN64)
     auto upParserGH263{ std::make_unique<ParserGH263>("E:/dev/cpp.sandpit/Muster_024A-027A.SLC") };
+#elif defined(__linux__)
+    auto upParserGH263{ std::make_unique<ParserGH263>("/media/ewan/TRANSFERS/dev/cpp.sandpit/Muster_024A-027A.SLC") };
+#else
+    puts("Operating system not supported.\n")
+    exit(-1);
+#endif
 
     // upParserGH263->statistics();
 

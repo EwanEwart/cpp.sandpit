@@ -25,15 +25,35 @@ namespace cc
             int nLength = 0;
             va_list args;
             va_start(args, format);
+
+#if defined(_WIN32) || defined(_WIN64)
+            // Returns the number of characters in the formatted string using a pointer to a list of arguments.
             nLength = _vscprintf(format, args) + 1;// \0 not counted => +1
+#elif defined(__linux__)
+            FILE* fp = fopen("/dev/null", "w");
+            nLength = vfprintf(fp, format, args) + 1;// \0 not counted => +1
+#else
+            puts("Operating system not supported.\n")
+            exit(-1);
+#endif
             sMessage = new char[nLength];
+
+#if defined(_WIN32) || defined(_WIN64)
             vsprintf_s(sMessage, nLength, format, args);
+#elif defined(__linux__)
+            vsnprintf(sMessage, nLength, format, args);
+#else
+            puts("Operating system not supported.\n");
+            exit(-1);
+#endif
+
             m_Logfile << cc::util::CurrentDateTime() << ":\n";
             m_Logfile << sMessage << "\n";
+
             va_end(args);
 
             delete[] sMessage;
-        }
+        }   // void SimpleLogger::Log(char const* format, ...)
 
         void SimpleLogger::Log(string const& sMessage)
         {
@@ -41,7 +61,7 @@ namespace cc
             m_Logfile << sMessage << "\n";
         }
 
-        SimpleLogger& SimpleLogger::operator<<( string const& sMessage)
+        SimpleLogger& SimpleLogger::operator<<(string const& sMessage)
         {
             m_Logfile << "\n" << cc::util::CurrentDateTime() << ":\n";
             m_Logfile << sMessage << "\n";

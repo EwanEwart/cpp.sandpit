@@ -1,3 +1,4 @@
+#include <cstring>
 #include "ParserGH263.h"
 #include "SimpleLogger.h"
 namespace cc
@@ -841,8 +842,8 @@ namespace cc
                         , buf->fmtDS
                         , /*   1 */ buf->DSK
                         , /*   2 */ buf->KreuzungsobjektindexTeil_1_Char
-                        , /*   3 */ buf->EigentümerZeile_1
-                        , /*   4 */ buf->EigentümerZeile_2
+                        , /*   3 */ buf->EigentuemerZeile_1
+                        , /*   4 */ buf->EigentuemerZeile_2
                         , /*   5 */ buf->KreuzungsobjektindexTeil_2_Char
                     );
                     assert(n == 5);
@@ -1551,8 +1552,8 @@ namespace cc
                         buf->fmtPrintf
                         , /*   1 */ buf->DSK
                         , /*   2 */ buf->KreuzungsobjektindexTeil_1_Int
-                        , /*   3 */ buf->EigentümerZeile_1
-                        , /*   4 */ buf->EigentümerZeile_2
+                        , /*   3 */ buf->EigentuemerZeile_1
+                        , /*   4 */ buf->EigentuemerZeile_2
                         , /*   5 */ buf->KreuzungsobjektindexTeil_2_Int
                     );
                 }
