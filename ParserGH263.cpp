@@ -82,7 +82,7 @@ namespace cc
             ,"OKRV",false
             ,"OKSE",false
             ,"OKS2",false
-            ,"OERG",false
+            ,"OERG",true
             ,"OER2",false
             ,"OEKB",false
             ,"OMAB",false
@@ -177,7 +177,7 @@ namespace cc
             , {"OKRV", false}
             , {"OKSE", false}
             , {"OKS2", false}
-            , {"OERG", false}
+            , {"OERG", true}
             , {"OER2", false}
             , {"OEKB", false}
             , {"OMAB", false}
@@ -802,12 +802,12 @@ namespace cc
                     assert(n == 17);
 
                     /*   2 */ n = sscanf(buf->KreuzungsobjektindexTeil_1_Char, "%d", &buf->KreuzungsobjektindexTeil_1_Int); assert(n == 1);
-                    /*   4 */ n = sscanf(buf->MindestabstandChar,              "%f", &buf->MindestabstandFloat); assert(n == 1);
-                    /*   5 */ n = sscanf(buf->NachweiscodeChar,                "%d", &buf->NachweiscodeInt); assert(n == 1);
-                    /*   8 */ n = sscanf(buf->MastindexChar,                   "%d", &buf->MastindexInt); assert(n == 1);
-                    /*   9 */ n = sscanf(buf->PhasenindexChar,                 "%d", &buf->PhasenindexInt); assert(n == 1);
+                    /*   4 */ n = sscanf(buf->MindestabstandChar, "%f", &buf->MindestabstandFloat); assert(n == 1);
+                    /*   5 */ n = sscanf(buf->NachweiscodeChar, "%d", &buf->NachweiscodeInt); assert(n == 1);
+                    /*   8 */ n = sscanf(buf->MastindexChar, "%d", &buf->MastindexInt); assert(n == 1);
+                    /*   9 */ n = sscanf(buf->PhasenindexChar, "%d", &buf->PhasenindexInt); assert(n == 1);
                     /*  16 */ n = sscanf(buf->KreuzungsobjektindexTeil_2_Char, "%d", &buf->KreuzungsobjektindexTeil_2_Int); assert(n == 1);
-                    /*  17 */ n = sscanf(buf->Mindestabstand110kVChar,         "%f", &buf->Mindestabstand110kVFloat); assert(n == 1);
+                    /*  17 */ n = sscanf(buf->Mindestabstand110kVChar, "%f", &buf->Mindestabstand110kVFloat); assert(n == 1);
                 }
                 else if (std::strcmp("OBJ2", aDSK) == 0 && g_dictDSKs["OBJ2"])
                 {
@@ -925,7 +925,7 @@ namespace cc
                     );
                     assert(n == 18);
 
-                    /*  2  */ n = sscanf(buf->Kreuzungsobjektindex_Char,   "%d", &buf->Kreuzungsobjektindex_Int); assert(n == 1);
+                    /*  2  */ n = sscanf(buf->Kreuzungsobjektindex_Char, "%d", &buf->Kreuzungsobjektindex_Int); assert(n == 1);
                     /*  4  */ n = sscanf(buf->Mindestabstand_110kV_1_Char, "%f", &buf->Mindestabstand_110kV_1_Float); assert(n == 1);
                     /*  6  */ n = sscanf(buf->Mindestabstand_110kV_2_Char, "%f", &buf->Mindestabstand_110kV_2_Float); assert(n == 1);
                     /*  8  */ n = sscanf(buf->Mindestabstand_110kV_3_Char, "%f", &buf->Mindestabstand_110kV_3_Float); assert(n == 1);
@@ -955,7 +955,7 @@ namespace cc
                         , /*    8 */ buf->PunktnummerVermessung
                         , /*    9 */ buf->Punktindex_Teil_2_Char
 #ifdef FLP
-                        , /*   10 */ buf->MS_LinkChar
+                        , /*   10 */ buf->MS_Link_Char
 #endif
                         , /*   11 */ buf->KreuzungsobjektindexTeil_2_Char);
 #ifdef FLP
@@ -971,7 +971,7 @@ namespace cc
                     /*   7 */ n = sscanf(buf->ObjekthoeheChar, "%f", &buf->ObjekthoeheFloat); assert(n == 1);
                     /*   9 */ n = sscanf(buf->Punktindex_Teil_2_Char, "%d", &buf->Punktindex_Teil_2_Int); assert(n == 1);
 #ifdef FLP
-                    /*  10 */ n = sscanf(buf->MS_LinkChar, "%d", &buf->MS_LinkInt); assert(n == 1);
+                    /*  10 */ n = sscanf(buf->MS_Link_Char, "%d", &buf->MS_LinkInt); assert(n == 1);
 #endif
                     /*  11 */ n = sscanf(buf->KreuzungsobjektindexTeil_2_Char, "%d", &buf->KreuzungsobjektindexTeil_2_Int); assert(n == 1);
                 }
@@ -993,7 +993,7 @@ namespace cc
                         , /*    6 */ buf->Index_Anfangspunkt_2_Teil_2_Char
                         , /*    7 */ buf->IndexEndpunkt_2_Teil_2_Char
 #ifdef FLP
-                        , /*    8 */ buf->MS_LinkChar
+                        , /*    8 */ buf->MS_Link_Char
 #endif
                         , /*    9 */ buf->Linienindex_Teil_2_Char
                         , /*   10 */ buf->Kreuzungsobjektindex_Teil_2_Char
@@ -1010,7 +1010,7 @@ namespace cc
                     /*   6 */ n = sscanf(buf->Index_Anfangspunkt_2_Teil_2_Char, "%d", &buf->Index_Anfangspunkt_2_Teil_2_Int); assert(n == 1);
                     /*   7 */ n = sscanf(buf->IndexEndpunkt_2_Teil_2_Char, "%d", &buf->IndexEndpunkt_2_Teil_2_Int); assert(n == 1);
 #ifdef FLP
-                    /*   8 */ n = sscanf(buf->MS_LinkChar, "%d", &buf->MS_LinkInt); assert(n == 1);
+                    /*   8 */ n = sscanf(buf->MS_Link_Char, "%d", &buf->MS_LinkInt); assert(n == 1);
 #endif
                     /*   9 */ n = sscanf(buf->Linienindex_Teil_2_Char, "%d", &buf->Linienindex_Teil_2_Int); assert(n == 1);
                     /*  10 */ n = sscanf(buf->Kreuzungsobjektindex_Teil_2_Char, "%d", &buf->Kreuzungsobjektindex_Teil_2_Int); assert(n == 1);
@@ -1114,6 +1114,81 @@ namespace cc
                     assert(n == 12);
 
                     /*   2 */ n = sscanf(buf->GelaendepunktindexChar, "%d", &buf->GelaendepunktindexInt); assert(n == 1);
+                }
+                else if (std::strcmp("OERG", aDSK) == 0 && g_dictDSKs["OERG"])
+                {
+                    // struct OERG buf { };
+                    auto buf{ std::make_shared<OERG>() };
+                    queueDSKs.push(std::pair<std::string, std::shared_ptr<Base>>("OERG", std::static_pointer_cast<Base>(buf)));
+
+                    auto n = sscanf
+                    (
+                        lineBuf
+                        , buf->fmtDS
+                        , /*  1 */ buf->DSK
+                        , /*  2 */ buf->Berechnungsindex_Char
+                        , /*  3 */ buf->Kreuzungsobjektindex_Teil_1_Char
+                        , /*  4 */ buf->Zustandskennung
+                        , /*  5 */ buf->Abstandstyp
+                        , /*  6 */ buf->Leitungskreuzung
+                        , /*  7 */ buf->KennungAbstand
+                        , /*  8 */ buf->Kennung_Teil_1
+                        , /*  9 */ buf->Kreuzungsindex_Krit_Abst_Teil_1_Char
+                        , /* 10 */ buf->Zustandsbezeichnung
+                        , /* 11 */ buf->Phasenindex_Char
+                        , /* 12 */ buf->KritischerAbstand_Char
+                        , /* 13 */ buf->Mehrabstand_Char
+                        , /* 14 */ buf->KritischerAusschwingwinkel_Char
+                        , /* 15 */ buf->KritischerPunktDurchhang_Char
+                        , /* 16 */ buf->KritischerPunktStationAufObjekt_Char
+                        , /* 17 */ buf->KritischerPunktOrdinateAufObjekt_Char
+                        , /* 18 */ buf->KritischerPunktHoeheAufObjekt_Char
+                        , /* 19 */ buf->KritischerPunktStationAufSeil_Char
+                        , /* 20 */ buf->KritischerPunktOrdinateAufSeil_Char
+                        , /* 21 */ buf->KritischerPunktHoeheAufSeil_Char
+                        , /* 22 */ buf->Kreuzungsindex_Teil_2_Char
+#ifdef FLP
+                        , /* 23 */ buf->MS_Link_Char
+#endif
+                        , /* 24 */ buf->Feldnummer_Char
+                        , /* 25 */ buf->Max_Seilausschwingwinkel_Char
+                        , /* 26 */ buf->Abstand_Char
+                        , /* 27 */ buf->Kreuzungsobjektindex_Teil_2_Char
+#ifdef NOT_RESERVED
+                        , /* 28 */ buf->Reserviert_Char
+#endif
+                    );
+#ifdef FLP
+                    assert(n == 27);
+#else
+                    assert(n == 26);
+#endif
+
+                    /*    2 */ n = sscanf(buf->Berechnungsindex_Char, "%d", &buf->Berechnungsindex_Int); assert(n == 1);
+                    /*    3 */ n = sscanf(buf->Kreuzungsobjektindex_Teil_1_Char, "%d", &buf->Kreuzungsobjektindex_Teil_1_Int); assert(n == 1);
+                    /*    9 */ n = sscanf(buf->Kreuzungsindex_Krit_Abst_Teil_1_Char, "%d", &buf->Kreuzungsindex_Krit_Abst_Teil_1_Int); assert(n == 1);
+                    /*   11 */ n = sscanf(buf->Phasenindex_Char, "%d", &buf->Phasenindex_Int); assert(n == 1);
+                    /*   12 */ n = sscanf(buf->KritischerAbstand_Char, "%f", &buf->KritischerAbstand_Float); assert(n == 1);
+                    /*   13 */ n = sscanf(buf->Mehrabstand_Char, "%f", &buf->Mehrabstand_Float); assert(n == 1);
+                    /*   14 */ n = sscanf(buf->KritischerAusschwingwinkel_Char, "%f", &buf->KritischerAusschwingwinkel_Float); assert(n == 1);
+                    /*   15 */ n = sscanf(buf->KritischerPunktDurchhang_Char, "%f", &buf->KritischerPunktDurchhang_Float); assert(n == 1);
+                    /*   16 */ n = sscanf(buf->KritischerPunktStationAufObjekt_Char, "%f", &buf->KritischerPunktStationAufObjekt_Float); assert(n == 1);
+                    /*   17 */ n = sscanf(buf->KritischerPunktOrdinateAufObjekt_Char, "%f", &buf->KritischerPunktOrdinateAufObjekt_Float); assert(n == 1);
+                    /*   18 */ n = sscanf(buf->KritischerPunktHoeheAufObjekt_Char, "%f", &buf->KritischerPunktHoeheAufObjekt_Float); assert(n == 1);
+                    /*   19 */ n = sscanf(buf->KritischerPunktStationAufSeil_Char, "%f", &buf->KritischerPunktStationAufSeil_Float); assert(n == 1);
+                    /*   20 */ n = sscanf(buf->KritischerPunktOrdinateAufSeil_Char, "%f", &buf->KritischerPunktOrdinateAufSeil_Float); assert(n == 1);
+                    /*   21 */ n = sscanf(buf->KritischerPunktHoeheAufSeil_Char, "%f", &buf->KritischerPunktHoeheAufSeil_Float); assert(n == 1);
+                    /*   22 */ n = sscanf(buf->Kreuzungsindex_Teil_2_Char, "%d", &buf->Kreuzungsindex_Teil_2_Int); assert(n == 1);
+#if FLP
+                    /*   23*/ n = sscanf(buf->MS_Link_Char, "%d", &buf->MS_Link_Int); assert(n == 1);
+#endif
+                    /*   24*/ n = sscanf(buf->Feldnummer_Char, "%d", &buf->Feldnummer_Int); assert(n == 1);
+                    /*   25*/ n = sscanf(buf->Max_Seilausschwingwinkel_Char, "%f", &buf->Max_Seilausschwingwinkel_Float); assert(n == 1);
+                    /*   26*/ n = sscanf(buf->Abstand_Char, "%f", &buf->Abstand_Float); assert(n == 1);
+                    /*   27*/ n = sscanf(buf->Kreuzungsobjektindex_Teil_2_Char, "%d", &buf->Kreuzungsobjektindex_Teil_2_Int); assert(n == 1);
+#ifdef NOT_RESERVED
+                    /*   28*/ n = sscanf(buf->Reserviert_Char, "%d", &buf->Reserviert_Int); assert(n == 1);
+#endif
                 }
 
             } // for scan SLC file line by line
@@ -1680,6 +1755,7 @@ namespace cc
                 else if (std::strcmp("OGEL", aDSK) == 0 && g_dictDSKs["OGEL"])
                 {
                     auto buf = std::static_pointer_cast<OGEL>(ds.second);
+                    auto deleteMe = buf->Gelaendepunktindex_Teil_1_Int;
 
                     LOGGER->Log
                     (
@@ -1707,6 +1783,47 @@ namespace cc
                         , /*    1 */ buf->DSK
                         , /*    2 */ buf->GelaendepunktindexInt
                         , /*    3 */ buf->KulturartReintext
+                    );
+                }
+                else if (std::strcmp("OERG", aDSK) == 0 && g_dictDSKs["OERG"])
+                {
+                    auto buf = std::static_pointer_cast<OERG>(ds.second);
+
+                    LOGGER->Log
+                    (
+                        buf->fmtPrintf
+                        , /*  1 */ buf->DSK
+                        , /*  2 */ buf->Berechnungsindex_Int
+                        , /*  3 */ buf->Kreuzungsobjektindex_Teil_1_Int
+                        , /*  4 */ buf->Zustandskennung
+                        , /*  5 */ buf->Abstandstyp
+                        , /*  6 */ buf->Leitungskreuzung
+                        , /*  7 */ buf->KennungAbstand
+                        , /*  8 */ buf->Kennung_Teil_1
+                        , /*  9 */ buf->Kreuzungsindex_Krit_Abst_Teil_1_Int
+                        , /* 10 */ buf->Zustandsbezeichnung
+                        , /* 11 */ buf->Phasenindex_Int
+                        , /* 12 */ buf->KritischerAbstand_Float
+                        , /* 13 */ buf->Mehrabstand_Float
+                        , /* 14 */ buf->KritischerAusschwingwinkel_Float
+                        , /* 15 */ buf->KritischerPunktDurchhang_Float
+                        , /* 16 */ buf->KritischerPunktStationAufObjekt_Float
+                        , /* 17 */ buf->KritischerPunktOrdinateAufObjekt_Float
+                        , /* 18 */ buf->KritischerPunktHoeheAufObjekt_Float
+                        , /* 19 */ buf->KritischerPunktStationAufSeil_Float
+                        , /* 20 */ buf->KritischerPunktOrdinateAufSeil_Float
+                        , /* 21 */ buf->KritischerPunktHoeheAufSeil_Float
+                        , /* 22 */ buf->Kreuzungsindex_Teil_2_Int
+#ifdef FLP
+                        , /* 23 */ buf->MS_Link_Int
+#endif
+                        , /* 24 */ buf->Feldnummer_Int
+                        , /* 25 */ buf->Max_Seilausschwingwinkel_Float
+                        , /* 26 */ buf->Abstand_Float
+                        , /* 27 */ buf->Kreuzungsobjektindex_Teil_2_Int
+#ifdef NOT_RESERVED
+                        , /* 28 */ buf->Reserviert_Int
+#endif
                     );
                 }
                 queueDSKs.pop();

@@ -21,8 +21,8 @@ namespace cc
 
         void SimpleLogger::Log(char const* format, ...)
         {
-            char* sMessage = nullptr;
-            int nLength = 0;
+            char* sMessage {nullptr};
+            int nLength {0};
             va_list args;
             va_start(args, format);
 

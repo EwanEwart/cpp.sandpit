@@ -2364,11 +2364,11 @@ GH263 Datenformat                                          25.01.22             
 /*   7: 37 - 42                      6.2   %6c   %6.2f          */  float   ;         // Seitliche Überhöhung 1 (relativ zur Höhe in Trassenmitte, d.h. bei ‚0.00" auf Seite gleiche Höhe wie in Trassenmitte)  
 /*   8: 43 - 48                      6.2   %6c   %6.2f          */  float   ;         // Ordinate seitliche Überhöhung2 (rechts)  
 /*   9: 49 - 54                      6.2   %6c   %6.2f          */  float   ;         // seitliche Überhöhung 2 (relativ zur Höhe in Trassenmitte)  
-/*   55 - 55                         1     %*1c                 */                    //   
+/*      55 - 55                      1     %*1c                 */                    //   
 /*  10: 56 - 58                      3     %3c   %3d            */  int     ;         // Geländepunktindex Teil 2 (Tausenderstellen)  
-/*  *** Neu ab Version 4.1.3 ***                               */                     //      
+/*                                                              */                    //  *** Neu ab Version 4.1.3 ***
 /*  11: 59 - 61                      3     %3c   %3s            */  char    ;         // Kulturart Code  
-/*  *** Neu ab Version 4.2.1 ***                               */                     //   
+/*                                                              */                    // *** Neu ab Version 4.2.1 ***
 /*  12: 62 - 64                      3     %3c   %3d            */  int     ;         // Kreuzungsobjektindex Teil 2 (Tausenderstellen)  
 
 
@@ -2688,109 +2688,46 @@ GH263 Datenformat                                        25.01.22               
 
 
 
-*** Änderung ab Version 1.5.1: Erweiterung der Punktindize auf 6 Stellen, abgelegt in zwei 3      
-
-    stelligen Werten, um abwärtskompatibel zu bleiben. ***  
+*** Änderung ab Version 1.5.1: Erweiterung der Punktindize auf 6 Stellen, abgelegt in zwei 3 stelligen Werten, um abwärtskompatibel zu bleiben. ***  
 
    Spalte             Format            Beschreibung  
 
-    1 -     4   Char                4   Satzkennung "OERG"  
-
-*** Erweitert ab Version 2.0 von Spalte 7-9 auf Spalte 5-9 ***  
-
-    5 -     9   Int                 5   Berechnungsindex, laufende Nummer  
-
-   10 -    12   Int                 3   Kreuzungsobjektindex Teil 1 (Einer- bis Hunderterstellen)  
-
-   14 -    14   Char                1   Zustandskennung ("T","Z" etc.)  
-
-   15 -    15   Char                1   Abstandstyp ("L"=Lotrecht etc.)  
-
-   16 -    16   Char                1   "L"=Leitungskreuzung, sonst " "  
-
-   17 -    17   Char                1   Kennung:   
-
-                                        P=Abstand auf Punktobjekt  
-
-                                        L=Abstand auf Linie  
-
-                                        F=Abstand auf Fläche  
-
-                                        G=Abstand auf Gelände  
-
-                                        K=Leitungskreuzung  
-
-   18 -    18   Char                1   Kennung   
-
-                                        "*"=Nachweis ist kritischster Abstand (entspr. kleinstem  
-
-                                        Mehrabstand) des K-Objekts und wird dargestellt, sonst leer.  
-
-                                        "#"=Nachweis ist kleinster geometrischer Abstand des K-Objekts  
-
-                                        aber nicht gleichzeitig der kritischste Abstand.  
-
-   19 -    21   Int                 3   Punkt-, Linien- Flächen-, Gelände- oder Leitungskreuzungsindex  
-
-                                        des kritischen Abstands Teil 1 (Einer- bis Hunderterstellen)  
-
-   22 -    31   Char               10   Zustandsbezeichnung ‚-5^C+Z" etc.  
-
-   32 -    34   Int                 3   Phasenindex der Phase mit kleinstem Abstand  
-
-   35 -    43   Float             9.2   Kritischer Abstand [m]  
-
-   44 -    52   Float             9.2   Mehrabstand [m]  
-
-   53 -    61   Float             9.2   Kritischer Ausschwingwinkel [grad]  
-
-   62 -    70   Float             9.2   Durchhang im kritischen Punkt [m]  
-
-   71 -    79   Float             9.2   Station kritischer Punkt auf Objekt [m]  
-
-   80 -    88   Float             9.2   Ordinate kritischer Punkt auf Objekt [m]  
-
-   89 -    97   Float             9.2   Höhe kritischer Punkt auf Objekt [m]  
-
-   98 -   106   Float             9.2   Station kritischer Punkt auf Seil [m]  
-
- 107 -   115   Float              9.2   Ordinate kritischer Punkt auf Seil [m]  
-
- 116 -   124   Float              9.2   Höhe kritischer Punkt auf Seil [m]  
-
-  126 -   128   Int                 3   Punkt-, Linien- Flächen-, Gelände- oder Leitungskreuzungsindex  
-
-                                        des kritischen Abstands Teil 2 (Tausenderstellen)  
-
-*** Neu ab XX.09.04 ***  
-
-  129 -   138   int                10   MS-Link des Teilobjektes (Punkt/Linie/Fläche), nur von FLP  
-
-                                        verwendet, irrelevant für Berechnungsverhalten  
-
-*** Neu ab XX.09.05 ***  
-
-  139 -   141   Int                 3   Feldnummer der projektierten Leitung, in welchem der kritische  
-
-                                        Kreuzungspunkt liegt (beginnend bei 1)  
-
-*** Neu ab Version 3.7.3 ***  
-
-  142 -   148   Float             7.2   Maximaler Seilausschwingwinkel [grad]  
-
-*** Neu ab Version 3.7.4 ***  
-
-  149 -   155   Float             7.2   Abstand krit. Kreuzungspkt. v. Aufhängepkt. li nkem Mast  
-
-*** Neu ab Version 4.2.1 ***  
-
-  156 -   158   Int                 3   Kreuzungsobjektindex Teil 2 (Tausenderstellen)  
-
-  159 -   161   int                 3   Reserviert für Berechnungsindex 100-tausenderstellen  
-
-  
-
-                                          
+/*   1:           1 -   4      4      %4c        %4s     */  char        ; // Satzkennung "OERG"    
+/*                                                       */              ; // *** Erweitert ab Version 2.0 von Spalte 7-9 auf Spalte 5-9 ***  
+/*   2:      1:    5 -   9      5      %5c        %5d     */  int         ; // Berechnungsindex, laufende Nummer  
+/*   3:      2:   10 -  12      3      %3c        %3d     */  int         ; // Kreuzungsobjektindex Teil 1 (Einer- bis Hunderterstellen)  
+/*                13 -  13      1      %*1c               */                //  
+/*   4:           14 -  14      1      %1c        %1s     */  char        ; // Zustandskennung ("T","Z" etc.)  
+/*   5:           15 -  15      1      %1c        %1s     */  char        ; // Abstandstyp ("L"=Lotrecht etc.)  
+/*   6:           16 -  16      1      %1c        %1s     */  char        ; // "L"=Leitungskreuzung, sonst " "  
+/*   7:           17 -  17      1      %1c        %1s     */  char        ; // Kennung: P=Abstand auf Punktobjekt L=Abstand auf Linie F=Abstand auf Fläche G=Abstand auf Gelände K=Leitungskreuzung  
+/*   8:           18 -  18      1      %1c        %1s     */  char        ; // Kennung "*"=Nachweis ist kritischster Abstand (entspr. kleinstem Mehrabstand) des K-Objekts und wird dargestellt, sonst leer. "#"=Nachweis ist kleinster geometrischer Abstand des K-Objekts aber nicht gleichzeitig der kritischste Abstand.  
+/*   9:      3:   19 -  21      3      %3c        %3d     */  int         ; // Punkt-, Linien- Flächen-, Gelände- oder Leitungskreuzungsindex des kritischen Abstands Teil 1 (Einer- bis Hunderterstellen)  
+/*  10:           22 -  31     10      %10c       %10s    */  char        ; // Zustandsbezeichnung ‚-5^C+Z" etc. 
+/*  11:      4:   32 -  34      3      %3c        %3d     */  int         ; // Phasenindex der Phase mit kleinstem Abstand  
+/*  12:      5:   35 -  43    9.2      %9c        %9.2f   */  float       ; // Kritischer Abstand [m]  
+/*  13:      6:   44 -  52    9.2      %9c        %9.2f   */  float       ; // Mehrabstand [m]  
+/*  14:      7:   53 -  61    9.2      %9c        %9.2f   */  float       ; // Kritischer Ausschwingwinkel [grad]  
+/*  15:      8:   62 -  70    9.2      %9c        %9.2f   */  float       ; // Durchhang im kritischen Punkt [m]  
+/*  16:      9:   71 -  79    9.2      %9c        %9.2f   */  float       ; // Station kritischer Punkt auf Objekt [m]  
+/*  17:     10:   80 -  88    9.2      %9c        %9.2f   */  float       ; // Ordinate kritischer Punkt auf Objekt [m]  
+/*  18:     11:   89 -  97    9.2      %9c        %9.2f   */  float       ; // Höhe kritischer Punkt auf Objekt [m]  
+/*  19:     12:   98 - 106    9.2      %9c        %9.2f   */  float       ; // Station kritischer Punkt auf Seil [m]  
+/*  20:     13:  107 - 115    9.2      %9c        %9.2f   */  float       ; // Ordinate kritischer Punkt auf Seil [m]  
+/*  21:     14:  116 - 124    9.2      %9c        %9.2f   */  float       ; // Höhe kritischer Punkt auf Seil [m]  
+/*               125 - 125      1      %*1c               */
+/*  22:     15:  126 - 128      3      %3c        %3d     */  int         ; // Punkt-, Linien- Flächen-, Gelände- oder Leitungskreuzungsindex des kritischen Abstands Teil 2 (Tausenderstellen)  
+/*                                                        */              ; // *** Neu ab XX.09.04 ***                
+/*  23:     16:  129 - 138     10      %10c       %10d    */  int         ; // MS-Link des Teilobjektes (Punkt/Linie/Fläche), nur von FLP verwendet, irrelevant für Berechnungsverhalten  
+/*                                                        */              ; // *** Neu ab XX.09.05 ***                 
+/*  24:     17:  139 - 141      3      %3c        %3d     */  int         ; // Feldnummer der projektierten Leitung, in welchem der kritische Kreuzungspunkt liegt (beginnend bei 1)  
+/*                                                        */              ; // *** Neu ab Version 3.7.3 ***          
+/*  25:     18:  142 - 148    7.2      % 7c       %7.2f   */  float       ; // Maximaler Seilausschwingwinkel [grad]  
+/*                                                        */              ; // *** Neu ab Version 3.7.4 ***          
+/*  26:     19:  149 - 155    7.2      % 7c       %7.2f   */  float       ; // Abstand krit. Kreuzungspkt. v. Aufhängepkt. li nkem Mast  
+/*                                                        */              ; // *** Neu ab Version 4.2.1 ***           
+/*  27:     20:  156 - 158      3      %3c        %3d     */  int         ; // Kreuzungsobjektindex Teil 2 (Tausenderstellen)  
+/*  28:     21:  159 - 161      3      %3c        %3d     */  int         ; // Reserviert für Berechnungsindex 100-tausenderstellen  
 
 
 
